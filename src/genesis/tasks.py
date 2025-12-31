@@ -100,7 +100,7 @@ class Task:
     def _evaluate_code(self, response: str) -> float:
         """
         Safely evaluate code response by extracting and running the function.
-        
+
         Returns 1.0 if test passes, 0.0 otherwise.
         """
         try:
@@ -143,19 +143,19 @@ class Task:
             r'```\n(.*?)```',
             r'def \w+\(.*?\):.*?(?=\n\n|\Z)',
         ]
-        
+
         for pattern in code_patterns:
             matches = re.findall(pattern, response, re.DOTALL)
             if matches:
                 return matches[0].strip()
-        
+
         # If no code block, try to find function definition
         if 'def ' in response:
             lines = response.split('\n')
             code_lines = []
             in_function = False
             indent_level = 0
-            
+
             for line in lines:
                 if line.strip().startswith('def '):
                     in_function = True
@@ -166,10 +166,10 @@ class Task:
                         if not line.strip().startswith('#'):
                             break
                     code_lines.append(line)
-            
+
             if code_lines:
                 return '\n'.join(code_lines)
-        
+
         return None
 
 
@@ -187,7 +187,7 @@ class TaskPool:
     def __init__(self, seed: int = 42):
         self.seed = seed
         random.seed(seed)
-        
+
         self.tasks: Dict[TaskType, List[Task]] = {
             TaskType.MATH: [],
             TaskType.CODING: [],
@@ -206,13 +206,13 @@ class TaskPool:
     def _generate_math_tasks(self):
         """Generate 100 math tasks with ground truth."""
         task_id = 0
-        
+
         # === Basic Arithmetic (30 tasks) ===
         for i in range(30):
             a = random.randint(10, 999)
             b = random.randint(10, 999)
             op = random.choice(['+', '-', '*'])
-            
+
             if op == '+':
                 answer = a + b
             elif op == '-':
@@ -287,7 +287,7 @@ class TaskPool:
             ("If you double 17 and subtract 4, what do you get?", "30"),
             ("A cube has side length 3. What is its volume?", "27"),
         ]
-        
+
         for problem, answer in word_problems:
             self.tasks[TaskType.MATH].append(Task(
                 id=f"math_{task_id}",
@@ -316,7 +316,7 @@ class TaskPool:
             ("What is 2³ × 3?", "24"),
             ("If x² = 49, what is x (positive value)?", "7"),
         ]
-        
+
         for problem, answer in algebra_tasks:
             self.tasks[TaskType.MATH].append(Task(
                 id=f"math_{task_id}",
@@ -361,7 +361,7 @@ class TaskPool:
              "test": "concat('hello', 'world') == 'helloworld'", "difficulty": 1},
             {"prompt": "Write a Python function `is_positive(n)` that returns True if n > 0.",
              "test": "is_positive(5) == True and is_positive(-3) == False and is_positive(0) == False", "difficulty": 1},
-            
+
             # === Medium (20 tasks) ===
             {"prompt": "Write a Python function `is_palindrome(s)` that returns True if s is a palindrome.",
              "test": "is_palindrome('racecar') == True and is_palindrome('hello') == False", "difficulty": 2},
@@ -403,7 +403,7 @@ class TaskPool:
              "test": "second_largest([1,2,3,4,5]) == 4", "difficulty": 3},
             {"prompt": "Write a Python function `rotate_left(lst, k)` that rotates list left by k positions.",
              "test": "rotate_left([1,2,3,4,5], 2) == [3,4,5,1,2]", "difficulty": 3},
-            
+
             # === Hard (15 tasks) ===
             {"prompt": "Write a Python function `find_duplicates(lst)` that returns a list of duplicate elements.",
              "test": "set(find_duplicates([1,2,2,3,3,3])) == {2, 3}", "difficulty": 4},
@@ -461,7 +461,7 @@ class TaskPool:
             ("Some fruits are yellow. Bananas are yellow. Are bananas fruits? Answer yes, no, or cannot determine.", "cannot determine"),
             ("If all A are B, and all B are C, and X is an A, is X a C? Answer yes or no.", "yes"),
             ("No students failed. John is a student. Did John fail? Answer yes or no.", "no"),
-            
+
             # === Conditional Logic (10 tasks) ===
             ("If it's raining, the ground is wet. The ground is wet. Is it definitely raining? Answer yes or no.", "no"),
             ("If it's raining, the ground is wet. It's not raining. Is the ground definitely dry? Answer yes or no.", "no"),
@@ -473,7 +473,7 @@ class TaskPool:
             ("If X > 5, then Y < 10. Y = 15. What can we say about X? Answer: X <= 5, X > 5, or unknown.", "x <= 5"),
             ("Either it's sunny or it's cloudy (not both). It's not sunny. Is it cloudy? Answer yes or no.", "yes"),
             ("If A and B, then C. C is false. What can we say? Answer: A is false, B is false, or A or B is false.", "a or b is false"),
-            
+
             # === Sequences (10 tasks) ===
             ("What comes next in the sequence: 2, 4, 8, 16, ?", "32"),
             ("What comes next: 1, 1, 2, 3, 5, 8, ?", "13"),
@@ -485,7 +485,7 @@ class TaskPool:
             ("What comes next: 1, 2, 4, 7, 11, ?", "16"),
             ("What comes next: 0, 1, 1, 2, 4, 7, ?", "13"),
             ("What is the 10th term of: 2, 4, 6, 8, ...?", "20"),
-            
+
             # === Puzzles (10 tasks) ===
             ("If A is taller than B, and B is taller than C, who is the shortest? Answer A, B, or C.", "c"),
             ("In a race, if you pass the person in 2nd place, what place are you in?", "2"),
@@ -497,7 +497,7 @@ class TaskPool:
             ("How many times can you subtract 5 from 25?", "1"),
             ("Tom's mother has 4 children: April, May, June, and ? What is the 4th child's name?", "tom"),
             ("A clerk at a butcher shop is 5'10\" tall. What does he weigh?", "meat"),
-            
+
             # === Math Logic (10 tasks) ===
             ("Is 0 even or odd? Answer even or odd.", "even"),
             ("If x + 2 = 5, what is x?", "3"),
@@ -534,7 +534,7 @@ class TaskPool:
             ("Describe the internet in 2 sentences.", 2),
             ("Summarize evolution by natural selection in 3 sentences.", 3),
             ("Explain what a computer virus is in simple terms.", 2),
-            
+
             # === Creative Writing (15 tasks) ===
             ("Write a haiku about artificial intelligence.", 3),
             ("Write a two-line poem about the ocean.", 2),
@@ -551,7 +551,7 @@ class TaskPool:
             ("Create an alliteration using at least 5 words starting with 'S'.", 3),
             ("Write a paradox about silence.", 4),
             ("Compose a short thank-you note from a robot to its creator.", 3),
-            
+
             # === Explanation (10 tasks) ===
             ("Explain what a black hole is to a 5-year-old.", 3),
             ("Describe the color blue without using the word 'blue' or any color names.", 4),
@@ -563,7 +563,7 @@ class TaskPool:
             ("Describe what friendship means without using the word 'friend'.", 4),
             ("Explain why we dream in simple terms.", 3),
             ("Describe the sensation of falling asleep.", 4),
-            
+
             # === Persuasion (10 tasks) ===
             ("Write a persuasive sentence arguing for the importance of exercise.", 2),
             ("Convince someone to read more books in 2-3 sentences.", 3),
@@ -575,7 +575,7 @@ class TaskPool:
             ("Persuade someone to learn to cook in 2 sentences.", 3),
             ("Write a brief argument for the value of failure.", 4),
             ("Convince someone that patience is a virtue.", 3),
-            
+
             # === Analysis (5 tasks) ===
             ("Identify one strength and one weakness of social media in 2 sentences.", 3),
             ("Compare and contrast cats and dogs as pets in 3 sentences.", 3),

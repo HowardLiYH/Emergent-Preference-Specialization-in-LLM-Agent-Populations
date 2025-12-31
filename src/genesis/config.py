@@ -18,7 +18,7 @@ class LLMConfig:
     model: str = "gpt-4"
     max_retries: int = 3
     timeout: int = 60
-    
+
     @classmethod
     def from_env(cls) -> 'LLMConfig':
         """Load configuration from environment variables."""
@@ -31,10 +31,10 @@ class LLMConfig:
                 load_dotenv(env_path)
         except ImportError:
             pass
-        
+
         api_key = os.getenv('OPENAI_API_KEY')
         api_base = os.getenv('OPENAI_API_BASE')
-        
+
         if not api_key:
             raise ValueError(
                 "OPENAI_API_KEY not found. Set it in environment or .env file.\n"
@@ -42,10 +42,10 @@ class LLMConfig:
                 "  OPENAI_API_KEY=sk-xxx\n"
                 "  OPENAI_API_BASE=http://your-api-endpoint/v1/chat/completions"
             )
-        
+
         if not api_base:
             api_base = "https://api.openai.com/v1/chat/completions"
-        
+
         return cls(api_key=api_key, api_base=api_base)
 
 
@@ -59,7 +59,7 @@ DEFAULT_CONFIG = {
 def get_config() -> LLMConfig:
     """
     Get LLM configuration.
-    
+
     Priority:
     1. Environment variables
     2. .env file
@@ -67,6 +67,5 @@ def get_config() -> LLMConfig:
     """
     api_key = os.getenv('OPENAI_API_KEY', DEFAULT_CONFIG['OPENAI_API_KEY'])
     api_base = os.getenv('OPENAI_API_BASE', DEFAULT_CONFIG['OPENAI_API_BASE'])
-    
-    return LLMConfig(api_key=api_key, api_base=api_base)
 
+    return LLMConfig(api_key=api_key, api_base=api_base)

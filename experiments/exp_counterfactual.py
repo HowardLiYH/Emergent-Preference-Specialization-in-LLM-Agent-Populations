@@ -11,7 +11,7 @@ Protocol:
 4. Re-evaluate: Does performance follow the prompt or the agent?
 
 If prompts CAUSE specialization:
-- After swap, the "math specialist" (now with language prompt) 
+- After swap, the "math specialist" (now with language prompt)
   should become better at language tasks
 
 Transfer Coefficient:
@@ -43,13 +43,13 @@ async def run_counterfactual_experiment(
 ):
     """
     Run the prompt swap counterfactual experiment.
-    
+
     Steps:
     1. Train population to develop specialists
     2. Run prompt swap test
     3. Compute transfer coefficient
     """
-    
+
     print("=" * 60)
     print("EXPERIMENT 6: PROMPT SWAP COUNTERFACTUAL")
     print("=" * 60)
@@ -58,18 +58,18 @@ async def run_counterfactual_experiment(
     print(f"  Agents: {n_agents}")
     print(f"  Eval tasks per type: {n_eval_tasks}")
     print(f"  Runs: {n_runs}")
-    
+
     client = create_client()
     task_pool = TaskPool()
-    
+
     all_results = []
-    
+
     try:
         for run in range(n_runs):
             print(f"\n{'='*40}")
             print(f"RUN {run+1}/{n_runs}")
             print(f"{'='*40}")
-            
+
             # Step 1: Train population
             print("\nPhase 1: Training population...")
             config = SimulationConfig(
@@ -80,21 +80,21 @@ async def run_counterfactual_experiment(
                 winner_takes_all=True,
                 seed=run,
             )
-            
+
             sim = GenesisSimulation(config, client)
             train_result = await sim.run()
-            
+
             final_lsi = train_result.final_metrics['lsi']['mean']
             print(f"Training complete. Final LSI: {final_lsi:.3f}")
-            
+
             # Check if we have specialists
             from genesis.metrics import identify_specialists
             specialists = identify_specialists(train_result.final_agents, lsi_threshold=0.4)
             print(f"Specialists found: {list(specialists.keys())}")
-            
+
             if len(specialists) < 2:
                 print("Warning: Less than 2 specialist types emerged. Swap test may be limited.")
-            
+
             # Step 2: Run prompt swap test
             print("\nPhase 2: Running prompt swap test...")
             swap_result = await run_prompt_swap_test(
@@ -103,9 +103,9 @@ async def run_counterfactual_experiment(
                 llm_client=client,
                 n_eval_tasks=n_eval_tasks
             )
-            
+
             print(swap_result.analysis)
-            
+
             all_results.append({
                 "run": run,
                 "final_lsi": final_lsi,
@@ -113,11 +113,11 @@ async def run_counterfactual_experiment(
                 "baseline": swap_result.baseline,
                 "swapped": swap_result.swapped,
             })
-        
+
         # Aggregate results
         import numpy as np
         transfer_coeffs = [r["transfer_coefficient"] for r in all_results]
-        
+
         print("\n" + "=" * 60)
         print("AGGREGATE RESULTS")
         print("=" * 60)
@@ -126,7 +126,7 @@ async def run_counterfactual_experiment(
         print(f"  Std:  {np.std(transfer_coeffs):.3f}")
         print(f"  Min:  {np.min(transfer_coeffs):.3f}")
         print(f"  Max:  {np.max(transfer_coeffs):.3f}")
-        
+
         # Success criterion
         mean_tc = np.mean(transfer_coeffs)
         print("\n" + "-" * 40)
@@ -140,11 +140,11 @@ async def run_counterfactual_experiment(
         else:
             print(f"  ✗ WEAK EVIDENCE: TC = {mean_tc:.3f} < 0.50")
             print("    Cannot establish causal link between prompts and performance.")
-        
+
         # Save results
         output_path = Path(output_dir)
         output_path.mkdir(parents=True, exist_ok=True)
-        
+
         summary = {
             "n_runs": n_runs,
             "config": {
@@ -159,15 +159,15 @@ async def run_counterfactual_experiment(
             },
             "runs": all_results,
         }
-        
+
         with open(output_path / "results.json", "w") as f:
             json.dump(summary, f, indent=2, default=str)
-        
+
         print(f"\nResults saved to {output_path}")
         print(f"\n{client.get_usage_report()}")
-        
+
         return summary
-        
+
     finally:
         await client.close()
 
@@ -181,9 +181,9 @@ def main():
     parser.add_argument("--generations", type=int, default=50)
     parser.add_argument("--eval-tasks", type=int, default=20)
     parser.add_argument("--output", type=str, default="results/counterfactual")
-    
+
     args = parser.parse_args()
-    
+
     asyncio.run(run_counterfactual_experiment(
         n_pre_training_generations=args.generations,
         n_agents=args.agents,
@@ -195,4 +195,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

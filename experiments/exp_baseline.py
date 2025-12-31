@@ -40,7 +40,7 @@ async def run_baseline_experiment(
 ):
     """
     Run the baseline specialization experiment.
-    
+
     Args:
         n_runs: Number of independent runs for statistical significance
         n_agents: Number of agents in the population
@@ -59,7 +59,7 @@ async def run_baseline_experiment(
     print(f"  Runs: {n_runs}")
     print(f"  Output: {output_dir}")
     print()
-    
+
     # Create configuration
     config = SimulationConfig(
         n_agents=n_agents,
@@ -69,10 +69,10 @@ async def run_baseline_experiment(
         winner_takes_all=True,
         log_every=10 if verbose else 100,
     )
-    
+
     # Create LLM client
     client = create_client()
-    
+
     try:
         # Run experiment
         results = await run_experiment(
@@ -81,7 +81,7 @@ async def run_baseline_experiment(
             n_runs=n_runs,
             output_dir=output_dir
         )
-        
+
         # Print summary
         print("\n" + "=" * 60)
         print("RESULTS SUMMARY")
@@ -91,7 +91,7 @@ async def run_baseline_experiment(
         print(f"  Std:  {results['final_lsi']['std']:.3f}")
         print(f"  Min:  {results['final_lsi']['min']:.3f}")
         print(f"  Max:  {results['final_lsi']['max']:.3f}")
-        
+
         # Check success criteria
         print("\n" + "-" * 40)
         print("SUCCESS CRITERIA:")
@@ -101,14 +101,14 @@ async def run_baseline_experiment(
             print(f"  ✓ LSI target ({target_lsi}) ACHIEVED: {achieved_lsi:.3f}")
         else:
             print(f"  ✗ LSI target ({target_lsi}) NOT MET: {achieved_lsi:.3f}")
-        
+
         # Cost report
         print("\n" + "-" * 40)
         print("COST REPORT:")
         print(client.get_usage_report())
-        
+
         return results
-        
+
     finally:
         await client.close()
 
@@ -120,13 +120,13 @@ async def run_single_demo(
 ):
     """
     Run a quick demo to verify the system works.
-    
+
     Uses fewer agents and generations for quick testing.
     """
     print("=" * 60)
     print("DEMO RUN: Quick verification")
     print("=" * 60)
-    
+
     config = SimulationConfig(
         n_agents=n_agents,
         n_generations=n_generations,
@@ -135,29 +135,29 @@ async def run_single_demo(
         winner_takes_all=True,
         log_every=1,
     )
-    
+
     client = create_client()
-    
+
     try:
         sim = GenesisSimulation(config, client)
         result = await sim.run()
-        
+
         print("\n" + "=" * 60)
         print("DEMO RESULTS")
         print("=" * 60)
         print(f"\nFinal LSI: {result.final_metrics['lsi']['mean']:.3f}")
         print(f"Duration: {result.duration_seconds:.1f}s")
-        
+
         print("\nAgent Specializations:")
         for agent in result.final_agents:
             perf = agent.get_performance_by_type()
             best = agent.get_best_task_type()
             print(f"  {agent.id}: {best} ({perf})")
-        
+
         print("\n" + client.get_usage_report())
-        
+
         return result
-        
+
     finally:
         await client.close()
 
@@ -167,7 +167,7 @@ def main():
         description="Run baseline specialization experiment"
     )
     parser.add_argument(
-        "--mode", 
+        "--mode",
         choices=["full", "demo"],
         default="demo",
         help="Run mode: 'full' for complete experiment, 'demo' for quick test"
@@ -196,9 +196,9 @@ def main():
         default="results/baseline",
         help="Output directory"
     )
-    
+
     args = parser.parse_args()
-    
+
     if args.mode == "demo":
         asyncio.run(run_single_demo(
             n_agents=min(args.agents, 4),
@@ -215,4 +215,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
