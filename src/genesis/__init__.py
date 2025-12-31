@@ -18,6 +18,8 @@ from .evolution import evolve_prompt_directed, evolve_prompt_random
 from .metrics import compute_lsi, compute_semantic_specialization, compute_behavioral_fingerprint
 from .counterfactual import run_prompt_swap_test
 from .simulation import GenesisSimulation
+from .llm_client import LLMClient, create_client
+from .config import LLMConfig, get_config
 
 __all__ = [
     'GenesisAgent',
@@ -33,6 +35,10 @@ __all__ = [
     'compute_behavioral_fingerprint',
     'run_prompt_swap_test',
     'GenesisSimulation',
+    'LLMClient',
+    'create_client',
+    'LLMConfig',
+    'get_config',
 ]
 
 __version__ = '0.1.0'
