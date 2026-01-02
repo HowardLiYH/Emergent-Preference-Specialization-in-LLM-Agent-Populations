@@ -98,9 +98,9 @@ def create_ablated_prompt(
     """Create a specialist prompt with ablated strategy components."""
     from genesis.strategy_library import STRATEGY_LIBRARY
     from genesis.domains import get_domain_spec
-    
+
     spec = get_domain_spec(domain)
-    
+
     # Header
     prompt_parts = [
         f"# {spec.name} Specialist",
@@ -109,10 +109,10 @@ def create_ablated_prompt(
         "",
         "## Active Strategies"
     ]
-    
+
     # Get strategies for this domain
     strategies = STRATEGY_LIBRARY.get_by_domain(domain)[:num_strategies]
-    
+
     for strategy in strategies:
         strategy_text = strategy.to_prompt_text(
             use_reasoning=use_reasoning,
@@ -120,7 +120,7 @@ def create_ablated_prompt(
         )
         prompt_parts.append(strategy_text)
         prompt_parts.append("")
-    
+
     return "\n".join(prompt_parts)
 
 
@@ -138,11 +138,11 @@ async def evaluate_condition_on_domain(
         use_reasoning=condition.use_reasoning,
         use_example=condition.use_example
     )
-    
+
     # Get tasks for eval domain
     all_tasks = BENCHMARK_LOADER.load_all_domains(n_per_domain=tasks_per_domain)
     tasks = all_tasks.get(eval_domain, [])[:tasks_per_domain]
-    
+
     scores = []
     for task in tasks:
         try:
@@ -156,7 +156,7 @@ async def evaluate_condition_on_domain(
             scores.append(score)
         except Exception as e:
             scores.append(0.0)
-    
+
     return np.mean(scores) if scores else 0.0
 
 
@@ -169,11 +169,11 @@ async def run_condition(
     """Run a single ablation condition across all domains."""
     print(f"\n  Testing condition: {condition.name}")
     print(f"    Reasoning: {condition.use_reasoning}, Examples: {condition.use_example}")
-    
+
     in_domain_scores = []
     cross_domain_scores = []
     domain_scores = {}
-    
+
     for target_domain in domains:
         # In-domain score
         in_score = await evaluate_condition_on_domain(
@@ -181,7 +181,7 @@ async def run_condition(
         )
         in_domain_scores.append(in_score)
         domain_scores[target_domain.value] = in_score
-        
+
         # Cross-domain scores (average over other domains)
         cross_scores = []
         for eval_domain in domains:
@@ -190,13 +190,13 @@ async def run_condition(
                     client, condition, target_domain, eval_domain, tasks_per_domain
                 )
                 cross_scores.append(score)
-        
+
         if cross_scores:
             cross_domain_scores.append(np.mean(cross_scores))
-    
+
     avg_in = np.mean(in_domain_scores) if in_domain_scores else 0.0
     avg_cross = np.mean(cross_domain_scores) if cross_domain_scores else 0.0
-    
+
     result = AblationResult(
         condition_name=condition.name,
         use_reasoning=condition.use_reasoning,
@@ -206,9 +206,9 @@ async def run_condition(
         specialization_gap=avg_in - avg_cross,
         domain_scores=domain_scores
     )
-    
+
     print(f"    In-domain: {avg_in:.3f}, Cross-domain: {avg_cross:.3f}, Gap: {result.specialization_gap:.3f}")
-    
+
     return result
 
 
@@ -219,7 +219,7 @@ async def run_component_ablation(
 ) -> AblationSummary:
     """
     Run full component ablation study.
-    
+
     Tests all 4 conditions:
     - full (R+E)
     - reasoning_only (R)
@@ -232,35 +232,35 @@ async def run_component_ablation(
     print(f"Conditions: {[c.name for c in ABLATION_CONDITIONS]}")
     print(f"Domains: {num_domains}")
     print(f"Tasks per domain: {tasks_per_domain}")
-    
+
     domains = list(get_all_domains())[:num_domains]
     results = []
-    
+
     for condition in ABLATION_CONDITIONS:
         result = await run_condition(client, condition, domains, tasks_per_domain)
         results.append(result)
-    
+
     # Analyze contributions
     # Find results by condition
     full = next((r for r in results if r.condition_name == "full"), None)
     reasoning = next((r for r in results if r.condition_name == "reasoning_only"), None)
     example = next((r for r in results if r.condition_name == "example_only"), None)
     neither = next((r for r in results if r.condition_name == "neither"), None)
-    
+
     # Calculate contributions
     baseline = neither.specialization_gap if neither else 0
-    
+
     reasoning_contribution = (reasoning.specialization_gap - baseline) if reasoning else 0
     example_contribution = (example.specialization_gap - baseline) if example else 0
-    
+
     # Interaction effect (synergy or redundancy)
     expected_full = baseline + reasoning_contribution + example_contribution
     actual_full = full.specialization_gap if full else 0
     interaction_effect = actual_full - expected_full
-    
+
     # Find best condition
     best = max(results, key=lambda r: r.specialization_gap)
-    
+
     summary = AblationSummary(
         results=[asdict(r) for r in results],
         best_condition=best.condition_name,
@@ -270,30 +270,30 @@ async def run_component_ablation(
         timestamp=datetime.now().isoformat(),
         model_used=client.config.model
     )
-    
+
     # Print summary
     print("\n" + "=" * 60)
     print("ABLATION SUMMARY")
     print("=" * 60)
     print(f"{'Condition':<20} {'In-Domain':>12} {'Cross':>12} {'Gap':>12}")
     print("-" * 56)
-    
+
     for r in results:
         print(f"{r.condition_name:<20} {r.avg_in_domain_score:>12.3f} {r.avg_cross_domain_score:>12.3f} {r.specialization_gap:>12.3f}")
-    
+
     print("-" * 56)
     print(f"\nBest condition: {summary.best_condition}")
     print(f"Reasoning contribution: {summary.reasoning_contribution:+.3f}")
     print(f"Example contribution: {summary.example_contribution:+.3f}")
     print(f"Interaction effect: {summary.interaction_effect:+.3f}")
-    
+
     if summary.reasoning_contribution > summary.example_contribution:
         print("\n✅ Reasoning (meta-cognitive) > Examples (few-shot)")
         print("   → Specialization is NOT just few-shot learning")
     else:
         print("\n⚠️  Examples (few-shot) >= Reasoning (meta-cognitive)")
         print("   → May be confounded with few-shot learning")
-    
+
     return summary
 
 
@@ -304,47 +304,46 @@ async def run_full_ablation(
     tasks_per_domain: int = 3
 ) -> AblationSummary:
     """Run the full ablation study."""
-    
+
     if api_key:
         client = LLMClient.for_gemini(api_key=api_key, model=model)
     else:
         client = LLMClient.for_gemini(model=model)
-    
+
     try:
         summary = await run_component_ablation(
             client, num_domains, tasks_per_domain
         )
-        
+
         # Save results
         output_dir = Path(__file__).parent.parent / "results" / "component_ablation"
         output_dir.mkdir(parents=True, exist_ok=True)
-        
+
         with open(output_dir / "ablation_results.json", "w") as f:
             json.dump(asdict(summary), f, indent=2)
-        
+
         print(f"\nResults saved to {output_dir / 'ablation_results.json'}")
-        
+
         return summary
-        
+
     finally:
         await client.close()
 
 
 if __name__ == "__main__":
     import argparse
-    
+
     parser = argparse.ArgumentParser(description="Run component ablation")
     parser.add_argument("--api-key", help="Gemini API key")
     parser.add_argument("--model", default="gemini-2.0-flash")
     parser.add_argument("--domains", type=int, default=3)
     parser.add_argument("--tasks", type=int, default=2)
-    
+
     args = parser.parse_args()
-    
+
     asyncio.run(run_full_ablation(
         api_key=args.api_key,
         model=args.model,
         num_domains=args.domains,
         tasks_per_domain=args.tasks
     ))
-

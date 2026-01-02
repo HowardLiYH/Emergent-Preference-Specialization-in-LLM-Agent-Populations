@@ -1,26 +1,15 @@
 """
-Experiments module: Core experiments for NeurIPS paper.
+Experiments module: NeurIPS v2 experiments.
 
 Main entry point:
-    python experiments/exp_unified_pipeline.py
+    python experiments/run_neurips_v2.py --gemini-key YOUR_KEY --scale small
 
 Individual experiments:
-    - exp_unified_pipeline.py - Runs all core experiments across all domains
-    - exp_hypothesis_tests.py - Statistical hypothesis testing
-    - exp_method_specialization.py - Method-level specialization analysis
-    - exp_lambda_ablation.py - Lambda parameter ablation study
-    - exp_marl_standalone.py - MARL baseline comparison
-
-Usage:
-    # Run unified pipeline (all experiments)
-    python experiments/exp_unified_pipeline.py
-
-    # Run specific experiment
-    python experiments/exp_method_specialization.py
+    - exp_domain_overlap.py - Validate domain orthogonality
+    - exp_component_ablation.py - Reasoning vs few-shot ablation
+    - exp_baselines.py - All baselines including negative controls
+    - exp_prompt_swap.py - Bidirectional causality test
+    - run_neurips_v2.py - Master experiment pipeline
 """
 
-from .config import ExperimentConfig
-
-__all__ = [
-    "ExperimentConfig",
-]
+__all__ = []

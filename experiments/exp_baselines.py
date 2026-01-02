@@ -309,27 +309,27 @@ async def run_shuffled_domains_baseline(
 ) -> BaselineResult:
     """
     SHUFFLED DOMAINS: Evolve with WRONG domain labels.
-    
+
     Tests whether specialization is due to domain structure or random drift.
     If LSI is high here, the method isn't learning domain structure.
     """
     import time
     start_time = time.time()
-    
+
     random.seed(config.seed)
     tracker.set_phase("shuffled_domains")
-    
+
     agents = [create_initial_prompt(f"agent_{i}") for i in range(config.num_agents)]
     lsi_history = []
     domains = list(get_all_domains())
-    
+
     for gen in range(config.num_generations):
         gen_domains = random.choices(domains, k=config.tasks_per_generation)
-        
+
         for real_domain in gen_domains:
             # LIE about the domain - use random domain instead
             fake_domain = random.choice(domains)
-            
+
             scores = {}
             for agent in agents:
                 # Simulate performance based on REAL domain
@@ -339,7 +339,7 @@ async def run_shuffled_domains_baseline(
                     score = 0.3 + random.uniform(-0.1, 0.1)
                 scores[agent.agent_id] = score
                 agent.record_attempt(fake_domain, won=False)  # Record with FAKE domain
-            
+
             if scores:
                 winner_id = max(scores.keys(), key=lambda x: scores[x])
                 winner = next(a for a in agents if a.agent_id == winner_id)
@@ -347,7 +347,7 @@ async def run_shuffled_domains_baseline(
                 winner.total_wins += 1
                 # Evolve with FAKE domain
                 evolve_cumulative(winner, fake_domain, scores[winner_id])
-        
+
         # Calculate LSI
         performances = {}
         for agent in agents:
@@ -358,14 +358,14 @@ async def run_shuffled_domains_baseline(
                 agent_perf[d.value] = wins / attempts if attempts > 0 else 0.0
             performances[agent.agent_id] = agent_perf
         lsi_history.append(compute_population_lsi(performances))
-    
+
     duration = time.time() - start_time
-    
+
     specialist_counts = {}
     for agent in agents:
         if agent.primary_domain:
             specialist_counts[agent.primary_domain.value] = specialist_counts.get(agent.primary_domain.value, 0) + 1
-    
+
     return BaselineResult(
         baseline_type="shuffled_domains",
         config={"num_agents": config.num_agents, "num_generations": config.num_generations, "seed": config.seed},
@@ -383,49 +383,49 @@ async def run_random_winner_baseline(
 ) -> BaselineResult:
     """
     RANDOM WINNER: Random agent evolves, not the best performer.
-    
+
     Tests whether competition (winner-take-all) is necessary.
     If LSI is high here, competition doesn't matter.
     """
     import time
     start_time = time.time()
-    
+
     random.seed(config.seed)
     tracker.set_phase("random_winner")
-    
+
     agents = [create_initial_prompt(f"agent_{i}") for i in range(config.num_agents)]
     lsi_history = []
     domains = list(get_all_domains())
-    
+
     for gen in range(config.num_generations):
         gen_domains = random.choices(domains, k=config.tasks_per_generation)
-        
+
         for domain in gen_domains:
             # All agents attempt
             for agent in agents:
                 agent.record_attempt(domain, won=False)
-            
+
             # Pick RANDOM winner, not best performer
             winner = random.choice(agents)
             winner.domain_wins[domain.value] = winner.domain_wins.get(domain.value, 0) + 1
             winner.total_wins += 1
             evolve_cumulative(winner, domain, 0.5)
-        
+
         # Calculate LSI
         performances = {}
         for agent in agents:
-            agent_perf = {d.value: agent.domain_wins.get(d.value, 0) / max(1, agent.domain_attempts.get(d.value, 1)) 
+            agent_perf = {d.value: agent.domain_wins.get(d.value, 0) / max(1, agent.domain_attempts.get(d.value, 1))
                          for d in domains}
             performances[agent.agent_id] = agent_perf
         lsi_history.append(compute_population_lsi(performances))
-    
+
     duration = time.time() - start_time
-    
+
     specialist_counts = {}
     for agent in agents:
         if agent.primary_domain:
             specialist_counts[agent.primary_domain.value] = specialist_counts.get(agent.primary_domain.value, 0) + 1
-    
+
     return BaselineResult(
         baseline_type="random_winner",
         config={"num_agents": config.num_agents, "num_generations": config.num_generations, "seed": config.seed},
@@ -443,33 +443,33 @@ async def run_length_matched_baseline(
 ) -> BaselineResult:
     """
     LENGTH MATCHED: Add random text instead of strategies.
-    
+
     Tests whether it's the strategies or just prompt length that matters.
     If LSI is high here, it's not about strategy content.
     """
     import time
     import string
     start_time = time.time()
-    
+
     random.seed(config.seed)
     tracker.set_phase("length_matched")
-    
+
     # Track agents with random text instead of strategies
     agents = [create_initial_prompt(f"agent_{i}") for i in range(config.num_agents)]
     agent_random_text = {a.agent_id: [] for a in agents}
-    
+
     lsi_history = []
     domains = list(get_all_domains())
-    
+
     def generate_random_text(length: int = 50) -> str:
         """Generate random text of similar length to a strategy."""
-        words = [''.join(random.choices(string.ascii_lowercase, k=random.randint(3, 8))) 
+        words = [''.join(random.choices(string.ascii_lowercase, k=random.randint(3, 8)))
                  for _ in range(length // 5)]
         return ' '.join(words)
-    
+
     for gen in range(config.num_generations):
         gen_domains = random.choices(domains, k=config.tasks_per_generation)
-        
+
         for domain in gen_domains:
             scores = {}
             for agent in agents:
@@ -477,31 +477,31 @@ async def run_length_matched_baseline(
                 score = 0.3 + random.uniform(-0.1, 0.1)
                 scores[agent.agent_id] = score
                 agent.record_attempt(domain, won=False)
-            
+
             if scores:
                 winner_id = max(scores.keys(), key=lambda x: scores[x])
                 winner = next(a for a in agents if a.agent_id == winner_id)
                 winner.domain_wins[domain.value] = winner.domain_wins.get(domain.value, 0) + 1
                 winner.total_wins += 1
-                
+
                 # Add RANDOM TEXT instead of strategy
                 agent_random_text[winner_id].append(generate_random_text())
-        
+
         # Calculate LSI
         performances = {}
         for agent in agents:
-            agent_perf = {d.value: agent.domain_wins.get(d.value, 0) / max(1, agent.domain_attempts.get(d.value, 1)) 
+            agent_perf = {d.value: agent.domain_wins.get(d.value, 0) / max(1, agent.domain_attempts.get(d.value, 1))
                          for d in domains}
             performances[agent.agent_id] = agent_perf
         lsi_history.append(compute_population_lsi(performances))
-    
+
     duration = time.time() - start_time
-    
+
     specialist_counts = {}
     for agent in agents:
         if agent.primary_domain:
             specialist_counts[agent.primary_domain.value] = specialist_counts.get(agent.primary_domain.value, 0) + 1
-    
+
     return BaselineResult(
         baseline_type="length_matched",
         config={"num_agents": config.num_agents, "num_generations": config.num_generations, "seed": config.seed},
@@ -518,10 +518,10 @@ async def run_all_baselines_v2(num_seeds: int = 5) -> Dict[str, List[BaselineRes
     print("=" * 70)
     print("BASELINE EXPERIMENTS V2 (with negative controls)")
     print("=" * 70)
-    
+
     tracker = CostTracker(experiment_name="baselines_v2")
     results = {}
-    
+
     # Original baselines
     baseline_types = [
         BaselineType.CUMULATIVE,
@@ -529,7 +529,7 @@ async def run_all_baselines_v2(num_seeds: int = 5) -> Dict[str, List[BaselineRes
         BaselineType.RANDOM_STRATEGY,
         BaselineType.HANDCRAFTED,
     ]
-    
+
     for baseline in baseline_types:
         print(f"\nRunning {baseline.value}...")
         baseline_results = []
@@ -539,10 +539,10 @@ async def run_all_baselines_v2(num_seeds: int = 5) -> Dict[str, List[BaselineRes
             baseline_results.append(result)
             print(f"  Seed {seed}: LSI = {result.final_lsi:.3f}")
         results[baseline.value] = baseline_results
-    
+
     # NEW: Negative controls
     print("\n--- NEGATIVE CONTROLS ---")
-    
+
     for name, func in [
         ("shuffled_domains", run_shuffled_domains_baseline),
         ("random_winner", run_random_winner_baseline),
@@ -556,21 +556,21 @@ async def run_all_baselines_v2(num_seeds: int = 5) -> Dict[str, List[BaselineRes
             baseline_results.append(result)
             print(f"  Seed {seed}: LSI = {result.final_lsi:.3f}")
         results[name] = baseline_results
-    
+
     # Print comparison
     print("\n" + "=" * 70)
     print("FULL COMPARISON (including negative controls)")
     print("=" * 70)
     print(f"{'Baseline':<20} {'Avg LSI':>10} {'Std':>10} {'Type':>15}")
     print("-" * 55)
-    
+
     for baseline, baseline_results in results.items():
         lsis = [r.final_lsi for r in baseline_results]
         avg = sum(lsis) / len(lsis)
         std = (sum((x - avg) ** 2 for x in lsis) / len(lsis)) ** 0.5
         ctrl_type = "NEGATIVE" if baseline in ["shuffled_domains", "random_winner", "length_matched"] else "baseline"
         print(f"{baseline:<20} {avg:>10.3f} {std:>10.3f} {ctrl_type:>15}")
-    
+
     return results
 
 
