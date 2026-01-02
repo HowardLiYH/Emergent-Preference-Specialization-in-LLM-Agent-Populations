@@ -1,5 +1,26 @@
 # Changelog
 
+## [v3.0] - 2026-01-02: Preference Specialization Reframing
+
+### Major Changes
+- **New Core Thesis**: "Agents develop specialized PREFERENCES within existing capability space"
+- **Synthetic Rule Domains**: 8 arbitrary rule-based domains where prior knowledge cannot help
+- **New Metrics**: RPI (Rule Preference Index), PSI (Preference Stability), PD (Preference Diversity)
+- **Updated Pivot Decision Tree**: Based on preference emergence, not knowledge acquisition
+
+### Rationale
+- Validation tests revealed LLMs already score perfectly on standard tasks
+- Strategies cannot improve performance when baseline is 100%
+- Reframing acknowledges LLM capabilities while measuring preference development
+
+### New Files
+- `docs/PLAN_V3_PREFERENCE_SPECIALIZATION.md` - Complete new plan
+- `src/genesis/synthetic_rules.py` - 8 synthetic rule definitions (pending)
+- `src/genesis/rule_tasks.py` - Task generators for each rule (pending)
+- `src/genesis/preference_metrics.py` - New preference-based metrics (pending)
+
+---
+
 All notable changes to the Emergent Prompt Evolution project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
