@@ -48,13 +48,34 @@ class PreferenceAgent:
 
     # ==================== Strategy Accumulation ====================
 
-    def accumulate_strategy(self, rule_type: RuleType) -> bool:
+    def has_level_3_specialist(self) -> bool:
+        """Check if this agent has reached Level 3 in any rule."""
+        return any(level >= 3 for level in self.strategy_levels.values())
+
+    def get_specialized_rule(self) -> Optional[RuleType]:
+        """Get the rule where agent has Level 3 (if any)."""
+        for rule, level in self.strategy_levels.items():
+            if level >= 3:
+                return rule
+        return None
+
+    def accumulate_strategy(self, rule_type: RuleType, exclusive: bool = True) -> bool:
         """
         Win on a rule → increase strategy level (max 3).
 
+        Args:
+            rule_type: The rule to accumulate strategy for
+            exclusive: If True, once Level 3 in any rule, can only accumulate in that rule
+
         Returns:
-            True if level increased, False if already at max
+            True if level increased, False if blocked or already at max
         """
+        # EXCLUSIVITY: Once Level 3, can only accumulate in that rule
+        if exclusive and self.has_level_3_specialist():
+            specialized_rule = self.get_specialized_rule()
+            if rule_type != specialized_rule:
+                return False  # Blocked - already specialized in different rule
+
         current = self.strategy_levels.get(rule_type, 0)
         if current < 3:
             self.strategy_levels[rule_type] = current + 1

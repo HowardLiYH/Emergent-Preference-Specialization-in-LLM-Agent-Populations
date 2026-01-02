@@ -180,8 +180,14 @@ class RuleTask:
 class RuleTaskGenerator:
     """Generates tasks for each synthetic rule domain."""
 
-    def __init__(self, seed: int = 42):
+    def __init__(self, seed: int = 42, opaque: bool = False):
+        """
+        Args:
+            seed: Random seed for reproducibility
+            opaque: If True, don't include rule hints in task prompts (for testing)
+        """
         self.rng = random.Random(seed)
+        self.opaque = opaque
 
         # Word banks for task generation
         self.animals = ["Cat", "Dog", "Bird", "Fish", "Horse", "Mouse", "Tiger", "Eagle", "Shark", "Whale"]
@@ -219,7 +225,14 @@ class RuleTaskGenerator:
         options = words
         correct_index = 1  # Position 2 (0-indexed = 1)
 
-        prompt = f"""According to the POSITION RULE, which is correct?
+        if self.opaque:
+            prompt = f"""Which option is correct?
+A) {options[0]}
+B) {options[1]}
+C) {options[2]}
+D) {options[3]}"""
+        else:
+            prompt = f"""According to the POSITION RULE, which is correct?
 A) {options[0]}
 B) {options[1]}
 C) {options[2]}
@@ -248,7 +261,14 @@ Remember: The correct answer is always at position 2."""
         # The answer continues the pattern
         next_in_pattern = "A" if pattern_length % 2 == 0 else "B"
 
-        prompt = f"""According to the PATTERN RULE (ABAB alternating), what comes next?
+        if self.opaque:
+            prompt = f"""What comes next in the sequence?
+Sequence: {', '.join(sequence)}, ?
+
+A) A
+B) B"""
+        else:
+            prompt = f"""According to the PATTERN RULE (ABAB alternating), what comes next?
 Sequence: {', '.join(sequence)}, ?
 
 A) A
@@ -291,7 +311,14 @@ Remember: The pattern alternates A, B, A, B, ..."""
         self.rng.shuffle(options)
         correct_index = options.index(inverse)
 
-        prompt = f"""According to the INVERSE RULE, answer the following:
+        if self.opaque:
+            prompt = f"""Answer the following question:
+{q}
+
+A) {options[0]}
+B) {options[1]}"""
+        else:
+            prompt = f"""According to the INVERSE RULE, answer the following:
 {q}
 
 A) {options[0]}
@@ -329,7 +356,14 @@ Remember: Always give the OPPOSITE of the obvious answer."""
         correct_index = options.index(five_letter)
 
         # Include letter counts to help LLM (they're bad at counting)
-        prompt = f"""According to the LENGTH RULE, which word is correct?
+        if self.opaque:
+            prompt = f"""Which word is correct?
+A) {options[0]} ({len(options[0])} letters)
+B) {options[1]} ({len(options[1])} letters)
+C) {options[2]} ({len(options[2])} letters)
+D) {options[3]} ({len(options[3])} letters)"""
+        else:
+            prompt = f"""According to the LENGTH RULE, which word is correct?
 A) {options[0]} ({len(options[0])} letters)
 B) {options[1]} ({len(options[1])} letters)
 C) {options[2]} ({len(options[2])} letters)
@@ -359,7 +393,16 @@ RULE: The correct answer has exactly 5 letters."""
         self.rng.shuffle(options)
         correct_index = options.index(rhyme_word)
 
-        prompt = f"""According to the RHYME RULE, which word is correct?
+        if self.opaque:
+            prompt = f"""Which word is correct?
+Keyword: CAT
+
+A) {options[0]}
+B) {options[1]}
+C) {options[2]}
+D) {options[3]}"""
+        else:
+            prompt = f"""According to the RHYME RULE, which word is correct?
 Keyword: CAT
 
 A) {options[0]}
@@ -392,7 +435,14 @@ Remember: The correct answer RHYMES with 'CAT'."""
         closest = min(distances, key=lambda x: x[1])
         correct_index = options.index(closest[0])
 
-        prompt = f"""According to the ALPHABET RULE, which word is correct?
+        if self.opaque:
+            prompt = f"""Which word is correct?
+A) {options[0]}
+B) {options[1]}
+C) {options[2]}
+D) {options[3]}"""
+        else:
+            prompt = f"""According to the ALPHABET RULE, which word is correct?
 A) {options[0]}
 B) {options[1]}
 C) {options[2]}
@@ -425,7 +475,14 @@ Remember: The correct answer's first letter is closest to 'M' in the alphabet.""
         self.rng.shuffle(options)
         correct_index = options.index(correct_word)
 
-        prompt = f"""According to the MATH MOD RULE, which word is correct?
+        if self.opaque:
+            prompt = f"""Which word is correct?
+A) {options[0]} (length {len(options[0])})
+B) {options[1]} (length {len(options[1])})
+C) {options[2]} (length {len(options[2])})
+D) {options[3]} (length {len(options[3])})"""
+        else:
+            prompt = f"""According to the MATH MOD RULE, which word is correct?
 A) {options[0]} (length {len(options[0])})
 B) {options[1]} (length {len(options[1])})
 C) {options[2]} (length {len(options[2])})
@@ -457,7 +514,16 @@ Remember: The correct answer's length mod 3 equals 1."""
         self.rng.shuffle(options)
         correct_index = options.index(correct_word)
 
-        prompt = f"""According to the SEMANTIC RULE, which word is correct?
+        if self.opaque:
+            prompt = f"""Which word is correct?
+Anchor word: HAPPY
+
+A) {options[0]}
+B) {options[1]}
+C) {options[2]}
+D) {options[3]}"""
+        else:
+            prompt = f"""According to the SEMANTIC RULE, which word is correct?
 Anchor word: HAPPY
 
 A) {options[0]}
@@ -492,10 +558,23 @@ def get_all_rules() -> List[SyntheticRule]:
     return list(SYNTHETIC_RULES.values())
 
 
-def generate_tasks(rule_type: RuleType, n: int = 10, seed: int = None) -> List[RuleTask]:
-    """Generate n tasks for a rule type."""
-    if seed is not None:
-        generator = RuleTaskGenerator(seed=seed)
+def generate_tasks(
+    rule_type: RuleType,
+    n: int = 10,
+    seed: int = None,
+    opaque: bool = False
+) -> List[RuleTask]:
+    """
+    Generate n tasks for a rule type.
+
+    Args:
+        rule_type: The rule to generate tasks for
+        n: Number of tasks to generate
+        seed: Random seed for reproducibility
+        opaque: If True, don't include rule hints in prompts (harder)
+    """
+    if seed is not None or opaque:
+        generator = RuleTaskGenerator(seed=seed if seed else 42, opaque=opaque)
     else:
         generator = RULE_TASK_GENERATOR
     return generator.generate_batch(rule_type, n)

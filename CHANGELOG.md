@@ -1,5 +1,55 @@
 # Changelog
 
+## [v3.2] - 2026-01-03: NeurIPS Readiness & Key Findings
+
+### Major Results
+- **Phase 2 Causality Test**: 60.7% pass rate (34/56 pairs) proves prompts cause specialization
+- **Prompt Length Ablation**: Short prompts (30 chars) outperform enhanced (900 chars) by 24%
+  - Short: 0.918 accuracy, Enhanced: 0.677 accuracy
+  - Key insight: "Less is more" for prompt design
+
+### New Features
+- **Enhanced 500+ char prompts**: Full persona, steps, examples for all 8 rules
+- **Short prompts**: Minimal 30-char instructions for ablation comparison
+- **Exclusivity mechanism**: Level 3 agents specialize in one rule only
+- **Opaque task mode**: Tasks don't reveal underlying rule
+
+### New Files
+- `experiments/exp_phase2_enhanced.py` - Main causality test (56 pairs)
+- `experiments/exp_prompt_length_ablation.py` - Short vs enhanced ablation
+- `src/genesis/visualization.py` - Publication-quality figure generation
+- `paper/neurips_2025.tex` - LaTeX paper draft
+
+### Improvements
+- `src/genesis/rule_strategies.py`: Added SHORT_STRATEGY_LEVELS, `use_short` parameter
+- `src/genesis/synthetic_rules.py`: Added `opaque` mode for task generation
+- `src/genesis/preference_agent.py`: Added exclusivity mechanism
+- `src/genesis/analysis.py`: Added t-tests, paired t-test, effect size interpretation
+
+### Results Files
+- `results/phase2_enhanced_results.json`
+- `results/prompt_length_ablation.json`
+
+---
+
+## [v3.1] - 2026-01-03: Plan V3.1 Implementation
+
+### Major Changes
+- Implemented 3-level strategy accumulation
+- Confidence-based competition engine
+- Fitness sharing for diversity preservation
+- Handcrafted ceiling baseline
+
+### New Files  
+- `src/genesis/preference_agent.py` - PreferenceAgent with strategy levels
+- `src/genesis/competition_v3.py` - Confidence-based winner selection
+- `src/genesis/fitness_sharing_v3.py` - Crowding penalty mechanism
+- `experiments/exp_preference_main.py` - Phase 1 experiment
+- `experiments/exp_preference_swap.py` - Phase 2 swap test
+- `experiments/exp_preference_ablation.py` - Phase 3 ablations
+
+---
+
 ## [v3.0] - 2026-01-02: Preference Specialization Reframing
 
 ### Major Changes

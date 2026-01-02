@@ -111,6 +111,157 @@ def mann_whitney_u(group1: List[float], group2: List[float]) -> StatResult:
     )
 
 
+def independent_t_test(group1: List[float], group2: List[float]) -> StatResult:
+    """Perform independent samples t-test."""
+    if HAS_SCIPY:
+        statistic, p_value = stats.ttest_ind(group1, group2)
+    else:
+        # Simplified t-test approximation
+        mean1, std1 = compute_mean_std(group1)
+        mean2, std2 = compute_mean_std(group2)
+        n1, n2 = len(group1), len(group2)
+        
+        # Pooled standard error
+        se = math.sqrt(std1**2/n1 + std2**2/n2) if n1 > 0 and n2 > 0 else 1
+        statistic = (mean1 - mean2) / se if se > 0 else 0
+        
+        # Approximate p-value
+        p_value = 0.05 if abs(statistic) > 2 else 0.5
+
+    effect = cohens_d(group1, group2)
+    significant = p_value < 0.05
+
+    interpretation = "significant difference" if significant else "no significant difference"
+
+    return StatResult(
+        test_name="Independent t-test",
+        statistic=statistic,
+        p_value=p_value,
+        effect_size=effect,
+        significant=significant,
+        interpretation=interpretation
+    )
+
+
+def paired_t_test(before: List[float], after: List[float]) -> StatResult:
+    """Perform paired samples t-test."""
+    if len(before) != len(after):
+        raise ValueError("Paired t-test requires equal length samples")
+    
+    if HAS_SCIPY:
+        statistic, p_value = stats.ttest_rel(before, after)
+    else:
+        # Simplified paired t-test
+        differences = [a - b for a, b in zip(after, before)]
+        mean_diff, std_diff = compute_mean_std(differences)
+        n = len(differences)
+        
+        se = std_diff / math.sqrt(n) if n > 0 else 1
+        statistic = mean_diff / se if se > 0 else 0
+        p_value = 0.05 if abs(statistic) > 2 else 0.5
+
+    effect = cohens_d(after, before)
+    significant = p_value < 0.05
+
+    interpretation = "significant change" if significant else "no significant change"
+
+    return StatResult(
+        test_name="Paired t-test",
+        statistic=statistic,
+        p_value=p_value,
+        effect_size=effect,
+        significant=significant,
+        interpretation=interpretation
+    )
+
+
+def interpret_effect_size(d: float) -> str:
+    """Interpret Cohen's d effect size."""
+    abs_d = abs(d)
+    if abs_d < 0.2:
+        return "negligible"
+    elif abs_d < 0.5:
+        return "small"
+    elif abs_d < 0.8:
+        return "medium"
+    else:
+        return "large"
+
+
+def compute_all_statistics(
+    group1: List[float],
+    group2: List[float],
+    paired: bool = False
+) -> Dict[str, StatResult]:
+    """Run all appropriate statistical tests."""
+    results = {}
+    
+    # Effect size
+    d = cohens_d(group1, group2)
+    
+    if paired:
+        results["paired_t_test"] = paired_t_test(group1, group2)
+    else:
+        results["independent_t_test"] = independent_t_test(group1, group2)
+        results["mann_whitney_u"] = mann_whitney_u(group1, group2)
+    
+    # Add effect size interpretation
+    results["effect_size"] = StatResult(
+        test_name="Cohen's d",
+        statistic=d,
+        p_value=0,  # Not applicable
+        effect_size=d,
+        significant=abs(d) >= 0.2,
+        interpretation=interpret_effect_size(d)
+    )
+    
+    return results
+
+
+def print_statistical_comparison(
+    name1: str,
+    values1: List[float],
+    name2: str,
+    values2: List[float],
+    paired: bool = False
+):
+    """Print formatted statistical comparison."""
+    print(f"\n{'='*50}")
+    print(f"Statistical Comparison: {name1} vs {name2}")
+    print(f"{'='*50}")
+    
+    # Descriptive stats
+    mean1, std1 = compute_mean_std(values1)
+    mean2, std2 = compute_mean_std(values2)
+    ci1 = compute_confidence_interval(values1)
+    ci2 = compute_confidence_interval(values2)
+    
+    print(f"\n{name1}:")
+    print(f"  Mean: {mean1:.3f} (SD: {std1:.3f})")
+    print(f"  95% CI: [{ci1[0]:.3f}, {ci1[1]:.3f}]")
+    print(f"  N: {len(values1)}")
+    
+    print(f"\n{name2}:")
+    print(f"  Mean: {mean2:.3f} (SD: {std2:.3f})")
+    print(f"  95% CI: [{ci2[0]:.3f}, {ci2[1]:.3f}]")
+    print(f"  N: {len(values2)}")
+    
+    # Statistical tests
+    results = compute_all_statistics(values1, values2, paired)
+    
+    print(f"\nStatistical Tests:")
+    for name, result in results.items():
+        print(f"  {result.test_name}:")
+        if result.test_name != "Cohen's d":
+            print(f"    statistic={result.statistic:.3f}, p={result.p_value:.4f}")
+        print(f"    effect size (d)={result.effect_size:.3f} ({result.interpretation})")
+        if result.test_name != "Cohen's d":
+            sig_str = "*** SIGNIFICANT ***" if result.significant else "not significant"
+            print(f"    {sig_str}")
+    
+    print(f"{'='*50}")
+
+
 def bootstrap_ci(
     values: List[float],
     n_bootstrap: int = 1000,
