@@ -241,64 +241,59 @@ class LLMClient:
         max_tokens: int,
         system: str = None
     ) -> str:
-        """Generate using Google Gemini API (new google-genai SDK)."""
+        """Generate using Google Gemini API (direct REST - more stable)."""
+        import httpx
+
         await self.rate_limiter.wait_if_needed()
-
-        try:
-            from google import genai
-        except ImportError:
-            raise ImportError("Please install google-genai: pip install google-genai")
-
-        # Create client (synchronous, but fast)
-        client = genai.Client(api_key=self.config.api_key)
 
         # Build content with system instruction
         full_prompt = prompt
         if system:
             full_prompt = f"[System Instructions: {system}]\n\n{prompt}"
 
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.config.model}:generateContent?key={self.config.api_key}"
+
+        payload = {
+            "contents": [{"parts": [{"text": full_prompt}]}],
+            "generationConfig": {
+                "temperature": temperature,
+                "maxOutputTokens": max_tokens,
+            }
+        }
+
         for attempt in range(self.config.max_retries):
             try:
-                # Use synchronous call wrapped in executor for async compatibility
-                import concurrent.futures
-                loop = asyncio.get_event_loop()
+                async with httpx.AsyncClient(timeout=60.0) as client:
+                    response = await client.post(url, json=payload)
+                    response.raise_for_status()
+                    data = response.json()
 
-                def _sync_generate():
-                    return client.models.generate_content(
-                        model=self.config.model,
-                        contents=full_prompt,
-                        config={
-                            "temperature": temperature,
-                            "max_output_tokens": max_tokens,
-                        }
-                    )
+                # Extract content
+                content = data["candidates"][0]["content"]["parts"][0]["text"]
 
-                with concurrent.futures.ThreadPoolExecutor() as executor:
-                    response = await loop.run_in_executor(executor, _sync_generate)
-
-                content = response.text
-
-                # Track usage from response metadata
-                usage_meta = getattr(response, 'usage_metadata', None)
-                if usage_meta:
-                    prompt_tokens = getattr(usage_meta, 'prompt_token_count', len(prompt) // 4)
-                    completion_tokens = getattr(usage_meta, 'candidates_token_count', len(content) // 4)
-                else:
-                    prompt_tokens = len(prompt) // 4
-                    completion_tokens = len(content) // 4
+                # Track usage
+                usage_meta = data.get("usageMetadata", {})
+                prompt_tokens = usage_meta.get("promptTokenCount", len(prompt) // 4)
+                completion_tokens = usage_meta.get("candidatesTokenCount", len(content) // 4)
 
                 self.usage.add(prompt_tokens, completion_tokens)
                 self.rate_limiter.record_tokens(prompt_tokens + completion_tokens)
 
                 return content
 
-            except Exception as e:
-                error_str = str(e).lower()
-                if "rate" in error_str or "quota" in error_str or "429" in error_str:
+            except httpx.HTTPStatusError as e:
+                if e.response.status_code in [429, 500, 502, 503]:
                     wait_time = 2 ** attempt
-                    logger.warning(f"Rate limited, waiting {wait_time}s...")
+                    logger.warning(f"HTTP {e.response.status_code}, retrying in {wait_time}s...")
                     await asyncio.sleep(wait_time)
-                elif attempt < self.config.max_retries - 1:
+                else:
+                    raise
+            except (httpx.ReadTimeout, httpx.ConnectTimeout, httpx.ReadError) as e:
+                wait_time = 2 ** attempt
+                logger.warning(f"Connection error: {e}, retrying in {wait_time}s...")
+                await asyncio.sleep(wait_time)
+            except Exception as e:
+                if attempt < self.config.max_retries - 1:
                     wait_time = 2 ** attempt
                     logger.warning(f"Gemini error: {e}, retrying in {wait_time}s...")
                     await asyncio.sleep(wait_time)

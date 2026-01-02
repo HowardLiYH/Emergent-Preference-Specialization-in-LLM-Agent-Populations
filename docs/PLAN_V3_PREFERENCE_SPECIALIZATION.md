@@ -40,7 +40,7 @@ Traditional Task:
   Q: "What is 2+2?"
   LLM knows: 4 (from training)
   Strategy: Irrelevant
-  
+
 Synthetic Rule Task:
   Rule: "Always pick the LONGEST option"
   Q: "Which? A) Cat B) Elephant C) Dog"
@@ -168,7 +168,7 @@ src/genesis/
 
 experiments/
 ├── exp_rule_validation.py  # Phase 0: Rule validation
-├── exp_preference_main.py  # Phase 1: Main experiment  
+├── exp_preference_main.py  # Phase 1: Main experiment
 ├── exp_preference_swap.py  # Phase 2: Causality test
 └── exp_preference_ablation.py  # Phase 3: Ablations
 ```
@@ -365,4 +365,3 @@ If full success isn't achieved:
 *Plan Version: 3.0*
 *Date: January 2, 2026*
 *Status: Ready for implementation*
-
