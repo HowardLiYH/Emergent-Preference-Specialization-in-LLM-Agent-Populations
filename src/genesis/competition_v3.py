@@ -141,6 +141,9 @@ Format: ANSWER: [your answer] | CONFIDENCE: [0-100]%"""
         return winner.agent_id, results
     else:
         # No correct answers - no winner this round
+        # Note: With Option B+ (random single Level 1 seed), agents start with
+        # enough knowledge to get some correct answers, solving the cold start problem
+        # through initialization rather than random winner selection
         return None, results
 
 

@@ -201,7 +201,9 @@ def analyze_results(results: Dict[str, SwapTestResult]):
 async def main():
     """Run Phase 2 enhanced swap test."""
     # Get API key
-    GEMINI_KEY = 'AIzaSyDngzJmPnKNrc-jXz5y5xUuDDlwhCWDRic'
+    GEMINI_KEY = os.getenv('GEMINI_API_KEY')
+    if not GEMINI_KEY:
+        raise RuntimeError('GEMINI_API_KEY environment variable not set')
 
     print("Phase 2: Enhanced Prompt Swap Test")
     print("Using enhanced 500+ char prompts with opaque tasks")

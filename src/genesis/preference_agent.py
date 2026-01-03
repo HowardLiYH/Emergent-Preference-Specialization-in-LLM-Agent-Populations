@@ -202,6 +202,45 @@ def create_handcrafted_specialist(rule_type: RuleType) -> PreferenceAgent:
     return agent
 
 
-def create_population(num_agents: int, prefix: str = "agent") -> List[PreferenceAgent]:
-    """Create a population of identical starting agents."""
-    return [PreferenceAgent(agent_id=f"{prefix}_{i}") for i in range(num_agents)]
+def create_population(num_agents: int, prefix: str = "agent", seed_level: int = 1) -> List[PreferenceAgent]:
+    """
+    Create a population with Option B+ initialization.
+    
+    Each agent starts with Level 1 in ONE RANDOM rule (not all rules).
+    This solves the cold start problem while maintaining merit-based competition.
+    
+    Ecological analogy: Like organisms inheriting slight genetic predispositions
+    that get amplified or suppressed by environmental pressures.
+    
+    Args:
+        num_agents: Number of agents to create
+        prefix: ID prefix for agents
+        seed_level: Starting level for the seeded rule (default 1)
+    
+    Returns:
+        List of PreferenceAgents, each with one random rule at seed_level
+    """
+    import random as rand
+    agents = []
+    rule_types = list(RuleType)
+    
+    for i in range(num_agents):
+        agent = PreferenceAgent(agent_id=f"{prefix}_{i}")
+        
+        # Option B+: Each agent gets Level 1 in ONE random rule
+        seeded_rule = rand.choice(rule_types)
+        agent.strategy_levels[seeded_rule] = seed_level
+        
+        agents.append(agent)
+    
+    # Log the initial distribution for analysis
+    seed_distribution = {}
+    for agent in agents:
+        for rule, level in agent.strategy_levels.items():
+            if level > 0:
+                seed_distribution[rule.value] = seed_distribution.get(rule.value, 0) + 1
+    
+    print(f"  Population initialized with Option B+ (random single L{seed_level}):", flush=True)
+    print(f"  Seed distribution: {seed_distribution}", flush=True)
+    
+    return agents

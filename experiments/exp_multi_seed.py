@@ -185,7 +185,9 @@ def print_multi_seed_results(results: Dict[str, MultiSeedResult]):
 
 async def main():
     """Run multi-seed experiments."""
-    GEMINI_KEY = 'AIzaSyDngzJmPnKNrc-jXz5y5xUuDDlwhCWDRic'
+    GEMINI_KEY = os.getenv('GEMINI_API_KEY')
+    if not GEMINI_KEY:
+        raise RuntimeError('GEMINI_API_KEY environment variable not set')
 
     print("Multi-Seed Swap Test")
     print("Running Phase 2 with 5 seeds for statistical rigor")

@@ -15,15 +15,25 @@ import string
 class RuleType(Enum):
     """The 8 synthetic rule domains.
 
-    Cognitive Science Grounding:
-    - POSITION: Serial position effect (Ebbinghaus, 1885)
-    - PATTERN: Pattern recognition (Gestalt psychology)
-    - INVERSE: Logical negation (propositional logic)
-    - VOWEL_START: Phonemic awareness (Treiman & Zukowski, 1991)
-    - RHYME: Phonological processing (Bradley & Bryant, 1983)
-    - ALPHABET: Orthographic processing (Coltheart, 1978)
-    - MATH_MOD: Number cognition (Dehaene, 1997)
-    - ANIMATE: Animate/inanimate distinction (Caramazza & Shelton, 1998)
+    Cognitive Science Grounding (where applicable):
+    
+    STRONGLY GROUNDED:
+    - VOWEL_START: Phonemic awareness (Treiman & Zukowski, 1991) [~2,000 citations]
+    - RHYME: Phonological processing (Bradley & Bryant, 1983) [~4,000 citations]
+    - ANIMATE: Category-specific processing (Caramazza & Shelton, 1998) [~1,500 citations]
+    
+    MODERATELY GROUNDED:
+    - PATTERN: Sequence learning (cf. Saffran et al., 1996; Nissen & Bullemer, 1987)
+    - INVERSE: Inhibitory control (cf. Stroop, 1935; MacLeod, 1991)
+    - MATH_MOD: Numerical cognition (Dehaene, 1997) - arbitrary modular rule
+    
+    DELIBERATELY ARBITRARY (to test rule-following, not cognitive bias):
+    - POSITION: Arbitrary positional rule - tests rule compliance
+    - ALPHABET: Arbitrary alphabetical rule - tests ordinal processing
+    
+    Note: Some rules are deliberately arbitrary to ensure LLMs cannot solve
+    them using prior knowledge. All rules were validated for orthogonality
+    before inclusion in experiments.
     """
     POSITION = "position"        # Answer at specific position
     PATTERN = "pattern"          # Follow repeating pattern

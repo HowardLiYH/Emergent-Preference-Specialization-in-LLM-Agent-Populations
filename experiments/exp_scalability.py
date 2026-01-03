@@ -176,7 +176,9 @@ def print_scalability_results(results: List[ScalabilityResult]):
 
 async def main():
     """Run scalability analysis."""
-    GEMINI_KEY = 'AIzaSyDngzJmPnKNrc-jXz5y5xUuDDlwhCWDRic'
+    GEMINI_KEY = os.getenv('GEMINI_API_KEY')
+    if not GEMINI_KEY:
+        raise RuntimeError('GEMINI_API_KEY environment variable not set')
 
     print("Scalability Analysis")
     print("Testing N=8, 12, 24, 48 agents")

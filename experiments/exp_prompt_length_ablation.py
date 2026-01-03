@@ -173,7 +173,9 @@ def analyze_ablation(results: List[AblationResult]):
 
 async def main():
     """Run prompt length ablation study."""
-    GEMINI_KEY = 'AIzaSyDngzJmPnKNrc-jXz5y5xUuDDlwhCWDRic'
+    GEMINI_KEY = os.getenv('GEMINI_API_KEY')
+    if not GEMINI_KEY:
+        raise RuntimeError('GEMINI_API_KEY environment variable not set')
 
     print("Prompt Length Ablation Study")
     print("Testing: SHORT (~30 chars) vs ENHANCED (~800+ chars)")

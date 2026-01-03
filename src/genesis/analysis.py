@@ -533,32 +533,32 @@ def print_analysis_report(results: Dict):
 def compute_prompt_distinctiveness(prompts: List[str]) -> float:
     """
     Measure how semantically distinct evolved prompts are using sentence embeddings.
-    
+
     Returns a value between 0 (all identical) and 1 (maximally distinct).
     Requires: pip install sentence-transformers
     """
     if not prompts or len(prompts) < 2:
         return 0.0
-    
+
     try:
         from sentence_transformers import SentenceTransformer
         import numpy as np
-        
+
         # Use lightweight model
         model = SentenceTransformer('all-MiniLM-L6-v2')
         embeddings = model.encode(prompts)
-        
+
         # Calculate pairwise cosine similarities
         from sklearn.metrics.pairwise import cosine_similarity
         sim_matrix = cosine_similarity(embeddings)
-        
+
         # Return mean off-diagonal distance (1 - similarity = distance)
         n = len(prompts)
         mask = ~np.eye(n, dtype=bool)
         mean_similarity = sim_matrix[mask].mean()
-        
+
         return float(1 - mean_similarity)
-        
+
     except ImportError:
         print("Warning: sentence-transformers not installed. Using fallback.")
         return _compute_prompt_distinctiveness_fallback(prompts)
@@ -570,12 +570,12 @@ def _compute_prompt_distinctiveness_fallback(prompts: List[str]) -> float:
     """
     if not prompts or len(prompts) < 2:
         return 0.0
-    
+
     word_sets = [set(p.lower().split()) for p in prompts]
-    
+
     total_distance = 0.0
     pairs = 0
-    
+
     for i in range(len(word_sets)):
         for j in range(i + 1, len(word_sets)):
             intersection = len(word_sets[i] & word_sets[j])
@@ -583,14 +583,14 @@ def _compute_prompt_distinctiveness_fallback(prompts: List[str]) -> float:
             jaccard_sim = intersection / union if union > 0 else 0
             total_distance += (1 - jaccard_sim)
             pairs += 1
-    
+
     return total_distance / pairs if pairs > 0 else 0.0
 
 
 def compute_prompt_clustering(prompts: List[str], n_clusters: int = None) -> Dict:
     """
     Cluster prompts and analyze their distribution.
-    
+
     Returns:
         - n_clusters: number of distinct clusters found
         - cluster_sizes: size of each cluster
@@ -598,38 +598,38 @@ def compute_prompt_clustering(prompts: List[str], n_clusters: int = None) -> Dic
     """
     if not prompts or len(prompts) < 2:
         return {"n_clusters": 0, "cluster_sizes": [], "silhouette_score": 0.0}
-    
+
     try:
         from sentence_transformers import SentenceTransformer
         from sklearn.cluster import KMeans
         from sklearn.metrics import silhouette_score
         import numpy as np
-        
+
         model = SentenceTransformer('all-MiniLM-L6-v2')
         embeddings = model.encode(prompts)
-        
+
         # Auto-determine n_clusters if not specified
         if n_clusters is None:
             n_clusters = min(len(prompts) // 2, 8)
-        
+
         if n_clusters < 2:
             return {"n_clusters": 1, "cluster_sizes": [len(prompts)], "silhouette_score": 0.0}
-        
+
         kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
         labels = kmeans.fit_predict(embeddings)
-        
+
         # Compute cluster sizes
         cluster_sizes = [int(sum(labels == i)) for i in range(n_clusters)]
-        
+
         # Compute silhouette score
         sil_score = float(silhouette_score(embeddings, labels))
-        
+
         return {
             "n_clusters": n_clusters,
             "cluster_sizes": cluster_sizes,
             "silhouette_score": sil_score
         }
-        
+
     except ImportError:
         return {"n_clusters": 0, "cluster_sizes": [], "silhouette_score": 0.0, "error": "dependencies not installed"}
 
@@ -640,7 +640,7 @@ def analyze_prompt_evolution(
 ) -> Dict:
     """
     Analyze how prompts evolved from initial to final state.
-    
+
     Returns:
         - initial_distinctiveness: how distinct prompts were at start
         - final_distinctiveness: how distinct prompts are at end
@@ -649,7 +649,7 @@ def analyze_prompt_evolution(
     """
     initial_dist = compute_prompt_distinctiveness(initial_prompts)
     final_dist = compute_prompt_distinctiveness(final_prompts)
-    
+
     # Compute semantic drift (how much prompts changed)
     drift = 0.0
     if len(initial_prompts) == len(final_prompts):
@@ -657,16 +657,16 @@ def analyze_prompt_evolution(
             from sentence_transformers import SentenceTransformer
             from sklearn.metrics.pairwise import cosine_similarity
             import numpy as np
-            
+
             model = SentenceTransformer('all-MiniLM-L6-v2')
             initial_emb = model.encode(initial_prompts)
             final_emb = model.encode(final_prompts)
-            
+
             # Compute diagonal of similarity matrix (same agent before/after)
-            drifts = [1 - cosine_similarity([i], [f])[0][0] 
+            drifts = [1 - cosine_similarity([i], [f])[0][0]
                      for i, f in zip(initial_emb, final_emb)]
             drift = float(np.mean(drifts))
-            
+
         except ImportError:
             # Fallback using word overlap
             for initial, final in zip(initial_prompts, final_prompts):
@@ -677,7 +677,7 @@ def analyze_prompt_evolution(
                     total = len(initial_words | final_words)
                     drift += (1 - overlap / total) if total > 0 else 0
             drift /= len(initial_prompts) if initial_prompts else 1
-    
+
     return {
         "initial_distinctiveness": initial_dist,
         "final_distinctiveness": final_dist,

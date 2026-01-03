@@ -102,9 +102,9 @@ async def run_single_seed(
     client: Optional[LLMClient] = None
 ) -> SeedResult:
     """Run experiment for a single seed."""
-    print(f"\n{'='*60}")
-    print(f"SEED {seed}")
-    print(f"{'='*60}")
+    print(f"\n{'='*60}", flush=True)
+    print(f"SEED {seed}", flush=True)
+    print(f"{'='*60}", flush=True)
 
     random.seed(seed)
     np.random.seed(seed)
@@ -150,8 +150,36 @@ async def run_single_seed(
             metrics = compute_all_metrics(agents, gen)
             metrics_history.append(metrics.to_dict())
 
-            if gen % 20 == 0:
-                print(f"  Gen {gen}: RPI_var={metrics.rpi_variance:.4f}, PSI={metrics.population_psi:.2f}, PD={metrics.preference_diversity:.2f}")
+            if gen % 10 == 0:
+                print(f"  Gen {gen}: RPI_var={metrics.rpi_variance:.4f}, PSI={metrics.population_psi:.2f}, PD={metrics.preference_diversity:.2f}", flush=True)
+
+            # INCREMENTAL SAVE - save checkpoint to disk for crash recovery
+            checkpoint_dir = Path(__file__).parent.parent / "results" / "phase1_checkpoints"
+            checkpoint_dir.mkdir(parents=True, exist_ok=True)
+            checkpoint_file = checkpoint_dir / f"checkpoint_seed{seed}_gen{gen}.json"
+
+            agent_snapshot = []
+            for agent in agents:
+                pref = agent.get_primary_preference()
+                agent_snapshot.append({
+                    "agent_id": agent.agent_id,
+                    "strategy_levels": {r.value: l for r, l in agent.strategy_levels.items()},
+                    "primary_preference": pref.value if pref else None,
+                    "preference_strength": agent.get_preference_strength(),
+                })
+
+            with open(checkpoint_file, "w") as f:
+                json.dump({
+                    "seed": seed,
+                    "generation": gen,
+                    "metrics": metrics.to_dict(),
+                    "agents": agent_snapshot
+                }, f, indent=2)
+
+            # Keep only last 3 checkpoints per seed to save space
+            old_checkpoints = sorted(checkpoint_dir.glob(f"checkpoint_seed{seed}_gen*.json"))
+            for old_cp in old_checkpoints[:-3]:
+                old_cp.unlink()
 
     # Final metrics
     final_metrics = compute_all_metrics(agents, config.num_generations)
@@ -193,14 +221,14 @@ async def run_phase1(
     save_results: bool = True
 ) -> List[SeedResult]:
     """Run Phase 1 across all seeds."""
-    print("=" * 60)
-    print("PHASE 1: MAIN PREFERENCE EXPERIMENT")
-    print("=" * 60)
-    print(f"Agents: {config.num_agents}")
-    print(f"Generations: {config.num_generations}")
-    print(f"Seeds: {config.num_seeds}")
-    print(f"Fitness sharing: {config.use_fitness_sharing}")
-    print(f"Real LLM: {config.use_real_llm}")
+    print("=" * 60, flush=True)
+    print("PHASE 1: MAIN PREFERENCE EXPERIMENT", flush=True)
+    print("=" * 60, flush=True)
+    print(f"Agents: {config.num_agents}", flush=True)
+    print(f"Generations: {config.num_generations}", flush=True)
+    print(f"Seeds: {config.num_seeds}", flush=True)
+    print(f"Fitness sharing: {config.use_fitness_sharing}", flush=True)
+    print(f"Real LLM: {config.use_real_llm}", flush=True)
 
     results = []
     for seed in range(config.num_seeds):

@@ -1,5 +1,29 @@
 # Changelog
 
+## [v3.5.1] - 2026-01-03: Option B+ Cold Start Fix
+
+### Critical Fix: Cold Start Problem
+- **Problem**: With Option A (random winner fallback), agents could accumulate strategies without merit
+- **Solution**: Implemented Option B+ - each agent starts with Level 1 in ONE random rule
+- **Scientific Rationale**: Like organisms inheriting slight genetic predispositions that get amplified/suppressed by environmental pressures
+
+### Changes
+- `src/genesis/preference_agent.py`: `create_population()` now seeds each agent with L1 in one random rule
+- `src/genesis/competition_v3.py`: Reverted random winner fallback - merit-based only
+- `src/genesis/synthetic_rules.py`: Fixed citations - honest about arbitrary vs grounded rules
+
+### Citation Improvements
+- **Strongly Grounded**: VOWEL_START, RHYME, ANIMATE (2,000-4,000 citations each)
+- **Moderately Grounded**: PATTERN, INVERSE, MATH_MOD
+- **Deliberately Arbitrary**: POSITION, ALPHABET (to test rule-following, not cognitive bias)
+
+### Phase 1 Restarted
+- Killed experiment with Option A
+- Restarted with Option B+ initialization
+- Configuration: 12 agents, 50 gens, 2 seeds, gemini-2.0-flash
+
+---
+
 ## [v3.5.0] - 2026-01-03: Plan V3.2 Implementation & Paper Updates
 
 ### Major Progress

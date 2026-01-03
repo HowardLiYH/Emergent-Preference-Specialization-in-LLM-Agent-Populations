@@ -162,7 +162,9 @@ def print_baseline_results(results: List[BaselineResult]):
 
 async def main():
     """Run baseline comparison."""
-    GEMINI_KEY = 'AIzaSyDngzJmPnKNrc-jXz5y5xUuDDlwhCWDRic'
+    GEMINI_KEY = os.getenv('GEMINI_API_KEY')
+    if not GEMINI_KEY:
+        raise RuntimeError('GEMINI_API_KEY environment variable not set')
 
     print("Baseline Comparison Experiments")
     print("Testing: NO_PROMPT, RANDOM_PROMPT, WRONG_PROMPT, CORRECT_PROMPT")
