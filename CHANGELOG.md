@@ -1,5 +1,26 @@
 # Changelog
 
+## [v3.4.3] - 2026-01-03: Academic Rigor Audit & Fixes
+
+### Audit Findings Fixed
+- ❌ `prompt_length_ablation.json` was using OLD rules → ✅ Re-run with new rules
+- ❌ `phase2_enhanced_results.json` missing model field → ✅ Added
+- ⚠️ Old "concise prompts win" finding invalid → ✅ Updated to accurate finding
+
+### New Ablation Results (Real API, New Rules)
+- Short prompts: 99.0% accuracy
+- Enhanced prompts: 100.0% accuracy
+- Finding: Both work equally well with cognitively-grounded rules
+
+### All Result Files Now Have Model Metadata
+- `multi_seed_results.json` ✓
+- `baseline_comparison.json` ✓
+- `scalability_results.json` ✓
+- `prompt_length_ablation.json` ✓
+- `phase2_enhanced_results.json` ✓
+
+---
+
 ## [v3.4] - 2026-01-03: Statistical Rigor & Complete Validation
 
 ### Major Results (ALL REAL API - Gemini 2.0 Flash)

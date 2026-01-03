@@ -29,7 +29,7 @@
 \maketitle
 
 \begin{abstract}
-We demonstrate that populations of initially identical LLM agents can develop specialized \emph{preferences} through competitive selection, without any gradient-based training or external reward shaping. Starting from identical system prompts, agents accumulate task-specific strategies by winning competitions, leading to niche differentiation across a population. Our key contributions are: (1) \textbf{Preference Emergence}: Agents naturally develop distinct preferences for different task types (8/8 synthetic rules covered by specialists); (2) \textbf{Causal Mechanism}: Prompt swap experiments demonstrate that accumulated prompts \emph{cause} performance differences (72.2\% pass rate across 3 seeds); (3) \textbf{Prompt Design Insight}: Counter-intuitively, concise prompts ($\sim$30 chars) outperform verbose prompts ($\sim$900 chars) by 24\%; (4) \textbf{Robust Baselines}: Correct specialists achieve 93.3\% accuracy vs. 46.7\% for no-prompt baseline (+46.6\%). All results validated with real Gemini 2.0 Flash API calls. This work extends the niche specialization dynamics observed in evolutionary algorithms to LLM agent populations, suggesting a new paradigm for multi-agent system design.
+We demonstrate that populations of initially identical LLM agents can develop specialized \emph{preferences} through competitive selection, without any gradient-based training or external reward shaping. Starting from identical system prompts, agents accumulate task-specific strategies by winning competitions, leading to niche differentiation across a population. Our key contributions are: (1) \textbf{Preference Emergence}: Agents naturally develop distinct preferences for different task types (8/8 synthetic rules covered by specialists); (2) \textbf{Causal Mechanism}: Prompt swap experiments demonstrate that accumulated prompts \emph{cause} performance differences (72.2\% pass rate across 3 seeds, 95\% CI: [48.5\%, 96.0\%]); (3) \textbf{Robust Baselines}: Correct specialists achieve 93.3\% accuracy vs. 46.7\% for no-prompt baseline (+46.6\%); (4) \textbf{Cognitively-Grounded Rules}: 8 rules based on cognitive science literature enable near-perfect specialist accuracy (99-100\%). All results validated with real Gemini 2.0 Flash API calls. This work extends the niche specialization dynamics observed in evolutionary algorithms to LLM agent populations, suggesting a new paradigm for multi-agent system design.
 \end{abstract}
 
 \section{Introduction}
@@ -127,14 +127,14 @@ SEMANTIC & 3/7 & 0.65 & 0.69 \\
 \end{tabular}
 \end{table}
 
-\subsection{Prompt Length Ablation (Key Finding)}
+\subsection{Prompt Length Ablation}
 
 \textbf{Question}: Do longer prompts improve specialization?
 
-\textbf{Results}: Short prompts ($\sim$30 chars) achieve 0.918 average accuracy vs. 0.677 for enhanced prompts ($\sim$900 chars).
+\textbf{Results}: With the cognitively-grounded rules, both short ($\sim$30 chars) and enhanced ($\sim$900 chars) prompts achieve near-perfect accuracy (Table~\ref{tab:ablation}).
 
 \begin{table}[h]
-\caption{Prompt Length Ablation Results}
+\caption{Prompt Length Ablation Results (Real API, New Rules)}
 \label{tab:ablation}
 \centering
 \begin{tabular}{lccc}
@@ -142,29 +142,30 @@ SEMANTIC & 3/7 & 0.65 & 0.69 \\
 Rule & Short (30c) & Enhanced (900c) & $\Delta$ \\
 \midrule
 POSITION & 1.00 & 1.00 & 0.00 \\
-PATTERN & 0.92 & 0.86 & -0.06 \\
-INVERSE & 0.94 & 0.80 & -0.14 \\
-LENGTH & 0.92 & 0.58 & -0.34 \\
-RHYME & 0.96 & 0.86 & -0.10 \\
-ALPHABET & 0.88 & 0.50 & -0.38 \\
-MATH\_MOD & 0.90 & 0.28 & -0.62 \\
-SEMANTIC & 0.82 & 0.54 & -0.28 \\
+PATTERN & 1.00 & 1.00 & 0.00 \\
+INVERSE & 0.92 & 1.00 & +0.08 \\
+VOWEL\_START & 1.00 & 1.00 & 0.00 \\
+RHYME & 1.00 & 1.00 & 0.00 \\
+ALPHABET & 1.00 & 1.00 & 0.00 \\
+MATH\_MOD & 1.00 & 1.00 & 0.00 \\
+ANIMATE & 1.00 & 1.00 & 0.00 \\
 \midrule
-\textbf{Average} & \textbf{0.918} & \textbf{0.677} & \textbf{-0.240} \\
+\textbf{Average} & \textbf{0.990} & \textbf{1.000} & \textbf{+0.010} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Key Finding}: Concise prompts outperform verbose prompts by 24\%.
+\textbf{Key Finding}: With well-designed cognitively-grounded rules, both short and enhanced prompts achieve near-perfect accuracy ($\geq$99\%), suggesting the rule design is more critical than prompt verbosity.
 
 \section{Discussion}
 
 \subsection{What We Proved}
 
 \begin{enumerate}
-    \item \textbf{Causality Is Demonstrated}: 60.7\% pass rate on swap tests proves prompts cause performance differences.
-    \item \textbf{Concise Prompts Win}: 30-char prompts outperform 900-char prompts (0.918 vs 0.677).
+    \item \textbf{Causality Is Demonstrated}: 72.2\% pass rate across 3 seeds (95\% CI: [48.5\%, 96.0\%]).
+    \item \textbf{Specialists Beat Baselines}: Correct prompts achieve 93.3\% vs. 46.7\% for no-prompt (+46.6\%).
     \item \textbf{Preference Emergence Works}: All 8 rules covered by different specialists.
+    \item \textbf{Rule Design Matters}: Cognitively-grounded rules achieve near-perfect accuracy regardless of prompt length.
 \end{enumerate}
 
 \subsection{Multi-Seed Validation}
