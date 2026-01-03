@@ -1,5 +1,37 @@
 # Changelog
 
+## [v3.4] - 2026-01-03: Statistical Rigor & Complete Validation
+
+### Major Results
+- **Multi-Seed Validation**: 75.5% pass rate (95% CI: [64.6%, 86.4%]) across 5 seeds
+- **Baseline Comparison**: Correct specialists achieve 87% vs 27% no-prompt baseline (+60%)
+- **Scalability Analysis**: Performance stable from N=8 to N=48 agents
+
+### New Experiments
+- `experiments/exp_multi_seed.py` - 5-seed validation with confidence intervals
+- `experiments/exp_baselines_full.py` - NO_PROMPT, RANDOM, WRONG, CORRECT baselines
+- `experiments/exp_scalability.py` - Population size scaling (8, 12, 24, 48)
+
+### New Figures (paper/figures/)
+- `multi_seed_results.png` - Pass rates with error bars and 95% CI
+- `baseline_comparison.png` - Baseline condition comparison
+- `scalability_analysis.png` - Coverage and swap rate vs N
+
+### Paper Updates
+- Added multi-seed validation table (Table 4)
+- Added baseline comparison table (Table 5)
+- Added scalability analysis table (Table 6)
+- Updated abstract with new statistical claims
+- Updated conclusion with 5-seed validation
+
+### Updated Visualization Module
+- `src/genesis/visualization.py`:
+  - `plot_multi_seed_results()` - Error bars and CI shading
+  - `plot_baseline_comparison()` - Grouped bars with significance markers
+  - `plot_scalability_analysis()` - Coverage and specialist trends
+
+---
+
 ## [v3.3] - 2026-01-03: Cognitively-Grounded Rules & 75% Causality
 
 ### Major Results

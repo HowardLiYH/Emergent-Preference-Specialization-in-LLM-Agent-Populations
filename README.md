@@ -75,6 +75,33 @@ We replaced weak rules with scientifically-grounded alternatives:
 
 ---
 
+### 📊 Multi-Seed Validation (NEW)
+
+Results validated across **5 random seeds**:
+
+| Metric | Mean | Std | 95% CI |
+|--------|------|-----|--------|
+| **Pass Rate** | **75.5%** | 0.124 | [64.6%, 86.4%] |
+
+### 🏆 Baseline Comparisons (NEW)
+
+| Condition | Mean Acc | vs CORRECT |
+|-----------|----------|------------|
+| NO_PROMPT | 27.0% | -60.0% |
+| RANDOM_PROMPT | 32.0% | -55.0% |
+| WRONG_PROMPT | 38.0% | -49.0% |
+| **CORRECT_PROMPT** | **87.0%** | - |
+
+### 📈 Scalability Analysis (NEW)
+
+| N Agents | Coverage | Swap Pass | Specialists |
+|----------|----------|-----------|-------------|
+| 8 | 87.5% | 73.3% | 7/8 |
+| 12 | 86.7% | 73.8% | 6/8 |
+| 24 | 88.4% | 76.5% | 7/8 |
+| 48 | 73.4% | 76.3% | 5/8 |
+
+
 ## Synthetic Rules
 
 8 rule domains grounded in cognitive science:

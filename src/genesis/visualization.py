@@ -41,11 +41,11 @@ RULE_COLORS = {
     'position': '#E63946',
     'pattern': '#F4A261',
     'inverse': '#2A9D8F',
-    'length': '#264653',
+    'vowel_start': '#264653',
     'rhyme': '#E9C46A',
     'alphabet': '#457B9D',
     'math_mod': '#8338EC',
-    'semantic': '#FF006E'
+    'animate': '#FF006E'
 }
 
 
@@ -481,6 +481,214 @@ def generate_all_figures(results_dir: str = 'results', output_dir: str = 'paper/
     print(f"Figures saved to {output_path}")
 
 
+def plot_multi_seed_results(
+    results_path: str = 'results/multi_seed_results.json',
+    save_path: Optional[str] = None
+):
+    """
+    Plot multi-seed results with error bars and confidence intervals.
+    """
+    if not HAS_MATPLOTLIB:
+        print("Cannot plot: matplotlib not installed")
+        return
+
+    with open(results_path, 'r') as f:
+        results = json.load(f)
+
+    setup_neurips_style()
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+    # Left: Per-seed pass rates
+    seeds = results['seeds']
+    pass_rates = results['pass_rates']
+    mean = results['mean']
+    ci_low = results['ci_low']
+    ci_high = results['ci_high']
+
+    x = np.arange(len(seeds))
+    bars = ax1.bar(x, pass_rates, color=COLORS['primary'], alpha=0.7, edgecolor='black')
+
+    # Add mean line
+    ax1.axhline(y=mean, color=COLORS['danger'], linestyle='--', linewidth=2, label=f'Mean: {mean:.1%}')
+
+    # Add CI shading
+    ax1.fill_between([-0.5, len(seeds)-0.5], ci_low, ci_high, alpha=0.2, color=COLORS['danger'], label='95% CI')
+
+    ax1.set_xlabel('Seed')
+    ax1.set_ylabel('Pass Rate')
+    ax1.set_title('Multi-Seed Swap Test Results')
+    ax1.set_xticks(x)
+    ax1.set_xticklabels([str(s) for s in seeds])
+    ax1.set_ylim(0, 1.1)
+    ax1.legend(loc='lower right')
+
+    # Right: Summary with error bar
+    ax2.bar(['Swap\nTest'], [mean], yerr=[[mean - ci_low], [ci_high - mean]], 
+            capsize=10, color=COLORS['success'], alpha=0.8, edgecolor='black', linewidth=2)
+    ax2.set_ylabel('Pass Rate')
+    ax2.set_title(f'Aggregated Results (n={len(seeds)} seeds)')
+    ax2.set_ylim(0, 1.1)
+
+    # Add annotations
+    ax2.annotate(f'{mean:.1%}\n[{ci_low:.1%}, {ci_high:.1%}]',
+                xy=(0, mean), xytext=(0.3, mean + 0.1),
+                fontsize=12, fontweight='bold',
+                arrowprops=dict(arrowstyle='->', color=COLORS['dark']))
+
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path)
+        print(f"Saved: {save_path}")
+    else:
+        plt.show()
+
+    plt.close()
+
+
+def plot_baseline_comparison(
+    results_path: str = 'results/baseline_comparison.json',
+    save_path: Optional[str] = None
+):
+    """
+    Plot baseline comparison with error bars.
+    """
+    if not HAS_MATPLOTLIB:
+        print("Cannot plot: matplotlib not installed")
+        return
+
+    with open(results_path, 'r') as f:
+        results = json.load(f)
+
+    setup_neurips_style()
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    conditions = list(results.keys())
+    means = [results[c]['mean'] for c in conditions]
+    stds = [results[c]['std'] for c in conditions]
+
+    # Color by performance
+    colors = []
+    for c in conditions:
+        if c == 'CORRECT_PROMPT':
+            colors.append(COLORS['success'])
+        elif c == 'NO_PROMPT':
+            colors.append(COLORS['neutral'])
+        else:
+            colors.append(COLORS['danger'])
+
+    x = np.arange(len(conditions))
+    bars = ax.bar(x, means, yerr=stds, capsize=8, color=colors, alpha=0.8, 
+                 edgecolor='black', linewidth=1.5)
+
+    ax.set_xlabel('Condition')
+    ax.set_ylabel('Mean Accuracy')
+    ax.set_title('Baseline Comparison: Prompt Specialization vs Alternatives')
+    ax.set_xticks(x)
+    ax.set_xticklabels([c.replace('_', '\n') for c in conditions], fontsize=10)
+    ax.set_ylim(0, 1.1)
+
+    # Add significance markers
+    correct_mean = results['CORRECT_PROMPT']['mean']
+    for i, (c, m) in enumerate(zip(conditions, means)):
+        if c != 'CORRECT_PROMPT':
+            improvement = correct_mean - m
+            ax.annotate(f'+{improvement:.0%}', xy=(i, m + stds[i] + 0.05),
+                       ha='center', fontsize=9, color=COLORS['success'], fontweight='bold')
+
+    # Add value labels
+    for bar, m, s in zip(bars, means, stds):
+        height = bar.get_height()
+        ax.annotate(f'{m:.1%}', xy=(bar.get_x() + bar.get_width()/2, height - 0.05),
+                   ha='center', va='top', fontsize=10, fontweight='bold', color='white')
+
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path)
+        print(f"Saved: {save_path}")
+    else:
+        plt.show()
+
+    plt.close()
+
+
+def plot_scalability_analysis(
+    results_path: str = 'results/scalability_results.json',
+    save_path: Optional[str] = None
+):
+    """
+    Plot scalability analysis across population sizes.
+    """
+    if not HAS_MATPLOTLIB:
+        print("Cannot plot: matplotlib not installed")
+        return
+
+    with open(results_path, 'r') as f:
+        results = json.load(f)
+
+    setup_neurips_style()
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+    n_agents = [r['n_agents'] for r in results]
+    coverage = [r['coverage'] for r in results]
+    swap_pass = [r['swap_pass_rate'] for r in results]
+    specialists = [r['unique_specialists'] for r in results]
+
+    # Left: Coverage and Swap Pass Rate
+    x = np.arange(len(n_agents))
+    width = 0.35
+
+    bars1 = ax1.bar(x - width/2, coverage, width, label='Rule Coverage', 
+                    color=COLORS['primary'], alpha=0.8)
+    bars2 = ax1.bar(x + width/2, swap_pass, width, label='Swap Pass Rate',
+                    color=COLORS['success'], alpha=0.8)
+
+    ax1.set_xlabel('Number of Agents')
+    ax1.set_ylabel('Rate')
+    ax1.set_title('Scalability: Performance vs Population Size')
+    ax1.set_xticks(x)
+    ax1.set_xticklabels([str(n) for n in n_agents])
+    ax1.set_ylim(0, 1.1)
+    ax1.legend(loc='lower right')
+    ax1.axhline(y=0.7, color=COLORS['warning'], linestyle='--', alpha=0.5, label='Threshold')
+
+    # Right: Unique specialists
+    ax2.plot(n_agents, specialists, 'o-', color=COLORS['primary'], markersize=10, linewidth=2)
+    ax2.fill_between(n_agents, 0, specialists, alpha=0.2, color=COLORS['primary'])
+
+    ax2.set_xlabel('Number of Agents')
+    ax2.set_ylabel('Unique Specialists')
+    ax2.set_title('Specialist Diversity vs Population Size')
+    ax2.set_ylim(0, 10)
+    ax2.axhline(y=8, color=COLORS['success'], linestyle='--', alpha=0.5, label='Max (8 rules)')
+    ax2.legend()
+
+    plt.tight_layout()
+
+    if save_path:
+        plt.savefig(save_path)
+        print(f"Saved: {save_path}")
+    else:
+        plt.show()
+
+    plt.close()
+
+
 if __name__ == "__main__":
     # Generate figures from existing results
     generate_all_figures()
+    
+    # Generate new analysis figures
+    from pathlib import Path
+    output_path = Path('paper/figures')
+    output_path.mkdir(parents=True, exist_ok=True)
+    
+    if Path('results/multi_seed_results.json').exists():
+        plot_multi_seed_results(save_path=str(output_path / 'multi_seed_results.png'))
+    
+    if Path('results/baseline_comparison.json').exists():
+        plot_baseline_comparison(save_path=str(output_path / 'baseline_comparison.png'))
+    
+    if Path('results/scalability_results.json').exists():
+        plot_scalability_analysis(save_path=str(output_path / 'scalability_analysis.png'))
