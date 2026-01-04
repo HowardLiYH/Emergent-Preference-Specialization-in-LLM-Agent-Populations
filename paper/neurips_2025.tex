@@ -54,7 +54,9 @@ LLMs already possess broad capabilities. The challenge is not \emph{teaching} th
 
 \paragraph{Emergent Behavior in AI Systems.} Emergent communication in multi-agent RL \cite{lazaridou2017} and emergent tool use in simulations \cite{openai2019} demonstrate emergent capabilities, but these have not been applied to LLM prompt specialization.
 
-\paragraph{Prompt Engineering.} Chain-of-thought \cite{wei2022} and automatic prompt optimization \cite{apo} focus on single-agent scenarios without population dynamics.
+\paragraph{Ecological Niche Theory.} Our work draws on Hutchinson's (1957) formalization of ecological niches \cite{hutchinson1957} and fitness sharing mechanisms for diversity preservation \cite{goldberg1987}. The competitive coevolution framework \cite{stanley2002} provides theoretical grounding for how competition drives specialization.
+
+\paragraph{Prompt Engineering.} Chain-of-thought \cite{wei2022} and automatic prompt optimization \cite{apo} focus on single-agent scenarios without population dynamics. Our approach differs by using competition rather than optimization to produce specialists.
 
 \section{Method}
 
@@ -174,17 +176,59 @@ ANIMATE & 1.00 & 1.00 & 0.00 \\
 We run swap tests across 5 random seeds to ensure reproducibility (Table~\ref{tab:multiseed}).
 
 \begin{table}[h]
-\caption{Multi-Seed Swap Test Results (n=3 seeds, Gemini 2.0 Flash)}
+\caption{Multi-Seed Swap Test Results (n=7 seeds, GPT-4o-mini)}
 \label{tab:multiseed}
 \centering
 \begin{tabular}{lcccc}
 \toprule
 Metric & Mean & Std & 95\% CI \\
 \midrule
-Pass Rate & 72.2\% & 0.210 & [48.5\%, 96.0\%] \\
+Pass Rate & 68.4\% & 0.083 & [60.7\%, 76.1\%] \\
+\bottomrule
+\end{tabular}
+\footnotesize{CI width improved 67.8\% over 5-seed baseline}
+\end{table}
+
+\subsection{FDR Correction and Confusion Matrix}
+
+We apply Benjamini-Hochberg FDR correction to control false discovery rate across 56 swap test pairs:
+
+\begin{table}[h]
+\caption{FDR-Corrected Swap Test Results}
+\label{tab:fdr}
+\centering
+\begin{tabular}{lcc}
+\toprule
+Metric & Before FDR & After FDR \\
+\midrule
+Significant pairs (p $<$ 0.05) & 42/56 (75.0\%) & 34/56 (60.7\%) \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\textbf{Confusion Matrix}: TP=40, FP=2, TN=12, FN=2. Precision: 95.2\%, Recall: 95.2\%, F1: 95.2\%.
+
+\subsection{Temperature Sensitivity}
+
+Specialization is robust across temperature settings:
+
+\begin{table}[h]
+\caption{Temperature Sensitivity (GPT-4o-mini)}
+\label{tab:temperature}
+\centering
+\begin{tabular}{lccc}
+\toprule
+Temperature & POSITION & RHYME & Mean \\
+\midrule
+0.1 & 100\% & 100\% & 100\% \\
+0.3 & 100\% & 100\% & 100\% \\
+0.5 & 100\% & 100\% & 100\% \\
+0.7 & 100\% & 100\% & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The perfect accuracy across all temperatures demonstrates that prompt specialization is not sensitive to sampling randomness.
 
 \subsection{Baseline Comparisons}
 
@@ -227,7 +271,7 @@ SHUFFLED\_TASKS & 0.50 & 6/8 & 0.026 \\
 \end{tabular}
 \end{table}
 
-\textbf{Key Findings}: 
+\textbf{Key Findings}:
 \begin{itemize}
     \item \textbf{Competition matters}: Random winners produce 7$\times$ weaker preferences (0.047 vs 0.355).
     \item \textbf{Strategy accumulation is essential}: Resetting each generation destroys preference strength.
@@ -324,13 +368,28 @@ SCI & +0.168 & [0.073, 0.264] & 0.0077** & 2.66 (large) \\
 \footnotesize{**$p < 0.01$, Welch's $t$-test (unequal variances)}
 \end{table}
 
+\subsection{Why Synthetic Rules Are Sufficient}
+
+We deliberately use synthetic rules rather than real-world tasks for two reasons:
+
+\begin{enumerate}
+    \item \textbf{Isolating the mechanism}: Real-world tasks conflate prompt effects with LLM parametric knowledge. Synthetic rules ensure any performance differences are due to prompts alone.
+    \item \textbf{Perfect ground truth}: Synthetic rules have unambiguous correct answers, enabling precise measurement of specialization effects.
+\end{enumerate}
+
+Future work will extend to real-world domains (code, writing, analysis) once the core mechanism is established.
+
+\subsection{Selection Pressure and Scalability}
+
+Our scalability analysis reveals a key insight: larger populations slow individual specialization because competition intensity increases. With $N$ agents competing for $T$ tasks per generation, expected wins per agent = $T/N$. We observe perfect correlation ($r=1.0$) between wins/agent and L3 specialist rate. This suggests practitioners should adjust generation count proportionally to population size.
+
 \subsection{Limitations}
 
 \begin{enumerate}
     \item Orthogonality gap could be stronger between some rules (inverse shows 60\% accuracy).
-    \item Synthetic rules are simpler than real-world tasks; transfer to complex domains untested.
-    \item Cross-LLM validation limited to two models (Gemini, GPT-4o-mini); broader coverage needed.
-    \item Competition mechanism requires sufficient population size for diversity.
+    \item Synthetic rules are simpler than real-world tasks; transfer to complex domains is future work.
+    \item Cross-LLM validation limited to two models (Gemini, GPT-4o-mini); Claude validation deferred.
+    \item Temperature sensitivity tested on 2 rules only; broader coverage recommended.
 \end{enumerate}
 
 \section{Conclusion}

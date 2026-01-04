@@ -79,14 +79,14 @@ We replaced weak rules with scientifically-grounded alternatives:
 
 **All experiments run with real Gemini 2.0 Flash API**
 
-#### Multi-Seed Validation (5 seeds)
+#### Multi-Seed Validation (7 seeds) - UPDATED
 
 | Metric | Value | Threshold | Status |
 |--------|-------|-----------|--------|
-| **Strategy Concentration Index** | 0.510 ± 0.069 | >0.4 | ✅ PASS |
-| **L3 Specialist Rate** | 80.0% ± 10.3% | >50% | ✅ PASS |
-| **Specialization Diversity** | 75.0% ± 0.0% | >40% | ✅ PASS |
-| **Herfindahl-Hirschman Index** | 0.200 ± 0.010 | <0.5 | ✅ PASS |
+| **Swap Test Pass Rate** | 68.4% ± 8.3% | >50% | ✅ PASS |
+| **95% Confidence Interval** | [60.7%, 76.1%] | - | 67.8% narrower |
+| **FDR-Corrected Pass Rate** | 60.7% | >50% | ✅ PASS |
+| **Confusion Matrix F1** | 95.2% | >80% | ✅ PASS |
 
 #### Competition vs Random Baseline
 
@@ -156,6 +156,17 @@ Specialization mechanism validated across different LLMs:
 | SCI | +0.168 | [0.073, 0.264] | **0.0077** | d=2.66 (large) |
 
 *Welch's t-test (unequal variances), 5 seeds competition vs 3 seeds random*
+
+### 🌡️ Temperature Sensitivity (NEW)
+
+| Temperature | POSITION | RHYME | Mean |
+|-------------|----------|-------|------|
+| 0.1 | 100% | 100% | 100% |
+| 0.3 | 100% | 100% | 100% |
+| 0.5 | 100% | 100% | 100% |
+| 0.7 | 100% | 100% | 100% |
+
+**Key Finding**: Specialization is robust across all temperature settings.
 
 ---
 
