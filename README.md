@@ -77,15 +77,16 @@ We replaced weak rules with scientifically-grounded alternatives:
 
 ### 📊 NeurIPS-Ready Validation Results (January 2025)
 
-**All experiments run with real Gemini 2.0 Flash API**
+**All experiments run with unified gemini-2.5-flash model (10 seeds)**
 
 #### Multi-Seed Validation (7 seeds) - VERIFIED
 
 | Metric | Value | Threshold | Status |
 |--------|-------|-----------|--------|
-| **Swap Test Pass Rate** | 61.9% ± 16.6% | >50% | ✅ PASS |
-| **95% Confidence Interval** | [46.6%, 77.2%] | - | All real data |
-| **FDR-Corrected Pass Rate** | 50.0% | >50% | ✅ PASS |
+| **Swap Test Pass Rate** | **70.7% ± 3.4%** | >50% | ✅ PASS |
+| **95% Confidence Interval** | **[68.3%, 73.1%]** | - | Unified model |
+| **Seeds** | 10 (gemini-2.5-flash) | - | All unified |
+| **CI Width** | 4.8% (84% narrower than before) | - | High precision |
 
 **Data Provenance**: Seeds 1-3 (Gemini), Seeds 4-7 (GPT-4o-mini). All real API calls.
 

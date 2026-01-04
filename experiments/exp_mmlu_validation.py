@@ -89,8 +89,11 @@ def log(msg: str):
 
 def get_specialist_prompt(rule: RuleType) -> str:
     """Get Level 3 specialist prompt for a rule."""
-    strategies = STRATEGY_LEVELS.get(rule, {})
-    return strategies.get(3, f"You are an expert in {rule.value} tasks.")
+    strategies = STRATEGY_LEVELS.get(rule, None)
+    if strategies is None:
+        return f"You are an expert in {rule.value} tasks."
+    # RuleStrategyLevels has get_level() method
+    return strategies.get_level(3) or f"You are an expert in {rule.value} tasks."
 
 
 def get_generic_prompt() -> str:

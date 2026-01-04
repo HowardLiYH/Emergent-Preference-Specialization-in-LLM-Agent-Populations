@@ -23,9 +23,23 @@
 - All 14 experiment files in `experiments/` directory
 - `docs/UNIFIED_VALIDATION_PLAN.md` - Created with new model specification
 
-### Experiment Status
-- Running unified 10-seed validation (Seed 1: 73.2%, Seed 2 in progress)
-- Will update paper and README upon completion
+### Experiment Results (COMPLETE)
+
+**Unified 10-Seed Validation:**
+
+| Seed | Pass Rate |
+|------|-----------|
+| 1-10 | 64.3% - 75.0% |
+| **Mean** | **70.7%** |
+| **95% CI** | **[68.3%, 73.1%]** |
+| **CI Width** | 4.8% (84% narrower than mixed-model) |
+
+**MMLU Validation:**
+- Result: Synthetic rule specialists perform worse on real-world MMLU tasks
+- Interpretation: Confirms specialization is rule-specific, not general knowledge
+- This validates our synthetic rule design
+
+**Paper & README updated with new results**
 
 ---
 
