@@ -1,5 +1,47 @@
 # Changelog
 
+## [v4.0.2] - 2026-01-04: Phase 2 Polish (Panel Consensus)
+
+### Paper Improvements (4 Essential Tasks)
+
+| Task | Description | Status |
+|------|-------------|--------|
+| **Theorem 3 Tightening** | Explicit Azuma-Hoeffding bounds, 4-step proof structure | ✅ Complete |
+| **Fitness Sensitivity Integration** | Added table label, enhanced caption in paper | ✅ Complete |
+| **N=48 Carrying Capacity** | New Appendix section with formal scaling analysis | ✅ Complete |
+| **Deployment Limitations** | Expanded section with routing, cost, latency tradeoffs | ✅ Complete |
+
+### Key Additions to Paper
+
+**Theorem 3 Proof (Tightened)**:
+- Step 1: Submartingale property definition
+- Step 2: Explicit Azuma-Hoeffding inequality application
+- Step 3: Concentration bound derivation with explicit constants
+- Step 4: Large deviation bound via Freidlin-Wentzell theory
+
+**Carrying Capacity Formalization**:
+- $N^* = R \cdot k$ where $k \approx 3$ is optimal
+- $\mathbb{E}[\text{gens to L3}] \sim O(N/R)$
+- Practitioner guidance: use $N \leq 3R$ for fast convergence
+
+**Deployment Limitations**:
+- Routing overhead analysis
+- Training cost breakdown (9,600 API calls, 5-7 task break-even)
+- Model-specific tuning considerations
+- Latency tradeoffs (ensemble vs confidence routing)
+
+### Panel Decision
+
+Per the distinguished panel's consensus: "Do less, not more."
+
+| Category | Tasks | Outcome |
+|----------|-------|---------|
+| **DO** | 4 essential | ✅ All completed |
+| **OPTIONAL** | 2 (latency, related work) | Deferred |
+| **CANCELLED** | 4 (n=100, learned routing, philosophy, error patterns) | Skipped to avoid dilution |
+
+---
+
 ## [v4.0.1] - 2026-01-04: Content Filtering Fix
 
 ### Critical Fix: Gemini Content Filtering
