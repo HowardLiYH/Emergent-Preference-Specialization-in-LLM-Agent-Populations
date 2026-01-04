@@ -34,7 +34,7 @@ MODEL_PRICING = {
     "claude-sonnet-4.5": {"input": 3.00, "output": 15.00},
     "claude-haiku-4.5": {"input": 1.00, "output": 5.00},
     # Google Gemini - FREE TIER AVAILABLE!
-    "gemini-2.0-flash": {"input": 0.00, "output": 0.00},  # FREE!
+    "gemini-2.5-flash": {"input": 0.00, "output": 0.00},  # FREE!
     "gemini-1.5-flash": {"input": 0.00, "output": 0.00},  # FREE!
     "gemini-1.5-pro": {"input": 0.00, "output": 0.00},    # FREE!
     "gemini-2.5-pro": {"input": 1.25, "output": 5.00},    # Paid tier
@@ -47,7 +47,7 @@ class LLMConfig:
     provider: Literal["openai", "gemini", "anthropic"] = "gemini"
     api_key: str = ""
     api_base: str = ""
-    model: str = "gemini-2.0-flash"  # Default to FREE Gemini!
+    model: str = "gemini-2.5-flash"  # Default to FREE Gemini!
     max_retries: int = 5
     timeout: int = 60
 
@@ -79,7 +79,7 @@ class LLMConfig:
             return cls(
                 provider="gemini",
                 api_key=api_key,
-                model="gemini-2.0-flash",
+                model="gemini-2.5-flash",
             )
         elif provider == "openai":
             return cls(
@@ -104,7 +104,7 @@ class TokenUsage:
     prompt_tokens: int = 0
     completion_tokens: int = 0
     total_tokens: int = 0
-    model: str = "gemini-2.0-flash"
+    model: str = "gemini-2.5-flash"
 
     @property
     def estimated_cost(self) -> float:
@@ -124,7 +124,7 @@ class TokenUsage:
 @dataclass
 class RateLimiter:
     """Simple rate limiter for API calls."""
-    requests_per_minute: int = 2000  # For gemini-2.0-flash (2K RPM) or flash-lite (4K RPM)
+    requests_per_minute: int = 2000  # For gemini-2.5-flash (2K RPM) or flash-lite (4K RPM)
     tokens_per_minute: int = 4_000_000  # 4M TPM for flash
     min_delay_seconds: float = 0.1  # Minimal delay - high rate limit!
 
@@ -190,7 +190,7 @@ class LLMClient:
         self._http_client = None
 
     @classmethod
-    def for_gemini(cls, api_key: str = None, model: str = "gemini-2.0-flash") -> 'LLMClient':
+    def for_gemini(cls, api_key: str = None, model: str = "gemini-2.5-flash") -> 'LLMClient':
         """Create a client for Google Gemini (FREE!)."""
         config = LLMConfig(
             provider="gemini",
@@ -279,8 +279,25 @@ class LLMClient:
                     response.raise_for_status()
                     data = response.json()
 
-                # Extract content
-                content = data["candidates"][0]["content"]["parts"][0]["text"]
+                # Extract content with better error handling
+                candidates = data.get("candidates", [])
+                if not candidates:
+                    raise ValueError(f"No candidates in response: {data.get('error', data)}")
+
+                candidate = candidates[0]
+                if "content" not in candidate:
+                    # Check for blocked response
+                    finish_reason = candidate.get("finishReason", "UNKNOWN")
+                    raise ValueError(f"No content, finishReason={finish_reason}")
+
+                parts = candidate["content"].get("parts", [])
+                if not parts:
+                    # Handle empty parts gracefully (content filtering or safety)
+                    # Log and return empty string instead of failing
+                    logger.warning(f"Empty parts in Gemini response (likely content filtering)")
+                    content = ""
+                else:
+                    content = parts[0].get("text", "")
 
                 # Track usage
                 usage_meta = data.get("usageMetadata", {})
@@ -311,9 +328,10 @@ class LLMClient:
             except Exception as e:
                 if attempt < self.config.max_retries - 1:
                     wait_time = 2 ** attempt
-                    logger.warning(f"Gemini error: {e}, retrying in {wait_time}s...")
+                    print(f"Gemini error ({type(e).__name__}): {e}, retrying in {wait_time}s...", flush=True)
                     await asyncio.sleep(wait_time)
                 else:
+                    print(f"Gemini FINAL error ({type(e).__name__}): {e}", flush=True)
                     raise
 
         raise RuntimeError("Max retries exceeded")

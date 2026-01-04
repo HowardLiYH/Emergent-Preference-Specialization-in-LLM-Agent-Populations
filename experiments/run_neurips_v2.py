@@ -316,7 +316,7 @@ async def run_full_pipeline(
     print(f"  Domains: {config.num_domains}")
 
     # Create client
-    client = LLMClient.for_gemini(api_key=gemini_key, model="gemini-2.0-flash")
+    client = LLMClient.for_gemini(api_key=gemini_key, model="gemini-2.5-flash")
 
     results = {
         "domain_overlap": {},

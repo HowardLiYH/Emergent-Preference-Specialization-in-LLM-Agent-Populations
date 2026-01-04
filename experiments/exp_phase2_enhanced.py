@@ -97,7 +97,7 @@ async def run_full_swap_test(
 
     If original > swapped for specialist on THEIR OWN rule, prompts are causal.
     """
-    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.0-flash')
+    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.5-flash')
 
     results = {}
     rules = list(RuleType)

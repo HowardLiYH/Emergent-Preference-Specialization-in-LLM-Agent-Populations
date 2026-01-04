@@ -105,7 +105,7 @@ async def test_swap_at_scale(
 
 async def run_scalability_analysis(api_key: str) -> List[ScalabilityResult]:
     """Run scalability tests for different population sizes."""
-    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.0-flash')
+    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.5-flash')
 
     population_sizes = [8, 12, 24, 48]
     results = []

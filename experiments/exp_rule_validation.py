@@ -282,7 +282,7 @@ async def run_phase0_validation(
 
 async def run_phase0(
     api_key: str = None,
-    model: str = "gemini-2.0-flash",
+    model: str = "gemini-2.5-flash",
     tasks_per_rule: int = 5,
     save_results: bool = True
 ) -> ValidationResults:
@@ -322,7 +322,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Run Phase 0 validation")
     parser.add_argument("--api-key", default=os.getenv("GEMINI_API_KEY", ""), help="Gemini API key")
-    parser.add_argument("--model", default="gemini-2.0-flash", help="Model to use")
+    parser.add_argument("--model", default="gemini-2.5-flash", help="Model to use")
     parser.add_argument("--tasks", type=int, default=5, help="Tasks per rule")
 
     args = parser.parse_args()

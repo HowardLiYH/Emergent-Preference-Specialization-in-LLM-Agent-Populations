@@ -250,7 +250,7 @@ def validate_domain_orthogonality(result: OverlapResult) -> Dict:
 
 async def run_domain_overlap_test(
     api_key: str = None,
-    model: str = "gemini-2.0-flash",
+    model: str = "gemini-2.5-flash",
     tasks_per_domain: int = 5
 ) -> OverlapResult:
     """
@@ -315,7 +315,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Run domain overlap test")
     parser.add_argument("--api-key", help="Gemini API key")
-    parser.add_argument("--model", default="gemini-2.0-flash", help="Model to use")
+    parser.add_argument("--model", default="gemini-2.5-flash", help="Model to use")
     parser.add_argument("--tasks", type=int, default=5, help="Tasks per domain")
 
     args = parser.parse_args()

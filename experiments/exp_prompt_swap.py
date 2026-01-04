@@ -280,7 +280,7 @@ async def run_prompt_swap_test(
 
 async def run_full_swap_test(
     api_key: str = None,
-    model: str = "gemini-2.0-flash",
+    model: str = "gemini-2.5-flash",
     tasks_per_domain: int = 5,
     num_domains: int = 4
 ) -> PromptSwapSummary:
@@ -315,7 +315,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Run prompt swap test")
     parser.add_argument("--api-key", help="Gemini API key")
-    parser.add_argument("--model", default="gemini-2.0-flash", help="Model")
+    parser.add_argument("--model", default="gemini-2.5-flash", help="Model")
     parser.add_argument("--tasks", type=int, default=3, help="Tasks per domain")
     parser.add_argument("--domains", type=int, default=3, help="Number of domains")
 

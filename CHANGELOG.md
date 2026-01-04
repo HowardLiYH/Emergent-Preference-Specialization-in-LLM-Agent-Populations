@@ -1,5 +1,34 @@
 # Changelog
 
+## [v3.10.0] - 2026-01-04: Unified Model (gemini-2.5-flash)
+
+### Model Unification
+- **All experiments now use gemini-2.5-flash** for consistency
+- Previous experiments used mixed models (gemini-2.0-flash, gpt-4o-mini)
+- Re-running all 10 seeds with unified model for scientific rigor
+
+### LLM Client Fix
+- Fixed "Empty parts in response" error handling
+- Now gracefully handles content filtering (returns empty string instead of raising)
+- More robust for gemini-2.5-flash which has stricter safety filters
+
+### Benefits of gemini-2.5-flash
+- **Higher rate limits**: 1000 RPM (vs 10-15 RPM for older models)
+- **Better quality**: Improved reasoning over gemini-2.0-flash
+- **Cost effective**: Free tier available
+- **Unified results**: All seeds now comparable
+
+### Files Updated to gemini-2.5-flash
+- `src/genesis/llm_client.py` - Default model changed
+- All 14 experiment files in `experiments/` directory
+- `docs/UNIFIED_VALIDATION_PLAN.md` - Created with new model specification
+
+### Experiment Status
+- Running unified 10-seed validation (Seed 1: 73.2%, Seed 2 in progress)
+- Will update paper and README upon completion
+
+---
+
 ## [v3.9.0] - 2026-01-04: Data Integrity Audit & Fixes
 
 ### Critical Audit Findings Fixed

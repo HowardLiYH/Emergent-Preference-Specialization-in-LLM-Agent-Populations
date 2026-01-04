@@ -299,7 +299,7 @@ async def run_component_ablation(
 
 async def run_full_ablation(
     api_key: str = None,
-    model: str = "gemini-2.0-flash",
+    model: str = "gemini-2.5-flash",
     num_domains: int = 4,
     tasks_per_domain: int = 3
 ) -> AblationSummary:
@@ -335,7 +335,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Run component ablation")
     parser.add_argument("--api-key", help="Gemini API key")
-    parser.add_argument("--model", default="gemini-2.0-flash")
+    parser.add_argument("--model", default="gemini-2.5-flash")
     parser.add_argument("--domains", type=int, default=3)
     parser.add_argument("--tasks", type=int, default=2)
 

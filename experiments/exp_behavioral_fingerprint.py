@@ -259,7 +259,7 @@ async def main():
         create_handcrafted_specialist(RuleType.VOWEL_START),
     ]
 
-    client = LLMClient.for_gemini(api_key=GEMINI_KEY, model="gemini-2.0-flash")
+    client = LLMClient.for_gemini(api_key=GEMINI_KEY, model="gemini-2.5-flash")
 
     try:
         results = await run_population_fingerprint(test_agents, client)

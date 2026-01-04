@@ -30,7 +30,7 @@ EXPERIMENT_CONFIG = LLMConfig(
     provider=os.getenv("LLM_PROVIDER", "gemini"),
     api_key=os.getenv("OPENAI_API_KEY", os.getenv("GEMINI_API_KEY", "")),
     api_base=os.getenv("OPENAI_API_BASE", ""),
-    model=os.getenv("LLM_MODEL", "gemini-2.0-flash"),
+    model=os.getenv("LLM_MODEL", "gemini-2.5-flash"),
     max_retries=5,
     timeout=180,  # 3 minutes timeout
 )

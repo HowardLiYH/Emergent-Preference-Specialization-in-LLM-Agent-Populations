@@ -240,7 +240,7 @@ async def run_swap_test(
 
 async def run_phase2(
     api_key: str,
-    model: str = "gemini-2.0-flash",
+    model: str = "gemini-2.5-flash",
     num_pairs: int = 3,
     tasks_per_test: int = 3,
     save_results: bool = True
@@ -326,7 +326,7 @@ async def run_phase2(
 
 async def run_phase2_quick(
     api_key: str,
-    model: str = "gemini-2.0-flash"
+    model: str = "gemini-2.5-flash"
 ) -> List[SwapTestResult]:
     """Quick version for testing."""
     return await run_phase2(
@@ -344,7 +344,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Run Phase 2 swap test")
     parser.add_argument("--api-key", default=os.getenv("GEMINI_API_KEY", ""))
-    parser.add_argument("--model", default="gemini-2.0-flash")
+    parser.add_argument("--model", default="gemini-2.5-flash")
     parser.add_argument("--pairs", type=int, default=3)
     parser.add_argument("--tasks", type=int, default=3)
     parser.add_argument("--quick", action="store_true")

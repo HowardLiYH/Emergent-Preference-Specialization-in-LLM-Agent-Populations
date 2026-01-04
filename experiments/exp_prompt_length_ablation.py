@@ -67,7 +67,7 @@ async def test_prompt_type(
 
 async def run_ablation(api_key: str, n_tasks: int = 10) -> List[AblationResult]:
     """Run ablation study comparing short vs enhanced prompts."""
-    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.0-flash')
+    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.5-flash')
 
     results = []
     rules = list(RuleType)

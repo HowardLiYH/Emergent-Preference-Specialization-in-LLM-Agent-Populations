@@ -95,7 +95,7 @@ async def test_condition(
 
 async def run_baseline_comparison(api_key: str, n_tasks: int = 5) -> List[BaselineResult]:
     """Run all baseline conditions."""
-    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.0-flash')
+    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.5-flash')
 
     conditions = ["NO_PROMPT", "RANDOM_PROMPT", "WRONG_PROMPT", "CORRECT_PROMPT"]
     results = []

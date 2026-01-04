@@ -12,9 +12,11 @@ sys.path.insert(0, 'src')
 
 import asyncio
 import json
+import os
 from typing import Dict, List, Tuple
 from dataclasses import dataclass
 import math
+from pathlib import Path
 
 from genesis.llm_client import LLMClient
 from genesis.synthetic_rules import RuleType, generate_tasks
@@ -114,7 +116,7 @@ async def run_multi_seed_swap_test(
     n_tasks: int = 3
 ) -> Dict[str, MultiSeedResult]:
     """Run swap test with multiple seeds and aggregate."""
-    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.0-flash')
+    client = LLMClient.for_gemini(api_key=api_key, model='gemini-2.5-flash')
 
     print(f"\n{'='*60}")
     print(f"MULTI-SEED SWAP TEST ({n_seeds} seeds)")

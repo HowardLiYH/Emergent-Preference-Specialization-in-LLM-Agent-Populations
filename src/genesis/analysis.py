@@ -686,6 +686,193 @@ def analyze_prompt_evolution(
     }
 
 
+def analyze_seed_switching(checkpoint_data: Dict) -> Dict:
+    """
+    Analyze whether agents switched from initial rule (Option B+) to different final specialization.
+
+    Args:
+        checkpoint_data: Dict with 'agents' list containing 'initial_rule' and 'strategies' or 'primary_specialization'
+
+    Returns:
+        Dict with switch rate, chi-square test results, and interpretation
+    """
+    agents = checkpoint_data.get("agents", [])
+
+    if not agents:
+        return {"error": "No agent data found"}
+
+    # Count switches
+    switched = 0
+    stayed = 0
+    switch_details = []
+
+    for agent in agents:
+        initial = agent.get("initial_rule", agent.get("seeded_rule", None))
+
+        # Determine final specialization from strategies or explicit field
+        final = agent.get("primary_specialization", None)
+        if final is None:
+            strategies = agent.get("strategies", {})
+            if strategies:
+                # Find rule with highest level
+                final = max(strategies.items(), key=lambda x: x[1] if isinstance(x[1], (int, float)) else 0)[0]
+
+        if initial and final:
+            is_switch = (initial != final)
+            if is_switch:
+                switched += 1
+            else:
+                stayed += 1
+            switch_details.append({
+                "agent_id": agent.get("agent_id", "unknown"),
+                "initial": initial,
+                "final": final,
+                "switched": is_switch
+            })
+
+    total = switched + stayed
+    if total == 0:
+        return {"error": "Could not determine initial/final rules for any agent"}
+
+    switch_rate = switched / total
+
+    # Chi-square test: Is switch rate significantly different from random (50%)?
+    # Under null hypothesis: equal probability of switching or staying
+    expected_switched = total * 0.5
+    expected_stayed = total * 0.5
+
+    chi_square = 0
+    p_value = 1.0
+
+    if HAS_SCIPY:
+        # Chi-square goodness of fit
+        observed = [switched, stayed]
+        expected = [expected_switched, expected_stayed]
+        try:
+            chi2_stat, p_value = stats.chisquare(observed, expected)
+            chi_square = float(chi2_stat)
+            p_value = float(p_value)
+        except Exception:
+            pass
+    else:
+        # Manual chi-square calculation
+        chi_square = ((switched - expected_switched) ** 2 / expected_switched +
+                      (stayed - expected_stayed) ** 2 / expected_stayed)
+        # Approximate p-value (1 df)
+        # For chi-square with 1 df: p < 0.05 if chi2 > 3.84
+        if chi_square > 6.63:
+            p_value = 0.01
+        elif chi_square > 3.84:
+            p_value = 0.05
+        else:
+            p_value = 0.1
+
+    # Interpretation
+    if switch_rate > 0.6 and p_value < 0.05:
+        interpretation = "STRONG: Agents significantly change specialization (supports learning hypothesis)"
+    elif switch_rate > 0.5:
+        interpretation = "MODERATE: Agents tend to switch, but not statistically significant"
+    elif switch_rate < 0.4 and p_value < 0.05:
+        interpretation = "WEAK: Agents tend to stay with initial rule (suggests initial seeding dominates)"
+    else:
+        interpretation = "NEUTRAL: No clear pattern in specialization changes"
+
+    return {
+        "total_agents": total,
+        "switched": switched,
+        "stayed": stayed,
+        "switch_rate": switch_rate,
+        "chi_square": chi_square,
+        "p_value": p_value,
+        "significant": p_value < 0.05,
+        "interpretation": interpretation,
+        "details": switch_details,
+        "success": switch_rate > 0.6 and p_value < 0.05
+    }
+
+
+def run_seed_switching_analysis(checkpoint_dir: str = "results/phase1_checkpoints") -> Dict:
+    """
+    Run seed-switching analysis on all available Phase 1 checkpoints.
+
+    Args:
+        checkpoint_dir: Directory containing checkpoint JSON files
+
+    Returns:
+        Aggregated results across all checkpoints
+    """
+    checkpoint_path = Path(checkpoint_dir)
+    if not checkpoint_path.exists():
+        return {"error": f"Checkpoint directory not found: {checkpoint_dir}"}
+
+    # Find all checkpoint files
+    checkpoints = list(checkpoint_path.glob("checkpoint_seed*_gen*.json"))
+    if not checkpoints:
+        return {"error": "No checkpoint files found"}
+
+    # Group by seed, take latest generation for each
+    seed_checkpoints = {}
+    for cp in checkpoints:
+        # Parse filename: checkpoint_seed{X}_gen{Y}.json
+        name = cp.stem
+        parts = name.split("_")
+        seed = None
+        gen = 0
+        for part in parts:
+            if part.startswith("seed"):
+                seed = part
+            elif part.startswith("gen"):
+                gen = int(part.replace("gen", ""))
+
+        if seed:
+            if seed not in seed_checkpoints or seed_checkpoints[seed][1] < gen:
+                seed_checkpoints[seed] = (cp, gen)
+
+    # Analyze each seed's latest checkpoint
+    all_results = []
+    for seed, (cp_path, gen) in seed_checkpoints.items():
+        try:
+            with open(cp_path) as f:
+                data = json.load(f)
+            result = analyze_seed_switching(data)
+            result["seed"] = seed
+            result["generation"] = gen
+            all_results.append(result)
+        except Exception as e:
+            all_results.append({"seed": seed, "error": str(e)})
+
+    # Aggregate
+    valid_results = [r for r in all_results if "switch_rate" in r]
+    if not valid_results:
+        return {"error": "No valid checkpoint data found", "details": all_results}
+
+    switch_rates = [r["switch_rate"] for r in valid_results]
+    mean_switch_rate = sum(switch_rates) / len(switch_rates)
+
+    # Combined chi-square (sum of individual chi-squares)
+    total_chi = sum(r.get("chi_square", 0) for r in valid_results)
+    # Degrees of freedom = number of tests
+    df = len(valid_results)
+
+    combined_p = 1.0
+    if HAS_SCIPY:
+        try:
+            combined_p = float(1 - stats.chi2.cdf(total_chi, df))
+        except Exception:
+            pass
+
+    return {
+        "n_seeds": len(valid_results),
+        "mean_switch_rate": mean_switch_rate,
+        "switch_rates": switch_rates,
+        "combined_chi_square": total_chi,
+        "combined_df": df,
+        "combined_p_value": combined_p,
+        "success": mean_switch_rate > 0.6,
+        "individual_results": all_results
+    }
+
+
 if __name__ == "__main__":
     # Demo with sample data
     print("Analysis Module Demo")

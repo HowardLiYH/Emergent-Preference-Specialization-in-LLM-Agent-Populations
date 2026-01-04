@@ -268,7 +268,7 @@ async def run_phase1(
 
 async def run_phase1_main(
     api_key: str = None,
-    model: str = "gemini-2.0-flash",
+    model: str = "gemini-2.5-flash",
     num_seeds: int = 3,
     num_generations: int = 50,
     use_real_llm: bool = True
@@ -298,7 +298,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Run Phase 1 experiment")
     parser.add_argument("--api-key", default=os.getenv("GEMINI_API_KEY", ""))
-    parser.add_argument("--model", default="gemini-2.0-flash")
+    parser.add_argument("--model", default="gemini-2.5-flash")
     parser.add_argument("--seeds", type=int, default=3)
     parser.add_argument("--generations", type=int, default=50)
     parser.add_argument("--simulate", action="store_true", help="Use simulation instead of LLM")
