@@ -2,8 +2,9 @@
 
 ## A Comprehensive Mathematical Deep Dive
 
-**Author:** Yuhao Li
-**Institution:** Stanford University
+**Author:** Yuhao Li  
+**Institution:** University of Pennsylvania  
+**Email:** li88@sas.upenn.edu  
 **Date:** January 2026
 
 ---

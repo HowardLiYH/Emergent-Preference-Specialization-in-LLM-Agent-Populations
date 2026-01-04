@@ -97,11 +97,11 @@
 % =============================================================================
 \title{\Huge\textbf{Emergent Preference Specialization}\\[0.3cm]
 \Large A Comprehensive Mathematical Deep Dive\\[0.5cm]
-\normalsize From First Principles to Best Paper Candidate}
+\normalsize From First Principles to Conference-Ready Research}
 
 \author{Yuhao Li\\
-Stanford University\\
-\texttt{yuhaoli@stanford.edu}}
+University of Pennsylvania\\
+\texttt{li88@sas.upenn.edu}}
 
 \date{January 2026}
 
@@ -881,20 +881,20 @@ def emergent_specialization(
         random_rule = random.randint(0, n_rules - 1)
         agent.strategies[random_rule] = 1
         agents.append(agent)
-    
+
     # Evolution loop
     for gen in range(n_generations):
         # Sample rule uniformly
         rule = random.randint(0, n_rules - 1)
         task = generate_task(rule)
-        
+
         # Competition
         responses = []
         for agent in agents:
             answer, conf = agent.respond(task)
             if is_correct(answer, rule):
                 responses.append((agent, conf))
-        
+
         # Select winner
         if responses:
             winner = max(responses, key=lambda x: x[1])[0]
@@ -902,7 +902,7 @@ def emergent_specialization(
             if level < 3:
                 if max(winner.strategies) < 3 or level > 0:
                     winner.strategies[rule] = level + 1
-    
+
     return agents
 \end{lstlisting}
 
@@ -928,4 +928,3 @@ SCI & Strategy Concentration Index \\
 \end{table}
 
 \end{document}
-

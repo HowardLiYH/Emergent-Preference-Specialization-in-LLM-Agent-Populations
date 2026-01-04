@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Paper-NeurIPS%202025-blue" alt="Paper"/>
+  <img src="https://img.shields.io/badge/Status-Research%20Paper-blue" alt="Status"/>
   <img src="https://img.shields.io/badge/Python-3.9+-green" alt="Python"/>
   <img src="https://img.shields.io/badge/Rules-8-orange" alt="Rules"/>
   <img src="https://img.shields.io/badge/Causality-70.7%25-purple" alt="Causality"/>
@@ -26,9 +26,13 @@
 
 ---
 
-## 🏆 Best Paper Candidate (NeurIPS 2025)
+## 📄 Research Paper
 
-This repository contains the complete implementation, experiments, and theoretical analysis for our NeurIPS 2025 submission on emergent preference specialization in LLM agent populations.
+**Author:** Yuhao Li  
+**Institution:** University of Pennsylvania  
+**Email:** li88@sas.upenn.edu
+
+This repository contains the complete implementation, experiments, and theoretical analysis for research on emergent preference specialization in LLM agent populations.
 
 ---
 
@@ -289,11 +293,11 @@ The Deep Dive covers:
 ## Citation
 
 ```bibtex
-@inproceedings{li2025emergent,
+@article{li2025emergent,
   title={Emergent Preference Specialization in LLM Agent Populations
          Through Competitive Selection},
-  author={Li, Yuhao and others},
-  booktitle={Advances in Neural Information Processing Systems},
+  author={Li, Yuhao},
+  journal={arXiv preprint},
   year={2025}
 }
 ```
