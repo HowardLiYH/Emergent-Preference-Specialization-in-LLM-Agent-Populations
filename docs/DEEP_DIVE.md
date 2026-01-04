@@ -2,8 +2,8 @@
 
 ## A Comprehensive Mathematical Deep Dive
 
-**Author:** Yuhao Li  
-**Institution:** Stanford University  
+**Author:** Yuhao Li
+**Institution:** Stanford University
 **Date:** January 2026
 
 ---
@@ -473,7 +473,7 @@ Example trajectory:
 def select_winner(agents, task, rule):
     """
     Winner = Highest confidence among correct responders
-    
+
     This creates preference-based competition:
     - Only correct answers compete
     - Confidence reflects specialization
@@ -484,10 +484,10 @@ def select_winner(agents, task, rule):
         answer, confidence = agent.respond(task)
         if is_correct(answer, rule):
             correct_agents.append((agent, confidence))
-    
+
     if not correct_agents:
         return None  # No winner this round
-    
+
     # Winner = highest confidence among correct
     winner = max(correct_agents, key=lambda x: x[1])
     return winner[0]
@@ -849,7 +849,7 @@ def bootstrap_ci(data, n_resamples=10000, alpha=0.05):
     for _ in range(n_resamples):
         resample = np.random.choice(data, size=len(data), replace=True)
         boot_means.append(np.mean(resample))
-    
+
     lower = np.percentile(boot_means, 100 * alpha/2)
     upper = np.percentile(boot_means, 100 * (1 - alpha/2))
     return lower, upper
@@ -1116,18 +1116,18 @@ def emergent_specialization(
 ):
     """
     Main algorithm for emergent preference specialization.
-    
+
     Args:
         n_agents: Population size
         n_rules: Number of rule domains
         n_generations: Training iterations
         fitness_sharing: Enable crowding penalty
         option_b_plus: Initialize with L1 in random rule
-    
+
     Returns:
         Population of specialized agents
     """
-    
+
     # Initialize population
     agents = []
     for i in range(n_agents):
@@ -1137,15 +1137,15 @@ def emergent_specialization(
             random_rule = random.randint(0, n_rules - 1)
             agent.strategies[random_rule] = 1
         agents.append(agent)
-    
+
     # Evolution loop
     for generation in range(n_generations):
         # Sample rule uniformly
         rule = random.randint(0, n_rules - 1)
-        
+
         # Generate task for this rule
         task = generate_task(rule)
-        
+
         # All agents compete
         responses = []
         for agent in agents:
@@ -1153,23 +1153,23 @@ def emergent_specialization(
             is_correct = check_answer(answer, rule)
             if is_correct:
                 responses.append((agent, confidence))
-        
+
         # Select winner (highest confidence among correct)
         if responses:
             winner = max(responses, key=lambda x: x[1])[0]
-            
+
             # Update winner's strategy
             current_level = winner.strategies[rule]
             if current_level < 3:
                 # Check exclusivity
                 if max(winner.strategies) < 3 or winner.strategies[rule] > 0:
                     winner.strategies[rule] = current_level + 1
-            
+
             # Apply fitness sharing
             if fitness_sharing:
                 n_specialists = count_specialists(agents, rule)
                 winner.fitness_modifier = 1.0 / math.sqrt(n_specialists)
-    
+
     return agents
 ```
 
@@ -1250,7 +1250,7 @@ The mechanism transfers to real tasks (proven in bridge experiments).
 
 ### Q: How does this differ from fine-tuning?
 
-**A:** 
+**A:**
 
 | Fine-tuning | Our Approach |
 |-------------|--------------|
@@ -1278,7 +1278,6 @@ The mechanism transfers to real tasks (proven in bridge experiments).
 
 *End of Deep Dive Document*
 
-**Total length: ~8,000 words**  
-**Target audience: Researchers and practitioners with strong mathematical background**  
+**Total length: ~8,000 words**
+**Target audience: Researchers and practitioners with strong mathematical background**
 **Purpose: Complete understanding of emergent preference specialization**
-
