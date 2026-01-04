@@ -11,6 +11,7 @@
   <a href="#synthetic-rules">Rules</a> •
   <a href="#quick-start">Quick Start</a> •
   <a href="#experiments">Experiments</a> •
+  <a href="docs/DEEP_DIVE.md">📚 Deep Dive</a> •
   <a href="#citation">Citation</a>
 </p>
 
@@ -256,6 +257,23 @@ All results include complete statistical analysis:
 | Holm-Bonferroni correction | ✅ |
 | Power analysis (10 seeds) | ✅ |
 | Welch's t-test | ✅ |
+
+---
+
+## 📚 Deep Dive: Understanding the Method
+
+**New to this project?** Read our comprehensive **[Deep Dive Document](docs/DEEP_DIVE.md)** — a ground-up mathematical explanation of the entire methodology.
+
+The Deep Dive covers:
+- **Part I**: The Problem and Why It Matters
+- **Part II**: Mathematical Foundations (entropy, fitness sharing, Markov chains)
+- **Part III**: The Mechanism (rules, strategies, competition)
+- **Part IV**: Theoretical Analysis (3 theorems with proofs)
+- **Part V**: Experimental Validation (causality tests, statistics)
+- **Part VI**: Practical Applications (deployment, ROI)
+- **Part VII**: What Makes This Impressive
+
+**Prerequisites**: Basic probability theory and familiarity with LLMs. All advanced concepts are developed from first principles.
 
 ---
 
