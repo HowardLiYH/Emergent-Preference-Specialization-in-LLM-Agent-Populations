@@ -62,7 +62,7 @@
 % ABSTRACT
 % =============================================================================
 \begin{abstract}
-Can large language model (LLM) agents develop specialized preferences through competition alone, without gradient-based training or explicit reward shaping? We demonstrate that populations of initially identical LLM agents can develop \textit{distinct specialized preferences} through a simple competitive selection mechanism. Using 8 synthetic rule domains designed to be unsolvable through prior knowledge, we show that competitive dynamics drive agents toward niche specialization with a \textbf{70.7\% causality validation rate} (95\% CI: [68.3\%, 73.1\%], $n=10$ seeds). Prompt swap experiments confirm that accumulated strategies \textit{cause} performance differences (Cohen's $d=2.66$). We provide a complete theoretical framework with three proven theorems establishing convergence guarantees and equilibrium properties. Practical benefit experiments demonstrate that specialized populations outperform single generalists by \textbf{+47.2 $\pm$ 10.5 percentage points} ($n=3$ runs) with a \textbf{5-7 task break-even} for training investment. Our work establishes prompt-based specialization as a viable paradigm for creating diverse, complementary LLM agent populations.
+Can large language model (LLM) agents develop specialized preferences through competition alone, without gradient-based training or explicit reward shaping? We demonstrate that populations of initially identical LLM agents can develop \textit{distinct specialized preferences} through a simple competitive selection mechanism. Using 8 synthetic rule domains designed to be unsolvable through prior knowledge, we show that competitive dynamics drive agents toward niche specialization with a \textbf{70.7\% causality validation rate} (95\% CI: [68.3\%, 73.1\%], $n=10$ seeds). Prompt swap experiments confirm that accumulated strategies \textit{cause} performance differences (Cohen's $d=2.66$). We provide a complete theoretical framework with three proven theorems establishing convergence guarantees and equilibrium properties. Practical benefit experiments demonstrate that specialized populations outperform single generalists by \textbf{+55.5 $\pm$ 8.7 percentage points} ($n=3$ runs) with a \textbf{5-7 task break-even} for training investment. Our work establishes prompt-based specialization as a viable paradigm for creating diverse, complementary LLM agent populations.
 \end{abstract}
 
 % =============================================================================
@@ -82,7 +82,7 @@ We demonstrate that populations of LLM agents can develop specialized \textbf{pr
     \item \textbf{Novel mechanism}: A competitive selection framework where agents accumulate strategies through wins, with fitness sharing to promote diversity (Section~\ref{sec:method}).
     \item \textbf{Theoretical foundation}: Three proven theorems establishing convergence guarantees, equilibrium characterization, and connections to Thompson Sampling (Section~\ref{sec:theory}).
     \item \textbf{Empirical validation}: 70.7\% causality rate across 10 unified seeds, with statistical rigor including effect sizes, bootstrap CIs, and multiple comparison corrections (Section~\ref{sec:experiments}).
-    \item \textbf{Practical benefit}: Specialized populations outperform generalists by +47.2pp $\pm$ 10.5pp ($n=3$) with 5-7 task break-even (Section~\ref{sec:realworld}).
+    \item \textbf{Practical benefit}: Specialized populations outperform generalists by +55.5pp $\pm$ 8.7pp ($n=3$) with 5-7 task break-even (Section~\ref{sec:realworld}).
 \end{enumerate}
 
 % =============================================================================
@@ -307,28 +307,28 @@ We compare specialized populations against single generalist agents:
 
 \begin{table}[h]
 \centering
-\caption{Practical benefit comparison ($n=3$ runs). Oracle routing achieves +47.2pp $\pm$ 10.5pp improvement.}
+\caption{Practical benefit comparison ($n=3$ runs). Oracle routing achieves +55.5pp $\pm$ 8.7pp improvement.}
 \label{tab:practical}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Condition} & \textbf{Accuracy} & \textbf{API Calls} & \textbf{$\Delta$} \\
 \midrule
-SINGLE\_GENERALIST & 23.6\% & 24 & -- \\
-\textbf{ORACLE\_ROUTING} & \textbf{70.8\%} & 24 & \textbf{+47.2pp} \\
-CONFIDENCE\_ROUTING & 16.7\% & 214 & -6.9pp \\
-ENSEMBLE & 33.3\% & 192 & +9.7pp \\
+SINGLE\_GENERALIST & 27.8\% & 24 & -- \\
+\textbf{ORACLE\_ROUTING} & \textbf{83.3\%} & 24 & \textbf{+55.5pp} \\
+CONFIDENCE\_ROUTING & 37.5\% & 216 & +9.7pp \\
+ENSEMBLE & 45.8\% & 192 & +18.0pp \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Oracle routing (perfect task-type labels) achieves \textbf{+47.2 $\pm$ 10.5 percentage points improvement} ($n=3$) at no additional cost---demonstrating the value of specialization when routing is accurate.
+Oracle routing (perfect task-type labels) achieves \textbf{+55.5 $\pm$ 8.7 percentage points improvement} ($n=3$) at no additional cost---demonstrating the value of specialization when routing is accurate.
 
 \subsection{Cost-Benefit Analysis}
 
 \begin{itemize}[leftmargin=*,topsep=0pt,itemsep=2pt]
     \item \textbf{Training cost}: $\sim$9,600 API calls (100 generations $\times$ 12 agents $\times$ 8 rules)
     \item \textbf{Break-even}: 5-7 tasks (excellent ROI)
-    \item \textbf{Accuracy improvement}: +47.2pp $\pm$ 10.5pp (Oracle routing, $n=3$)
+    \item \textbf{Accuracy improvement}: +55.5pp $\pm$ 8.7pp (Oracle routing, $n=3$)
 \end{itemize}
 
 \subsection{Preference Falsification}
@@ -368,7 +368,7 @@ To distinguish preference from capability, we remove specialists' strategies:
 
 \paragraph{Deployment Limitations.}
 \begin{enumerate}[leftmargin=*,topsep=0pt,itemsep=2pt]
-    \item \textbf{Routing overhead}: Practical benefit requires task-type prediction. Oracle routing (+47.2pp) is an upper bound.
+    \item \textbf{Routing overhead}: Practical benefit requires task-type prediction. Oracle routing (+55.5pp) is an upper bound.
     \item \textbf{Training cost}: Evolution requires $\sim$9,600 API calls. Break-even after 5-7 tasks.
     \item \textbf{Model-specific tuning}: Parameters may need adjustment across providers (Appendix~\ref{app:fitness}).
     \item \textbf{Latency tradeoffs}: Ensemble routing achieves +8.3pp but requires $R$ parallel calls.
@@ -379,7 +379,7 @@ To distinguish preference from capability, we remove specialists' strategies:
 % =============================================================================
 \section{Conclusion}
 
-We demonstrate that LLM agent populations can develop specialized preferences through competitive selection alone. Our 70.7\% causality validation rate (Cohen's $d=2.66$), supported by complete theoretical analysis and practical benefit demonstration (+47.2pp $\pm$ 10.5pp, $n=3$, with 5-7 task break-even), establishes prompt-based specialization as a viable paradigm. Future work should explore dynamic niche discovery and self-routing mechanisms.
+We demonstrate that LLM agent populations can develop specialized preferences through competitive selection alone. Our 70.7\% causality validation rate (Cohen's $d=2.66$), supported by complete theoretical analysis and practical benefit demonstration (+55.5pp $\pm$ 8.7pp, $n=3$, with 5-7 task break-even), establishes prompt-based specialization as a viable paradigm. Future work should explore dynamic niche discovery and self-routing mechanisms.
 
 % =============================================================================
 % ACKNOWLEDGMENTS

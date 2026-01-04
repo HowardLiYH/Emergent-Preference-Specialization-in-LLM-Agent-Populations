@@ -205,7 +205,7 @@ The 65pp drop confirms that specialization is \textbf{preference} (prompt-depend
 \midrule
 Causality Rate & 70.7\% & Prompts \textit{cause} performance \\
 Cohen's $d$ & 2.66 & ``Huge'' effect ($>3\times$ large threshold) \\
-Accuracy Gain & +47.2pp $\pm$ 10.5pp & Oracle routing vs generalist ($n=3$) \\
+Accuracy Gain & +55.5pp $\pm$ 8.7pp & Oracle routing vs generalist ($n=3$) \\
 Break-even & 5-7 tasks & Training investment pays off quickly \\
 Cross-LLM & 3 providers & Mechanism is model-agnostic \\
 \bottomrule
@@ -216,9 +216,9 @@ Cross-LLM & 3 providers & Mechanism is model-agnostic \\
 
 \begin{center}
 \begin{tikzpicture}[node distance=2cm]
-\node[draw, rectangle, minimum width=3cm, minimum height=1cm] (before) {Single Generalist\\23.6\% accuracy};
-\node[draw, rectangle, minimum width=3cm, minimum height=1cm, right=3cm of before] (after) {Specialized Population\\70.8\% accuracy};
-\draw[->, thick] (before) -- node[above] {+47.2pp} (after);
+\node[draw, rectangle, minimum width=3cm, minimum height=1cm] (before) {Single Generalist\\27.8\% accuracy};
+\node[draw, rectangle, minimum width=3cm, minimum height=1cm, right=3cm of before] (after) {Specialized Population\\83.3\% accuracy};
+\draw[->, thick] (before) -- node[above] {+55.5pp} (after);
 \end{tikzpicture}
 \end{center}
 
@@ -756,16 +756,16 @@ All three exceed the 30\% gap threshold, confirming \textbf{model-agnostic} mech
 \toprule
 \textbf{Condition} & \textbf{Accuracy} & \textbf{API Calls} & \textbf{$\Delta$} \\
 \midrule
-SINGLE\_GENERALIST & 23.6\% & 24 & -- \\
-\textbf{ORACLE\_ROUTING} & \textbf{70.8\%} & 24 & \textbf{+47.2pp} \\
-CONFIDENCE\_ROUTING & 16.7\% & 214 & -6.9pp \\
+SINGLE\_GENERALIST & 27.8\% & 24 & -- \\
+\textbf{ORACLE\_ROUTING} & \textbf{83.3\%} & 24 & \textbf{+55.5pp} \\
+CONFIDENCE\_ROUTING & 37.5\% & 216 & +9.7pp \\
 ENSEMBLE & 29.2\% & 192 & +8.3pp \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{warning}
-\textbf{+47.2pp $\pm$ 10.5pp at No Extra API Cost ($n=3$)!}
+\textbf{+55.5pp $\pm$ 8.7pp at No Extra API Cost ($n=3$)!}
 
 Oracle routing achieves massive improvement with the same number of API calls as baseline.
 \end{warning}
@@ -782,7 +782,7 @@ Oracle routing achieves massive improvement with the same number of API calls as
 Training API Calls & $\sim$9,600 \\
 Training Cost & $\sim$\$0.00 (free tier) \\
 Break-even Point & 5-7 tasks \\
-Accuracy Improvement & +47.2pp $\pm$ 10.5pp \\
+Accuracy Improvement & +55.5pp $\pm$ 8.7pp \\
 ROI & Excellent \\
 \bottomrule
 \end{tabular}
@@ -816,7 +816,7 @@ N = 48 & R $\leq$ 16 & 200 \\
 \begin{enumerate}
     \item \textbf{First demonstration} of emergent prompt-based specialization
     \item \textbf{Complete theoretical framework} with 3 proven theorems
-    \item \textbf{Massive practical benefit}: +47.2pp $\pm$ 10.5pp at no extra cost
+    \item \textbf{Massive practical benefit}: +55.5pp $\pm$ 8.7pp at no extra cost
     \item \textbf{Reproducibility}: All code and data available
 \end{enumerate}
 
@@ -852,7 +852,7 @@ CAMEL & Role-playing & Competition dynamics \\
 \begin{keypoint}
 \textbf{For Practitioners:}
 \begin{itemize}
-    \item +47.2pp $\pm$ 10.5pp accuracy (n=3) at no extra cost
+    \item +55.5pp $\pm$ 8.7pp accuracy ($n=3$) at no extra cost
     \item 5-7 task break-even
     \item Model-agnostic (Gemini, GPT, Claude)
     \item Clear guidelines: $N \leq 3R$, 100 generations

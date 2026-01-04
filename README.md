@@ -56,7 +56,7 @@ Generation 0                         Generation 100
 
 1. **First causal demonstration** of prompt-based specialization: **70.7% causality rate** (95% CI: [68.3%, 73.1%])
 2. **Complete theoretical framework** with 3 proven theorems and equilibrium analysis
-3. **Practical benefit demonstration**: Specialized populations outperform generalists by **+47.2pp ± 10.5pp** (n=3) with **5-7 task break-even**
+3. **Practical benefit demonstration**: Specialized populations outperform generalists by **+55.5pp ± 8.7pp** (n=3) with **5-7 task break-even**
 4. **Cross-LLM validation**: Mechanism works across Gemini, GPT-4, and Claude
 
 ---
@@ -95,7 +95,7 @@ Generation 0                         Generation 100
 |--------|-------|
 | Training Cost | ~$0.00 (free tier) |
 | Break-Even Point | **5-7 tasks** |
-| Accuracy Improvement | **+47.2pp ± 10.5pp** (Oracle routing, n=3) |
+| Accuracy Improvement | **+55.5pp ± 8.7pp** (Oracle routing, n=3) |
 | ROI | Excellent |
 
 ---

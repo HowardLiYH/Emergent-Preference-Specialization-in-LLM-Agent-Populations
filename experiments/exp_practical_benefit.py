@@ -207,7 +207,7 @@ CONFIDENCE: [0-100]
 Question: {task.prompt}"""
 
         try:
-            response = await client.generate(prompt, temperature=0.3, max_tokens=100)
+            response = await client.generate(prompt, temperature=0.3, max_tokens=300)
 
             # Parse answer
             import re
@@ -292,7 +292,7 @@ Question: {task.prompt}"""
                 prompt,
                 system=system_prompt,
                 temperature=0.3,
-                max_tokens=100
+                max_tokens=300
             )
 
             import re
@@ -369,7 +369,7 @@ Question: {task.prompt[:200]}"""
             for agent in agents:
                 system_prompt = build_prompt_from_levels(agent.strategy_levels)
                 confidence_tasks.append(
-                    client.generate(confidence_prompt, system=system_prompt, temperature=0.1, max_tokens=20)
+                    client.generate(confidence_prompt, system=system_prompt, temperature=0.1, max_tokens=100)
                 )
 
             confidence_responses = await asyncio.gather(*confidence_tasks, return_exceptions=True)
@@ -403,7 +403,7 @@ Question: {task.prompt}"""
                 answer_prompt,
                 system=system_prompt,
                 temperature=0.3,
-                max_tokens=100
+                max_tokens=300
             )
             total_api_calls += 1
 
@@ -481,7 +481,7 @@ Question: {task.prompt}"""
             for agent in agents:
                 system_prompt = build_prompt_from_levels(agent.strategy_levels)
                 answer_tasks.append(
-                    client.generate(answer_prompt, system=system_prompt, temperature=0.3, max_tokens=50)
+                    client.generate(answer_prompt, system=system_prompt, temperature=0.3, max_tokens=200)
                 )
 
             answer_responses = await asyncio.gather(*answer_tasks, return_exceptions=True)

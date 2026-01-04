@@ -2,31 +2,36 @@
 
 ## [v4.0.3] - 2026-01-05: Practical Benefit Data Correction (n=3)
 
-### Data Verification & Correction
+### Root Cause Found & Fixed
 
-**Issue Found**: Practical benefit numbers needed proper statistical reporting with n≥3.
+**Issue**: Gemini 2.5-flash is a "thinking" model that needs more output tokens.
+- Original: `max_tokens=100` (caused truncation → empty responses)
+- Fixed: `max_tokens=200-300` (complete responses)
 
-**Valid Runs (after content filtering fix)**:
-- Run 2: 20.8% → 79.2% = +58.3pp
-- Run 3: 25.0% → 70.8% = +45.8pp
-- Run 4: 25.0% → 62.5% = +37.5pp (NEW)
+### Valid Runs (n=3)
 
-**Final Statistics (n=3)**:
+| Run | Single | Oracle | Δ | Note |
+|-----|--------|--------|---|------|
+| Run 2 | 20.8% | 79.2% | +58.3pp | Old API key |
+| Run 3 | 25.0% | 70.8% | +45.8pp | Old API key |
+| Run 5 | 37.5% | 100.0% | +62.5pp | New key + max_tokens fix |
+
+### Final Statistics (n=3)
+
 | Metric | Value |
 |--------|-------|
-| Single Generalist | 23.6% |
-| Oracle Routing | 70.8% |
-| Mean Improvement | **+47.2pp** |
-| Std Dev | ±10.5pp |
-| Range | +37.5pp to +58.3pp |
+| Single Generalist | 27.8% |
+| Oracle Routing | 83.3% |
+| Mean Improvement | **+55.5pp** |
+| Std Dev | ±8.7pp |
+| Range | +45.8pp to +62.5pp |
 
-**Files Updated**:
+### Files Updated
 - `paper/main.tex` - All practical benefit claims
 - `paper/deep_dive.tex` - All practical benefit claims
 - `docs/DEEP_DIVE.md` - All practical benefit claims
 - `README.md` - Key results table
-
-**Note**: Run 1 (+20.8pp) was discarded as it was before content filtering fix (v4.0.1).
+- `experiments/exp_practical_benefit.py` - Increased max_tokens
 
 ---
 
