@@ -104,13 +104,22 @@ We demonstrate that populations of initially identical LLM agents can develop sp
 | GPT-4o-mini | OpenAI | 0.90 | 0.37 | 58.6% ✅ |
 | Claude 3 Haiku | Anthropic | 0.92 | 0.45 | 50.9% ✅ |
 
-### 💰 Cost-Benefit Analysis
+### 📊 Practical Benefit (5-Condition Comparison)
 
 <p align="center">
   <img src="paper/figures/fig4_practical_benefit.png" alt="Practical Benefit" width="700"/>
 </p>
 
 <p align="center"><i>Figure: Specialists with oracle routing achieve 100% accuracy — a +64.2pp improvement over generalists.</i></p>
+
+| Condition | Accuracy | Improvement |
+|-----------|----------|-------------|
+| Single Generalist | 35.8% | -- |
+| **Oracle Routing** | **100.0%** | **+64.2pp** |
+| Confidence Routing | 41.7% | +5.9pp |
+| Ensemble | 42.5% | +6.7pp |
+
+### 💰 Cost-Benefit Analysis
 
 | Metric | Value |
 |--------|-------|

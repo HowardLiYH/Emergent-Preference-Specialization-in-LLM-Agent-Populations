@@ -230,15 +230,15 @@ Large language models face a fundamental tension:
     % Axes
     \draw[->, thick] (0,0) -- (5,0) node[right] {Specialization};
     \draw[->, thick] (0,0) -- (0,4) node[above] {Performance};
-    
+
     % Curves
     \draw[blue, thick, domain=0:4.5] plot (\x, {3.5 - 0.15*(\x-2.5)^2});
     \draw[red, thick, domain=0:4.5] plot (\x, {0.5 + 0.7*\x});
-    
+
     % Labels
     \node[blue] at (2.5, 4.2) {Broad Task Coverage};
     \node[red] at (4.2, 4.2) {Single Task Performance};
-    
+
     % Optimal point
     \filldraw[green!50!black] (2.5, 3.5) circle (3pt);
     \node[green!50!black, right] at (2.7, 3.3) {Sweet Spot?};
@@ -448,7 +448,7 @@ Cross-LLM & 3 providers & Mechanism is model-agnostic \\
         \textit{(near random)}
         \end{tabular}
     };
-    
+
     % After
     \node[draw, rectangle, rounded corners, minimum width=3.5cm, minimum height=2cm, fill=green!10, right=of before] (after) {
         \begin{tabular}{c}
@@ -457,7 +457,7 @@ Cross-LLM & 3 providers & Mechanism is model-agnostic \\
         \textit{(theoretical ceiling)}
         \end{tabular}
     };
-    
+
     % Arrow
     \draw[->, ultra thick, blue!70!black] (before) -- node[above, font=\bfseries] {+64.2pp} node[below, font=\small] {Oracle routing} (after);
 \end{tikzpicture}
@@ -502,13 +502,13 @@ Long-term ROI & $+64.2\%$ accuracy gain indefinitely \\
 \begin{tikzpicture}[scale=0.9]
     % Timeline
     \draw[->, thick] (0,0) -- (14,0);
-    
+
     % Years
     \foreach \x/\year in {1/2017, 3/2019, 5/2021, 7/2022, 9/2023, 11/2024, 13/2025} {
         \draw (\x, -0.1) -- (\x, 0.1);
         \node[below] at (\x, -0.2) {\small \year};
     }
-    
+
     % Events
     \node[above, align=center, font=\tiny] at (1, 0.3) {Transformer\\Architecture};
     \node[above, align=center, font=\tiny] at (3, 0.3) {GPT-2\\Zero-shot};
@@ -743,7 +743,7 @@ Without intervention, evolutionary systems suffer from \textbf{competitive exclu
         \fill[red!70!black] (0, 0) circle (0.2);
     }
     \node[below, font=\small] at (0, -1.7) {All 12 agents: POSITION};
-    
+
     % With fitness sharing
     \node[draw, rectangle, minimum width=4cm, minimum height=3cm, fill=gray!10] (with) at (6, 0) {};
     \node[above] at (6, 1.7) {\textbf{With Fitness Sharing}};
@@ -1100,17 +1100,17 @@ Our synthetic rules are the ``fruit flies'' of LLM specialization research.
 \toprule
 \textbf{Category} & \textbf{Rule} & \textbf{Description} & \textbf{Cognitive Source} \\
 \midrule
-\multirow{3}{*}{\textbf{Purely Arbitrary}} 
+\multirow{3}{*}{\textbf{Purely Arbitrary}}
     & POSITION & Answer at position B & Serial position (Ebbinghaus, 1885) \\
     & PATTERN & ABAB alternation & Gestalt patterns (Wertheimer, 1923) \\
     & MATH\_MOD & Length mod 3 = 1 & Number cognition (Dehaene, 1997) \\
 \midrule
-\multirow{3}{*}{\textbf{Semi-Arbitrary}} 
+\multirow{3}{*}{\textbf{Semi-Arbitrary}}
     & VOWEL\_START & Starts with A,E,I,O,U & Phonemic awareness (Wagner, 1987) \\
     & RHYME & Rhymes with CAT & Phonology (Goswami, 2001) \\
     & ALPHABET & First letter $\to$ M & Orthography (Grainger, 2004) \\
 \midrule
-\multirow{2}{*}{\textbf{Knowledge-Aided}} 
+\multirow{2}{*}{\textbf{Knowledge-Aided}}
     & ANIMATE & Living thing (animal) & Category processing (Caramazza, 1998) \\
     & INVERSE & Opposite of obvious & Propositional logic (Johnson-Laird, 1983) \\
 \bottomrule
@@ -1577,11 +1577,11 @@ Taking expectations: $\E[L(t+1)] \geq \E[L(t)]$.
     }
     \node[below] at (0,-0.2) {0};
     \node[below] at (8,-0.2) {$L_{\max}$};
-    
+
     % Arrow showing direction
     \draw[->, ultra thick, green!50!black] (3,0.5) -- (5,0.5);
     \node[above] at (4,0.5) {Only forward};
-    
+
     % Ratchet tooth
     \draw[fill=blue!50] (3,0.1) -- (3.3,0.5) -- (3,0.5) -- cycle;
 \end{tikzpicture}
@@ -1897,12 +1897,12 @@ Each generation, one agent wins (with high probability). To move all $N$ agents 
 \begin{tikzpicture}[scale=0.8]
     % Matrix visualization
     \draw[step=1,gray,very thin] (0,0) grid (4,4);
-    
+
     % Diagonal (green)
     \foreach \i in {0,1,2,3} {
         \fill[green!50] (\i,3-\i) rectangle (\i+1,4-\i);
     }
-    
+
     % Off-diagonal (red)
     \foreach \i in {0,1,2,3} {
         \foreach \j in {0,1,2,3} {
@@ -1911,11 +1911,11 @@ Each generation, one agent wins (with high probability). To move all $N$ agents 
             \fi
         }
     }
-    
+
     % Labels
     \node[above] at (2,4.2) {\textbf{Task Rule}};
     \node[left, rotate=90] at (-0.5,2) {\textbf{Agent Specialty}};
-    
+
     % Legend
     \fill[green!50] (5,3.5) rectangle (5.5,4);
     \node[right] at (5.6,3.75) {Diagonal (matched)};
@@ -2392,13 +2392,13 @@ Based on our experiments:
 
 \begin{enumerate}
     \item \textbf{First Causal Demonstration}: We prove that evolved prompts \textit{cause} (not just correlate with) specialized performance. The 70.7\% causality rate with Cohen's $d$ = 2.66 is exceptionally strong evidence.
-    
+
     \item \textbf{Complete Theoretical Framework}: Three proven theorems characterize convergence, equilibrium, and stability. This is not just an empirical observation---it's a mathematical theory.
-    
+
     \item \textbf{Complete Specialization Validated}: Specialists achieve the \textit{theoretical ceiling} (100\% on matched tasks). This proves evolution produces full experts, not partial heuristics.
-    
+
     \item \textbf{New Methodology}: The prompt swap causality test is a novel experimental paradigm that can be applied to other LLM multi-agent systems.
-    
+
     \item \textbf{Reproducibility}: All code, data, and results are publicly available. Any researcher can verify our claims.
 \end{enumerate}
 
@@ -2406,11 +2406,11 @@ Based on our experiments:
 
 \begin{enumerate}
     \item \textbf{Zero-Cost Specialization}: Unlike fine-tuning (\$10K-\$1M), our method uses only API calls within free tiers.
-    
+
     \item \textbf{Fast ROI}: Break-even in 5-7 tasks with good routing.
-    
+
     \item \textbf{Model-Agnostic}: Works across Gemini, GPT, and Claude.
-    
+
     \item \textbf{Clear Guidelines}: We provide concrete recommendations for population size, generations, and routing.
 \end{enumerate}
 
@@ -2501,13 +2501,13 @@ def emergent_specialization(
 ):
     """
     Main algorithm for emergent preference specialization.
-    
+
     Args:
         n_agents: Number of agents in population
         n_rules: Number of rule domains
         n_generations: Evolution generations
         fitness_sharing: Whether to use sqrt(n) penalty
-    
+
     Returns:
         List of specialized agents
     """
@@ -2519,35 +2519,35 @@ def emergent_specialization(
         random_rule = random.randint(0, n_rules - 1)
         agent.strategies[random_rule] = 1
         agents.append(agent)
-    
+
     # Evolution loop
     for gen in range(n_generations):
         # Sample rule uniformly
         rule = random.randint(0, n_rules - 1)
         task = generate_task(rule)
-        
+
         # Competition phase
         responses = []
         for agent in agents:
             answer, confidence = agent.respond(task)
             if is_correct(answer, rule):
                 responses.append((agent, confidence))
-        
+
         # Winner selection (confidence-based)
         if responses:
             winner = max(responses, key=lambda x: x[1])[0]
-            
+
             # Strategy update (with exclusivity)
             level = winner.strategies[rule]
             if level < 3:
                 max_level = max(winner.strategies)
                 if max_level < 3 or level > 0:
                     winner.strategies[rule] = level + 1
-        
+
         # Fitness sharing (optional, applied to selection)
         if fitness_sharing:
             apply_fitness_sharing(agents, penalty=sqrt)
-    
+
     return agents
 \end{lstlisting}
 
@@ -2582,43 +2582,43 @@ Swap Test & Testing specialist on their own vs. other rules \\
 
 \begin{enumerate}
     \item \textbf{Q: Why synthetic rules instead of real tasks?}
-    
+
     A: Synthetic rules give us ground truth (we know the correct answer), prevent LLM memorization, and allow controlled experiments. The mechanism transfers to real tasks.
-    
+
     \item \textbf{Q: Why only 8 rules?}
-    
+
     A: Eight is enough to demonstrate the phenomenon with statistical power. The theory extends to any $R$.
-    
+
     \item \textbf{Q: Can I use this for my application?}
-    
+
     A: Yes! Define your task categories as ``rules,'' design strategy prompts at each level, and run evolution. See Section \ref{sec:case-study} for an example.
-    
+
     \item \textbf{Q: What if I have more than 8 categories?}
-    
+
     A: Scale up! Use $N \approx 3R$ agents and proportionally more generations. We tested up to $R=16$ with $N=48$.
-    
+
     \item \textbf{Q: Does this work with GPT-4?}
-    
+
     A: Yes, we validated on GPT-4o-mini with 58.6\% causality gap. The mechanism is model-agnostic.
-    
+
     \item \textbf{Q: How long does training take?}
-    
+
     A: With 12 agents, 100 generations, and 8 rules: $\sim$10 minutes (limited by API rate limits).
-    
+
     \item \textbf{Q: What's the main limitation?}
-    
+
     A: Routing. Oracle routing achieves 100\% accuracy, but building a good real-world router is non-trivial.
-    
+
     \item \textbf{Q: Is this better than fine-tuning?}
-    
+
     A: Different tradeoffs. Fine-tuning modifies weights (permanent, expensive); our method modifies prompts (flexible, cheap). For preference-based specialization, our method is more appropriate.
-    
+
     \item \textbf{Q: Can specialists ``forget'' their specialty?}
-    
+
     A: No. By Theorem \ref{thm:mono}, strategies only accumulate. Specialization is monotonic.
-    
+
     \item \textbf{Q: What about adversarial attacks?}
-    
+
     A: Prompts are inspectable, so adversarial manipulation is harder to hide. This is an advantage over opaque fine-tuned models.
 \end{enumerate}
 
