@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/badge/Paper-NeurIPS%202025-blue" alt="Paper"/>
   <img src="https://img.shields.io/badge/Python-3.9+-green" alt="Python"/>
   <img src="https://img.shields.io/badge/Rules-8-orange" alt="Rules"/>
-  <img src="https://img.shields.io/badge/Causality-75%25-purple" alt="Causality"/>
+  <img src="https://img.shields.io/badge/Causality-70.7%25-purple" alt="Causality"/>
   <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License"/>
 </p>
 
@@ -41,21 +41,32 @@ Generation 0                         Generation 100
 
 ### Key Contribution
 
-We are the **first to demonstrate causal prompt-based specialization in LLM agent populations** with a **75% causality validation rate**.
+We are the **first to demonstrate causal prompt-based specialization in LLM agent populations** with a **70.7% causality validation rate** (95% CI: [68.3%, 73.1%]) across 10 unified seeds.
 
 ---
 
 ## Key Results
 
-### 🎯 Strong Causality Proven (Phase 2)
+### 🎯 Strong Causality Proven (Unified 10-Seed Validation)
 
 Prompt swap experiments demonstrate that prompts **cause** performance differences:
 
 | Metric | Value | Interpretation |
 |--------|-------|----------------|
-| **Swap Test Pass Rate** | **75.0%** | Strong causality |
-| **Avg Swap Effect** | **-0.479** | Correct specialists score much higher |
+| **Swap Test Pass Rate** | **70.7%** | Strong causality |
+| **95% Confidence Interval** | **[68.3%, 73.1%]** | Very tight (4.8% width) |
+| **Seeds** | 10 (gemini-2.5-flash) | Unified model |
 | **Rules Covered** | 8/8 | Complete specialization |
+
+### 📊 Baseline Comparison (gemini-2.5-flash)
+
+| Condition | Accuracy | Interpretation |
+|-----------|----------|----------------|
+| NO_PROMPT | 5.0% | Random guessing |
+| RANDOM_PROMPT | 15.0% | Wrong specialist |
+| WRONG_PROMPT | 20.0% | Mismatched rule |
+| **CORRECT_PROMPT** | **100.0%** | Perfect specialist |
+| **Improvement** | **+95%** | Correct vs no-prompt |
 
 ### 📊 New Cognitively-Grounded Rules
 
@@ -66,12 +77,14 @@ We replaced weak rules with scientifically-grounded alternatives:
 | LENGTH | LLMs can't count | **VOWEL_START** | Phonemic Awareness (Treiman, 1991) |
 | SEMANTIC | Too subjective | **ANIMATE** | Category Processing (Warrington, 1984) |
 
-### 📈 Improvement
+### 📈 Model Unification Improvement
 
-| Metric | Before | After | Change |
-|--------|--------|-------|--------|
-| Pass Rate | 60.7% | **75.0%** | **+14.3%** |
-| Avg Effect | -0.232 | **-0.479** | **+107%** |
+| Metric | Before (Mixed Models) | After (Unified) | Change |
+|--------|----------------------|-----------------|--------|
+| Seeds | 7 (mixed) | **10 (unified)** | +3 |
+| Mean Pass Rate | 61.9% | **70.7%** | **+8.8%** |
+| CI Width | 30.6% | **4.8%** | **-84%** |
+| CI Lower Bound | 46.6% | **68.3%** | **+21.7%** |
 
 ---
 
@@ -79,7 +92,7 @@ We replaced weak rules with scientifically-grounded alternatives:
 
 **All experiments run with unified gemini-2.5-flash model (10 seeds)**
 
-#### Multi-Seed Validation (7 seeds) - VERIFIED
+#### Multi-Seed Validation (10 seeds) - UNIFIED
 
 | Metric | Value | Threshold | Status |
 |--------|-------|-----------|--------|
@@ -88,7 +101,7 @@ We replaced weak rules with scientifically-grounded alternatives:
 | **Seeds** | 10 (gemini-2.5-flash) | - | All unified |
 | **CI Width** | 4.8% (84% narrower than before) | - | High precision |
 
-**Data Provenance**: Seeds 1-3 (Gemini), Seeds 4-7 (GPT-4o-mini). All real API calls.
+**Data Provenance**: All 10 seeds run with gemini-2.5-flash (unified model). Real API calls.
 
 #### Competition vs Random Baseline
 
