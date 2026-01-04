@@ -23,12 +23,14 @@ from genesis.metrics import compute_lsi
 import numpy as np
 
 
-# Use a more conservative config with longer timeout
+# Use environment variables for API credentials
+import os
+
 EXPERIMENT_CONFIG = LLMConfig(
-    provider="openai",
-    api_key="sk-6o83BXFATUyr0Y8CJw5ufBFzuNT3CfQy4AABn8AJlLg5GI6b",
-    api_base="http://123.129.219.111:3000/v1",
-    model="gpt-4o-mini",
+    provider=os.getenv("LLM_PROVIDER", "gemini"),
+    api_key=os.getenv("OPENAI_API_KEY", os.getenv("GEMINI_API_KEY", "")),
+    api_base=os.getenv("OPENAI_API_BASE", ""),
+    model=os.getenv("LLM_MODEL", "gemini-2.0-flash"),
     max_retries=5,
     timeout=180,  # 3 minutes timeout
 )

@@ -90,12 +90,12 @@ def get_config(provider: str = None) -> LLMConfig:
     return LLMConfig.from_env(provider)
 
 
-# Default working configuration (Chinese proxy service)
+# Default working configuration (from environment variables)
 DEFAULT_PROXY_CONFIG = LLMConfig(
-    provider="openai",
-    api_key="sk-6o83BXFATUyr0Y8CJw5ufBFzuNT3CfQy4AABn8AJlLg5GI6b",
-    api_base="http://123.129.219.111:3000/v1",
-    model="gpt-4o-mini",  # Best value on this service
+    provider=os.getenv("LLM_PROVIDER", "gemini"),
+    api_key=os.getenv("OPENAI_API_KEY", os.getenv("GEMINI_API_KEY", "")),
+    api_base=os.getenv("OPENAI_API_BASE", ""),
+    model=os.getenv("LLM_MODEL", "gemini-2.0-flash"),
     max_retries=5,
     timeout=120,  # Increased timeout for slow responses
 )
