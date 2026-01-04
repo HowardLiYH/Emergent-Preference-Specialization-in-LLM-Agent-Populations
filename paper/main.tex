@@ -62,7 +62,7 @@
 % ABSTRACT
 % =============================================================================
 \begin{abstract}
-Can large language model (LLM) agents develop specialized preferences through competition alone, without gradient-based training or explicit reward shaping? We demonstrate that populations of initially identical LLM agents can develop \textit{distinct specialized preferences} through a simple competitive selection mechanism. Using 8 synthetic rule domains designed to be unsolvable through prior knowledge, we show that competitive dynamics drive agents toward niche specialization with a \textbf{70.7\% causality validation rate} (95\% CI: [68.3\%, 73.1\%], $n=10$ seeds). Prompt swap experiments confirm that accumulated strategies \textit{cause} performance differences (Cohen's $d=2.66$). We provide a complete theoretical framework with three proven theorems establishing convergence guarantees and equilibrium properties. Crucially, \textbf{evolved specialists achieve the theoretical performance ceiling (100\% accuracy)} on matched tasks---demonstrating complete, not partial, specialization. Oracle routing unlocks this value, yielding \textbf{+64.2 $\pm$ 2.3 percentage points improvement} over generalist baseline ($n=5$ runs, 95\% CI: [61.3, 67.0]). This improvement represents the \textit{maximum extractable value} from correct task-specialist matching, with a \textbf{5-7 task break-even} for training investment. Our work establishes prompt-based specialization as a viable paradigm for creating diverse, complementary LLM agent populations.
+Can LLM agents develop specialized preferences through competition alone? We demonstrate that populations of initially identical agents develop \textit{distinct preferences} through competitive selection---without gradient-based training. Using 8 synthetic rule domains unsolvable through prior knowledge, we show competitive dynamics drive niche specialization with \textbf{70.7\% causality validation} (Cohen's $d=2.66$, $n=10$ seeds). We provide three proven theorems establishing convergence guarantees. Evolved specialists achieve the \textbf{theoretical ceiling (100\% accuracy)} on matched tasks; oracle routing unlocks \textbf{+64.2pp improvement} over generalists ($n=5$, 95\% CI: [61.3, 67.0]) with 5--7 task break-even. Our work establishes prompt-based specialization as a viable paradigm for diverse LLM agent populations.
 \end{abstract}
 
 % =============================================================================
@@ -71,26 +71,29 @@ Can large language model (LLM) agents develop specialized preferences through co
 \section{Introduction}
 \label{sec:intro}
 
-Large language models (LLMs) exhibit remarkable general capabilities, yet many applications would benefit from \textit{specialized} agents optimized for specific tasks. The dominant paradigm for specialization---fine-tuning---requires gradient access, substantial compute, and risks catastrophic forgetting~\cite{stanley2002evolving}. This raises a fundamental question:
-
-\begin{center}
-\textit{Can specialization emerge through competition alone, using only prompt-level adaptation?}
-\end{center}
+Large language models (LLMs) exhibit remarkable general capabilities, yet many applications would benefit from \textit{specialized} agents optimized for specific tasks. The dominant paradigm for specialization---fine-tuning---requires gradient access, substantial compute, and risks catastrophic forgetting~\cite{kirkpatrick2017ewc}. This raises a fundamental question: \textbf{Can specialization emerge through competition alone, using only prompt-level adaptation?}
 
 We answer affirmatively. We demonstrate that populations of LLM agents can develop specialized \textbf{preferences} through competitive selection---a process analogous to ecological niche differentiation in natural systems. Unlike capability acquisition (learning new skills), preference specialization involves developing systematic biases toward particular task types within an agent's existing capability space. This distinction is crucial: LLMs can already solve our synthetic rules perfectly given appropriate prompts, but through competition, agents develop preferences for specific rules and accumulate domain-specific strategies.
 
-\paragraph{Motivating Example.} Consider 12 identical LLM agents competing on 8 different task types. Initially, all agents are generalists with no task-specific strategies. After 100 generations of competition where winners accumulate task-relevant knowledge, the population \textit{spontaneously differentiates}: some agents become math specialists, others become language specialists, and so on. This specialization is \textit{emergent}---arising from competitive dynamics rather than explicit design.
+\paragraph{Motivating Example.} Consider 12 identical LLM agents competing on 8 different task types. Initially, all agents are generalists with no task-specific strategies. After 100 generations of competition where winners accumulate task-relevant knowledge, the population \textit{spontaneously differentiates}: some agents become math specialists, others become language specialists, and so on. This specialization is \textit{emergent}---arising from competitive dynamics rather than explicit design (Figure~\ref{fig:hero}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_hero_mechanism.pdf}
+\caption{\textbf{Overview of emergent preference specialization.} (a) Initial population: 12 identical agents with no specialization. (b) Competitive selection: agents compete on tasks; winners accumulate rule-specific strategies. (c) Emerged specialists: after 100 generations, agents have differentiated into distinct rule specialists (colors indicate specialization).}
+\label{fig:hero}
+\end{figure}
 
 \vspace{0.5em}
 \noindent\textbf{Contributions.} We make four contributions:
 
 \begin{enumerate}[leftmargin=*,topsep=2pt,itemsep=4pt]
     \item \textbf{A novel competitive selection mechanism} where agents accumulate strategies through wins, with fitness sharing to promote diversity (Section~\ref{sec:method}).
-    
+
     \item \textbf{A complete theoretical foundation} with three proven theorems establishing convergence guarantees, equilibrium characterization, and connections to Thompson Sampling (Section~\ref{sec:theory}).
-    
+
     \item \textbf{Rigorous empirical validation} demonstrating 70.7\% causality rate across 10 unified seeds, with effect sizes (Cohen's $d=2.66$), bootstrap confidence intervals, and multiple comparison corrections (Section~\ref{sec:experiments}).
-    
+
     \item \textbf{Practical benefit demonstration} showing that evolved specialists achieve the theoretical ceiling (100\% on matched tasks), with oracle routing unlocking +64.2pp $\pm$ 2.3pp improvement and 5--7 task break-even (Section~\ref{sec:realworld}).
 \end{enumerate}
 
@@ -177,14 +180,28 @@ p(n_r) = \frac{1}{\sqrt{n_r}}
 \end{equation}
 This creates pressure for agents to occupy less crowded niches.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig2_specialization_emergence.pdf}
+\caption{\textbf{Emergence of rule specialists over generations.} Each line represents the maximum strategy level achieved for a rule. All rules reach Level~3 (full specialist) by generation 50, with staggered emergence times creating niche diversity. Different colors indicate different rules.}
+\label{fig:emergence}
+\end{figure}
+
 % =============================================================================
 % SECTION 3: THEORETICAL ANALYSIS
 % =============================================================================
 \section{Theoretical Analysis}
 \label{sec:theory}
 
-We provide a formal mathematical analysis establishing convergence guarantees for the preference specialization mechanism. Our theoretical contributions include three theorems that characterize the dynamics, equilibrium, and concentration properties of the system.
+We provide a formal mathematical analysis establishing convergence guarantees for the preference specialization mechanism. Our theoretical contributions include three theorems:
 
+\begin{enumerate}[leftmargin=*,topsep=2pt,itemsep=2pt]
+    \item \textbf{Theorem~\ref{thm:monotonic}}: Strategy levels never decrease (monotonicity)
+    \item \textbf{Theorem~\ref{thm:convergence}}: Population converges to specialized equilibrium
+    \item \textbf{Theorem~\ref{thm:stationary}}: Stationary distribution concentrates on optimal states
+\end{enumerate}
+
+\medskip
 \subsection{Problem Formulation}
 
 Let $N$ be the number of agents and $R$ the number of rules. The population state is:
@@ -234,6 +251,7 @@ The proof uses a potential function argument with Azuma-Hoeffding bounds and Fre
 
 The equilibrium is \textit{unique up to permutation}: all equilibria have coverage $C^* = R$ and total strategy $L^* = 3N$. It is stable under perturbations and approximates optimal load balancing with $\sim N/R$ specialists per rule.
 
+\medskip
 \subsection{Connection to Thompson Sampling}
 
 Our mechanism relates to Thompson Sampling from multi-armed bandits \cite{thompson1933likelihood}. Strategy levels serve as discretized posterior beliefs:
@@ -253,7 +271,14 @@ We validate our theoretical predictions through comprehensive experiments. All e
 
 \subsection{Causality Validation}
 
-\paragraph{Prompt Swap Test.} We test whether prompts \textit{cause} performance differences by swapping specialists' prompts and measuring accuracy changes. A test ``passes'' if the specialist-on-own-rule accuracy exceeds specialist-on-other-rule accuracy by $>$30 percentage points. This threshold ensures we detect meaningful causal relationships rather than noise.
+\paragraph{Prompt Swap Test.} We test whether prompts \textit{cause} performance differences by swapping specialists' prompts and measuring accuracy changes. A test ``passes'' if the specialist-on-own-rule accuracy exceeds specialist-on-other-rule accuracy by $>$30 percentage points. This threshold ensures we detect meaningful causal relationships rather than noise (Figure~\ref{fig:causality}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/fig3_causality_heatmap.pdf}
+\caption{\textbf{Causality validation heatmap.} Each cell shows accuracy when a specialist (column) is tested on a task type (row). The strong diagonal pattern (85--98\%) vs. off-diagonal (15--30\%) demonstrates that prompts \textit{cause} performance---specialists excel only on their trained rule.}
+\label{fig:causality}
+\end{figure}
 
 \begin{table}[h]
 \centering
@@ -315,7 +340,14 @@ Claude 3 Haiku & Anthropic & 92\% & 45\% & 50.9\% \\
 \end{tabular}
 \end{table}
 
-\noindent All three models show substantial diagonal--off-diagonal gaps, confirming that the specialization mechanism is model-agnostic.
+\noindent All three models show substantial diagonal--off-diagonal gaps, confirming that the specialization mechanism is model-agnostic (Figure~\ref{fig:crossllm}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig5_crossllm.pdf}
+\caption{\textbf{Cross-LLM generalization.} The mechanism produces consistent specialization across all three major LLM providers. Green bars show specialist accuracy on their own rule (85--92\%); coral bars show accuracy on other rules (20--45\%). All gaps exceed the 30\% threshold (dashed line).}
+\label{fig:crossllm}
+\end{figure}
 
 \subsection{Statistical Rigor}
 
@@ -337,7 +369,14 @@ Having established that specialization emerges and that prompts cause performanc
 
 \subsection{Experimental Setup}
 
-We compare specialized populations against single generalist agents across five conditions, measuring accuracy and API cost:
+We compare specialized populations against single generalist agents across five conditions, measuring accuracy and API cost (Figure~\ref{fig:practical}):
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig4_practical_benefit.pdf}
+\caption{\textbf{Practical benefit of specialization.} Oracle routing achieves 100\% accuracy---a +64.2pp improvement over the single generalist baseline (35.8\%). This demonstrates the maximum value extractable from correct task-specialist matching at no additional API cost.}
+\label{fig:practical}
+\end{figure}
 
 \begin{table}[h]
 \centering
@@ -386,13 +425,17 @@ To distinguish preference from capability, we remove specialists' strategies:
 % =============================================================================
 \section{Related Work}
 
-\paragraph{Multi-Agent LLM Systems.} Recent work explores LLM agent collaboration \cite{park2023generative, hong2023metagpt}. Unlike these approaches, we focus on \textit{emergent} specialization through competition rather than designed role assignment.
+Our work connects several research threads, synthesizing ideas from multi-agent systems, evolutionary computation, and prompt engineering into a novel framework for emergent specialization.
 
-\paragraph{Prompt Optimization.} Methods like APE \cite{zhou2022large} and OPRO \cite{yang2023large} optimize prompts through search. Our approach generates diversity through competition rather than optimization toward a single objective.
+\paragraph{Multi-Agent LLM Systems.} The explosion of LLM-based agents has spawned numerous multi-agent frameworks. Generative Agents~\cite{park2023generative} simulate human behavior through memory and reflection, while MetaGPT~\cite{hong2023metagpt} coordinates agents through software engineering workflows. AutoGen~\cite{wu2023autogen} enables conversational agent orchestration. However, these approaches rely on \textit{designed} role assignment---agents are explicitly assigned specializations. Our work differs fundamentally: specialization \textit{emerges} from competitive dynamics without explicit role design, more closely mimicking natural ecological differentiation.
 
-\paragraph{Evolutionary Computation.} Our fitness sharing draws from evolutionary algorithms \cite{goldberg1987genetic, stanley2002evolving}. We adapt these mechanisms for prompt-based agent populations, creating a ``computational ecology'' for LLM agents.
+\paragraph{Prompt Optimization.} Methods for automatic prompt engineering have advanced rapidly. APE~\cite{zhou2022large} uses LLMs to generate and select prompts; OPRO~\cite{yang2023large} frames prompt optimization as optimization with LLM feedback. PromptBreeder~\cite{fernando2023promptbreeder} evolves prompt populations. These approaches optimize toward a \textit{single} objective, producing homogeneous solutions. Our competitive framework instead generates \textit{diversity}---multiple distinct specialists rather than one optimal generalist.
 
-\paragraph{Mixture of Experts.} MoE architectures \cite{shazeer2017outrageously} route inputs to specialized modules. Our work achieves similar specialization at the prompt level without architectural changes or gradient-based training.
+\paragraph{Evolutionary Computation.} Fitness sharing~\cite{goldberg1987genetic} and speciation mechanisms~\cite{stanley2002evolving} from evolutionary computation directly inspire our approach. NEAT demonstrates that neuroevolution can produce diverse network topologies; we adapt similar principles for prompt-based populations. The crowding penalty $p(n) = 1/\sqrt{n}$ creates selection pressure toward niche differentiation, analogous to resource competition in ecological systems.
+
+\paragraph{Mixture of Experts.} Sparse MoE architectures~\cite{shazeer2017outrageously} route inputs to specialized sub-networks, achieving efficient scaling. Recent work extends MoE to LLMs at massive scale. Our approach achieves conceptually similar routing-based specialization but operates at the \textit{prompt level} rather than within network weights---requiring no architectural changes or gradient-based training, enabling post-hoc specialization of any instruction-following LLM.
+
+\paragraph{Ecological and Economic Parallels.} Our framework parallels models from ecology (niche differentiation~\cite{hutchinson1957niche}) and economics (comparative advantage). Agents specialize where they have accumulated expertise, analogous to firms specializing in production domains. The fitness sharing penalty mirrors resource competition dynamics in ecological systems.
 
 % =============================================================================
 % SECTION 7: LIMITATIONS
@@ -447,6 +490,9 @@ We thank the anonymous reviewers for their constructive feedback. This work was 
 \bibitem{caramazza1998animate}
 Caramazza, A., \& Shelton, J. R. (1998). Domain-specific knowledge systems in the brain: The animate-inanimate distinction. \textit{Journal of Cognitive Neuroscience}, 10(1), 1-34.
 
+\bibitem{kirkpatrick2017ewc}
+Kirkpatrick, J., et al. (2017). Overcoming catastrophic forgetting in neural networks. \textit{Proceedings of the National Academy of Sciences}, 114(13), 3521-3526.
+
 \bibitem{dehaene1997number}
 Dehaene, S. (1997). \textit{The Number Sense: How the Mind Creates Mathematics}. Oxford University Press.
 
@@ -485,6 +531,15 @@ Wagner, R. K., \& Torgesen, J. K. (1987). The nature of phonological processing 
 
 \bibitem{wertheimer1923gestalt}
 Wertheimer, M. (1923). Laws of organization in perceptual forms. \textit{Psycologische Forschung}, 4, 301-350. English translation in W. D. Ellis (Ed.), \textit{A Source Book of Gestalt Psychology} (1938).
+
+\bibitem{wu2023autogen}
+Wu, Q., et al. (2023). AutoGen: Enabling next-gen LLM applications via multi-agent conversation. \textit{arXiv preprint arXiv:2308.08155}.
+
+\bibitem{fernando2023promptbreeder}
+Fernando, C., et al. (2023). PromptBreeder: Self-referential self-improvement via prompt evolution. \textit{arXiv preprint arXiv:2309.16797}.
+
+\bibitem{hutchinson1957niche}
+Hutchinson, G. E. (1957). Concluding remarks. \textit{Cold Spring Harbor Symposia on Quantitative Biology}, 22, 415-427.
 
 \bibitem{yang2023large}
 Yang, C., et al. (2023). Large language models as optimizers. \textit{arXiv preprint arXiv:2309.03409}.
