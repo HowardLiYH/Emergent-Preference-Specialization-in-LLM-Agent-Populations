@@ -1,5 +1,33 @@
 # Changelog
 
+## [v4.0.3] - 2026-01-05: Practical Benefit Data Correction
+
+### Data Verification & Correction
+
+**Issue Found**: Practical benefit numbers in paper used best single run instead of average.
+
+**Analysis**:
+- Run 1: +20.8pp (DISCARDED - before content filtering fix)
+- Run 2: +58.3pp (valid - after fix)
+- Run 3: +45.8pp (valid - after fix)
+
+**Correction Applied**:
+| Metric | Old (best run) | New (average of valid runs) |
+|--------|----------------|----------------------------|
+| Single Generalist | 20.8% | 22.9% |
+| Oracle Routing | 79.2% | 75.0% |
+| Improvement | +58.3pp | +52.0pp (range: +45.8pp to +58.3pp) |
+
+**Files Updated**:
+- `paper/main.tex` - All practical benefit claims
+- `paper/deep_dive.tex` - All practical benefit claims
+- `docs/DEEP_DIVE.md` - All practical benefit claims
+- `README.md` - Key results table
+
+**Rationale**: Run 1 was before the content filtering fix (v4.0.1), so results were degraded by a bug. Only Runs 2 and 3 represent valid experimental conditions.
+
+---
+
 ## [v4.0.2] - 2026-01-04: Phase 2 Polish (Panel Consensus)
 
 ### Paper Improvements (4 Essential Tasks)

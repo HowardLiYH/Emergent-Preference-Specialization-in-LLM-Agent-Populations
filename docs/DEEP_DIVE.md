@@ -2,9 +2,9 @@
 
 ## A Comprehensive Mathematical Deep Dive
 
-**Author:** Yuhao Li  
-**Institution:** University of Pennsylvania  
-**Email:** li88@sas.upenn.edu  
+**Author:** Yuhao Li
+**Institution:** University of Pennsylvania
+**Email:** li88@sas.upenn.edu
 **Date:** January 2026
 
 ---
@@ -93,7 +93,7 @@ Without Strategy:    30% accuracy on specialized rule
 |--------|-------|---------------------|
 | **Causality Rate** | 70.7% | Prompts *cause* performance |
 | **Effect Size** | d = 2.66 | "Huge" by Cohen's standards |
-| **Accuracy Gain** | +58.3pp | Oracle routing vs generalist |
+| **Accuracy Gain** | +52.0pp avg | Oracle routing vs generalist (range: +45.8pp to +58.3pp) |
 | **Break-even** | 5-7 tasks | Training investment pays off quickly |
 | **Cross-LLM** | 3 providers | Mechanism is model-agnostic |
 
@@ -102,12 +102,12 @@ Without Strategy:    30% accuracy on specialized rule
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    BEFORE (Single Generalist)                   │
-│  Task → [Generalist Agent] → 20.8% accuracy                    │
+│  Task → [Generalist Agent] → 22.9% accuracy (avg)              │
 ├─────────────────────────────────────────────────────────────────┤
 │                    AFTER (Specialized Population)               │
-│  Task → [Router] → [Specialist] → 79.2% accuracy               │
+│  Task → [Router] → [Specialist] → 75.0% accuracy (avg)         │
 │                                                                 │
-│  Improvement: +58.3 percentage points at same API cost!        │
+│  Improvement: +52.0pp on average at same API cost!             │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -886,14 +886,14 @@ With 10 seeds:
 
 | Condition | Accuracy | Δ vs Baseline | Cost |
 |-----------|----------|---------------|------|
-| SINGLE_GENERALIST | 20.8% | — | 1× |
-| **ORACLE_ROUTING** | **79.2%** | **+58.3pp** | 1× |
+| SINGLE_GENERALIST | 22.9% | — | 1× |
+| **ORACLE_ROUTING** | **75.0%** | **+52.0pp** | 1× |
 | CONFIDENCE_ROUTING | 20.8% | +0.0pp | 9× |
 | ENSEMBLE | 29.2% | +8.3pp | 8× |
 
-### 💡 Key Insight: +58.3pp at No Extra Cost!
+### 💡 Key Insight: +52.0pp at No Extra Cost (Average)!
 
-Oracle routing (knowing the task type) achieves **+58.3 percentage points** improvement at the **same API cost** as the baseline.
+Oracle routing (knowing the task type) achieves **+52.0 percentage points** improvement on average (range: +45.8pp to +58.3pp) at the **same API cost** as the baseline.
 
 This is the "killer result"—if you can route tasks correctly, specialization pays off massively.
 
@@ -913,7 +913,7 @@ Training Investment:
 ### Break-Even Calculation
 
 ```
-Per-task improvement: 58.3pp
+Per-task improvement: 52.0pp (average)
 Value per correct answer: V (application-dependent)
 
 Break-even point:
@@ -987,11 +987,11 @@ Very few papers in the LLM space provide this level of theoretical rigor.
 
 ### 3. Massive Practical Benefit
 
-+58.3 percentage points is not a marginal improvement:
++52.0 percentage points is not a marginal improvement:
 
 ```
 Industry standard: 2-5pp improvement is "significant"
-Our result: 58.3pp improvement → 10× the typical effect!
+Our result: 52.0pp improvement → 10× the typical effect!
 ```
 
 ### 4. Reproducibility and Statistical Rigor
@@ -1090,7 +1090,7 @@ This work establishes:
 ### For Practitioners
 
 This work enables:
-1. +58.3pp accuracy improvement at no extra API cost
+1. +52.0pp accuracy improvement on average at no extra API cost
 2. 5-7 task break-even for training investment
 3. Model-agnostic mechanism (works on Gemini, GPT, Claude)
 4. Clear deployment guidelines (N ≤ 3R, 100 generations)
@@ -1207,7 +1207,7 @@ python experiments/exp_fitness_sensitivity.py
 |------------|----------|-----------|
 | Causality rate | 70.7% | ±3% |
 | Cohen's d | 2.66 | ±0.3 |
-| Oracle routing | +58.3pp | ±5pp |
+| Oracle routing | +52.0pp | range: +45.8pp to +58.3pp |
 | Break-even | 5-7 tasks | ±2 tasks |
 
 ---

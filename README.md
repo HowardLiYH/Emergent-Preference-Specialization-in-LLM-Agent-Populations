@@ -28,8 +28,8 @@
 
 ## 📄 Research Paper
 
-**Author:** Yuhao Li  
-**Institution:** University of Pennsylvania  
+**Author:** Yuhao Li
+**Institution:** University of Pennsylvania
 **Email:** li88@sas.upenn.edu
 
 This repository contains the complete implementation, experiments, and theoretical analysis for research on emergent preference specialization in LLM agent populations.
@@ -56,7 +56,7 @@ Generation 0                         Generation 100
 
 1. **First causal demonstration** of prompt-based specialization: **70.7% causality rate** (95% CI: [68.3%, 73.1%])
 2. **Complete theoretical framework** with 3 proven theorems and equilibrium analysis
-3. **Practical benefit demonstration**: Specialized populations outperform generalists by **+58.3pp** with **5-7 task break-even**
+3. **Practical benefit demonstration**: Specialized populations outperform generalists by **+52.0pp** on average (range: +45.8pp to +58.3pp) with **5-7 task break-even**
 4. **Cross-LLM validation**: Mechanism works across Gemini, GPT-4, and Claude
 
 ---
@@ -95,7 +95,7 @@ Generation 0                         Generation 100
 |--------|-------|
 | Training Cost | ~$0.00 (free tier) |
 | Break-Even Point | **5-7 tasks** |
-| Accuracy Improvement | **+58.3pp** (Oracle routing) |
+| Accuracy Improvement | **+52.0pp avg** (Oracle routing, range: +45.8pp to +58.3pp) |
 | ROI | Excellent |
 
 ---
