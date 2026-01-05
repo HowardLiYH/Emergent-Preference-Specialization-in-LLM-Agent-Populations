@@ -751,7 +751,16 @@ Fitness Sharing & $f' = f/p(n)$ & Literature & Goldberg \& Richardson (1987) \\
 \end{table}
 
 \begin{keypoint}
-\textbf{On Originality:} The Strategy Concentration Index (SCI) uses the well-known formula for normalized entropy ($1 - H/H_{\max}$), which has been used in ecology and information theory for decades. Our contribution is:
+\textbf{On Originality:} The Strategy Concentration Index (SCI) uses the well-known formula for normalized entropy ($1 - H/H_{\max}$), which has been used in ecology and information theory for decades. 
+
+\textbf{Literature Grounding:} SCI is mathematically equivalent to:
+\begin{itemize}
+    \item \textbf{1 - Pielou's Evenness Index} (Pielou, 1966): $J = H/H_{\max}$ measures evenness; SCI $= 1 - J$ measures concentration
+    \item \textbf{Theil Index complement} (economics): Related entropy-based concentration measure
+    \item \textbf{Normalized redundancy}: Standard information-theoretic concept
+\end{itemize}
+
+Our contribution is:
 \begin{enumerate}
     \item \textbf{Naming}: We call it ``Strategy Concentration Index'' (Paper 2) or ``Specialization Index'' (Paper 1)
     \item \textbf{Application}: Using it to measure LLM agent specialization

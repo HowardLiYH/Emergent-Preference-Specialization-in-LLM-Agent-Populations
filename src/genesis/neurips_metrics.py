@@ -72,26 +72,26 @@ def compute_sci(strategy_levels: Dict[RuleType, int]) -> float:
     """
     values = list(strategy_levels.values())
     total = sum(values)
-    
+
     if total == 0:
         return 0.0
-    
+
     # Normalize to probability distribution
     probs = [v / total for v in values]
-    
+
     # Compute Shannon entropy (only for non-zero probabilities)
     entropy = 0.0
     for p in probs:
         if p > 0:
             entropy -= p * np.log(p)
-    
+
     # Maximum entropy (uniform distribution over R rules)
     n_rules = len(values)
     max_entropy = np.log(n_rules) if n_rules > 1 else 1.0
-    
+
     if max_entropy == 0:
         return 1.0  # Edge case: only one rule
-    
+
     # SCI = 1 - normalized entropy
     return 1.0 - (entropy / max_entropy)
 
