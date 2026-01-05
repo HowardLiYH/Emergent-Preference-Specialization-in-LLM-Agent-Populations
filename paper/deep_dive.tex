@@ -1347,12 +1347,35 @@ Strategy levels per rule & $4$ (L0, L1, L2, L3) \\
 \end{tabular}
 \end{center}
 
+\textbf{What is TEMPLATES?}
+
+\texttt{TEMPLATES} is a pre-defined lookup table mapping each (rule, level) pair to a specific prompt string. It is defined \textit{before} the experiment runs and never changes during evolution.
+
+\begin{example}[TEMPLATES for RHYME Rule]
+\begin{center}
+\small
+\begin{tabular}{cp{10cm}}
+\toprule
+\textbf{Level} & \textbf{TEMPLATES[RHYME][level]} \\
+\midrule
+L0 & \textit{(empty string---no hint given)} \\[0.3cm]
+L1 & ``Listen to how the words sound, not what they mean. Sound similarity is key.'' \\[0.3cm]
+L2 & ``One option rhymes with the keyword CAT. Find the option with the same ending sound '-at'. Words like bat, hat, mat, rat all rhyme with cat.'' \\[0.3cm]
+L3 & ``You are a RHYME DETECTION SPECIALIST. Your expertise is identifying words that rhyme with CAT. CORE RULE: The correct answer ALWAYS rhymes with 'CAT' (ends with '-at' sound). STEP-BY-STEP: 1. Say 'CAT' out loud in your mind. 2. Check if each option ends with '-at' sound. 3. Select the option that rhymes. EXAMPLES: fish, bat, tree $\to$ bat...'' \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{example}
+
+The full template library is defined in \texttt{src/genesis/rule\_strategies.py} with 8 rules $\times$ 4 levels = 32 unique prompt strings.
+
 \textbf{Key Properties:}
 \begin{enumerate}
     \item \textbf{Deterministic mapping}: Given (rule $r$, level $s$), the prompt is uniquely determined:
     \[
     \text{prompt} = \text{TEMPLATES}[r][s]
     \]
+    This is a simple lookup, not a generation process.
 
     \item \textbf{Shared prompts}: Yes! Multiple agents can have the \textbf{same prompt} if they're at the same level for the same rule. For example, if Agent 1 and Agent 7 both have $s_{\text{RHYME}} = 2$, they receive identical prompts.
 
@@ -1505,22 +1528,22 @@ An L3 specialist is ``sampling'' from a high-mean distribution (confident), whil
     % Beta(1,4) - L0: skewed left (mass near 0)
     \draw[very thick, red!80!black, domain=0.1:9.9, samples=100]
         plot (\x, {4.5 * (1 - \x/10)^3});
-    
+
     % Beta(2,3) - L1
     \draw[very thick, orange!90!black, domain=0.1:9.9, samples=100]
         plot (\x, {3 * (\x/10) * (1 - \x/10)^2});
-    
+
     % Beta(3,2) - L2
     \draw[very thick, blue!70!black, domain=0.1:9.9, samples=100]
         plot (\x, {3 * (\x/10)^2 * (1 - \x/10)});
-    
+
     % Beta(4,1) - L3: skewed right (mass near 1)
     \draw[very thick, green!60!black, domain=0.1:9.9, samples=100]
         plot (\x, {4.5 * (\x/10)^3});
 
     % Uniform reference (dashed)
     \draw[dashed, gray, thick] (0, 1) -- (10, 1);
-    
+
     % Legend box (outside plot area, top right)
     \node[draw, fill=white, rounded corners, align=left, font=\small] at (12, 4) {
         \textcolor{red!80!black}{\rule{0.5cm}{2pt}} \textbf{L0}: Beta(1,4), $\mu$=0.20\\[3pt]
@@ -1529,7 +1552,7 @@ An L3 specialist is ``sampling'' from a high-mean distribution (confident), whil
         \textcolor{green!60!black}{\rule{0.5cm}{2pt}} \textbf{L3}: Beta(4,1), $\mu$=0.80\\[3pt]
         \textcolor{gray}{- - -} Uniform
     };
-    
+
 \end{tikzpicture}
 
 \vspace{0.3cm}
