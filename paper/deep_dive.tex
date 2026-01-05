@@ -1941,6 +1941,83 @@ Selecting based on confidence (not just correctness) has three advantages:
 \end{enumerate}
 \end{keypoint}
 
+\subsection{How Confidence Is Computed: The Black Box}
+
+A critical implementation detail: \textbf{confidence is self-reported by the LLM}, not calculated by our algorithm.
+
+\subsubsection{The Prompt}
+
+We ask the LLM to report its own confidence:
+
+\begin{lstlisting}[language=Python, basicstyle=\ttfamily\small]
+prompt = f"""{task.prompt}
+
+Provide your answer AND your confidence level (0-100%).
+Format: ANSWER: [your answer] | CONFIDENCE: [0-100]%"""
+\end{lstlisting}
+
+\subsubsection{The Parsing}
+
+We extract the self-reported confidence via regex:
+
+\begin{lstlisting}[language=Python, basicstyle=\ttfamily\small]
+# LLM outputs: "ANSWER: B | CONFIDENCE: 85%"
+confidence_match = re.search(r'CONFIDENCE:\s*(\d+)', response)
+confidence = int(confidence_match.group(1)) / 100.0  # -> 0.85
+\end{lstlisting}
+
+\subsubsection{The Black Box}
+
+\begin{warning}
+\textbf{We do not know how the LLM computes its confidence.}
+
+The mapping from prompt + task $\to$ confidence is internal to the LLM:
+\[
+\text{confidence} = f_{\text{LLM}}(\text{prompt}, \text{task}) \quad \text{where } f_{\text{LLM}} \text{ is unknown}
+\]
+
+This is fundamentally different from Paper 1, where confidence was sampled from a Beta distribution with known parameters.
+\end{warning}
+
+\subsubsection{The Assumption}
+
+Our mechanism relies on an \textbf{empirical assumption}:
+
+\begin{keypoint}[The Confidence-Expertise Correlation]
+We assume that LLM confidence correlates with prompt quality:
+\[
+\text{Better prompt (L3)} \implies \text{Higher reported confidence}
+\]
+
+This assumption is reasonable because:
+\begin{itemize}
+    \item LLMs are trained on human text where confident language accompanies expertise
+    \item Empirically, we observe L3 agents consistently report higher confidence than L0 agents
+    \item The mechanism produces specialists that achieve 100\% accuracy with oracle routing
+\end{itemize}
+\end{keypoint}
+
+\subsubsection{Potential Risks}
+
+\begin{table}[H]
+\centering
+\caption{Risks of relying on LLM self-reported confidence.}
+\begin{tabular}{lp{8cm}}
+\toprule
+\textbf{Risk} & \textbf{Description} \\
+\midrule
+\textbf{Overconfidence} & LLM reports 95\% confidence but is wrong (hallucination) \\
+\textbf{Calibration Variance} & Different LLMs (GPT, Gemini, Claude) may report differently \\
+\textbf{Prompt Sensitivity} & The exact wording ``how confident are you?'' affects outputs \\
+\textbf{Strategic Inflation} & LLM might learn to always report high confidence \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{whyitmatters}
+Despite these risks, our cross-LLM validation shows the mechanism works across GPT-4o-mini, Gemini-2.5-flash, and Claude-3.5-sonnet---suggesting the confidence-expertise correlation is robust across different model families.
+\end{whyitmatters}
+
 \subsection{Detailed Trace: One Competition Round}
 
 Let's trace through a complete round with 4 agents and the RHYME rule:
