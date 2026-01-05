@@ -1211,6 +1211,69 @@ Think of it this way:
 The mechanism is the same; only the substrate differs.
 \end{intuition}
 
+\subsection{Implicit vs. Explicit Knowledge: A Concrete Example}
+
+The row \textbf{``Knowledge Representation''} in Table 12 deserves special attention, as it captures the key innovation of Paper 2.
+
+\begin{example}[The Same Agent, Two Representations]
+Consider an agent that has specialized in RHYME tasks (Paper 2) or MOMENTUM method (Paper 1).
+
+\textbf{Paper 1 (Implicit):}
+\begin{center}
+\begin{tikzpicture}
+\node[draw, rectangle, rounded corners, fill=blue!10, minimum width=6cm, minimum height=2cm, align=center] {
+    \texttt{Agent 7's MOMENTUM belief:}\\[0.2cm]
+    \texttt{Beta($\alpha$=8.3, $\beta$=1.2)}\\[0.2cm]
+    \textit{Mean = 0.87, Variance = 0.01}
+};
+\end{tikzpicture}
+\end{center}
+
+\textbf{What does Agent 7 ``know''?}
+\begin{itemize}
+    \item We can compute: Agent 7 is 87\% confident in MOMENTUM
+    \item But \textit{why}? What strategy does it use? We cannot see.
+    \item The knowledge is \textbf{implicit}---locked inside numerical parameters
+\end{itemize}
+
+\textbf{Paper 2 (Explicit):}
+\begin{center}
+\begin{tikzpicture}
+\node[draw, rectangle, rounded corners, fill=green!10, minimum width=10cm, minimum height=2.5cm, align=left, font=\small] {
+    \texttt{Agent 7's RHYME strategy (L3):}\\[0.2cm]
+    \textit{``You are a RHYME specialist. The correct answer}\\
+    \textit{is always the word that rhymes with a common}\\
+    \textit{reference word. Example: HAT rhymes with CAT.''}
+};
+\end{tikzpicture}
+\end{center}
+
+\textbf{What does Agent 7 ``know''?}
+\begin{itemize}
+    \item We can \textbf{read} exactly what the agent knows
+    \item The strategy is \textbf{explicit}---human-readable text
+    \item We can \textbf{edit}, \textbf{transfer}, or \textbf{verify} it
+\end{itemize}
+\end{example}
+
+\begin{keypoint}[Why Explicitness Matters]
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Capability} & \textbf{Implicit (Paper 1)} & \textbf{Explicit (Paper 2)} \\
+\midrule
+Read what agent knows & Compute statistics & Read the prompt \\
+Transfer to new agent & Copy $\alpha, \beta$ + code & Copy-paste text \\
+Verify correctness & Run experiments & Read and check \\
+Human oversight & Difficult & Easy \\
+Debug failures & Opaque & Transparent \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Paper 2's explicit representation enables \textbf{AI transparency}---a crucial property for responsible deployment.
+\end{keypoint}
+
 % ----------------------------------------------------------------------------
 \section{Mathematical Correspondence}
 \label{sec:math-correspondence}
