@@ -98,7 +98,25 @@ We answer affirmatively. We demonstrate that populations of LLM agents can devel
 \end{enumerate}
 
 % =============================================================================
-% SECTION 2: METHOD
+% SECTION 2: RELATED WORK
+% =============================================================================
+\section{Related Work}
+\label{sec:related}
+
+Our work connects several research threads, synthesizing ideas from multi-agent systems, evolutionary computation, and prompt engineering into a novel framework for emergent specialization.
+
+\paragraph{Multi-Agent LLM Systems.} The explosion of LLM-based agents has spawned numerous multi-agent frameworks. Generative Agents~\cite{park2023generative} simulate human behavior through memory and reflection, while MetaGPT~\cite{hong2023metagpt} coordinates agents through software engineering workflows. AutoGen~\cite{wu2023autogen} enables conversational agent orchestration. However, these approaches rely on \textit{designed} role assignment---agents are explicitly assigned specializations. Our work differs fundamentally: specialization \textit{emerges} from competitive dynamics without explicit role design, more closely mimicking natural ecological differentiation.
+
+\paragraph{Prompt Optimization.} Methods for automatic prompt engineering have advanced rapidly. APE~\cite{zhou2022large} uses LLMs to generate and select prompts; OPRO~\cite{yang2023large} frames prompt optimization as optimization with LLM feedback. PromptBreeder~\cite{fernando2023promptbreeder} evolves prompt populations. These approaches optimize toward a \textit{single} objective, producing homogeneous solutions. Our competitive framework instead generates \textit{diversity}---multiple distinct specialists rather than one optimal generalist.
+
+\paragraph{Evolutionary Computation.} Fitness sharing~\cite{goldberg1987genetic} and speciation mechanisms~\cite{stanley2002evolving} from evolutionary computation directly inspire our approach. NEAT demonstrates that neuroevolution can produce diverse network topologies; we adapt similar principles for prompt-based populations. The crowding penalty $p(n) = 1/\sqrt{n}$ creates selection pressure toward niche differentiation, analogous to resource competition in ecological systems.
+
+\paragraph{Mixture of Experts.} Sparse MoE architectures~\cite{shazeer2017outrageously} route inputs to specialized sub-networks, achieving efficient scaling. Recent work extends MoE to LLMs at massive scale. Our approach achieves conceptually similar routing-based specialization but operates at the \textit{prompt level} rather than within network weights---requiring no architectural changes or gradient-based training, enabling post-hoc specialization of any instruction-following LLM.
+
+\paragraph{Ecological and Economic Parallels.} Our framework parallels models from ecology (niche differentiation~\cite{hutchinson1957niche}) and economics (comparative advantage). Agents specialize where they have accumulated expertise, analogous to firms specializing in production domains. The fitness sharing penalty mirrors resource competition dynamics in ecological systems.
+
+% =============================================================================
+% SECTION 3: METHOD
 % =============================================================================
 \section{Method}
 \label{sec:method}
@@ -188,7 +206,7 @@ This creates pressure for agents to occupy less crowded niches.
 \end{figure}
 
 % =============================================================================
-% SECTION 3: THEORETICAL ANALYSIS
+% SECTION 4: THEORETICAL ANALYSIS
 % =============================================================================
 \section{Theoretical Analysis}
 \label{sec:theory}
@@ -267,9 +285,9 @@ In our framework, strategy levels play an analogous role to posterior beliefs. A
 The key difference is representation: Thompson Sampling maintains continuous distributions updated via Bayes' rule, while our mechanism uses discrete strategy levels updated through competitive wins. Both approaches achieve the same functional outcome---developing specialized preferences through experience---but our discrete formulation is more interpretable (strategies are human-readable prompts) and does not require probability distribution maintenance. This connection suggests that our evolutionary framework may inherit Thompson Sampling's theoretical guarantees, including asymptotic optimality and bounded regret.
 
 % =============================================================================
-% SECTION 4: EXPERIMENTS
+% SECTION 5: EXPERIMENTAL VALIDATION
 % =============================================================================
-\section{Experiments}
+\section{Experimental Validation}
 \label{sec:experiments}
 
 We validate our theoretical predictions through comprehensive experiments. All experiments use \texttt{gemini-2.5-flash} for model unification and reproducibility. We focus on three key questions: (1) Do prompts \textit{cause} performance differences? (2) Does the mechanism generalize across LLMs? (3) Is the effect statistically robust?
@@ -363,9 +381,9 @@ To quantify uncertainty, we use bootstrap confidence intervals with 10,000 resam
 Our experimental design with 10 independent seeds provides 95\% statistical power to detect effects of size $d = 0.8$ and essentially perfect power ($>$99\%) for our observed effect of $d = 2.66$. This means that if no true effect existed, the probability of falsely detecting one of this magnitude is vanishingly small. The combination of large effect sizes, tight confidence intervals, and adequate power provides strong evidence that our findings are robust and replicable.
 
 % =============================================================================
-% SECTION 5: PRACTICAL BENEFIT
+% SECTION 6: REAL-WORLD APPLICABILITY
 % =============================================================================
-\section{Practical Benefit}
+\section{Real-World Applicability}
 \label{sec:realworld}
 
 Having established that specialization emerges and that prompts cause performance differences, we now address the practical question: \textit{Does specialization provide tangible benefits over generalist approaches?}
@@ -420,23 +438,6 @@ A central claim of our work is that agents develop \textit{preferences}---system
 We take fully-evolved specialists (Level 3 in their respective rules) and evaluate them under two conditions: (1) with their accumulated strategy prompts, and (2) with strategies removed (empty prompt). If specialization reflects \textit{capability} acquisition (i.e., the model weights have somehow been modified), performance should remain high even without prompts. If specialization reflects \textit{preference} (prompt-dependent behavior), performance should collapse without prompts.
 
 The results are decisive: specialists achieve 95\% accuracy with their strategies but only 30\% without---a 65 percentage point drop. This dramatic decline confirms that the specialization is entirely prompt-mediated. The base LLM retains no memory of the evolutionary process; all accumulated knowledge exists exclusively in the strategy prompts. This finding has important implications: (1) specialization is fully transparent and inspectable (the prompts can be read), (2) it is transferable across model instances, and (3) it makes no permanent modifications to the underlying LLM.
-
-% =============================================================================
-% SECTION 6: RELATED WORK
-% =============================================================================
-\section{Related Work}
-
-Our work connects several research threads, synthesizing ideas from multi-agent systems, evolutionary computation, and prompt engineering into a novel framework for emergent specialization.
-
-\paragraph{Multi-Agent LLM Systems.} The explosion of LLM-based agents has spawned numerous multi-agent frameworks. Generative Agents~\cite{park2023generative} simulate human behavior through memory and reflection, while MetaGPT~\cite{hong2023metagpt} coordinates agents through software engineering workflows. AutoGen~\cite{wu2023autogen} enables conversational agent orchestration. However, these approaches rely on \textit{designed} role assignment---agents are explicitly assigned specializations. Our work differs fundamentally: specialization \textit{emerges} from competitive dynamics without explicit role design, more closely mimicking natural ecological differentiation.
-
-\paragraph{Prompt Optimization.} Methods for automatic prompt engineering have advanced rapidly. APE~\cite{zhou2022large} uses LLMs to generate and select prompts; OPRO~\cite{yang2023large} frames prompt optimization as optimization with LLM feedback. PromptBreeder~\cite{fernando2023promptbreeder} evolves prompt populations. These approaches optimize toward a \textit{single} objective, producing homogeneous solutions. Our competitive framework instead generates \textit{diversity}---multiple distinct specialists rather than one optimal generalist.
-
-\paragraph{Evolutionary Computation.} Fitness sharing~\cite{goldberg1987genetic} and speciation mechanisms~\cite{stanley2002evolving} from evolutionary computation directly inspire our approach. NEAT demonstrates that neuroevolution can produce diverse network topologies; we adapt similar principles for prompt-based populations. The crowding penalty $p(n) = 1/\sqrt{n}$ creates selection pressure toward niche differentiation, analogous to resource competition in ecological systems.
-
-\paragraph{Mixture of Experts.} Sparse MoE architectures~\cite{shazeer2017outrageously} route inputs to specialized sub-networks, achieving efficient scaling. Recent work extends MoE to LLMs at massive scale. Our approach achieves conceptually similar routing-based specialization but operates at the \textit{prompt level} rather than within network weights---requiring no architectural changes or gradient-based training, enabling post-hoc specialization of any instruction-following LLM.
-
-\paragraph{Ecological and Economic Parallels.} Our framework parallels models from ecology (niche differentiation~\cite{hutchinson1957niche}) and economics (comparative advantage). Agents specialize where they have accumulated expertise, analogous to firms specializing in production domains. The fitness sharing penalty mirrors resource competition dynamics in ecological systems.
 
 % =============================================================================
 % SECTION 7: LIMITATIONS
