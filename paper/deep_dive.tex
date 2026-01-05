@@ -1402,11 +1402,62 @@ Notice how each level provides \textbf{progressively more specific} information,
 
 \textbf{1. Deterministic mapping}: Same (rule, level) always produces the same prompt.
 
+\begin{remark}[Common Question: ``Won't everyone become L3?'']
+No. Having the same prompt does \textbf{not} mean everyone wins. Key points:
+\begin{itemize}
+    \item Agents don't ``choose'' their level---levels are \textbf{earned through winning}
+    \item Even with identical prompts, only \textbf{ONE agent wins} each round (highest confidence)
+    \item \textbf{Exclusivity}: Once an agent hits L3 in any rule, they're locked out of other rules
+    \item \textbf{Random rule selection}: Different rules tested each round spreads opportunities
+\end{itemize}
+\textbf{Example}: If 5 agents are all at L2 for RHYME, they compete with identical prompts. Only the winner advances to L3; the others stay at L2.
+\end{remark}
+
 \textbf{2. Shared prompts}: Multiple agents at the same level receive identical prompts.
+
+\begin{remark}[Why This Doesn't Cause Uniformity]
+Identical prompts do \textbf{not} produce identical outcomes because:
+\begin{itemize}
+    \item LLM responses have inherent variability (temperature > 0)
+    \item Confidence values differ even for same correctness
+    \item Only the \textbf{highest-confidence correct responder} wins
+    \item This creates differentiation even among equally-equipped agents
+\end{itemize}
+\end{remark}
 
 \textbf{3. Pre-authored}: Prompts are handcrafted before experiments, ensuring controlled conditions.
 
-\textbf{4. Agent state}: Each agent's full state is a vector $\mathbf{s}_i = (s_{i,1}, \ldots, s_{i,R})$, yielding $4^8 = 65{,}536$ possible configurations.
+\textbf{4. Agent state}: Each agent's full state is a vector $\mathbf{s}_i = (s_{i,1}, \ldots, s_{i,R})$.
+
+\begin{remark}[Why $4^8 = 65{,}536$, not $4 \times 8 = 32$]
+These are different quantities:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Concept} & \textbf{Calculation} & \textbf{Value} \\
+\midrule
+Total unique prompts & $8 \text{ rules} \times 4 \text{ levels}$ & 32 \\
+Possible agent states & $4^8$ (4 options per rule, 8 rules) & 65,536 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Why $4^8$?} Each agent has a \textbf{vector} of 8 levels:
+\[
+\mathbf{s}_i = [s_{\text{RHYME}}, s_{\text{POSITION}}, s_{\text{ANIMATE}}, s_{\text{VOWEL}}, s_{\text{PATTERN}}, s_{\text{ALPHABET}}, s_{\text{MATH}}, s_{\text{INVERSE}}]
+\]
+
+Each position can independently be 0, 1, 2, or 3. Examples:
+\begin{itemize}
+    \item $[0,0,0,0,0,0,0,0]$ = pure generalist (no expertise in any rule)
+    \item $[3,0,0,0,0,0,0,0]$ = RHYME specialist
+    \item $[0,0,3,0,0,0,0,0]$ = ANIMATE specialist
+    \item $[2,1,0,1,0,0,0,0]$ = partially trained (mixed levels)
+\end{itemize}
+
+Total combinations = $4 \times 4 \times 4 \times 4 \times 4 \times 4 \times 4 \times 4 = 4^8 = 65{,}536$
+\end{remark}
 
 % ============================================================================
 \subsection{Prompt Assignment Mechanics}
