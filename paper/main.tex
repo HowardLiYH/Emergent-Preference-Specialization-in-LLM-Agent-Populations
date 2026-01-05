@@ -62,7 +62,7 @@
 % ABSTRACT
 % =============================================================================
 \begin{abstract}
-Can LLM agents develop specialized preferences through competition alone? We demonstrate that populations of initially identical agents develop \textit{distinct preferences} through competitive selection---without gradient-based training. Using 8 synthetic rule domains unsolvable through prior knowledge, we show competitive dynamics drive niche specialization with \textbf{70.7\% causality validation} (Cohen's $d=2.66$, $n=10$ seeds). We provide three proven theorems establishing convergence guarantees. Evolved specialists achieve the \textbf{theoretical ceiling (100\% accuracy)} on matched tasks; oracle routing unlocks \textbf{+64.2pp improvement} over generalists ($n=5$, 95\% CI: [61.3, 67.0]) with 5--7 task break-even. Our work establishes prompt-based specialization as a viable paradigm for diverse LLM agent populations.
+Can LLM agents develop specialized preferences through competition alone? We demonstrate that populations of initially identical agents develop \textit{distinct preferences} through competitive selection---without gradient-based training. Using 8 synthetic rule domains unsolvable through prior knowledge, we show competitive dynamics drive niche specialization with \textbf{70.7\% causality validation} (Cohen's $d=2.66$, $n=10$ seeds). We provide three proven theorems establishing convergence guarantees. Evolved specialists achieve the \textbf{theoretical ceiling (100\% accuracy)} on matched tasks; oracle routing unlocks \textbf{+64.2\% improvement} over generalists ($n=5$, 95\% CI: [61.3, 67.0]) with 5--7 task break-even. Our work establishes prompt-based specialization as a viable paradigm for diverse LLM agent populations.
 \end{abstract}
 
 % =============================================================================
@@ -94,7 +94,7 @@ We answer affirmatively. We demonstrate that populations of LLM agents can devel
 
     \item \textbf{Rigorous empirical validation} demonstrating 70.7\% causality rate across 10 unified seeds, with effect sizes (Cohen's $d=2.66$), bootstrap confidence intervals, and multiple comparison corrections (Section~\ref{sec:experiments}).
 
-    \item \textbf{Practical benefit demonstration} showing that evolved specialists achieve the theoretical ceiling (100\% on matched tasks), with oracle routing unlocking +64.2pp $\pm$ 2.3pp improvement and 5--7 task break-even (Section~\ref{sec:realworld}).
+    \item \textbf{Practical benefit demonstration} showing that evolved specialists achieve the theoretical ceiling (100\% on matched tasks), with oracle routing unlocking +64.2\% $\pm$ 2.3\% improvement and 5--7 task break-even (Section~\ref{sec:realworld}).
 \end{enumerate}
 
 % =============================================================================
@@ -333,15 +333,15 @@ To isolate the effect of strategy content, we compare four prompt conditions:
 \toprule
 \textbf{Condition} & \textbf{Accuracy} & \textbf{$\Delta$ vs Correct} \\
 \midrule
-No Prompt (empty) & 5.0\% & $-$95.0pp \\
-Random Prompt & 15.0\% & $-$85.0pp \\
-Wrong Rule Prompt & 20.0\% & $-$80.0pp \\
+No Prompt (empty) & 5.0\% & $-$95.0\% \\
+Random Prompt & 15.0\% & $-$85.0\% \\
+Wrong Rule Prompt & 20.0\% & $-$80.0\% \\
 \textbf{Correct Rule Prompt} & \textbf{100.0\%} & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\noindent The 95pp gap between correct and no-prompt conditions confirms that strategy content---not prompt presence---drives performance.
+\noindent The 95\% gap between correct and no-prompt conditions confirms that strategy content---not prompt presence---drives performance.
 
 \subsection{Cross-LLM Validation}
 
@@ -395,7 +395,7 @@ We compare specialized populations against single generalist agents across five 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/fig4_practical_benefit.pdf}
-\caption{\textbf{Practical benefit of specialization.} Oracle routing achieves 100\% accuracy---a +64.2pp improvement over the single generalist baseline (35.8\%). This demonstrates the maximum value extractable from correct task-specialist matching at no additional API cost.}
+\caption{\textbf{Practical benefit of specialization.} Oracle routing achieves 100\% accuracy---a +64.2\% improvement over the single generalist baseline (35.8\%). This demonstrates the maximum value extractable from correct task-specialist matching at no additional API cost.}
 \label{fig:practical}
 \end{figure}
 
@@ -408,9 +408,9 @@ We compare specialized populations against single generalist agents across five 
 \textbf{Condition} & \textbf{Accuracy} & \textbf{API Calls} & \textbf{$\Delta$} \\
 \midrule
 SINGLE\_GENERALIST & 35.8\% & 24 & -- \\
-\textbf{ORACLE\_ROUTING} & \textbf{100.0\%} & 24 & \textbf{+64.2pp} \\
-CONFIDENCE\_ROUTING & 41.7\% & 216 & +5.9pp \\
-ENSEMBLE & 42.5\% & 192 & +6.7pp \\
+\textbf{ORACLE\_ROUTING} & \textbf{100.0\%} & 24 & \textbf{+64.2\%} \\
+CONFIDENCE\_ROUTING & 41.7\% & 216 & +5.9\% \\
+ENSEMBLE & 42.5\% & 192 & +6.7\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -421,7 +421,7 @@ ENSEMBLE & 42.5\% & 192 & +6.7pp \\
     \item Prompts \textbf{correctly transfer} the full rule strategy to the LLM
     \item The specialization mechanism produces \textbf{deterministically solvable} experts
 \end{enumerate}
-The +64.2pp $\pm$ 2.3pp improvement ($n=5$, 95\% CI: [61.3, 67.0]) represents the \textbf{maximum extractable value} from correct task-specialist matching---oracle routing unlocks perfect performance at no additional API cost.
+The +64.2\% $\pm$ 2.3\% improvement ($n=5$, 95\% CI: [61.3, 67.0]) represents the \textbf{maximum extractable value} from correct task-specialist matching---oracle routing unlocks perfect performance at no additional API cost.
 
 \subsection{Cost-Benefit Analysis}
 
@@ -449,7 +449,7 @@ We identify several limitations that contextualize our contributions and suggest
 
 \paragraph{Scientific Limitations.} First, \textit{synthetic-to-real transfer} is limited: the specialized strategies our agents develop are inherently rule-specific and do not directly transfer to real-world tasks. However, our causality validation experiments confirm that the \textit{mechanism} itself generalizes across task domains---what transfers is the competitive selection process, not the specific strategies. Second, our experiments reveal a \textit{carrying capacity} phenomenon: convergence slows significantly when the population size exceeds approximately $N > 3R$ agents (see Appendix~\ref{app:scalability}). For our 8-rule setup, we recommend $N \leq 24$ for practical applications. Third, our current mechanism requires a \textit{fixed niche structure}---task categories must be pre-defined. Developing mechanisms for dynamic niche discovery, where the system identifies and creates new specializations autonomously, remains an important direction for future research.
 
-\paragraph{Deployment Limitations.} In practice, the value of specialization depends critically on the \textit{routing mechanism}. Specialists achieve perfect accuracy only on matched tasks; oracle routing (+64.2pp) represents the theoretical ceiling, while practical routing methods provide approximations. The \textit{training cost} of approximately 9,600 API calls represents an upfront investment that amortizes after 5--7 task cycles. Additionally, \textit{model-specific tuning} may be required when deploying across different LLM providers, as optimal hyperparameters can vary (see Appendix~\ref{app:fitness}). Finally, ensemble routing methods involve \textit{latency tradeoffs}: while ensemble approaches can achieve improved accuracy, they require $R$ parallel API calls per task.
+\paragraph{Deployment Limitations.} In practice, the value of specialization depends critically on the \textit{routing mechanism}. Specialists achieve perfect accuracy only on matched tasks; oracle routing (+64.2\%) represents the theoretical ceiling, while practical routing methods provide approximations. The \textit{training cost} of approximately 9,600 API calls represents an upfront investment that amortizes after 5--7 task cycles. Additionally, \textit{model-specific tuning} may be required when deploying across different LLM providers, as optimal hyperparameters can vary (see Appendix~\ref{app:fitness}). Finally, ensemble routing methods involve \textit{latency tradeoffs}: while ensemble approaches can achieve improved accuracy, they require $R$ parallel API calls per task.
 
 % =============================================================================
 % SECTION 8: CONCLUSION
@@ -458,7 +458,7 @@ We identify several limitations that contextualize our contributions and suggest
 
 We have demonstrated that LLM agent populations can develop specialized preferences through competitive selection alone, without gradient-based training or explicit reward shaping. Through rigorous experimentation across 10 independent seeds using a unified model configuration, we established that evolved prompts \textit{causally determine} performance differences---achieving a 70.7\% causality validation rate with Cohen's $d = 2.66$, representing a ``huge'' effect by statistical standards.
 
-Our practical benefit experiments reveal that this specialization is \textit{complete} rather than partial: evolved specialists achieve the theoretical ceiling of 100\% accuracy on matched tasks across all five trials. This finding validates that the competitive selection mechanism produces deterministically-solvable experts with fully-encoded rule knowledge. Oracle routing unlocks this potential, providing a +64.2pp $\pm$ 2.3pp improvement over generalist baselines (95\% CI: [61.3, 67.0]) with rapid payback after only 5--7 task cycles.
+Our practical benefit experiments reveal that this specialization is \textit{complete} rather than partial: evolved specialists achieve the theoretical ceiling of 100\% accuracy on matched tasks across all five trials. This finding validates that the competitive selection mechanism produces deterministically-solvable experts with fully-encoded rule knowledge. Oracle routing unlocks this potential, providing a +64.2\% $\pm$ 2.3\% improvement over generalist baselines (95\% CI: [61.3, 67.0]) with rapid payback after only 5--7 task cycles.
 
 This work establishes prompt-based specialization as a viable paradigm for creating diverse, complementary LLM agent populations without modifying model weights. The approach is transparent (strategies are human-readable), transferable (prompts work across model instances), and cost-effective (free-tier API usage). Future work should explore two promising directions: (1) \textit{dynamic niche discovery}, where the system autonomously identifies and creates new specialization categories, and (2) \textit{learned routing mechanisms} that can approximate oracle routing performance without requiring ground-truth task labels.
 

@@ -53,7 +53,7 @@ We demonstrate that populations of initially identical LLM agents can develop sp
 1. **First causal demonstration** of prompt-based specialization: **70.7% causality rate** (95% CI: [68.3%, 73.1%])
 2. **Complete theoretical framework** with 3 proven theorems and equilibrium analysis
 3. **Complete specialization validated**: Evolved specialists achieve **theoretical ceiling (100%)** on matched tasks
-4. **Maximum value unlocked**: Oracle routing yields **+64.2pp ± 2.3pp** improvement (n=5, 95% CI: [61.3, 67.0]) with **5-7 task break-even**
+4. **Maximum value unlocked**: Oracle routing yields **+64.2% ± 2.3%** improvement (n=5, 95% CI: [61.3, 67.0]) with **5-7 task break-even**
 5. **Cross-LLM validation**: Mechanism works across Gemini, GPT-4, and Claude
 
 ---
@@ -110,14 +110,14 @@ We demonstrate that populations of initially identical LLM agents can develop sp
   <img src="paper/figures/fig4_practical_benefit.png" alt="Practical Benefit" width="700"/>
 </p>
 
-<p align="center"><i>Figure: Specialists with oracle routing achieve 100% accuracy — a +64.2pp improvement over generalists.</i></p>
+<p align="center"><i>Figure: Specialists with oracle routing achieve 100% accuracy — a +64.2% improvement over generalists.</i></p>
 
 | Condition | Accuracy | Improvement |
 |-----------|----------|-------------|
 | Single Generalist | 35.8% | -- |
-| **Oracle Routing** | **100.0%** | **+64.2pp** |
-| Confidence Routing | 41.7% | +5.9pp |
-| Ensemble | 42.5% | +6.7pp |
+| **Oracle Routing** | **100.0%** | **+64.2%** |
+| Confidence Routing | 41.7% | +5.9% |
+| Ensemble | 42.5% | +6.7% |
 
 ### 💰 Cost-Benefit Analysis
 
@@ -126,7 +126,7 @@ We demonstrate that populations of initially identical LLM agents can develop sp
 | Training Cost | ~$0.00 (free tier) |
 | Break-Even Point | **5-7 tasks** |
 | Specialist Ceiling | **100%** on matched tasks |
-| Routing Value Unlocked | **+64.2pp ± 2.3pp** (Oracle, n=5) |
+| Routing Value Unlocked | **+64.2% ± 2.3%** (Oracle, n=5) |
 | ROI | Excellent |
 
 ### 🎯 Why 100% Oracle Accuracy Validates Our Thesis
@@ -139,7 +139,7 @@ The **100% accuracy** across all trials is **validation**, not a limitation:
 | Prompts **correctly transfer** rules | The mechanism works as designed |
 | Competitive selection produces **deterministically solvable** experts | Complete specialization achieved |
 
-> **Key Insight**: The +64.2pp improvement represents the **maximum extractable value** from correct task-specialist matching. Just as a hummingbird on its co-evolved flower gets nectar every time, a perfectly matched specialist achieves ceiling performance.
+> **Key Insight**: The +64.2% improvement represents the **maximum extractable value** from correct task-specialist matching. Just as a hummingbird on its co-evolved flower gets nectar every time, a perfectly matched specialist achieves ceiling performance.
 
 ---
 
@@ -186,7 +186,7 @@ We provide a complete theoretical framework with three proven theorems:
 
 **Why generalists stay at ~36%**: Without rule knowledge, the LLM must guess among 3-4 options → near-random performance.
 
-**The +64pp gap = complete specialization validated.**
+**The +64% gap = complete specialization validated.**
 
 See `src/genesis/theory.py` for full proofs.
 

@@ -145,7 +145,7 @@ University of Pennsylvania\\
 \begin{abstract}
 This document provides an exhaustive, ground-up explanation of \textbf{emergent preference specialization} in LLM agent populations. We combine rigorous mathematical treatment with intuitive explanations, worked examples, and visualizations. The document is designed for readers with a strong mathematical background who want to understand every detail of how and why LLM agents spontaneously develop specialized preferences through competitive selection.
 
-\textbf{Key Finding:} Evolved specialists achieve the \textbf{theoretical performance ceiling (100\%)} on matched tasks---demonstrating complete, not partial, specialization. Oracle routing unlocks this value, yielding \textbf{+64.2pp $\pm$ 2.3pp improvement} over generalist baseline ($n=5$, 95\% CI: [61.3, 67.0]). This represents the \textit{maximum extractable value} from correct task-specialist matching.
+\textbf{Key Finding:} Evolved specialists achieve the \textbf{theoretical performance ceiling (100\%)} on matched tasks---demonstrating complete, not partial, specialization. Oracle routing unlocks this value, yielding \textbf{+64.2\% $\pm$ 2.3\% improvement} over generalist baseline ($n=5$, 95\% CI: [61.3, 67.0]). This represents the \textit{maximum extractable value} from correct task-specialist matching.
 
 \textbf{Prerequisites:} Basic probability theory, information theory fundamentals, and familiarity with LLMs. All advanced concepts (fitness sharing, Thompson Sampling, Markov chains) are developed from first principles.
 
@@ -361,13 +361,13 @@ How do we \textit{prove} that our agents have preference (not capability)? Throu
 With Full Strategy Prompt & 95\% & High performance with guidance \\
 Without Strategy Prompt & 30\% & Near-random without guidance \\
 \midrule
-\textbf{Performance Drop} & \textbf{65pp} & Proves it's \textit{preference} \\
+\textbf{Performance Drop} & \textbf{65\%} & Proves it's \textit{preference} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{warning}
-If the 65pp drop did NOT occur---if the agent performed equally with or without the prompt---that would prove the specialization was \textbf{capability} (learned into weights, perhaps through exposure during pretraining). Our large drop confirms it's \textbf{preference}.
+If the 65\% drop did NOT occur---if the agent performed equally with or without the prompt---that would prove the specialization was \textbf{capability} (learned into weights, perhaps through exposure during pretraining). Our large drop confirms it's \textbf{preference}.
 \end{warning}
 
 % ----------------------------------------------------------------------------
@@ -433,7 +433,7 @@ Agent 7 didn't \textit{choose} to specialize in RHYME. Through random initial se
 \midrule
 Causality Rate & 70.7\% & Prompts \textit{cause} (not correlate with) performance \\
 Cohen's $d$ & 2.66 & ``Huge'' effect size ($>3\times$ the ``large'' threshold) \\
-Accuracy Gain & +64.2pp $\pm$ 2.3pp & Specialists reach theoretical ceiling (100\%) \\
+Accuracy Gain & +64.2\% $\pm$ 2.3\% & Specialists reach theoretical ceiling (100\%) \\
 Break-even & 5-7 tasks & Training investment pays off almost immediately \\
 Cross-LLM & 3 providers & Mechanism is model-agnostic \\
 \bottomrule
@@ -463,7 +463,7 @@ Cross-LLM & 3 providers & Mechanism is model-agnostic \\
     };
 
     % Arrow
-    \draw[->, ultra thick, blue!70!black] (before) -- node[above, font=\bfseries] {+64.2pp} node[below, font=\small] {Oracle routing} (after);
+    \draw[->, ultra thick, blue!70!black] (before) -- node[above, font=\bfseries] {+64.2\%} node[below, font=\small] {Oracle routing} (after);
 \end{tikzpicture}
 \end{center}
 
@@ -476,7 +476,7 @@ The perfect accuracy is not trivial---it's \textit{validation} of complete speci
     \item Prompts \textbf{correctly transfer} the full strategy to the LLM
     \item Competitive selection produces \textbf{deterministically solvable} experts
 \end{enumerate}
-The +64.2pp represents the \textbf{maximum extractable value} from correct task-specialist matching.
+The +64.2\% represents the \textbf{maximum extractable value} from correct task-specialist matching.
 \end{keypoint}
 
 \subsection{Cost-Benefit at a Glance}
@@ -1966,7 +1966,7 @@ Cohen's $d$ & 2.66 & Huge effect \\
 \end{keypoint}
 
 \begin{whyitmatters}
-If specialists were just ``lucky'' (happened to be assigned to rules they were already good at), the off-diagonal performance would be similar to diagonal. The 70.7pp gap proves otherwise.
+If specialists were just ``lucky'' (happened to be assigned to rules they were already good at), the off-diagonal performance would be similar to diagonal. The 70.7\% gap proves otherwise.
 \end{whyitmatters}
 
 % ----------------------------------------------------------------------------
@@ -2011,7 +2011,7 @@ We report 95\% confidence intervals for all claims:
 \textbf{Metric} & \textbf{Point Estimate} & \textbf{95\% CI} \\
 \midrule
 Causality Rate & 70.7\% & [68.3\%, 73.1\%] \\
-Practical Benefit & +64.2pp & [61.3pp, 67.0pp] \\
+Practical Benefit & +64.2\% & [61.3\%, 67.0\%] \\
 Diagonal Accuracy & 91\% & [88\%, 94\%] \\
 Off-Diagonal Accuracy & 20\% & [17\%, 23\%] \\
 \bottomrule
@@ -2054,16 +2054,16 @@ We have ample power to detect the observed effect.
 \toprule
 \textbf{Condition} & \textbf{Accuracy} & \textbf{$\Delta$ vs CORRECT} & \textbf{Interpretation} \\
 \midrule
-NO\_PROMPT & 5.0\% & -95.0pp & Random guessing \\
-RANDOM\_PROMPT & 15.0\% & -85.0pp & Wrong strategy hurts \\
-WRONG\_PROMPT & 20.0\% & -80.0pp & Mismatched specialty \\
+NO\_PROMPT & 5.0\% & -95.0\% & Random guessing \\
+RANDOM\_PROMPT & 15.0\% & -85.0\% & Wrong strategy hurts \\
+WRONG\_PROMPT & 20.0\% & -80.0\% & Mismatched specialty \\
 \rowcolor{green!10} \textbf{CORRECT\_PROMPT} & \textbf{100.0\%} & -- & Perfect with guidance \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{keypoint}
-The 95pp gap between NO\_PROMPT (5\%) and CORRECT\_PROMPT (100\%) proves that:
+The 95\% gap between NO\_PROMPT (5\%) and CORRECT\_PROMPT (100\%) proves that:
 \begin{enumerate}
     \item The LLM cannot solve these tasks without guidance
     \item The evolved prompts contain essential knowledge
@@ -2202,7 +2202,7 @@ We compare five approaches to using specialized populations:
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/fig4_practical_benefit.pdf}
-\caption{\textbf{Practical benefit comparison.} Oracle routing achieves 100\% accuracy, demonstrating that evolved specialists reach the theoretical ceiling. The +64.2pp improvement over the generalist baseline represents the maximum extractable value from correct routing.}
+\caption{\textbf{Practical benefit comparison.} Oracle routing achieves 100\% accuracy, demonstrating that evolved specialists reach the theoretical ceiling. The +64.2\% improvement over the generalist baseline represents the maximum extractable value from correct routing.}
 \label{fig:practical-benefit}
 \end{figure}
 
@@ -2214,9 +2214,9 @@ We compare five approaches to using specialized populations:
 \textbf{Condition} & \textbf{Accuracy} & \textbf{API Calls} & \textbf{Improvement} \\
 \midrule
 SINGLE\_GENERALIST & 35.8\% & 24 & -- \\
-\rowcolor{green!10} \textbf{ORACLE\_ROUTING} & \textbf{100.0\%} & 24 & \textbf{+64.2pp} \\
-CONFIDENCE\_ROUTING & 41.7\% & 216 & +5.9pp \\
-ENSEMBLE & 29.2\% & 192 & -6.6pp \\
+\rowcolor{green!10} \textbf{ORACLE\_ROUTING} & \textbf{100.0\%} & 24 & \textbf{+64.2\%} \\
+CONFIDENCE\_ROUTING & 41.7\% & 216 & +5.9\% \\
+ENSEMBLE & 29.2\% & 192 & -6.6\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2289,15 +2289,16 @@ If training costs 9,600 API calls and each correctly-routed task saves $X$ (e.g.
 
 \begin{table}[H]
 \centering
-\caption{Recommended settings by use case.}
+\caption{Recommended settings by use case. Medium (8 categories) was validated experimentally; others are theoretical extrapolations based on the $N \approx 3R$ rule.}
 \begin{tabular}{lccc}
 \toprule
 \textbf{Use Case} & \textbf{Population $N$} & \textbf{Rules $R$} & \textbf{Generations} \\
 \midrule
 Small (5 categories) & 12 & 5 & 100 \\
-Medium (8 categories) & 24 & 8 & 100 \\
-Large (16 categories) & 48 & 16 & 200 \\
+\rowcolor{green!10} Medium (8 categories) & 24 & 8 & 100 \\
+Large (16 categories)$^*$ & 48 & 16 & 200 \\
 \bottomrule
+\multicolumn{4}{l}{\footnotesize $^*$Theoretical extrapolation, not experimentally validated.}
 \end{tabular}
 \end{table}
 
@@ -2599,7 +2600,7 @@ Swap Test & Testing specialist on their own vs. other rules \\
 
     \item \textbf{Q: What if I have more than 8 categories?}
 
-    A: Scale up! Use $N \approx 3R$ agents and proportionally more generations. We tested up to $R=16$ with $N=48$.
+    A: Scale up! Use $N \approx 3R$ agents and proportionally more generations. Our experiments validated up to $N=48$ agents with $R=8$ rules; the theory extends to larger configurations.
 
     \item \textbf{Q: Does this work with GPT-4?}
 
@@ -2672,7 +2673,7 @@ Run 4 & 37.5\% & 100.0\% & 41.7\% & 29.2\% \\
 Run 5 & 37.5\% & 100.0\% & 41.7\% & 29.2\% \\
 \midrule
 \textbf{Mean} & 35.8\% & 100.0\% & 41.7\% & 29.2\% \\
-\textbf{Oracle Improvement} & -- & +64.2pp & +5.9pp & -6.6pp \\
+\textbf{Oracle Improvement} & -- & +64.2\% & +5.9\% & -6.6\% \\
 \bottomrule
 \end{tabular}
 \end{table}
