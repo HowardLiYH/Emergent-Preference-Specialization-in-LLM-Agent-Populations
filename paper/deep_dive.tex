@@ -233,7 +233,7 @@ Large language models face a fundamental tension:
 
     % Generalist curve (broad coverage, peaks in middle)
     \draw[blue, thick, domain=0:4.5] plot (\x, {2.8 - 0.12*(\x-2.5)^2});
-    
+
     % Specialist line (increases with specialization)
     \draw[red, thick, domain=0:4.5] plot (\x, {0.5 + 0.5*\x});
 
@@ -349,7 +349,7 @@ Because specialization is \textbf{preference}:
 
 \subsection{The Falsification Experiment}
 
-How do we \textit{prove} that our agents have preference (not capability)? Through a falsification experiment:
+How do we \textit{prove} that our agents have preference (not capability)? Through a falsification experiment. We take a fully-evolved specialist and test it with and without its accumulated strategy prompt:
 
 \begin{table}[H]
 \centering
@@ -358,7 +358,7 @@ How do we \textit{prove} that our agents have preference (not capability)? Throu
 \toprule
 \textbf{Condition} & \textbf{Accuracy} & \textbf{Interpretation} \\
 \midrule
-With L3 Strategy Prompt & 95\% & High performance with guidance \\
+With Full Strategy Prompt & 95\% & High performance with guidance \\
 Without Strategy Prompt & 30\% & Near-random without guidance \\
 \midrule
 \textbf{Performance Drop} & \textbf{65pp} & Proves it's \textit{preference} \\
