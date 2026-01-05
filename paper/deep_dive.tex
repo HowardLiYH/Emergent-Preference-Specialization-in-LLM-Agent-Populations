@@ -1382,25 +1382,39 @@ Consider a RHYME task: ``Which word rhymes with CAT? Options: A) DOG, B) HAT, C)
 \end{itemize}
 
 \begin{center}
-\begin{tikzpicture}[scale=0.8]
+\begin{tikzpicture}[scale=0.9]
     % L0 distribution
     \begin{scope}[xshift=0cm]
-        \draw[->] (0,0) -- (4.5,0) node[right, font=\small] {conf};
-        \draw[->] (0,0) -- (0,2.5) node[above, font=\small] {$P$};
-        \draw[blue, thick, domain=0.5:3.5, samples=50] plot (\x, {1.5*exp(-0.5*(\x-2)^2)});
-        \node[below, font=\small] at (2, -0.3) {L0: wide, uncertain};
-        \draw[dashed] (2,0) -- (2,1.5);
-        \node[font=\scriptsize] at (2, -0.7) {mean $\approx$ 50\%};
+        \draw[->] (0,0) -- (5,0) node[right, font=\small] {confidence};
+        \draw[->] (0,0) -- (0,2.8) node[above, font=\small] {$P$};
+        % Axis labels
+        \node[below, font=\scriptsize] at (1, -0.1) {30\%};
+        \node[below, font=\scriptsize] at (2.5, -0.1) {50\%};
+        \node[below, font=\scriptsize] at (4, -0.1) {70\%};
+        % Distribution curve
+        \draw[blue, thick, domain=0.5:4.5, samples=50] plot (\x, {1.8*exp(-0.4*(\x-2.5)^2)});
+        % Mean line
+        \draw[blue, dashed] (2.5,0) -- (2.5,1.8);
+        % Title below
+        \node[below, font=\small\bfseries, blue] at (2.5, -0.6) {L0: Wide, Uncertain};
+        \node[below, font=\scriptsize] at (2.5, -1.0) {(mean $\approx$ 50\%)};
     \end{scope}
-    
+
     % L3 distribution
-    \begin{scope}[xshift=7cm]
-        \draw[->] (0,0) -- (4.5,0) node[right, font=\small] {conf};
-        \draw[->] (0,0) -- (0,2.5) node[above, font=\small] {$P$};
-        \draw[red, thick, domain=2.5:4, samples=50] plot (\x, {2.2*exp(-2*(\x-3.5)^2)});
-        \node[below, font=\small] at (2, -0.3) {L3: narrow, confident};
-        \draw[dashed] (3.5,0) -- (3.5,2.2);
-        \node[font=\scriptsize] at (2, -0.7) {mean $\approx$ 90\%};
+    \begin{scope}[xshift=8cm]
+        \draw[->] (0,0) -- (5,0) node[right, font=\small] {confidence};
+        \draw[->] (0,0) -- (0,2.8) node[above, font=\small] {$P$};
+        % Axis labels
+        \node[below, font=\scriptsize] at (1, -0.1) {70\%};
+        \node[below, font=\scriptsize] at (2.5, -0.1) {85\%};
+        \node[below, font=\scriptsize] at (4, -0.1) {100\%};
+        % Distribution curve (narrow, shifted right)
+        \draw[red, thick, domain=1.5:4.5, samples=50] plot (\x, {2.5*exp(-1.5*(\x-3.5)^2)});
+        % Mean line
+        \draw[red, dashed] (3.5,0) -- (3.5,2.5);
+        % Title below
+        \node[below, font=\small\bfseries, red] at (2.5, -0.6) {L3: Narrow, Confident};
+        \node[below, font=\scriptsize] at (2.5, -1.0) {(mean $\approx$ 92\%)};
     \end{scope}
 \end{tikzpicture}
 \end{center}
