@@ -1679,32 +1679,84 @@ Agent 5's advantage is \textbf{earned through previous wins}, not randomly assig
 Early wins create advantages that compound over time, leading to niche dominance. This is why specialization \textit{emerges}---it's not designed in, but arises from competitive dynamics.
 \end{keypoint}
 
-\begin{remark}[Common Confusion: Who Chooses the Rule?]
-\textbf{The agent does NOT choose which rule to compete on.} The environment randomly selects a rule each round, and \textit{all} agents must compete on that rule.
+\subsubsection{Common Confusion: Who Chooses the Rule?}
 
-\textbf{How prompt assignment works:}
-\begin{enumerate}
-    \item Environment randomly picks a rule $r$ for this round (e.g., RHYME)
-    \item Each agent receives the prompt for their level \textit{in that specific rule}: $\text{prompt}_i = \text{TEMPLATES}[r][s_{i,r}]$
-    \item Agents compete; winner gets $s_{i,r} \gets s_{i,r} + 1$
-\end{enumerate}
+There is a common misunderstanding about how prompt assignment works. Let us clarify completely.
 
-\textbf{Example:} Agent 7 has strategy vector $\mathbf{s} = [3, 0, 0, 2, 0, 0, 0, 0]$ (RHYME=3, VOWEL=2, rest=0)
+\begin{warning}[Critical Point]
+\textbf{The agent does NOT choose which rule to compete on.} The \textbf{environment} randomly selects a rule each round, and \textit{all} agents must compete on that rule---whether they're specialists in it or not.
+\end{warning}
+
+\textbf{The round structure:}
+\begin{verbatim}
+Round 1:  Environment picks RHYME      → All agents compete on RHYME
+Round 2:  Environment picks POSITION   → All agents compete on POSITION
+Round 3:  Environment picks ANIMATE    → All agents compete on ANIMATE
+...
+\end{verbatim}
+
+\textbf{How prompts are assigned:}
+
+Given an agent with strategy vector $\mathbf{s} = [1, 0, 0, 0, 0, 0, 0, 0]$ (Level 1 in RHYME, Level 0 everywhere else):
 
 \begin{center}
-\begin{tabular}{lcl}
+\begin{tabular}{ll}
 \toprule
-\textbf{Environment picks...} & \textbf{Agent 7 gets...} & \textbf{Result} \\
+\textbf{If environment picks...} & \textbf{Agent gets prompt for...} \\
 \midrule
-RHYME (rule 1) & L3 prompt (specialist!) & Likely wins \\
-POSITION (rule 2) & L0 prompt (no hint) & Probably loses \\
-VOWEL (rule 4) & L2 prompt (partial) & Might win \\
+RHYME (rule 1) & \textbf{L1} (their level in RHYME) \\
+POSITION (rule 2) & \textbf{L0} (no hint---they have no expertise here) \\
+ANIMATE (rule 3) & \textbf{L0} (no hint) \\
+Any other rule & \textbf{L0} (no hint) \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\textbf{Key insight:} Specialists \textit{dominate when their rule comes up}, but are disadvantaged when other rules are tested. This is why the population needs \textbf{multiple specialists} covering all rules---no single agent can win everything.
-\end{remark}
+\textbf{Answering specific questions:}
+
+\begin{itemize}
+    \item \textbf{Q: If $\mathbf{s} = [0,0,0,0,0,0,0,0]$, what prompt do they get?}
+    \begin{itemize}
+        \item Depends which rule the environment selects
+        \item They get L0 (no hint) for \textit{all} rules because they're a generalist
+    \end{itemize}
+
+    \item \textbf{Q: If $\mathbf{s} = [1,0,0,0,0,0,0,0]$, do they always get L1?}
+    \begin{itemize}
+        \item \textbf{NO!} Only if the environment picks rule 1 (RHYME)
+        \item If environment picks rule 2 (POSITION), they get L0 for that round
+        \item They don't choose---they must compete on whatever rule comes up
+    \end{itemize}
+\end{itemize}
+
+\textbf{Extended example across multiple rounds:}
+
+Consider Agent 7 with $\mathbf{s} = [3, 0, 0, 2, 0, 0, 0, 0]$ (RHYME specialist at L3, partial VOWEL at L2):
+
+\begin{center}
+\begin{tabular}{lllc}
+\toprule
+\textbf{Round} & \textbf{Environment picks} & \textbf{Agent 7's prompt} & \textbf{Outcome} \\
+\midrule
+Round 15 & RHYME & L3 (full specialist) & \textcolor{green!60!black}{\textbf{Wins}} \\
+Round 16 & POSITION & L0 (no hint) & \textcolor{red!60!black}{Loses} \\
+Round 17 & VOWEL & L2 (partial strategy) & \textcolor{orange!80!black}{Maybe wins} \\
+Round 18 & ANIMATE & L0 (no hint) & \textcolor{red!60!black}{Loses} \\
+Round 19 & RHYME & L3 (full specialist) & \textcolor{green!60!black}{\textbf{Wins}} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{keypoint}[Why Multiple Specialists Are Needed]
+This mechanism explains \textbf{why the population needs diverse specialists}:
+\begin{itemize}
+    \item A RHYME specialist \textit{dominates} when RHYME is selected
+    \item But they \textit{lose} when POSITION, ANIMATE, etc. are selected
+    \item No single agent can win everything
+    \item The population naturally evolves specialists for each rule to ``cover'' all niches
+\end{itemize}
+This is the ecological parallel: just as no single species can thrive in all environments, no single agent can dominate all rules.
+\end{keypoint}
 
 % ============================================================================
 \subsection{Validity of Pre-Authored Prompts}
