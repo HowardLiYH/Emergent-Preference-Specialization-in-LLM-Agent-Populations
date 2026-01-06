@@ -2426,6 +2426,39 @@ The underlying mathematical structure---and the guarantees it provides---are the
 \end{tabular}
 \end{center}
 
+\begin{warning}[Two Different ``Random Rule'' Selections---Don't Confuse Them!]
+The algorithm has \textbf{two places} where a random rule is selected. They serve completely different purposes:
+
+\begin{center}
+\begin{tabular}{lp{3.5cm}p{3.5cm}p{3.5cm}}
+\toprule
+& \textbf{Line 4 (Initialization)} & \textbf{Line 9 (Evolution)} \\
+\midrule
+\textbf{Code} & \texttt{RandomChoice} & \texttt{UniformSample} \\
+\textbf{When} & Once at startup & Every round \\
+\textbf{Inside loop} & FOR each agent $i$ & FOR each generation $t$ \\
+\textbf{Purpose} & Seed THIS agent's starting point & Pick which rule ALL agents compete on \\
+\textbf{Affects} & One agent's initial state & All agents this round \\
+\textbf{Analogy} & ``Birth advantage'' & ``Today's test topic'' \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Concrete example:}
+\begin{itemize}
+    \item \textbf{Initialization (Line 4)}: Agent 1 picks RHYME, Agent 2 picks POSITION, Agent 3 picks RHYME...
+    \begin{itemize}
+        \item Each agent gets their OWN random seed (inside agent loop)
+        \item Result: $\mathbf{s}_1 = [1,0,0,0,0,0,0,0]$, $\mathbf{s}_2 = [0,1,0,0,0,0,0,0]$, $\mathbf{s}_3 = [1,0,0,0,0,0,0,0]$
+    \end{itemize}
+    \item \textbf{Round 1 (Line 9)}: Environment picks ANIMATE $\to$ ALL 12 agents compete on ANIMATE
+    \item \textbf{Round 2 (Line 9)}: Environment picks RHYME $\to$ ALL 12 agents compete on RHYME
+    \item \textbf{Round 3 (Line 9)}: Environment picks POSITION $\to$ ALL 12 agents compete on POSITION
+\end{itemize}
+
+This is analogous to \textbf{Paper 1's regime selection}: the environment (not the agents) decides which regime/rule is active each round.
+\end{warning}
+
 \begin{remark}[Why Seeded Initialization?]
 This is called \textbf{``Option B+''} in the codebase (see \texttt{create\_population()} in \texttt{preference\_agent.py}).
 
