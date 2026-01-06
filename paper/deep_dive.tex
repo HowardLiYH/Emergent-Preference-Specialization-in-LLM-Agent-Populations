@@ -1345,6 +1345,57 @@ The agent's \textbf{belief strength} is the posterior mean: $\mathbb{E}[\theta_m
 The mechanism is the same; only the substrate differs.
 \end{intuition}
 
+\begin{remark}[Niche Affinity vs. Strategy Vector: A Clarification]
+A common question: ``Is the \textbf{affinity vector} in Paper 1 the same as the \textbf{strategy vector} in Paper 2?''
+
+\textbf{Answer}: Related, but Paper 1 has \textit{two} state variables while Paper 2 combines them into \textit{one}.
+
+\textbf{Paper 1's Two State Variables:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Variable} & \textbf{Notation} & \textbf{Meaning} \\
+\midrule
+Method Beliefs & $\text{Beta}(\alpha_m, \beta_m)$ & ``How good is method $m$?'' \\
+Niche Affinity & $\rho = [\rho_1, \ldots, \rho_K]$ & ``Which regime do I prefer?'' (probability dist.) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Paper 2's Single State Variable:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Variable} & \textbf{Notation} & \textbf{Meaning} \\
+\midrule
+Strategy Vector & $\mathbf{s} = [s_1, \ldots, s_R]$ & ``What level am I at for each rule?'' \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{The Mapping:}
+\begin{itemize}
+    \item \textbf{Method Beliefs (α, β)} $\leftrightarrow$ \textbf{Strategy Levels ($s_r$)}: Both represent accumulated expertise
+    \item \textbf{Niche Affinity (ρ)} $\leftrightarrow$ \textbf{Derived from s}: Agent specializes where $s_r$ is highest
+\end{itemize}
+
+\textbf{Key Differences:}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Aspect} & \textbf{Paper 1 Affinity (ρ)} & \textbf{Paper 2 Strategy (s)} \\
+\midrule
+Type & Probability distribution & Integer vector \\
+Values & $\rho_r \in [0,1]$, $\sum \rho = 1$ & $s_r \in \{0,1,2,3\}$ \\
+Normalization & Always sums to 1 & Not normalized \\
+Update rule & Shift probability mass & Increment discrete level \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{In summary}: Paper 2's strategy vector is \textit{simpler}---it combines what Paper 1 splits into beliefs (expertise) and affinity (specialization) into a single discrete vector.
+\end{remark}
+
 \subsection{Implicit vs. Explicit Knowledge: A Concrete Example}
 
 The row \textbf{``Knowledge Representation''} in Table 12 deserves special attention, as it captures the key innovation of Paper 2.
