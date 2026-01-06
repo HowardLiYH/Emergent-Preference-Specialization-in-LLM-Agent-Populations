@@ -4025,7 +4025,7 @@ The seed switching analysis is implemented in:
 for agent in agents:
     initial = agent.seeded_rule  # Rule with L1 at start
     final = max(agent.strategy_levels, key=lambda r: agent.strategy_levels[r])
-    
+
     if initial != final:
         switched += 1  # Agent abandoned initial seed
     else:
@@ -4763,23 +4763,23 @@ Practical Benefit & Measure real-world deployment gains & Specialists 2.3$\times
 
 All experiments are implemented in the \texttt{experiments/} directory:
 
-\begin{lstlisting}[language=bash, caption={Experiment scripts}]
+\begin{verbatim}
 experiments/
-├── exp_preference_main.py      # Main evolution (Phase 1)
-├── exp_phase2_enhanced.py      # Causality test (Phase 2)
-├── exp_exclusivity_ablation.py # Exclusivity ablation
-├── exp_practical_benefit.py    # 5-condition comparison
-├── exp_falsification.py        # Preference vs. capability
-├── exp_cost_benefit.py         # ROI analysis
-├── exp_scalability.py          # Population scaling
-├── exp_seed_switching.py       # Seed switching analysis
-├── exp_mmlu_validation.py      # Real-world validation
-├── exp_rule_validation.py      # Rule-by-rule validation
-├── exp_temperature_all.py      # Temperature sensitivity
-├── exp_fitness_sensitivity.py  # Fitness sharing γ
-├── exp_prompt_length_ablation.py # Prompt length effects
-└── exp_multi_seed.py           # Multi-seed aggregation
-\end{lstlisting}
+  exp_preference_main.py        - Main evolution (Phase 1)
+  exp_phase2_enhanced.py        - Causality test (Phase 2)
+  exp_exclusivity_ablation.py   - Exclusivity ablation
+  exp_practical_benefit.py      - 5-condition comparison
+  exp_falsification.py          - Preference vs. capability
+  exp_cost_benefit.py           - ROI analysis
+  exp_scalability.py            - Population scaling
+  exp_seed_switching.py         - Seed switching analysis
+  exp_mmlu_validation.py        - Real-world validation
+  exp_rule_validation.py        - Rule-by-rule validation
+  exp_temperature_all.py        - Temperature sensitivity
+  exp_fitness_sensitivity.py    - Fitness sharing gamma
+  exp_prompt_length_ablation.py - Prompt length effects
+  exp_multi_seed.py             - Multi-seed aggregation
+\end{verbatim}
 
 \vspace{1cm}
 \begin{center}
