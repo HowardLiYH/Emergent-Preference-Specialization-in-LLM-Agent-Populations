@@ -1540,6 +1540,7 @@ Identical prompts do \textbf{not} produce identical outcomes because:
     \item LLM responses have inherent variability (temperature > 0)
     \item Confidence values differ even for same correctness
     \item Only the \textbf{highest-confidence correct responder} wins
+    \item \textbf{Tie-breaking}: If multiple agents have identical highest confidence, winner is selected \textbf{randomly} (see Section~\ref{sec:distribution-evolution})
     \item This creates differentiation even among equally-equipped agents
 \end{itemize}
 \end{remark}
