@@ -1045,6 +1045,84 @@ Now the RHYME agent gets $11\times$ more expected reward! The gap is amplified.
 
 \textbf{Result:} Agents in crowded niches (POSITION) are incentivized to move to empty niches.
 
+\begin{example}[Step-by-Step: How Fitness Sharing Affects a Single Round]
+Let's trace through \textbf{one complete round} to see exactly when and how fitness sharing applies.
+
+\textbf{Setup:}
+\begin{itemize}
+    \item 12 agents total
+    \item Current specialists: 4 agents at L3 RHYME, 1 agent at L3 POSITION, others still developing
+\end{itemize}
+
+\textbf{Round 47: Environment picks RHYME}
+
+\begin{center}
+\begin{tabular}{clccc}
+\toprule
+\textbf{Step} & \textbf{What Happens} & \textbf{Who} & \textbf{Result} \\
+\midrule
+1 & Generate RHYME task & Environment & Question ready \\
+2 & All 12 agents compete & All agents & Get answers + confidence \\
+3 & Select winner (highest confidence correct) & Agent 5 & Winner! \\
+4 & Check exclusivity & Agent 5 & Can update (not locked elsewhere) \\
+5 & \textbf{Compute fitness sharing penalty} & Agent 5 & $\text{penalty} = 1/\sqrt{4} = 0.5$ \\
+6 & \textbf{Roll the dice} & Agent 5 & random() returns 0.37 \\
+7 & \textbf{Is 0.37 < 0.5?} & Agent 5 & \textcolor{green!60!black}{\textbf{YES!}} Level up! \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Agent 5's level}: L2 $\to$ L3 RHYME (they leveled up!)
+
+\vspace{0.5cm}
+\textbf{Round 48: Environment picks RHYME again}
+
+Same setup, but now Agent 8 wins.
+
+\begin{center}
+\begin{tabular}{clccc}
+\toprule
+\textbf{Step} & \textbf{What Happens} & \textbf{Who} & \textbf{Result} \\
+\midrule
+1--4 & (same as before) & ... & Agent 8 wins \\
+5 & \textbf{Compute penalty} & Agent 8 & $\text{penalty} = 1/\sqrt{5} = 0.45$ \\
+  & (now 5 specialists after Agent 5 leveled up) & & \\
+6 & \textbf{Roll the dice} & Agent 8 & random() returns 0.72 \\
+7 & \textbf{Is 0.72 < 0.45?} & Agent 8 & \textcolor{red!60!black}{\textbf{NO!}} No level up \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Agent 8's level}: L2 $\to$ L2 RHYME (stayed the same---win didn't count!)
+
+\vspace{0.5cm}
+\textbf{Round 49: Environment picks POSITION}
+
+\begin{center}
+\begin{tabular}{clccc}
+\toprule
+\textbf{Step} & \textbf{What Happens} & \textbf{Who} & \textbf{Result} \\
+\midrule
+1--4 & (same as before) & ... & Agent 8 wins \\
+5 & \textbf{Compute penalty} & Agent 8 & $\text{penalty} = 1/\sqrt{1} = 1.0$ \\
+  & (only 1 POSITION specialist!) & & \\
+6 & \textbf{Roll the dice} & Agent 8 & random() returns 0.72 \\
+7 & \textbf{Is 0.72 < 1.0?} & Agent 8 & \textcolor{green!60!black}{\textbf{YES!}} Level up! \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Agent 8's level}: L0 $\to$ L1 POSITION (guaranteed level-up in uncrowded niche!)
+
+\vspace{0.5cm}
+\begin{keypoint}[Key Insight]
+Agent 8 won RHYME but \textbf{didn't level up} (crowded niche, penalty kicked in).\\
+Agent 8 won POSITION and \textbf{did level up} (uncrowded niche, 100\% chance).
+
+This naturally \textbf{pushes agents toward empty niches} without explicit coordination.
+\end{keypoint}
+\end{example}
+
 \subsection{Game-Theoretic Interpretation}
 
 \begin{definition}[Evolutionarily Stable Strategy (ESS)]
