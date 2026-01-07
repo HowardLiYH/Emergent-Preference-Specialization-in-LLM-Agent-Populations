@@ -4278,7 +4278,7 @@ The table in Section 32.2 reports four key metrics. Here's what each one measure
 \toprule
 \textbf{Metric} & \textbf{What It Measures} & \textbf{How to Interpret} \\
 \midrule
-\textbf{Causality Rate} (70.7\%) & 
+\textbf{Causality Rate} (70.7\%) &
 What \% of pairwise comparisons showed specialists performing better on their own rule than on other rules &
 70.7\% of the 560 comparisons (56 per seed $\times$ 10 seeds) passed \\
 \addlinespace
@@ -4338,17 +4338,86 @@ Width (4.8\%) & How precise our estimate is (narrower = better) \\
 
 With power $> 0.99$, if specialization is real, we have a 99\%+ chance of detecting it. We did detect it, so this is strong evidence.
 
-\subsubsection{What Is Holm-Bonferroni Correction?}
+\subsubsection{What Is a Null Hypothesis?}
 
-When you run \textbf{many tests}, some will be ``significant'' by chance (false positives).
+A \textbf{null hypothesis} ($H_0$) is the ``boring'' assumption that \textit{nothing interesting is happening}.
 
-\textbf{Example}: If you run 100 tests at $\alpha = 0.05$, you expect $\sim$5 false positives.
+\begin{center}
+\begin{tabular}{lp{6cm}p{5cm}}
+\toprule
+\textbf{Context} & \textbf{Null Hypothesis ($H_0$)} & \textbf{Alternative ($H_1$)} \\
+\midrule
+Our experiment & ``Prompts have NO effect on performance'' & ``Prompts CAUSE performance differences'' \\
+\addlinespace
+Coin flip & ``The coin is fair (50/50)'' & ``The coin is biased'' \\
+\addlinespace
+Medicine trial & ``The drug has no effect'' & ``The drug works'' \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-Holm-Bonferroni \textbf{adjusts the threshold} to control for this:
+\textbf{Goal}: We try to \textit{reject} the null hypothesis by showing our data is too extreme to occur by chance.
+
+If $p < 0.05$, we say: ``The probability of seeing this data if $H_0$ were true is less than 5\%. So we reject $H_0$.''
+
+\subsubsection{What Is Holm-Bonferroni Correction? (Section 32.3 Explained)}
+
+\textbf{The Problem: Multiple Testing Inflates False Positives}
+
+When you run \textbf{many tests}, some will be ``significant'' by pure chance:
+
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Number of Tests} & \textbf{Expected False Positives} & \textbf{Problem?} \\
+\midrule
+1 test at $\alpha = 0.05$ & 0.05 (5\% chance) & Acceptable \\
+10 tests at $\alpha = 0.05$ & $\sim$0.5 (50\% chance of at least one!) & Risky \\
+100 tests at $\alpha = 0.05$ & $\sim$5 expected false positives & Serious! \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{The Solution: Make the Threshold Stricter}
+
+Holm-Bonferroni correction \textbf{adjusts the significance threshold} based on how many tests you run:
+
+\begin{enumerate}
+    \item \textbf{Sort} all $p$-values from smallest to largest
+    \item \textbf{Compare} each $p$-value against a stricter threshold:
+    \begin{itemize}
+        \item First (smallest) $p$-value must beat $\alpha / m$ (where $m$ = number of tests)
+        \item Second must beat $\alpha / (m-1)$
+        \item And so on...
+    \end{itemize}
+    \item \textbf{Stop} at the first $p$-value that fails
+\end{enumerate}
+
+\textbf{Example}: If we run 10 tests at $\alpha = 0.05$:
 \begin{itemize}
-    \item More tests $\to$ stricter threshold
-    \item Our claims survive this correction $\to$ they're not false positives
+    \item First $p$-value must be $< 0.05/10 = 0.005$ (very strict!)
+    \item Second must be $< 0.05/9 = 0.0056$
+    \item ...and so on
 \end{itemize}
+
+\textbf{Why We Use It}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{What We Tested} & \textbf{Why Correction Needed} \\
+\midrule
+8 rules $\times$ 7 specialists = 56 comparisons & Many tests = high false positive risk \\
+10 seeds $\times$ 56 = 560 total comparisons & Even more tests! \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{keypoint}
+\textbf{Bottom line}: Our claims ``survive Holm-Bonferroni correction'' means:
+
+Even after accounting for the fact that we ran hundreds of tests, our results are \textbf{still statistically significant}. They are NOT false positives caused by running many tests.
+\end{keypoint}
 
 \subsubsection{Why Report All These Statistics?}
 
