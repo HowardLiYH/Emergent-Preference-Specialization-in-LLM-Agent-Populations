@@ -4570,6 +4570,88 @@ The gap varies by model:
 
 This reflects different base capabilities and prompt sensitivity, but the core phenomenon (diagonal $\gg$ off-diagonal) holds universally.
 
+\subsection{Understanding the Cross-LLM Methodology}
+
+\subsubsection{How Was Accuracy Calculated?}
+
+For each model, we tested L3 specialists on all rules:
+
+\begin{center}
+\begin{tabular}{lp{8cm}}
+\toprule
+\textbf{Step} & \textbf{Description} \\
+\midrule
+1 & Create L3 specialist for each rule (e.g., POSITION specialist has L3 in POSITION, L0 elsewhere) \\
+2 & Generate test tasks for each rule \\
+3 & Test each specialist on each rule's tasks \\
+4 & Accuracy = (Correct answers) / (Total tasks) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Result format}: Each cell like ``position\_inverse: 0.67'' means the POSITION specialist got 67\% accuracy on INVERSE tasks.
+
+\subsubsection{How Many Runs Were Done?}
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Aspect} & \textbf{Main Experiment (Gemini)} & \textbf{Cross-LLM (GPT/Claude)} \\
+\midrule
+Rules tested & 8 & 4 \\
+Seeds (independent runs) & 10 & 1 \\
+Tasks per specialist-rule pair & $\sim$5 & $\sim$3 \\
+Total comparisons & 560 & 16 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{warning}[Limitation: Cross-LLM Is Less Rigorous]
+The cross-LLM validation uses:
+\begin{itemize}
+    \item \textbf{Fewer rules} (4 vs 8)---due to API costs
+    \item \textbf{Single seed} (1 vs 10)---no statistical confidence intervals
+    \item \textbf{Fewer tasks} ($\sim$3 vs $\sim$5)---explains fractional values like 0.333, 0.667
+\end{itemize}
+
+The cross-LLM results are \textbf{indicative} (the mechanism generalizes) but not as statistically rigorous as the main Gemini experiment.
+\end{warning}
+
+\subsubsection{Why the Fractional Accuracy Values?}
+
+Values like 0.333 and 0.667 appear because only $\sim$3 tasks were used per test:
+
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Correct out of 3} & \textbf{Accuracy} & \textbf{Displayed Value} \\
+\midrule
+0/3 & 0\% & 0.0 \\
+1/3 & 33.3\% & 0.333 \\
+2/3 & 66.7\% & 0.667 \\
+3/3 & 100\% & 1.0 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{What Do the Diagonal/Off-Diagonal Means Represent?}
+
+\begin{center}
+\begin{tabular}{lp{7cm}c}
+\toprule
+\textbf{Metric} & \textbf{What It Measures} & \textbf{Example (GPT-4o-mini)} \\
+\midrule
+Diagonal mean & Average accuracy when specialist matches task rule & 90\% \\
+Off-diagonal mean & Average accuracy when specialist doesn't match & 37\% \\
+Gap & Diagonal $-$ Off-diagonal & 53\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{keypoint}
+\textbf{The key finding}: All three models show gaps $> 50\%$, confirming the mechanism is model-agnostic. The variation in off-diagonal (20\% Gemini vs 45\% Claude) reflects different models' base capabilities, but the \textit{relative} advantage of matched prompts is universal.
+\end{keypoint}
+
 % ----------------------------------------------------------------------------
 \section{Understanding Failures}
 \label{sec:failures}
