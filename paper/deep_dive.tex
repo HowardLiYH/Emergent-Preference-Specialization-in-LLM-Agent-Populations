@@ -3926,6 +3926,97 @@ Each generation, one agent wins (with high probability). To move all $N$ agents 
 \end{tikzpicture}
 \end{center}
 
+\subsection{Understanding the Metrics}
+
+Before presenting results, let's clarify exactly what we measure and how.
+
+\subsubsection{What Is ``Accuracy'' Based On?}
+
+Each task is a \textbf{multiple-choice question} (A, B, C, D) with a \textbf{known correct answer} determined by the synthetic rule:
+
+\begin{center}
+\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Rule} & \textbf{Example Task} & \textbf{Correct} & \textbf{Why} \\
+\midrule
+POSITION & ``What is 2+2? A) 3 B) 5 C) 4 D) 7'' & B & Always pick B (ignore content) \\
+RHYME & ``Rhymes with CAT? A) dog B) bat C) tree D) car'' & B (bat) & ``bat'' ends in ``-at'' \\
+ANIMATE & ``Pick one: A) Table B) Rock C) Tiger D) Lamp'' & C (Tiger) & Tiger is living \\
+VOWEL & ``Pick one: A) Cat B) Dog C) Eagle D) Fish'' & C (Eagle) & Starts with vowel \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Accuracy} = (Correct answers) / (Total questions)
+
+We \textit{know} the ground truth because we designed the rules. This is why synthetic rules are essential---real-world tasks lack objective ground truth.
+
+\subsubsection{What Do ``Scores'' Mean in the Comparison?}
+
+When we report ``86\% vs 16\%'', we mean:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Test} & \textbf{Setup} & \textbf{Accuracy} \\
+\midrule
+Matched & RHYME specialist tested on RHYME tasks & \textbf{86\%} \\
+Mismatched & RHYME specialist tested on POSITION tasks & \textbf{16\%} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The \textbf{same agent} is tested on both their specialty and non-specialty tasks. The gap reveals whether the prompt causes performance.
+
+\subsubsection{Why Does Prompt Level Affect Accuracy?}
+
+\begin{center}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Level} & \textbf{Prompt Content} & \textbf{Knowledge} & \textbf{Expected Accuracy} \\
+\midrule
+L0 & (empty) & None & $\sim$25\% (random guess) \\
+L1 & ``Position matters...'' & Vague hint & $\sim$35--40\% \\
+L2 & ``Pick option B...'' & Partial strategy & $\sim$60--70\% \\
+L3 & ``You are a SPECIALIST. Always pick B...'' & Complete & $\sim$90--100\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{What Is a ``Seed'' and Why 10 of Them?}
+
+A \textbf{seed} is a random number generator initialization. Different seeds produce different:
+\begin{itemize}
+    \item Initial agent specialties (which agent gets which seeded rule)
+    \item Round-by-round rule selections
+    \item LLM response variability
+\end{itemize}
+
+\textbf{10 seeds = 10 independent experiments} run from scratch. We aggregate results to ensure our findings aren't due to one lucky run.
+
+\subsubsection{What Is a ``Pass'' in the 70.7\% Pass Rate?}
+
+Each seed runs \textbf{56 pairwise comparisons} (7 specialists $\times$ 8 rules):
+
+\textbf{Example for RHYME specialist}:
+\begin{enumerate}
+    \item Compare RHYME accuracy (86\%) vs POSITION accuracy (16\%) $\to$ 86\% $>$ 16\%? \textcolor{green!60!black}{\checkmark} \textbf{Pass}
+    \item Compare RHYME accuracy (86\%) vs ANIMATE accuracy (25\%) $\to$ 86\% $>$ 25\%? \textcolor{green!60!black}{\checkmark} \textbf{Pass}
+    \item ... (continue for all 8 rules)
+\end{enumerate}
+
+\textbf{``Pass''} = specialist scores \textit{higher} on their own rule than on the comparison rule.
+
+\textbf{70.7\%} = 396 of 560 comparisons (56 per seed $\times$ 10 seeds) showed the expected pattern.
+
+\textbf{Why not 100\%?}
+\begin{itemize}
+    \item LLM stochasticity (same prompt can give different answers)
+    \item Some rules are similar (PATTERN vs POSITION have overlapping strategies)
+    \item Some ``specialists'' are weak (barely L3)
+\end{itemize}
+
 \subsection{Results: 10-Seed Unified Validation}
 
 We ran 10 seeds with identical conditions using \texttt{gemini-2.5-flash}:
@@ -3953,46 +4044,6 @@ Cohen's $d$ & 2.66 & Huge effect \\
 \end{figure}
 
 \subsection{Interpreting the Results}
-
-\begin{warning}[Understanding ``10 Seeds'' and ``70.7\% Pass Rate'']
-\textbf{What are ``10 seeds''?}
-
-10 seeds = 10 \textbf{independent experiments}, each run from scratch with different random initialization:
-\begin{center}
-\begin{tabular}{ll}
-Seed 1 & Run full experiment (100 generations, 12 agents) $\to$ Results \\
-Seed 2 & Run full experiment again (different random init) $\to$ Results \\
-$\vdots$ & $\vdots$ \\
-Seed 10 & Run full experiment $\to$ Results \\
-\textbf{Average} & Combine all 10 for statistical confidence \\
-\end{tabular}
-\end{center}
-
-\textbf{What is ``70.7\% pass rate''?}
-
-Each experiment runs \textbf{56 pairwise comparisons} (7 specialists $\times$ 8 rules):
-
-\begin{center}
-\small
-\begin{tabular}{llcl}
-\toprule
-\textbf{Test} & \textbf{Comparison} & \textbf{Scores} & \textbf{Pass?} \\
-\midrule
-1 & RHYME specialist on RHYME vs POSITION & 86\% vs 16\% & \textcolor{green!60!black}{\checkmark} Pass \\
-2 & RHYME specialist on RHYME vs ANIMATE & 86\% vs 25\% & \textcolor{green!60!black}{\checkmark} Pass \\
-3 & RHYME specialist on RHYME vs PATTERN & 86\% vs 29\% & \textcolor{green!60!black}{\checkmark} Pass \\
-$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
-56 & INVERSE specialist on INVERSE vs ANIMATE & 88\% vs 27\% & \textcolor{green!60!black}{\checkmark} Pass \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\textbf{``Pass''} = specialist scores HIGHER on their own rule than on the comparison rule.
-
-\textbf{70.7\%} = 70.7\% of the 560 total comparisons (56 per seed $\times$ 10 seeds) showed the expected pattern.
-
-\textbf{Why not 100\%?} LLM stochasticity + some rules are similar (e.g., PATTERN vs POSITION have similar strategies).
-\end{warning}
 
 \begin{keypoint}
 \textbf{What 70.7\% Pass Rate Means:}
