@@ -5065,11 +5065,30 @@ API calls per generation & $\sim$12 (one per agent) \\
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/fig6_cost_benefit.pdf}
-\caption{\textbf{Cost-benefit analysis.} Specialists (green) outperform generalists (coral) after the break-even point ($\sim$7 tasks). The shaded region shows cumulative benefit of specialization.}
+\caption{\textbf{Cost-benefit analysis.} Specialists (green, 100\%) always outperform generalists (coral, 35.8\%). The shaded region shows \textit{cumulative} benefit (extra correct answers). ``Break-even'' means when this cumulative benefit equals the training investment (9,600 API calls). With free Gemini API, break-even is immediate.}
 \label{fig:cost-benefit}
 \end{figure}
 
-\textbf{Break-even calculation:}
+\begin{remark}[Understanding ``Break-Even'']
+The graph does NOT show the lines crossing---specialists \textit{always} outperform generalists. ``Break-even'' refers to when the \textbf{cumulative benefit} (shaded area) equals the \textbf{training investment}.
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Concept} & \textbf{Meaning} \\
+\midrule
+Training cost & 9,600 API calls ($\sim$2 hours with Gemini free tier) \\
+Per-task benefit & 64.2\% more correct answers \\
+Cumulative benefit & Shaded area = extra correct answers over time \\
+Break-even & When cumulative benefit ``pays back'' training cost \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Since training is \textbf{free} with Gemini, break-even is essentially \textbf{immediate}.
+\end{remark}
+
+\textbf{Break-even calculation (if training had cost):}
 
 If training costs 9,600 API calls and each correctly-routed task saves $X$ (e.g., customer service cost):
 \[
