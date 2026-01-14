@@ -1,0 +1,910 @@
+[2026-01-04 18:26:43] ============================================================
+[2026-01-04 18:26:43] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-04 18:26:43] ============================================================
+[2026-01-04 18:26:43] Using model: gemini-2.5-flash
+[2026-01-04 18:29:03] ============================================================
+[2026-01-04 18:29:03] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-04 18:29:03] ============================================================
+[2026-01-04 18:29:03] Using model: gemini-2.5-flash
+[2026-01-04 18:29:03] Created 8 specialists
+[2026-01-04 18:29:26] ============================================================
+[2026-01-04 18:29:26] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-04 18:29:26] ============================================================
+[2026-01-04 18:29:26] Using model: gemini-2.5-flash
+[2026-01-04 18:29:26] Created 8 specialists
+[2026-01-04 18:29:26] Generated 24 tasks
+[2026-01-04 18:29:26] 
+[single_generalist] Starting...
+[2026-01-04 18:29:42]   [SINGLE_GENERALIST] 10/24 tasks, acc=50.0%
+[2026-01-04 18:29:58]   [SINGLE_GENERALIST] 20/24 tasks, acc=35.0%
+[2026-01-04 18:30:04] [Checkpoint] Saved at task 0
+[2026-01-04 18:30:04] [single_generalist] Completed: 33.3% accuracy, 24 API calls
+[2026-01-04 18:30:04] 
+[oracle_routing] Starting...
+[2026-01-04 18:30:21]   [ORACLE_ROUTING] 10/24 tasks, acc=70.0%
+[2026-01-04 18:30:39]   [ORACLE_ROUTING] 20/24 tasks, acc=60.0%
+[2026-01-04 18:30:45] [Checkpoint] Saved at task 0
+[2026-01-04 18:30:45] [oracle_routing] Completed: 54.2% accuracy, 24 API calls
+[2026-01-04 18:30:45] 
+[confidence_routing] Starting...
+[2026-01-04 18:31:26]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=30.0%
+[2026-01-04 18:32:08]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=30.0%
+[2026-01-04 18:32:25] [Checkpoint] Saved at task 0
+[2026-01-04 18:32:25] [confidence_routing] Completed: 25.0% accuracy, 216 API calls
+[2026-01-04 18:32:25] 
+[ensemble] Starting...
+[2026-01-04 18:32:57]   [ENSEMBLE] 10/24 tasks, acc=20.0%
+[2026-01-04 18:33:23]   [ENSEMBLE] 20/24 tasks, acc=20.0%
+[2026-01-04 18:33:33] [Checkpoint] Saved at task 0
+[2026-01-04 18:33:33] [ensemble] Completed: 25.0% accuracy, 192 API calls
+[2026-01-04 18:33:33] 
+============================================================
+[2026-01-04 18:33:33] RESULTS SUMMARY
+[2026-01-04 18:33:33] ============================================================
+[2026-01-04 18:33:33] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-04 18:33:33] |-----------|----------|-----------|---------------|
+[2026-01-04 18:33:33] | single_generalist    | 33.3% |        24 | 1599.2 |
+[2026-01-04 18:33:33] | oracle_routing       | 54.2% |        24 | 1714.8 |
+[2026-01-04 18:33:33] | confidence_routing   | 25.0% |       216 | 4152.9 |
+[2026-01-04 18:33:33] | ensemble             | 25.0% |       192 | 2852.6 |
+[2026-01-04 18:33:33] 
+Comparison vs single_generalist:
+[2026-01-04 18:33:33]   oracle_routing: +20.8pp accuracy, 1.0x cost
+[2026-01-04 18:33:33]   confidence_routing: -8.3pp accuracy, 9.0x cost
+[2026-01-04 18:33:33]   ensemble: -8.3pp accuracy, 8.0x cost
+[2026-01-04 18:33:33] 
+Success criterion met: True
+[2026-01-04 18:38:22] ============================================================
+[2026-01-04 18:38:22] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-04 18:38:22] ============================================================
+[2026-01-04 18:38:22] Using model: gemini-2.5-flash
+[2026-01-04 18:38:22] Created 8 specialists
+[2026-01-04 18:38:22] Generated 24 tasks
+[2026-01-04 18:38:22] 
+[single_generalist] Starting...
+[2026-01-04 18:38:41]   [SINGLE_GENERALIST] 10/24 tasks, acc=30.0%
+[2026-01-04 18:38:57]   [SINGLE_GENERALIST] 20/24 tasks, acc=25.0%
+[2026-01-04 18:39:04] [Checkpoint] Saved at task 0
+[2026-01-04 18:39:04] [single_generalist] Completed: 20.8% accuracy, 24 API calls
+[2026-01-04 18:39:04] 
+[oracle_routing] Starting...
+[2026-01-04 18:39:22]   [ORACLE_ROUTING] 10/24 tasks, acc=70.0%
+[2026-01-04 18:39:38]   [ORACLE_ROUTING] 20/24 tasks, acc=80.0%
+[2026-01-04 18:39:45] [Checkpoint] Saved at task 0
+[2026-01-04 18:39:45] [oracle_routing] Completed: 79.2% accuracy, 24 API calls
+[2026-01-04 18:39:45] 
+[confidence_routing] Starting...
+[2026-01-04 18:40:27]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=20.0%
+[2026-01-04 18:41:07]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=20.0%
+[2026-01-04 18:41:23] [Checkpoint] Saved at task 0
+[2026-01-04 18:41:23] [confidence_routing] Completed: 20.8% accuracy, 216 API calls
+[2026-01-04 18:41:23] 
+[ensemble] Starting...
+[2026-01-04 18:41:50]   [ENSEMBLE] 10/24 tasks, acc=30.0%
+[2026-01-04 18:42:17]   [ENSEMBLE] 20/24 tasks, acc=20.0%
+[2026-01-04 18:42:25] [Checkpoint] Saved at task 0
+[2026-01-04 18:42:25] [ensemble] Completed: 29.2% accuracy, 192 API calls
+[2026-01-04 18:42:25] 
+============================================================
+[2026-01-04 18:42:25] RESULTS SUMMARY
+[2026-01-04 18:42:25] ============================================================
+[2026-01-04 18:42:25] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-04 18:42:25] |-----------|----------|-----------|---------------|
+[2026-01-04 18:42:25] | single_generalist    | 20.8% |        24 | 1745.8 |
+[2026-01-04 18:42:25] | oracle_routing       | 79.2% |        24 | 1707.6 |
+[2026-01-04 18:42:25] | confidence_routing   | 20.8% |       216 | 4081.1 |
+[2026-01-04 18:42:25] | ensemble             | 29.2% |       192 | 2592.7 |
+[2026-01-04 18:42:25] 
+Comparison vs single_generalist:
+[2026-01-04 18:42:25]   oracle_routing: +58.3pp accuracy, 1.0x cost
+[2026-01-04 18:42:25]   confidence_routing: +0.0pp accuracy, 9.0x cost
+[2026-01-04 18:42:25]   ensemble: +8.3pp accuracy, 8.0x cost
+[2026-01-04 18:42:25] 
+Success criterion met: True
+[2026-01-04 18:45:06] ============================================================
+[2026-01-04 18:45:06] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-04 18:45:06] ============================================================
+[2026-01-04 18:45:06] Using model: gemini-2.5-flash
+[2026-01-04 18:45:06] Created 8 specialists
+[2026-01-04 18:45:06] Generated 24 tasks
+[2026-01-04 18:45:06] 
+[single_generalist] Starting...
+[2026-01-04 18:45:24]   [SINGLE_GENERALIST] 10/24 tasks, acc=30.0%
+[2026-01-04 18:45:42]   [SINGLE_GENERALIST] 20/24 tasks, acc=25.0%
+[2026-01-04 18:45:49] [Checkpoint] Saved at task 0
+[2026-01-04 18:45:49] [single_generalist] Completed: 25.0% accuracy, 24 API calls
+[2026-01-04 18:45:49] 
+[oracle_routing] Starting...
+[2026-01-04 18:46:04]   [ORACLE_ROUTING] 10/24 tasks, acc=80.0%
+[2026-01-04 18:46:20]   [ORACLE_ROUTING] 20/24 tasks, acc=70.0%
+[2026-01-04 18:46:27] [Checkpoint] Saved at task 0
+[2026-01-04 18:46:27] [oracle_routing] Completed: 70.8% accuracy, 24 API calls
+[2026-01-04 18:46:27] 
+[confidence_routing] Starting...
+[2026-01-05 00:47:13] ============================================================
+[2026-01-05 00:47:13] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 00:47:13] ============================================================
+[2026-01-05 00:47:13] [Checkpoint] Loaded, resuming from oracle_routing task 0
+[2026-01-05 00:47:13] Using model: gemini-2.5-flash
+[2026-01-05 00:47:13] Created 8 specialists
+[2026-01-05 00:47:13] Generated 100 tasks
+[2026-01-05 00:47:13] [single_generalist] Already completed, skipping
+[2026-01-05 00:47:13] [oracle_routing] Already completed, skipping
+[2026-01-05 00:47:13] 
+[confidence_routing] Starting...
+[2026-01-05 00:47:28]   [CONFIDENCE_ROUTING] 10/100 tasks, acc=10.0%
+[2026-01-05 00:47:39]   [CONFIDENCE_ROUTING] 20/100 tasks, acc=5.0%
+[2026-01-05 00:47:49]   [CONFIDENCE_ROUTING] 30/100 tasks, acc=3.3%
+[2026-01-05 00:48:02]   [CONFIDENCE_ROUTING] 40/100 tasks, acc=2.5%
+[2026-01-05 00:48:12]   [CONFIDENCE_ROUTING] 50/100 tasks, acc=2.0%
+[2026-01-05 00:48:22]   [CONFIDENCE_ROUTING] 60/100 tasks, acc=1.7%
+[2026-01-05 00:48:32]   [CONFIDENCE_ROUTING] 70/100 tasks, acc=1.4%
+[2026-01-05 00:48:42]   [CONFIDENCE_ROUTING] 80/100 tasks, acc=1.2%
+[2026-01-05 00:48:53]   [CONFIDENCE_ROUTING] 90/100 tasks, acc=1.1%
+[2026-01-05 00:49:05]   [CONFIDENCE_ROUTING] 100/100 tasks, acc=1.0%
+[2026-01-05 00:49:05] [Checkpoint] Saved at task 0
+[2026-01-05 00:49:05] [confidence_routing] Completed: 1.0% accuracy, 801 API calls
+[2026-01-05 00:49:05] 
+[ensemble] Starting...
+[2026-01-05 00:49:14]   [ENSEMBLE] 10/100 tasks, acc=30.0%
+[2026-01-05 00:49:37]   [ENSEMBLE] 20/100 tasks, acc=15.0%
+[2026-01-05 00:49:46]   [ENSEMBLE] 30/100 tasks, acc=16.7%
+[2026-01-05 00:49:54]   [ENSEMBLE] 40/100 tasks, acc=20.0%
+[2026-01-05 00:50:03]   [ENSEMBLE] 50/100 tasks, acc=20.0%
+[2026-01-05 00:50:12]   [ENSEMBLE] 60/100 tasks, acc=21.7%
+[2026-01-05 00:50:20]   [ENSEMBLE] 70/100 tasks, acc=22.9%
+[2026-01-05 00:50:27]   [ENSEMBLE] 80/100 tasks, acc=22.5%
+[2026-01-05 00:50:34]   [ENSEMBLE] 90/100 tasks, acc=26.7%
+[2026-01-05 00:50:42]   [ENSEMBLE] 100/100 tasks, acc=25.0%
+[2026-01-05 00:50:42] [Checkpoint] Saved at task 0
+[2026-01-05 00:50:42] [ensemble] Completed: 25.0% accuracy, 800 API calls
+[2026-01-05 00:50:42] 
+============================================================
+[2026-01-05 00:50:42] RESULTS SUMMARY
+[2026-01-05 00:50:42] ============================================================
+[2026-01-05 00:50:42] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 00:50:42] |-----------|----------|-----------|---------------|
+[2026-01-05 00:50:42] | single_generalist    | 25.0% |        24 | 1762.4 |
+[2026-01-05 00:50:42] | oracle_routing       | 70.8% |        24 | 1594.5 |
+[2026-01-05 00:50:42] | confidence_routing   | 1.0% |       801 | 1125.8 |
+[2026-01-05 00:50:42] | ensemble             | 25.0% |       800 | 971.2 |
+[2026-01-05 00:50:42] 
+Comparison vs single_generalist:
+[2026-01-05 00:50:42]   oracle_routing: +45.8pp accuracy, 1.0x cost
+[2026-01-05 00:50:42]   confidence_routing: -24.0pp accuracy, 33.4x cost
+[2026-01-05 00:50:42]   ensemble: +0.0pp accuracy, 33.3x cost
+[2026-01-05 00:50:42] 
+Success criterion met: True
+[2026-01-05 00:50:42] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 00:50:42] [Checkpoint] Cleared
+[2026-01-05 00:51:00] ============================================================
+[2026-01-05 00:51:00] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 00:51:00] ============================================================
+[2026-01-05 00:51:00] Using model: gemini-2.5-flash
+[2026-01-05 00:51:00] Created 8 specialists
+[2026-01-05 00:51:00] Generated 100 tasks
+[2026-01-05 00:51:00] 
+[single_generalist] Starting...
+[2026-01-05 00:51:04]   [SINGLE_GENERALIST] 10/100 tasks, acc=0.0%
+[2026-01-05 00:51:07]   [SINGLE_GENERALIST] 20/100 tasks, acc=0.0%
+[2026-01-05 00:51:10]   [SINGLE_GENERALIST] 30/100 tasks, acc=0.0%
+[2026-01-05 00:51:13]   [SINGLE_GENERALIST] 40/100 tasks, acc=0.0%
+[2026-01-05 00:51:16]   [SINGLE_GENERALIST] 50/100 tasks, acc=0.0%
+[2026-01-05 00:51:19]   [SINGLE_GENERALIST] 60/100 tasks, acc=0.0%
+[2026-01-05 00:51:23]   [SINGLE_GENERALIST] 70/100 tasks, acc=0.0%
+[2026-01-05 00:51:27]   [SINGLE_GENERALIST] 80/100 tasks, acc=0.0%
+[2026-01-05 00:51:30]   [SINGLE_GENERALIST] 90/100 tasks, acc=0.0%
+[2026-01-05 00:51:33]   [SINGLE_GENERALIST] 100/100 tasks, acc=0.0%
+[2026-01-05 00:51:33] [Checkpoint] Saved at task 0
+[2026-01-05 00:51:33] [single_generalist] Completed: 0.0% accuracy, 100 API calls
+[2026-01-05 00:51:33] 
+[oracle_routing] Starting...
+[2026-01-05 00:51:36]   [ORACLE_ROUTING] 10/100 tasks, acc=0.0%
+[2026-01-05 00:51:39]   [ORACLE_ROUTING] 20/100 tasks, acc=0.0%
+[2026-01-05 00:51:42]   [ORACLE_ROUTING] 30/100 tasks, acc=0.0%
+[2026-01-05 00:51:45]   [ORACLE_ROUTING] 40/100 tasks, acc=0.0%
+[2026-01-05 00:51:48]   [ORACLE_ROUTING] 50/100 tasks, acc=0.0%
+[2026-01-05 00:51:51]   [ORACLE_ROUTING] 60/100 tasks, acc=0.0%
+[2026-01-05 00:51:54]   [ORACLE_ROUTING] 70/100 tasks, acc=0.0%
+[2026-01-05 00:51:57]   [ORACLE_ROUTING] 80/100 tasks, acc=0.0%
+[2026-01-05 00:52:00]   [ORACLE_ROUTING] 90/100 tasks, acc=0.0%
+[2026-01-05 00:52:02]   [ORACLE_ROUTING] 100/100 tasks, acc=0.0%
+[2026-01-05 00:52:02] [Checkpoint] Saved at task 0
+[2026-01-05 00:52:02] [oracle_routing] Completed: 0.0% accuracy, 100 API calls
+[2026-01-05 00:52:02] 
+[confidence_routing] Starting...
+[2026-01-05 00:52:14]   [CONFIDENCE_ROUTING] 10/100 tasks, acc=0.0%
+[2026-01-05 00:52:25]   [CONFIDENCE_ROUTING] 20/100 tasks, acc=0.0%
+[2026-01-05 00:52:36]   [CONFIDENCE_ROUTING] 30/100 tasks, acc=0.0%
+[2026-01-05 00:52:47]   [CONFIDENCE_ROUTING] 40/100 tasks, acc=0.0%
+[2026-01-05 00:52:58]   [CONFIDENCE_ROUTING] 50/100 tasks, acc=0.0%
+[2026-01-05 00:53:08]   [CONFIDENCE_ROUTING] 60/100 tasks, acc=0.0%
+[2026-01-05 00:53:19]   [CONFIDENCE_ROUTING] 70/100 tasks, acc=0.0%
+[2026-01-05 00:53:30]   [CONFIDENCE_ROUTING] 80/100 tasks, acc=0.0%
+[2026-01-05 00:53:40]   [CONFIDENCE_ROUTING] 90/100 tasks, acc=0.0%
+[2026-01-05 00:54:03]   [CONFIDENCE_ROUTING] 100/100 tasks, acc=0.0%
+[2026-01-05 00:54:03] [Checkpoint] Saved at task 0
+[2026-01-05 00:54:03] [confidence_routing] Completed: 0.0% accuracy, 800 API calls
+[2026-01-05 00:54:03] 
+[ensemble] Starting...
+[2026-01-05 00:54:15]   [ENSEMBLE] 10/100 tasks, acc=30.0%
+[2026-01-05 00:54:24]   [ENSEMBLE] 20/100 tasks, acc=15.0%
+[2026-01-05 00:54:33]   [ENSEMBLE] 30/100 tasks, acc=16.7%
+[2026-01-05 00:54:41]   [ENSEMBLE] 40/100 tasks, acc=20.0%
+[2026-01-05 00:54:47]   [ENSEMBLE] 50/100 tasks, acc=20.0%
+[2026-01-05 00:54:56]   [ENSEMBLE] 60/100 tasks, acc=21.7%
+[2026-01-05 00:55:03]   [ENSEMBLE] 70/100 tasks, acc=22.9%
+[2026-01-05 00:55:12]   [ENSEMBLE] 80/100 tasks, acc=22.5%
+[2026-01-05 00:55:20]   [ENSEMBLE] 90/100 tasks, acc=26.7%
+[2026-01-05 00:55:28]   [ENSEMBLE] 100/100 tasks, acc=25.0%
+[2026-01-05 00:55:28] [Checkpoint] Saved at task 0
+[2026-01-05 00:55:28] [ensemble] Completed: 25.0% accuracy, 800 API calls
+[2026-01-05 00:55:28] 
+============================================================
+[2026-01-05 00:55:28] RESULTS SUMMARY
+[2026-01-05 00:55:28] ============================================================
+[2026-01-05 00:55:28] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 00:55:28] |-----------|----------|-----------|---------------|
+[2026-01-05 00:55:28] | single_generalist    | 0.0% |       100 | 326.6 |
+[2026-01-05 00:55:28] | oracle_routing       | 0.0% |       100 | 292.9 |
+[2026-01-05 00:55:28] | confidence_routing   | 0.0% |       800 | 1204.1 |
+[2026-01-05 00:55:28] | ensemble             | 25.0% |       800 | 853.5 |
+[2026-01-05 00:55:28] 
+Comparison vs single_generalist:
+[2026-01-05 00:55:28]   oracle_routing: +0.0pp accuracy, 1.0x cost
+[2026-01-05 00:55:28]   confidence_routing: +0.0pp accuracy, 8.0x cost
+[2026-01-05 00:55:28]   ensemble: +25.0pp accuracy, 8.0x cost
+[2026-01-05 00:55:28] 
+Success criterion met: False
+[2026-01-05 00:55:28] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 00:55:28] [Checkpoint] Cleared
+[2026-01-05 01:00:11] ============================================================
+[2026-01-05 01:00:11] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 01:00:11] ============================================================
+[2026-01-05 01:00:11] Using model: gemini-2.5-flash
+[2026-01-05 01:00:11] Created 8 specialists
+[2026-01-05 01:00:11] Generated 100 tasks
+[2026-01-05 01:00:11] 
+[single_generalist] Starting...
+[2026-01-05 01:00:14]   [SINGLE_GENERALIST] 10/100 tasks, acc=0.0%
+[2026-01-05 01:00:17]   [SINGLE_GENERALIST] 20/100 tasks, acc=0.0%
+[2026-01-05 01:00:20]   [SINGLE_GENERALIST] 30/100 tasks, acc=0.0%
+[2026-01-05 01:00:23]   [SINGLE_GENERALIST] 40/100 tasks, acc=0.0%
+[2026-01-05 01:00:26]   [SINGLE_GENERALIST] 50/100 tasks, acc=0.0%
+[2026-01-05 01:00:35]   [SINGLE_GENERALIST] 60/100 tasks, acc=0.0%
+[2026-01-05 01:00:38]   [SINGLE_GENERALIST] 70/100 tasks, acc=0.0%
+[2026-01-05 01:00:41]   [SINGLE_GENERALIST] 80/100 tasks, acc=0.0%
+[2026-01-05 01:00:44]   [SINGLE_GENERALIST] 90/100 tasks, acc=0.0%
+[2026-01-05 01:00:47]   [SINGLE_GENERALIST] 100/100 tasks, acc=0.0%
+[2026-01-05 01:00:47] [Checkpoint] Saved at task 0
+[2026-01-05 01:00:47] [single_generalist] Completed: 0.0% accuracy, 100 API calls
+[2026-01-05 01:00:47] 
+[oracle_routing] Starting...
+[2026-01-05 01:00:50]   [ORACLE_ROUTING] 10/100 tasks, acc=0.0%
+[2026-01-05 01:00:59]   [ORACLE_ROUTING] 20/100 tasks, acc=0.0%
+[2026-01-05 01:01:02]   [ORACLE_ROUTING] 30/100 tasks, acc=0.0%
+[2026-01-05 01:01:05]   [ORACLE_ROUTING] 40/100 tasks, acc=0.0%
+[2026-01-05 01:01:08]   [ORACLE_ROUTING] 50/100 tasks, acc=0.0%
+[2026-01-05 01:01:11]   [ORACLE_ROUTING] 60/100 tasks, acc=0.0%
+[2026-01-05 01:01:14]   [ORACLE_ROUTING] 70/100 tasks, acc=0.0%
+[2026-01-05 01:01:17]   [ORACLE_ROUTING] 80/100 tasks, acc=0.0%
+[2026-01-05 01:01:20]   [ORACLE_ROUTING] 90/100 tasks, acc=0.0%
+[2026-01-05 01:01:23]   [ORACLE_ROUTING] 100/100 tasks, acc=0.0%
+[2026-01-05 01:01:23] [Checkpoint] Saved at task 0
+[2026-01-05 01:01:23] [oracle_routing] Completed: 0.0% accuracy, 100 API calls
+[2026-01-05 01:01:23] 
+[confidence_routing] Starting...
+[2026-01-05 01:01:33]   [CONFIDENCE_ROUTING] 10/100 tasks, acc=0.0%
+[2026-01-05 01:01:43]   [CONFIDENCE_ROUTING] 20/100 tasks, acc=0.0%
+[2026-01-05 01:01:59]   [CONFIDENCE_ROUTING] 30/100 tasks, acc=0.0%
+[2026-01-05 01:02:09]   [CONFIDENCE_ROUTING] 40/100 tasks, acc=0.0%
+[2026-01-05 01:02:18]   [CONFIDENCE_ROUTING] 50/100 tasks, acc=0.0%
+[2026-01-05 01:02:28]   [CONFIDENCE_ROUTING] 60/100 tasks, acc=0.0%
+[2026-01-05 01:02:45]   [CONFIDENCE_ROUTING] 70/100 tasks, acc=0.0%
+[2026-01-05 01:02:55]   [CONFIDENCE_ROUTING] 80/100 tasks, acc=0.0%
+[2026-01-05 01:03:06]   [CONFIDENCE_ROUTING] 90/100 tasks, acc=0.0%
+[2026-01-05 01:03:16]   [CONFIDENCE_ROUTING] 100/100 tasks, acc=0.0%
+[2026-01-05 01:03:16] [Checkpoint] Saved at task 0
+[2026-01-05 01:03:16] [confidence_routing] Completed: 0.0% accuracy, 800 API calls
+[2026-01-05 01:03:16] 
+[ensemble] Starting...
+[2026-01-05 01:03:25]   [ENSEMBLE] 10/100 tasks, acc=30.0%
+[2026-01-05 01:03:34]   [ENSEMBLE] 20/100 tasks, acc=15.0%
+[2026-01-05 01:03:40]   [ENSEMBLE] 30/100 tasks, acc=16.7%
+[2026-01-05 01:03:48]   [ENSEMBLE] 40/100 tasks, acc=20.0%
+[2026-01-05 01:03:56]   [ENSEMBLE] 50/100 tasks, acc=20.0%
+[2026-01-05 01:04:10]   [ENSEMBLE] 60/100 tasks, acc=21.7%
+[2026-01-05 01:04:17]   [ENSEMBLE] 70/100 tasks, acc=22.9%
+[2026-01-05 01:04:23]   [ENSEMBLE] 80/100 tasks, acc=22.5%
+[2026-01-05 01:04:30]   [ENSEMBLE] 90/100 tasks, acc=26.7%
+[2026-01-05 01:04:38]   [ENSEMBLE] 100/100 tasks, acc=25.0%
+[2026-01-05 01:04:38] [Checkpoint] Saved at task 0
+[2026-01-05 01:04:38] [ensemble] Completed: 25.0% accuracy, 800 API calls
+[2026-01-05 01:04:38] 
+============================================================
+[2026-01-05 01:04:38] RESULTS SUMMARY
+[2026-01-05 01:04:38] ============================================================
+[2026-01-05 01:04:38] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 01:04:38] |-----------|----------|-----------|---------------|
+[2026-01-05 01:04:38] | single_generalist    | 0.0% |       100 | 359.5 |
+[2026-01-05 01:04:38] | oracle_routing       | 0.0% |       100 | 363.8 |
+[2026-01-05 01:04:38] | confidence_routing   | 0.0% |       800 | 1130.3 |
+[2026-01-05 01:04:38] | ensemble             | 25.0% |       800 | 817.2 |
+[2026-01-05 01:04:38] 
+Comparison vs single_generalist:
+[2026-01-05 01:04:38]   oracle_routing: +0.0pp accuracy, 1.0x cost
+[2026-01-05 01:04:38]   confidence_routing: +0.0pp accuracy, 8.0x cost
+[2026-01-05 01:04:38]   ensemble: +25.0pp accuracy, 8.0x cost
+[2026-01-05 01:04:38] 
+Success criterion met: False
+[2026-01-05 01:04:38] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 01:04:38] [Checkpoint] Cleared
+[2026-01-05 01:15:21] ============================================================
+[2026-01-05 01:15:21] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 01:15:21] ============================================================
+[2026-01-05 01:15:21] Using model: gemini-2.5-flash
+[2026-01-05 01:15:21] Created 8 specialists
+[2026-01-05 01:15:21] Generated 24 tasks
+[2026-01-05 01:15:21] 
+[single_generalist] Starting...
+[2026-01-05 01:15:26]   [SINGLE_GENERALIST] 10/24 tasks, acc=0.0%
+[2026-01-05 01:15:29]   [SINGLE_GENERALIST] 20/24 tasks, acc=0.0%
+[2026-01-05 01:15:30] [Checkpoint] Saved at task 0
+[2026-01-05 01:15:30] [single_generalist] Completed: 0.0% accuracy, 24 API calls
+[2026-01-05 01:15:30] 
+[oracle_routing] Starting...
+[2026-01-05 01:15:34]   [ORACLE_ROUTING] 10/24 tasks, acc=0.0%
+[2026-01-05 01:15:37]   [ORACLE_ROUTING] 20/24 tasks, acc=0.0%
+[2026-01-05 01:15:38] [Checkpoint] Saved at task 0
+[2026-01-05 01:15:38] [oracle_routing] Completed: 0.0% accuracy, 24 API calls
+[2026-01-05 01:15:38] 
+[confidence_routing] Starting...
+[2026-01-05 01:15:48]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=0.0%
+[2026-01-05 01:15:58]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=0.0%
+[2026-01-05 01:16:02] [Checkpoint] Saved at task 0
+[2026-01-05 01:16:02] [confidence_routing] Completed: 0.0% accuracy, 192 API calls
+[2026-01-05 01:16:02] 
+[ensemble] Starting...
+[2026-01-05 01:16:10]   [ENSEMBLE] 10/24 tasks, acc=30.0%
+[2026-01-05 01:16:19]   [ENSEMBLE] 20/24 tasks, acc=15.0%
+[2026-01-05 01:16:22] [Checkpoint] Saved at task 0
+[2026-01-05 01:16:22] [ensemble] Completed: 12.5% accuracy, 192 API calls
+[2026-01-05 01:16:22] 
+============================================================
+[2026-01-05 01:16:22] RESULTS SUMMARY
+[2026-01-05 01:16:22] ============================================================
+[2026-01-05 01:16:22] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 01:16:22] |-----------|----------|-----------|---------------|
+[2026-01-05 01:16:22] | single_generalist    | 0.0% |        24 | 351.8 |
+[2026-01-05 01:16:22] | oracle_routing       | 0.0% |        24 | 337.0 |
+[2026-01-05 01:16:22] | confidence_routing   | 0.0% |       192 | 980.9 |
+[2026-01-05 01:16:22] | ensemble             | 12.5% |       192 | 857.8 |
+[2026-01-05 01:16:22] 
+Comparison vs single_generalist:
+[2026-01-05 01:16:22]   oracle_routing: +0.0pp accuracy, 1.0x cost
+[2026-01-05 01:16:22]   confidence_routing: +0.0pp accuracy, 8.0x cost
+[2026-01-05 01:16:22]   ensemble: +12.5pp accuracy, 8.0x cost
+[2026-01-05 01:16:22] 
+Success criterion met: False
+[2026-01-05 01:16:22] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 01:16:22] [Checkpoint] Cleared
+[2026-01-05 01:19:47] ============================================================
+[2026-01-05 01:19:47] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 01:19:47] ============================================================
+[2026-01-05 01:19:47] Using model: gemini-2.5-flash
+[2026-01-05 01:19:47] Created 8 specialists
+[2026-01-05 01:19:47] Generated 24 tasks
+[2026-01-05 01:19:47] 
+[single_generalist] Starting...
+[2026-01-05 01:20:03]   [SINGLE_GENERALIST] 10/24 tasks, acc=30.0%
+[2026-01-05 01:20:18]   [SINGLE_GENERALIST] 20/24 tasks, acc=25.0%
+[2026-01-05 01:20:24] [Checkpoint] Saved at task 0
+[2026-01-05 01:20:24] [single_generalist] Completed: 25.0% accuracy, 24 API calls
+[2026-01-05 01:20:24] 
+[oracle_routing] Starting...
+[2026-01-05 01:20:41]   [ORACLE_ROUTING] 10/24 tasks, acc=90.0%
+[2026-01-05 01:20:51]   [ORACLE_ROUTING] 20/24 tasks, acc=65.0%
+[2026-01-05 01:20:59] [Checkpoint] Saved at task 0
+[2026-01-05 01:20:59] [oracle_routing] Completed: 62.5% accuracy, 24 API calls
+[2026-01-05 01:20:59] 
+[confidence_routing] Starting...
+[2026-01-05 01:21:30]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=0.0%
+[2026-01-05 01:22:16]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=10.0%
+[2026-01-05 01:22:30] [Checkpoint] Saved at task 0
+[2026-01-05 01:22:30] [confidence_routing] Completed: 16.7% accuracy, 214 API calls
+[2026-01-05 01:22:30] 
+[ensemble] Starting...
+[2026-01-05 01:22:52]   [ENSEMBLE] 10/24 tasks, acc=40.0%
+[2026-01-05 01:23:15]   [ENSEMBLE] 20/24 tasks, acc=30.0%
+[2026-01-05 01:23:23] [Checkpoint] Saved at task 0
+[2026-01-05 01:23:23] [ensemble] Completed: 33.3% accuracy, 192 API calls
+[2026-01-05 01:23:23] 
+============================================================
+[2026-01-05 01:23:23] RESULTS SUMMARY
+[2026-01-05 01:23:23] ============================================================
+[2026-01-05 01:23:23] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 01:23:23] |-----------|----------|-----------|---------------|
+[2026-01-05 01:23:23] | single_generalist    | 25.0% |        24 | 1540.8 |
+[2026-01-05 01:23:23] | oracle_routing       | 62.5% |        24 | 1431.4 |
+[2026-01-05 01:23:23] | confidence_routing   | 16.7% |       214 | 3794.1 |
+[2026-01-05 01:23:23] | ensemble             | 33.3% |       192 | 2207.9 |
+[2026-01-05 01:23:23] 
+Comparison vs single_generalist:
+[2026-01-05 01:23:23]   oracle_routing: +37.5pp accuracy, 1.0x cost
+[2026-01-05 01:23:23]   confidence_routing: -8.3pp accuracy, 8.9x cost
+[2026-01-05 01:23:23]   ensemble: +8.3pp accuracy, 8.0x cost
+[2026-01-05 01:23:23] 
+Success criterion met: True
+[2026-01-05 01:23:23] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 01:23:23] [Checkpoint] Cleared
+[2026-01-05 01:34:47] ============================================================
+[2026-01-05 01:34:47] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 01:34:47] ============================================================
+[2026-01-05 01:34:47] Using model: gemini-2.5-flash
+[2026-01-05 01:34:47] Created 8 specialists
+[2026-01-05 01:34:47] Generated 24 tasks
+[2026-01-05 01:34:47] 
+[single_generalist] Starting...
+[2026-01-05 01:35:02]   [SINGLE_GENERALIST] 10/24 tasks, acc=50.0%
+[2026-01-05 01:35:18]   [SINGLE_GENERALIST] 20/24 tasks, acc=30.0%
+[2026-01-05 01:35:24] [Checkpoint] Saved at task 0
+[2026-01-05 01:35:24] [single_generalist] Completed: 29.2% accuracy, 24 API calls
+[2026-01-05 01:35:24] 
+[oracle_routing] Starting...
+[2026-01-05 01:35:40]   [ORACLE_ROUTING] 10/24 tasks, acc=80.0%
+[2026-01-05 01:35:54]   [ORACLE_ROUTING] 20/24 tasks, acc=70.0%
+[2026-01-05 01:36:02] [Checkpoint] Saved at task 0
+[2026-01-05 01:36:02] [oracle_routing] Completed: 58.3% accuracy, 24 API calls
+[2026-01-05 01:36:02] 
+[confidence_routing] Starting...
+[2026-01-05 01:36:38]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=20.0%
+[2026-01-05 01:37:15]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=25.0%
+[2026-01-05 01:37:35] [Checkpoint] Saved at task 0
+[2026-01-05 01:37:35] [confidence_routing] Completed: 29.2% accuracy, 215 API calls
+[2026-01-05 01:37:35] 
+[ensemble] Starting...
+[2026-01-05 01:38:00]   [ENSEMBLE] 10/24 tasks, acc=40.0%
+[2026-01-05 01:38:22]   [ENSEMBLE] 20/24 tasks, acc=30.0%
+[2026-01-05 01:38:31] [Checkpoint] Saved at task 0
+[2026-01-05 01:38:31] [ensemble] Completed: 33.3% accuracy, 192 API calls
+[2026-01-05 01:38:31] 
+============================================================
+[2026-01-05 01:38:31] RESULTS SUMMARY
+[2026-01-05 01:38:31] ============================================================
+[2026-01-05 01:38:31] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 01:38:31] |-----------|----------|-----------|---------------|
+[2026-01-05 01:38:31] | single_generalist    | 29.2% |        24 | 1526.6 |
+[2026-01-05 01:38:31] | oracle_routing       | 58.3% |        24 | 1581.3 |
+[2026-01-05 01:38:31] | confidence_routing   | 29.2% |       215 | 3882.1 |
+[2026-01-05 01:38:31] | ensemble             | 33.3% |       192 | 2339.5 |
+[2026-01-05 01:38:31] 
+Comparison vs single_generalist:
+[2026-01-05 01:38:31]   oracle_routing: +29.2pp accuracy, 1.0x cost
+[2026-01-05 01:38:31]   confidence_routing: +0.0pp accuracy, 9.0x cost
+[2026-01-05 01:38:31]   ensemble: +4.2pp accuracy, 8.0x cost
+[2026-01-05 01:38:31] 
+Success criterion met: True
+[2026-01-05 01:38:31] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 01:38:31] [Checkpoint] Cleared
+[2026-01-05 01:46:09] ============================================================
+[2026-01-05 01:46:09] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 01:46:09] ============================================================
+[2026-01-05 01:46:09] Using model: gemini-2.5-flash
+[2026-01-05 01:46:09] Created 8 specialists
+[2026-01-05 01:46:09] Generated 24 tasks
+[2026-01-05 01:46:09] 
+[single_generalist] Starting...
+[2026-01-05 01:46:33]   [SINGLE_GENERALIST] 10/24 tasks, acc=40.0%
+[2026-01-05 01:46:58]   [SINGLE_GENERALIST] 20/24 tasks, acc=35.0%
+[2026-01-05 01:47:09] [Checkpoint] Saved at task 0
+[2026-01-05 01:47:09] [single_generalist] Completed: 37.5% accuracy, 24 API calls
+[2026-01-05 01:47:09] 
+[oracle_routing] Starting...
+[2026-01-05 01:47:27]   [ORACLE_ROUTING] 10/24 tasks, acc=100.0%
+[2026-01-05 01:47:45]   [ORACLE_ROUTING] 20/24 tasks, acc=100.0%
+[2026-01-05 01:47:52] [Checkpoint] Saved at task 0
+[2026-01-05 01:47:52] [oracle_routing] Completed: 100.0% accuracy, 24 API calls
+[2026-01-05 01:47:52] 
+[confidence_routing] Starting...
+[2026-01-05 01:48:34]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=40.0%
+[2026-01-05 01:49:19]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=35.0%
+[2026-01-05 01:49:34] [Checkpoint] Saved at task 0
+[2026-01-05 01:49:34] [confidence_routing] Completed: 37.5% accuracy, 216 API calls
+[2026-01-05 01:49:34] 
+[ensemble] Starting...
+[2026-01-05 01:50:03]   [ENSEMBLE] 10/24 tasks, acc=50.0%
+[2026-01-05 01:50:32]   [ENSEMBLE] 20/24 tasks, acc=45.0%
+[2026-01-05 01:50:45] [Checkpoint] Saved at task 0
+[2026-01-05 01:50:45] [ensemble] Completed: 45.8% accuracy, 192 API calls
+[2026-01-05 01:50:45] 
+============================================================
+[2026-01-05 01:50:45] RESULTS SUMMARY
+[2026-01-05 01:50:45] ============================================================
+[2026-01-05 01:50:45] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 01:50:45] |-----------|----------|-----------|---------------|
+[2026-01-05 01:50:45] | single_generalist    | 37.5% |        24 | 2487.1 |
+[2026-01-05 01:50:45] | oracle_routing       | 100.0% |        24 | 1798.6 |
+[2026-01-05 01:50:45] | confidence_routing   | 37.5% |       216 | 4246.3 |
+[2026-01-05 01:50:45] | ensemble             | 45.8% |       192 | 2988.3 |
+[2026-01-05 01:50:45] 
+Comparison vs single_generalist:
+[2026-01-05 01:50:45]   oracle_routing: +62.5pp accuracy, 1.0x cost
+[2026-01-05 01:50:45]   confidence_routing: +0.0pp accuracy, 9.0x cost
+[2026-01-05 01:50:45]   ensemble: +8.3pp accuracy, 8.0x cost
+[2026-01-05 01:50:45] 
+Success criterion met: True
+[2026-01-05 01:50:45] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 01:50:45] [Checkpoint] Cleared
+[2026-01-05 01:54:58] ============================================================
+[2026-01-05 01:54:58] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 01:54:58] ============================================================
+[2026-01-05 01:54:58] Using model: gemini-2.5-flash
+[2026-01-05 01:54:58] Created 8 specialists
+[2026-01-05 01:54:58] Generated 24 tasks
+[2026-01-05 01:54:58] 
+[single_generalist] Starting...
+[2026-01-05 01:55:22]   [SINGLE_GENERALIST] 10/24 tasks, acc=40.0%
+[2026-01-05 01:55:46]   [SINGLE_GENERALIST] 20/24 tasks, acc=30.0%
+[2026-01-05 01:55:57] [Checkpoint] Saved at task 0
+[2026-01-05 01:55:57] [single_generalist] Completed: 33.3% accuracy, 24 API calls
+[2026-01-05 01:55:57] 
+[oracle_routing] Starting...
+[2026-01-05 01:56:15]   [ORACLE_ROUTING] 10/24 tasks, acc=100.0%
+[2026-01-05 01:56:33]   [ORACLE_ROUTING] 20/24 tasks, acc=100.0%
+[2026-01-05 01:56:42] [Checkpoint] Saved at task 0
+[2026-01-05 01:56:42] [oracle_routing] Completed: 100.0% accuracy, 24 API calls
+[2026-01-05 01:56:42] 
+[confidence_routing] Starting...
+[2026-01-05 01:57:22]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=40.0%
+[2026-01-05 01:58:10]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=40.0%
+[2026-01-05 01:58:33] [Checkpoint] Saved at task 0
+[2026-01-05 01:58:33] [confidence_routing] Completed: 41.7% accuracy, 216 API calls
+[2026-01-05 01:58:33] 
+[ensemble] Starting...
+[2026-01-05 01:59:04]   [ENSEMBLE] 10/24 tasks, acc=40.0%
+[2026-01-05 01:59:33]   [ENSEMBLE] 20/24 tasks, acc=40.0%
+[2026-01-05 01:59:45] [Checkpoint] Saved at task 0
+[2026-01-05 01:59:45] [ensemble] Completed: 41.7% accuracy, 192 API calls
+[2026-01-05 01:59:45] 
+============================================================
+[2026-01-05 01:59:45] RESULTS SUMMARY
+[2026-01-05 01:59:45] ============================================================
+[2026-01-05 01:59:45] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 01:59:45] |-----------|----------|-----------|---------------|
+[2026-01-05 01:59:45] | single_generalist    | 33.3% |        24 | 2456.3 |
+[2026-01-05 01:59:45] | oracle_routing       | 100.0% |        24 | 1886.0 |
+[2026-01-05 01:59:45] | confidence_routing   | 41.7% |       216 | 4627.1 |
+[2026-01-05 01:59:45] | ensemble             | 41.7% |       192 | 2993.0 |
+[2026-01-05 01:59:45] 
+Comparison vs single_generalist:
+[2026-01-05 01:59:45]   oracle_routing: +66.7pp accuracy, 1.0x cost
+[2026-01-05 01:59:45]   confidence_routing: +8.3pp accuracy, 9.0x cost
+[2026-01-05 01:59:45]   ensemble: +8.3pp accuracy, 8.0x cost
+[2026-01-05 01:59:45] 
+Success criterion met: True
+[2026-01-05 01:59:45] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 01:59:45] [Checkpoint] Cleared
+[2026-01-05 01:59:56] ============================================================
+[2026-01-05 01:59:56] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 01:59:56] ============================================================
+[2026-01-05 01:59:56] Using model: gemini-2.5-flash
+[2026-01-05 01:59:56] Created 8 specialists
+[2026-01-05 01:59:56] Generated 24 tasks
+[2026-01-05 01:59:56] 
+[single_generalist] Starting...
+[2026-01-05 02:00:22]   [SINGLE_GENERALIST] 10/24 tasks, acc=40.0%
+[2026-01-05 02:00:48]   [SINGLE_GENERALIST] 20/24 tasks, acc=30.0%
+[2026-01-05 02:00:59] [Checkpoint] Saved at task 0
+[2026-01-05 02:00:59] [single_generalist] Completed: 29.2% accuracy, 24 API calls
+[2026-01-05 02:00:59] 
+[oracle_routing] Starting...
+[2026-01-05 02:01:19]   [ORACLE_ROUTING] 10/24 tasks, acc=100.0%
+[2026-01-05 02:01:39]   [ORACLE_ROUTING] 20/24 tasks, acc=100.0%
+[2026-01-05 02:01:47] [Checkpoint] Saved at task 0
+[2026-01-05 02:01:47] [oracle_routing] Completed: 100.0% accuracy, 24 API calls
+[2026-01-05 02:01:47] 
+[confidence_routing] Starting...
+[2026-01-05 02:02:33]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=50.0%
+[2026-01-05 02:03:20]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=45.0%
+[2026-01-05 02:03:36] [Checkpoint] Saved at task 0
+[2026-01-05 02:03:36] [confidence_routing] Completed: 45.8% accuracy, 216 API calls
+[2026-01-05 02:03:36] 
+[ensemble] Starting...
+[2026-01-05 02:04:05]   [ENSEMBLE] 10/24 tasks, acc=50.0%
+[2026-01-05 02:04:34]   [ENSEMBLE] 20/24 tasks, acc=45.0%
+[2026-01-05 02:04:46] [Checkpoint] Saved at task 0
+[2026-01-05 02:04:46] [ensemble] Completed: 45.8% accuracy, 192 API calls
+[2026-01-05 02:04:46] 
+============================================================
+[2026-01-05 02:04:46] RESULTS SUMMARY
+[2026-01-05 02:04:46] ============================================================
+[2026-01-05 02:04:46] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 02:04:46] |-----------|----------|-----------|---------------|
+[2026-01-05 02:04:46] | single_generalist    | 29.2% |        24 | 2596.3 |
+[2026-01-05 02:04:46] | oracle_routing       | 100.0% |        24 | 2027.1 |
+[2026-01-05 02:04:46] | confidence_routing   | 45.8% |       216 | 4526.0 |
+[2026-01-05 02:04:46] | ensemble             | 45.8% |       192 | 2925.8 |
+[2026-01-05 02:04:46] 
+Comparison vs single_generalist:
+[2026-01-05 02:04:46]   oracle_routing: +70.8pp accuracy, 1.0x cost
+[2026-01-05 02:04:46]   confidence_routing: +16.7pp accuracy, 9.0x cost
+[2026-01-05 02:04:46]   ensemble: +16.7pp accuracy, 8.0x cost
+[2026-01-05 02:04:46] 
+Success criterion met: True
+[2026-01-05 02:04:46] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 02:04:46] [Checkpoint] Cleared
+[2026-01-05 02:17:16] ============================================================
+[2026-01-05 02:17:16] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 02:17:16] ============================================================
+[2026-01-05 02:17:16] Using model: gemini-2.5-flash
+[2026-01-05 02:17:16] Created 8 specialists
+[2026-01-05 02:17:16] Generated 24 tasks
+[2026-01-05 02:17:16] 
+[single_generalist] Starting...
+[2026-01-05 02:17:45]   [SINGLE_GENERALIST] 10/24 tasks, acc=40.0%
+[2026-01-05 02:18:10]   [SINGLE_GENERALIST] 20/24 tasks, acc=35.0%
+[2026-01-05 02:18:20] [Checkpoint] Saved at task 0
+[2026-01-05 02:18:20] [single_generalist] Completed: 33.3% accuracy, 24 API calls
+[2026-01-05 02:18:20] 
+[oracle_routing] Starting...
+[2026-01-05 02:18:37]   [ORACLE_ROUTING] 10/24 tasks, acc=100.0%
+[2026-01-05 02:18:56]   [ORACLE_ROUTING] 20/24 tasks, acc=100.0%
+[2026-01-05 02:19:04] [Checkpoint] Saved at task 0
+[2026-01-05 02:19:04] [oracle_routing] Completed: 100.0% accuracy, 24 API calls
+[2026-01-05 02:19:04] 
+[confidence_routing] Starting...
+[2026-01-05 02:19:45]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=60.0%
+[2026-01-05 02:20:26]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=50.0%
+[2026-01-05 02:20:41] [Checkpoint] Saved at task 0
+[2026-01-05 02:20:41] [confidence_routing] Completed: 50.0% accuracy, 216 API calls
+[2026-01-05 02:20:41] 
+[ensemble] Starting...
+[2026-01-05 02:21:09]   [ENSEMBLE] 10/24 tasks, acc=30.0%
+[2026-01-05 02:21:37]   [ENSEMBLE] 20/24 tasks, acc=40.0%
+[2026-01-05 02:21:50] [Checkpoint] Saved at task 0
+[2026-01-05 02:21:50] [ensemble] Completed: 41.7% accuracy, 192 API calls
+[2026-01-05 02:21:50] 
+============================================================
+[2026-01-05 02:21:50] RESULTS SUMMARY
+[2026-01-05 02:21:50] ============================================================
+[2026-01-05 02:21:50] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 02:21:50] |-----------|----------|-----------|---------------|
+[2026-01-05 02:21:50] | single_generalist    | 33.3% |        24 | 2671.4 |
+[2026-01-05 02:21:50] | oracle_routing       | 100.0% |        24 | 1859.9 |
+[2026-01-05 02:21:50] | confidence_routing   | 50.0% |       216 | 4036.1 |
+[2026-01-05 02:21:50] | ensemble             | 41.7% |       192 | 2862.4 |
+[2026-01-05 02:21:50] 
+Comparison vs single_generalist:
+[2026-01-05 02:21:50]   oracle_routing: +66.7pp accuracy, 1.0x cost
+[2026-01-05 02:21:50]   confidence_routing: +16.7pp accuracy, 9.0x cost
+[2026-01-05 02:21:50]   ensemble: +8.3pp accuracy, 8.0x cost
+[2026-01-05 02:21:50] 
+Success criterion met: True
+[2026-01-05 02:21:50] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 02:21:50] [Checkpoint] Cleared
+[2026-01-05 02:22:03] ============================================================
+[2026-01-05 02:22:03] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 02:22:03] ============================================================
+[2026-01-05 02:22:03] Using model: gemini-2.5-flash
+[2026-01-05 02:22:03] Created 8 specialists
+[2026-01-05 02:22:03] Generated 24 tasks
+[2026-01-05 02:22:03] 
+[single_generalist] Starting...
+[2026-01-05 02:22:31]   [SINGLE_GENERALIST] 10/24 tasks, acc=40.0%
+[2026-01-05 02:23:35]   [SINGLE_GENERALIST] 20/24 tasks, acc=35.0%
+[2026-01-05 02:23:45] [Checkpoint] Saved at task 0
+[2026-01-05 02:23:45] [single_generalist] Completed: 37.5% accuracy, 24 API calls
+[2026-01-05 02:23:45] 
+[oracle_routing] Starting...
+[2026-01-05 02:24:05]   [ORACLE_ROUTING] 10/24 tasks, acc=100.0%
+[2026-01-05 02:24:25]   [ORACLE_ROUTING] 20/24 tasks, acc=100.0%
+[2026-01-05 02:24:36] [Checkpoint] Saved at task 0
+[2026-01-05 02:24:36] [oracle_routing] Completed: 100.0% accuracy, 24 API calls
+[2026-01-05 02:24:36] 
+[confidence_routing] Starting...
+[2026-01-05 02:25:21]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=40.0%
+[2026-01-05 02:26:02]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=40.0%
+[2026-01-05 02:26:17] [Checkpoint] Saved at task 0
+[2026-01-05 02:26:17] [confidence_routing] Completed: 41.7% accuracy, 216 API calls
+[2026-01-05 02:26:17] 
+[ensemble] Starting...
+[2026-01-05 02:26:46]   [ENSEMBLE] 10/24 tasks, acc=50.0%
+[2026-01-05 02:27:20]   [ENSEMBLE] 20/24 tasks, acc=40.0%
+[2026-01-05 02:27:32] [Checkpoint] Saved at task 0
+[2026-01-05 02:27:32] [ensemble] Completed: 41.7% accuracy, 192 API calls
+[2026-01-05 02:27:32] 
+============================================================
+[2026-01-05 02:27:32] RESULTS SUMMARY
+[2026-01-05 02:27:32] ============================================================
+[2026-01-05 02:27:32] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 02:27:32] |-----------|----------|-----------|---------------|
+[2026-01-05 02:27:32] | single_generalist    | 37.5% |        24 | 4238.7 |
+[2026-01-05 02:27:32] | oracle_routing       | 100.0% |        24 | 2109.2 |
+[2026-01-05 02:27:32] | confidence_routing   | 41.7% |       216 | 4233.3 |
+[2026-01-05 02:27:32] | ensemble             | 41.7% |       192 | 3115.1 |
+[2026-01-05 02:27:32] 
+Comparison vs single_generalist:
+[2026-01-05 02:27:32]   oracle_routing: +62.5pp accuracy, 1.0x cost
+[2026-01-05 02:27:32]   confidence_routing: +4.2pp accuracy, 9.0x cost
+[2026-01-05 02:27:32]   ensemble: +4.2pp accuracy, 8.0x cost
+[2026-01-05 02:27:32] 
+Success criterion met: True
+[2026-01-05 02:27:32] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 02:27:32] [Checkpoint] Cleared
+[2026-01-05 02:27:43] ============================================================
+[2026-01-05 02:27:43] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 02:27:43] ============================================================
+[2026-01-05 02:27:43] Using model: gemini-2.5-flash
+[2026-01-05 02:27:43] Created 8 specialists
+[2026-01-05 02:27:43] Generated 24 tasks
+[2026-01-05 02:27:43] 
+[single_generalist] Starting...
+[2026-01-05 02:28:09]   [SINGLE_GENERALIST] 10/24 tasks, acc=50.0%
+[2026-01-05 02:28:34]   [SINGLE_GENERALIST] 20/24 tasks, acc=35.0%
+[2026-01-05 02:28:45] [Checkpoint] Saved at task 0
+[2026-01-05 02:28:45] [single_generalist] Completed: 37.5% accuracy, 24 API calls
+[2026-01-05 02:28:45] 
+[oracle_routing] Starting...
+[2026-01-05 02:29:03]   [ORACLE_ROUTING] 10/24 tasks, acc=100.0%
+[2026-01-05 02:29:22]   [ORACLE_ROUTING] 20/24 tasks, acc=100.0%
+[2026-01-05 02:29:32] [Checkpoint] Saved at task 0
+[2026-01-05 02:29:32] [oracle_routing] Completed: 100.0% accuracy, 24 API calls
+[2026-01-05 02:29:32] 
+[confidence_routing] Starting...
+[2026-01-05 02:30:15]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=60.0%
+[2026-01-05 02:31:01]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=45.0%
+[2026-01-05 02:31:20] [Checkpoint] Saved at task 0
+[2026-01-05 02:31:20] [confidence_routing] Completed: 45.8% accuracy, 216 API calls
+[2026-01-05 02:31:20] 
+[ensemble] Starting...
+[2026-01-05 02:31:52]   [ENSEMBLE] 10/24 tasks, acc=40.0%
+[2026-01-05 02:32:24]   [ENSEMBLE] 20/24 tasks, acc=40.0%
+[2026-01-05 02:32:37] [Checkpoint] Saved at task 0
+[2026-01-05 02:32:37] [ensemble] Completed: 45.8% accuracy, 192 API calls
+[2026-01-05 02:32:37] 
+============================================================
+[2026-01-05 02:32:37] RESULTS SUMMARY
+[2026-01-05 02:32:37] ============================================================
+[2026-01-05 02:32:37] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 02:32:37] |-----------|----------|-----------|---------------|
+[2026-01-05 02:32:37] | single_generalist    | 37.5% |        24 | 2601.7 |
+[2026-01-05 02:32:37] | oracle_routing       | 100.0% |        24 | 1936.6 |
+[2026-01-05 02:32:37] | confidence_routing   | 45.8% |       216 | 4527.8 |
+[2026-01-05 02:32:37] | ensemble             | 45.8% |       192 | 3195.1 |
+[2026-01-05 02:32:37] 
+Comparison vs single_generalist:
+[2026-01-05 02:32:37]   oracle_routing: +62.5pp accuracy, 1.0x cost
+[2026-01-05 02:32:37]   confidence_routing: +8.3pp accuracy, 9.0x cost
+[2026-01-05 02:32:37]   ensemble: +8.3pp accuracy, 8.0x cost
+[2026-01-05 02:32:37] 
+Success criterion met: True
+[2026-01-05 02:32:37] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 02:32:37] [Checkpoint] Cleared
+[2026-01-05 02:32:48] ============================================================
+[2026-01-05 02:32:48] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 02:32:48] ============================================================
+[2026-01-05 02:32:48] Using model: gemini-2.5-flash
+[2026-01-05 02:32:48] Created 8 specialists
+[2026-01-05 02:32:48] Generated 24 tasks
+[2026-01-05 02:32:48] 
+[single_generalist] Starting...
+[2026-01-05 02:33:17]   [SINGLE_GENERALIST] 10/24 tasks, acc=40.0%
+[2026-01-05 02:33:41]   [SINGLE_GENERALIST] 20/24 tasks, acc=35.0%
+[2026-01-05 02:33:54] [Checkpoint] Saved at task 0
+[2026-01-05 02:33:54] [single_generalist] Completed: 37.5% accuracy, 24 API calls
+[2026-01-05 02:33:54] 
+[oracle_routing] Starting...
+[2026-01-05 02:34:15]   [ORACLE_ROUTING] 10/24 tasks, acc=100.0%
+[2026-01-05 02:34:35]   [ORACLE_ROUTING] 20/24 tasks, acc=100.0%
+[2026-01-05 02:34:44] [Checkpoint] Saved at task 0
+[2026-01-05 02:34:44] [oracle_routing] Completed: 100.0% accuracy, 24 API calls
+[2026-01-05 02:34:44] 
+[confidence_routing] Starting...
+[2026-01-05 02:35:31]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=30.0%
+[2026-01-05 02:36:13]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=30.0%
+[2026-01-05 02:36:28] [Checkpoint] Saved at task 0
+[2026-01-05 02:36:28] [confidence_routing] Completed: 33.3% accuracy, 216 API calls
+[2026-01-05 02:36:28] 
+[ensemble] Starting...
+[2026-01-05 02:37:00]   [ENSEMBLE] 10/24 tasks, acc=50.0%
+[2026-01-05 02:37:30]   [ENSEMBLE] 20/24 tasks, acc=50.0%
+[2026-01-05 02:37:43] [Checkpoint] Saved at task 0
+[2026-01-05 02:37:43] [ensemble] Completed: 50.0% accuracy, 192 API calls
+[2026-01-05 02:37:43] 
+============================================================
+[2026-01-05 02:37:43] RESULTS SUMMARY
+[2026-01-05 02:37:43] ============================================================
+[2026-01-05 02:37:43] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 02:37:43] |-----------|----------|-----------|---------------|
+[2026-01-05 02:37:43] | single_generalist    | 37.5% |        24 | 2751.0 |
+[2026-01-05 02:37:43] | oracle_routing       | 100.0% |        24 | 2052.6 |
+[2026-01-05 02:37:43] | confidence_routing   | 33.3% |       216 | 4358.5 |
+[2026-01-05 02:37:43] | ensemble             | 50.0% |       192 | 3111.8 |
+[2026-01-05 02:37:43] 
+Comparison vs single_generalist:
+[2026-01-05 02:37:43]   oracle_routing: +62.5pp accuracy, 1.0x cost
+[2026-01-05 02:37:43]   confidence_routing: -4.2pp accuracy, 9.0x cost
+[2026-01-05 02:37:43]   ensemble: +12.5pp accuracy, 8.0x cost
+[2026-01-05 02:37:43] 
+Success criterion met: True
+[2026-01-05 02:37:43] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 02:37:43] [Checkpoint] Cleared
+[2026-01-05 02:37:54] ============================================================
+[2026-01-05 02:37:54] PRACTICAL BENEFIT EXPERIMENT (5 Conditions)
+[2026-01-05 02:37:54] ============================================================
+[2026-01-05 02:37:54] Using model: gemini-2.5-flash
+[2026-01-05 02:37:54] Created 8 specialists
+[2026-01-05 02:37:54] Generated 24 tasks
+[2026-01-05 02:37:54] 
+[single_generalist] Starting...
+[2026-01-05 02:38:20]   [SINGLE_GENERALIST] 10/24 tasks, acc=50.0%
+[2026-01-05 02:38:44]   [SINGLE_GENERALIST] 20/24 tasks, acc=35.0%
+[2026-01-05 02:38:55] [Checkpoint] Saved at task 0
+[2026-01-05 02:38:55] [single_generalist] Completed: 33.3% accuracy, 24 API calls
+[2026-01-05 02:38:55] 
+[oracle_routing] Starting...
+[2026-01-05 02:39:17]   [ORACLE_ROUTING] 10/24 tasks, acc=100.0%
+[2026-01-05 02:39:38]   [ORACLE_ROUTING] 20/24 tasks, acc=100.0%
+[2026-01-05 02:39:45] [Checkpoint] Saved at task 0
+[2026-01-05 02:39:45] [oracle_routing] Completed: 100.0% accuracy, 24 API calls
+[2026-01-05 02:39:45] 
+[confidence_routing] Starting...
+[2026-01-05 02:40:28]   [CONFIDENCE_ROUTING] 10/24 tasks, acc=30.0%
+[2026-01-05 02:41:10]   [CONFIDENCE_ROUTING] 20/24 tasks, acc=35.0%
+[2026-01-05 02:41:26] [Checkpoint] Saved at task 0
+[2026-01-05 02:41:26] [confidence_routing] Completed: 37.5% accuracy, 216 API calls
+[2026-01-05 02:41:26] 
+[ensemble] Starting...
+[2026-01-05 02:41:57]   [ENSEMBLE] 10/24 tasks, acc=30.0%
+[2026-01-05 02:42:26]   [ENSEMBLE] 20/24 tasks, acc=30.0%
+[2026-01-05 02:42:39] [Checkpoint] Saved at task 0
+[2026-01-05 02:42:39] [ensemble] Completed: 33.3% accuracy, 192 API calls
+[2026-01-05 02:42:39] 
+============================================================
+[2026-01-05 02:42:39] RESULTS SUMMARY
+[2026-01-05 02:42:39] ============================================================
+[2026-01-05 02:42:39] 
+| Condition | Accuracy | API Calls | Avg Time (ms) |
+[2026-01-05 02:42:39] |-----------|----------|-----------|---------------|
+[2026-01-05 02:42:39] | single_generalist    | 33.3% |        24 | 2541.6 |
+[2026-01-05 02:42:39] | oracle_routing       | 100.0% |        24 | 2080.5 |
+[2026-01-05 02:42:39] | confidence_routing   | 37.5% |       216 | 4210.2 |
+[2026-01-05 02:42:39] | ensemble             | 33.3% |       192 | 3004.9 |
+[2026-01-05 02:42:39] 
+Comparison vs single_generalist:
+[2026-01-05 02:42:39]   oracle_routing: +66.7pp accuracy, 1.0x cost
+[2026-01-05 02:42:39]   confidence_routing: +4.2pp accuracy, 9.0x cost
+[2026-01-05 02:42:39]   ensemble: +0.0pp accuracy, 8.0x cost
+[2026-01-05 02:42:39] 
+Success criterion met: True
+[2026-01-05 02:42:39] 
+Results saved to results/practical_benefit/practical_benefit_results.json
+[2026-01-05 02:42:39] [Checkpoint] Cleared

@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-01-14T12:56:33.032164",
+  "total_time_seconds": 12994.367856264114,
+  "main_results": {
+    "mean_sci": 0.07345232629323538,
+    "std_sci": 0.004531695203885319,
+    "mean_coverage": 0.9333333333333332,
+    "mean_tool_accuracy": 0.6136363636363636,
+    "is_emergent": true
+  },
+  "cost_comparison": {
+    "population": {
+      "mean_tokens": 11079.5,
+      "std_tokens": 198.5,
+      "mean_sci": 0.059917355371900786,
+      "mean_coverage": 0.9,
+      "mean_tool_accuracy": 0.5454545454545454
+    },
+    "bandit": {
+      "mean_tokens": 6525.5,
+      "std_tokens": 68.5,
+      "mean_accuracy": 0.9520833333333334
+    },
+    "independent": {
+      "mean_tokens": 6046.0,
+      "std_tokens": 100.0,
+      "mean_accuracy": 0.9208333333333334
+    },
+    "savings_vs_independent_pct": -83.25339067151836
+  },
+  "ablations": {
+    "no_fitness_sharing": {
+      "mean_sci": 0.20454545454545447,
+      "mean_coverage": 0.7
+    },
+    "uniform_tools": {
+      "mean_sci": 0.2163825757575757,
+      "mean_coverage": 0.8
+    }
+  },
+  "thesis_validated": true
+}

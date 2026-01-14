@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-01-04T09:36:48.450647",
+  "model": "gemini-2.0-flash",
+  "config": {
+    "n_agents": 8,
+    "n_gens": 20,
+    "tasks_per_gen": 4,
+    "n_seeds": 5
+  },
+  "seeds": [
+    {
+      "seed": 0,
+      "sci": 0.51,
+      "l3_rate": 0.75,
+      "diversity": 0.75,
+      "hhi": 0.198
+    },
+    {
+      "seed": 1,
+      "sci": 0.472,
+      "l3_rate": 0.62,
+      "diversity": 0.75,
+      "hhi": 0.198
+    },
+    {
+      "seed": 2,
+      "sci": 0.629,
+      "l3_rate": 0.88,
+      "diversity": 0.75,
+      "hhi": 0.198
+    },
+    {
+      "seed": 3,
+      "sci": 0.52,
+      "l3_rate": 0.88,
+      "diversity": 0.75,
+      "hhi": 0.198
+    },
+    {
+      "seed": 4,
+      "sci": 0.42,
+      "l3_rate": 0.88,
+      "diversity": 0.75,
+      "hhi": 0.198
+    }
+  ],
+  "aggregated": {
+    "sci_mean": 0.51,
+    "sci_std": 0.069,
+    "l3_rate_mean": 0.8,
+    "l3_rate_std": 0.103,
+    "diversity_mean": 0.75,
+    "diversity_std": 0.0,
+    "hhi_mean": 0.2,
+    "hhi_std": 0.01
+  }
+}

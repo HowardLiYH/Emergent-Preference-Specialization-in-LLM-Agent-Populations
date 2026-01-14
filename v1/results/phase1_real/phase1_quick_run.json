@@ -1,0 +1,166 @@
+{
+  "config": {
+    "agents": 8,
+    "gens": 20,
+    "tasks_per_gen": 4
+  },
+  "metrics_history": [
+    {
+      "generation": 0,
+      "rpi_variance": 0.0,
+      "population_psi": 0.0,
+      "preference_diversity": 0.0,
+      "ppc": 0.0,
+      "passes_emergence": false,
+      "passes_stability": false,
+      "passes_diversity": false,
+      "overall_success": false,
+      "agent_preferences": {
+        "agent_0": "none",
+        "agent_1": "none",
+        "agent_2": "none",
+        "agent_3": "none",
+        "agent_4": "none",
+        "agent_5": "none",
+        "agent_6": "none",
+        "agent_7": "none"
+      },
+      "agent_strengths": {
+        "agent_0": 0.0,
+        "agent_1": 0.0,
+        "agent_2": 0.0,
+        "agent_3": 0.0,
+        "agent_4": 0.0,
+        "agent_5": 0.0,
+        "agent_6": 0.0,
+        "agent_7": 0.0
+      }
+    },
+    {
+      "generation": 5,
+      "rpi_variance": 0.0,
+      "population_psi": 0.0,
+      "preference_diversity": 0.0,
+      "ppc": 0.0,
+      "passes_emergence": false,
+      "passes_stability": false,
+      "passes_diversity": false,
+      "overall_success": false,
+      "agent_preferences": {
+        "agent_0": "none",
+        "agent_1": "none",
+        "agent_2": "none",
+        "agent_3": "none",
+        "agent_4": "none",
+        "agent_5": "none",
+        "agent_6": "none",
+        "agent_7": "none"
+      },
+      "agent_strengths": {
+        "agent_0": 0.0,
+        "agent_1": 0.0,
+        "agent_2": 0.0,
+        "agent_3": 0.0,
+        "agent_4": 0.0,
+        "agent_5": 0.0,
+        "agent_6": 0.0,
+        "agent_7": 0.0
+      }
+    },
+    {
+      "generation": 10,
+      "rpi_variance": 0.0,
+      "population_psi": 0.0,
+      "preference_diversity": 0.0,
+      "ppc": 0.0,
+      "passes_emergence": false,
+      "passes_stability": false,
+      "passes_diversity": false,
+      "overall_success": false,
+      "agent_preferences": {
+        "agent_0": "none",
+        "agent_1": "none",
+        "agent_2": "none",
+        "agent_3": "none",
+        "agent_4": "none",
+        "agent_5": "none",
+        "agent_6": "none",
+        "agent_7": "none"
+      },
+      "agent_strengths": {
+        "agent_0": 0.0,
+        "agent_1": 0.0,
+        "agent_2": 0.0,
+        "agent_3": 0.0,
+        "agent_4": 0.0,
+        "agent_5": 0.0,
+        "agent_6": 0.0,
+        "agent_7": 0.0
+      }
+    },
+    {
+      "generation": 15,
+      "rpi_variance": 0.0,
+      "population_psi": 0.0,
+      "preference_diversity": 0.0,
+      "ppc": 0.0,
+      "passes_emergence": false,
+      "passes_stability": false,
+      "passes_diversity": false,
+      "overall_success": false,
+      "agent_preferences": {
+        "agent_0": "none",
+        "agent_1": "none",
+        "agent_2": "none",
+        "agent_3": "none",
+        "agent_4": "none",
+        "agent_5": "none",
+        "agent_6": "none",
+        "agent_7": "none"
+      },
+      "agent_strengths": {
+        "agent_0": 0.0,
+        "agent_1": 0.0,
+        "agent_2": 0.0,
+        "agent_3": 0.0,
+        "agent_4": 0.0,
+        "agent_5": 0.0,
+        "agent_6": 0.0,
+        "agent_7": 0.0
+      }
+    },
+    {
+      "generation": 19,
+      "rpi_variance": 0.0,
+      "population_psi": 0.0,
+      "preference_diversity": 0.0,
+      "ppc": 0.0,
+      "passes_emergence": false,
+      "passes_stability": false,
+      "passes_diversity": false,
+      "overall_success": false,
+      "agent_preferences": {
+        "agent_0": "none",
+        "agent_1": "none",
+        "agent_2": "none",
+        "agent_3": "none",
+        "agent_4": "none",
+        "agent_5": "none",
+        "agent_6": "none",
+        "agent_7": "none"
+      },
+      "agent_strengths": {
+        "agent_0": 0.0,
+        "agent_1": 0.0,
+        "agent_2": 0.0,
+        "agent_3": 0.0,
+        "agent_4": 0.0,
+        "agent_5": 0.0,
+        "agent_6": 0.0,
+        "agent_7": 0.0
+      }
+    }
+  ],
+  "specialists": [],
+  "model": "gemini-2.0-flash"
+}

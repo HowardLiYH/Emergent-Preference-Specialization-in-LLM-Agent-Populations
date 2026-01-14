@@ -1,0 +1,58 @@
+[16:07:46] ============================================================
+[16:07:46] MMLU Real-World Validation Experiment
+[16:07:46] Model: gemini-2.5-flash
+[16:07:46] ============================================================
+[16:07:46] 
+Testing domain: abstract_algebra
+[16:07:46]   Mapped to rule: math_mod
+[16:07:46]   Description: Tests mathematical reasoning and pattern recognition
+Empty parts in Gemini response (likely content filtering)
+[16:07:55]   Specialist: 66.7%
+[16:07:55]   Generic: 100.0%
+[16:07:55]   Improvement: -33.3%
+[16:07:55] Checkpoint saved: 1 domains complete
+[16:07:55] 
+Testing domain: us_history
+[16:07:55]   Mapped to rule: position
+[16:07:55]   Description: Tests factual recall with structured answer patterns
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+[16:08:04]   Specialist: 33.3%
+[16:08:04]   Generic: 66.7%
+[16:08:04]   Improvement: -33.3%
+[16:08:04] Checkpoint saved: 2 domains complete
+[16:08:04] 
+Testing domain: high_school_biology
+[16:08:04]   Mapped to rule: animate
+[16:08:04]   Description: Tests biological category knowledge
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+[16:08:14]   Specialist: 33.3%
+[16:08:14]   Generic: 100.0%
+[16:08:14]   Improvement: -66.7%
+[16:08:14] Checkpoint saved: 3 domains complete
+[16:08:14] 
+Testing domain: professional_law
+[16:08:14]   Mapped to rule: inverse
+[16:08:14]   Description: Tests logical reasoning and counterargument skills
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+[16:08:23]   Specialist: 33.3%
+[16:08:23]   Generic: 66.7%
+[16:08:23]   Improvement: -33.3%
+[16:08:23] Checkpoint saved: 4 domains complete
+[16:08:23] 
+============================================================
+[16:08:23] FINAL RESULTS
+[16:08:23] ============================================================
+[16:08:23] abstract_algebra: 66.7% vs 100.0% (-33.3%) ✗ FAIL
+[16:08:23] us_history: 33.3% vs 66.7% (-33.3%) ✗ FAIL
+[16:08:23] high_school_biology: 33.3% vs 100.0% (-66.7%) ✗ FAIL
+[16:08:23] professional_law: 33.3% vs 66.7% (-33.3%) ✗ FAIL
+[16:08:23] 
+Mean improvement: -41.7%
+[16:08:23] Passing domains: 0/4
+[16:08:23] Success: NO (need 3/4 passing)
+[16:08:23] 
+Results saved to results/mmlu_validation/mmlu_final_results.json

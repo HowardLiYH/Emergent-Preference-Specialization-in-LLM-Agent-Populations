@@ -1,0 +1,18 @@
+[16:19:55] === BASELINE COMPARISON (gemini-2.5-flash) ===
+[16:19:55] Testing NO_PROMPT...
+[16:20:27]   NO_PROMPT: 5.0%
+[16:20:27] Testing RANDOM_PROMPT...
+Empty parts in Gemini response (likely content filtering)
+[16:20:58]   RANDOM_PROMPT: 15.0%
+[16:20:58] Testing WRONG_PROMPT...
+[16:21:29]   WRONG_PROMPT: 20.0%
+[16:21:29] Testing CORRECT_PROMPT...
+[16:22:01]   CORRECT_PROMPT: 100.0%
+[16:22:01] 
+FINAL BASELINE RESULTS:
+[16:22:01]   NO_PROMPT: 5.0%
+[16:22:01]   RANDOM_PROMPT: 15.0%
+[16:22:01]   WRONG_PROMPT: 20.0%
+[16:22:01]   CORRECT_PROMPT: 100.0%
+[16:22:01] 
+Improvement (CORRECT vs NO_PROMPT): +95.0%

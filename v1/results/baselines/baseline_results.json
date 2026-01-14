@@ -1,0 +1,470 @@
+{
+  "cumulative": [
+    {
+      "baseline_type": "cumulative",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 0
+      },
+      "final_lsi": 0.8796638557046548,
+      "specialist_counts": {
+        "causal": 1,
+        "algorithmic": 1,
+        "procedural": 1,
+        "arithmetic": 1,
+        "factual": 1,
+        "summarization": 1,
+        "creative": 1,
+        "coding": 1,
+        "analogical": 1,
+        "scientific": 1
+      },
+      "duration_seconds": 0.03875398635864258
+    },
+    {
+      "baseline_type": "cumulative",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 1
+      },
+      "final_lsi": 0.6917884741982281,
+      "specialist_counts": {
+        "procedural": 1,
+        "coding": 1,
+        "causal": 1,
+        "factual": 1,
+        "creative": 1,
+        "scientific": 1,
+        "arithmetic": 1,
+        "algorithmic": 1,
+        "analogical": 1,
+        "generalist": 1
+      },
+      "duration_seconds": 0.031466007232666016
+    },
+    {
+      "baseline_type": "cumulative",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 2
+      },
+      "final_lsi": 0.9697494725917177,
+      "specialist_counts": {
+        "summarization": 1,
+        "arithmetic": 1,
+        "causal": 1,
+        "coding": 1,
+        "analogical": 1,
+        "scientific": 1,
+        "algorithmic": 1,
+        "factual": 1,
+        "creative": 1,
+        "procedural": 1
+      },
+      "duration_seconds": 0.025522947311401367
+    },
+    {
+      "baseline_type": "cumulative",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 3
+      },
+      "final_lsi": 0.9207749309835469,
+      "specialist_counts": {
+        "factual": 1,
+        "arithmetic": 1,
+        "procedural": 1,
+        "creative": 1,
+        "coding": 1,
+        "algorithmic": 1,
+        "analogical": 1,
+        "scientific": 1,
+        "summarization": 1,
+        "causal": 1
+      },
+      "duration_seconds": 0.02410101890563965
+    },
+    {
+      "baseline_type": "cumulative",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 4
+      },
+      "final_lsi": 0.9694060631648421,
+      "specialist_counts": {
+        "coding": 1,
+        "procedural": 1,
+        "creative": 1,
+        "algorithmic": 1,
+        "scientific": 1,
+        "factual": 1,
+        "summarization": 1,
+        "causal": 1,
+        "analogical": 1,
+        "arithmetic": 1
+      },
+      "duration_seconds": 0.025027990341186523
+    }
+  ],
+  "no_evolution": [
+    {
+      "baseline_type": "no_evolution",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 0
+      },
+      "final_lsi": 0.8822711577233406,
+      "specialist_counts": {
+        "factual": 1,
+        "creative": 1,
+        "causal": 1,
+        "algorithmic": 1,
+        "arithmetic": 1,
+        "summarization": 1,
+        "scientific": 1,
+        "coding": 1,
+        "procedural": 1,
+        "analogical": 1
+      },
+      "duration_seconds": 0.011189937591552734
+    },
+    {
+      "baseline_type": "no_evolution",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 1
+      },
+      "final_lsi": 0.8692972343672697,
+      "specialist_counts": {
+        "factual": 1,
+        "arithmetic": 1,
+        "coding": 1,
+        "summarization": 1,
+        "causal": 1,
+        "scientific": 1,
+        "analogical": 1,
+        "algorithmic": 1,
+        "procedural": 1,
+        "creative": 1
+      },
+      "duration_seconds": 0.011169195175170898
+    },
+    {
+      "baseline_type": "no_evolution",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 2
+      },
+      "final_lsi": 0.9693737654213314,
+      "specialist_counts": {
+        "causal": 1,
+        "coding": 1,
+        "summarization": 1,
+        "arithmetic": 1,
+        "procedural": 1,
+        "scientific": 1,
+        "creative": 1,
+        "factual": 1,
+        "analogical": 1,
+        "algorithmic": 1
+      },
+      "duration_seconds": 0.01101374626159668
+    },
+    {
+      "baseline_type": "no_evolution",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 3
+      },
+      "final_lsi": 0.9054878910454891,
+      "specialist_counts": {
+        "factual": 1,
+        "scientific": 1,
+        "creative": 1,
+        "causal": 1,
+        "analogical": 1,
+        "procedural": 1,
+        "algorithmic": 1,
+        "arithmetic": 1,
+        "coding": 1,
+        "summarization": 1
+      },
+      "duration_seconds": 0.010457992553710938
+    },
+    {
+      "baseline_type": "no_evolution",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 4
+      },
+      "final_lsi": 0.8678561744147542,
+      "specialist_counts": {
+        "arithmetic": 1,
+        "causal": 1,
+        "procedural": 1,
+        "analogical": 1,
+        "algorithmic": 1,
+        "factual": 1,
+        "summarization": 1,
+        "coding": 1,
+        "creative": 1,
+        "scientific": 1
+      },
+      "duration_seconds": 0.01275491714477539
+    }
+  ],
+  "random_strategy": [
+    {
+      "baseline_type": "random_strategy",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 0
+      },
+      "final_lsi": 0.8969574422584911,
+      "specialist_counts": {
+        "creative": 1,
+        "causal": 1,
+        "analogical": 1,
+        "summarization": 1,
+        "scientific": 1,
+        "factual": 1,
+        "algorithmic": 1,
+        "coding": 1,
+        "procedural": 1,
+        "arithmetic": 1
+      },
+      "duration_seconds": 0.07015681266784668
+    },
+    {
+      "baseline_type": "random_strategy",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 1
+      },
+      "final_lsi": 0.9329588986981019,
+      "specialist_counts": {
+        "creative": 1,
+        "scientific": 1,
+        "arithmetic": 1,
+        "procedural": 1,
+        "coding": 1,
+        "causal": 1,
+        "summarization": 1,
+        "algorithmic": 1,
+        "factual": 1,
+        "analogical": 1
+      },
+      "duration_seconds": 0.05732083320617676
+    },
+    {
+      "baseline_type": "random_strategy",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 2
+      },
+      "final_lsi": 0.9379357581968643,
+      "specialist_counts": {
+        "procedural": 1,
+        "analogical": 1,
+        "arithmetic": 1,
+        "factual": 1,
+        "algorithmic": 1,
+        "scientific": 1,
+        "coding": 1,
+        "creative": 1,
+        "summarization": 1,
+        "causal": 1
+      },
+      "duration_seconds": 0.05563521385192871
+    },
+    {
+      "baseline_type": "random_strategy",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 3
+      },
+      "final_lsi": 0.9556277548145264,
+      "specialist_counts": {
+        "factual": 1,
+        "summarization": 1,
+        "analogical": 1,
+        "arithmetic": 1,
+        "coding": 1,
+        "scientific": 1,
+        "algorithmic": 1,
+        "causal": 1,
+        "procedural": 1,
+        "creative": 1
+      },
+      "duration_seconds": 0.05396914482116699
+    },
+    {
+      "baseline_type": "random_strategy",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 4
+      },
+      "final_lsi": 0.9149372966473441,
+      "specialist_counts": {
+        "creative": 1,
+        "procedural": 1,
+        "algorithmic": 1,
+        "analogical": 1,
+        "arithmetic": 1,
+        "factual": 1,
+        "scientific": 1,
+        "coding": 1,
+        "causal": 1,
+        "summarization": 1
+      },
+      "duration_seconds": 0.054306983947753906
+    }
+  ],
+  "handcrafted": [
+    {
+      "baseline_type": "handcrafted",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 0
+      },
+      "final_lsi": 1.0,
+      "specialist_counts": {
+        "arithmetic": 1,
+        "algorithmic": 1,
+        "factual": 1,
+        "procedural": 1,
+        "creative": 1,
+        "summarization": 1,
+        "causal": 1,
+        "analogical": 1,
+        "coding": 1,
+        "scientific": 1
+      },
+      "duration_seconds": 0.0101470947265625
+    },
+    {
+      "baseline_type": "handcrafted",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 1
+      },
+      "final_lsi": 1.0,
+      "specialist_counts": {
+        "arithmetic": 1,
+        "algorithmic": 1,
+        "factual": 1,
+        "procedural": 1,
+        "creative": 1,
+        "summarization": 1,
+        "causal": 1,
+        "analogical": 1,
+        "coding": 1,
+        "scientific": 1
+      },
+      "duration_seconds": 0.010465145111083984
+    },
+    {
+      "baseline_type": "handcrafted",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 2
+      },
+      "final_lsi": 1.0,
+      "specialist_counts": {
+        "arithmetic": 1,
+        "algorithmic": 1,
+        "factual": 1,
+        "procedural": 1,
+        "creative": 1,
+        "summarization": 1,
+        "causal": 1,
+        "analogical": 1,
+        "coding": 1,
+        "scientific": 1
+      },
+      "duration_seconds": 0.009807109832763672
+    },
+    {
+      "baseline_type": "handcrafted",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 3
+      },
+      "final_lsi": 1.0,
+      "specialist_counts": {
+        "arithmetic": 1,
+        "algorithmic": 1,
+        "factual": 1,
+        "procedural": 1,
+        "creative": 1,
+        "summarization": 1,
+        "causal": 1,
+        "analogical": 1,
+        "coding": 1,
+        "scientific": 1
+      },
+      "duration_seconds": 0.010437250137329102
+    },
+    {
+      "baseline_type": "handcrafted",
+      "config": {
+        "num_agents": 10,
+        "num_generations": 50,
+        "tasks_per_generation": 10,
+        "seed": 4
+      },
+      "final_lsi": 1.0,
+      "specialist_counts": {
+        "arithmetic": 1,
+        "algorithmic": 1,
+        "factual": 1,
+        "procedural": 1,
+        "creative": 1,
+        "summarization": 1,
+        "causal": 1,
+        "analogical": 1,
+        "coding": 1,
+        "scientific": 1
+      },
+      "duration_seconds": 0.010370969772338867
+    }
+  ]
+}

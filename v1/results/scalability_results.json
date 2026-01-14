@@ -1,0 +1,30 @@
+{
+  "results": [
+    {
+      "n_agents": 8,
+      "coverage": 0.75,
+      "swap_pass_rate": 0.8333333333333334,
+      "unique_specialists": 6
+    },
+    {
+      "n_agents": 12,
+      "coverage": 0.75,
+      "swap_pass_rate": 0.8333333333333334,
+      "unique_specialists": 6
+    },
+    {
+      "n_agents": 24,
+      "coverage": 0.875,
+      "swap_pass_rate": 0.6666666666666666,
+      "unique_specialists": 7
+    },
+    {
+      "n_agents": 48,
+      "coverage": 0.875,
+      "swap_pass_rate": 0.16666666666666666,
+      "unique_specialists": 7
+    }
+  ],
+  "_model": "gemini-2.0-flash-exp",
+  "_note": "Real API swap tests, simulated evolution for coverage"
+}

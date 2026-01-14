@@ -1,0 +1,88 @@
+[2026-01-04 17:58:08] ============================================================
+[2026-01-04 17:58:08] BRIDGE EXPERIMENT: Synthetic vs Real Task Specialization
+[2026-01-04 17:58:08] ============================================================
+[2026-01-04 17:58:08] 
+[Seed 1/5]
+[2026-01-04 17:58:08]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-04 17:58:08]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-04 17:58:08] 
+[Seed 2/5]
+[2026-01-04 17:58:08]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-04 17:58:08]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-04 17:58:08] 
+[Seed 3/5]
+[2026-01-04 17:58:08]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-04 17:58:08]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-04 17:58:08] 
+[Seed 4/5]
+[2026-01-04 17:58:08]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-04 17:58:08]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-04 17:58:08] 
+[Seed 5/5]
+[2026-01-04 17:58:08]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-04 17:58:08]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-04 17:58:08] 
+============================================================
+[2026-01-04 17:58:08] RESULTS SUMMARY
+[2026-01-04 17:58:08] ============================================================
+[2026-01-04 17:58:08] 
+Synthetic Rules (8 rules):
+[2026-01-04 17:58:08]   Mean SCI: 1.000 ± 0.000
+[2026-01-04 17:58:08]   Mean Diversity: 87.5%
+[2026-01-04 17:58:08] 
+Real Tasks (4 domains):
+[2026-01-04 17:58:08]   Mean SCI: 1.000 ± 0.000
+[2026-01-04 17:58:08]   Mean Diversity: 100.0%
+[2026-01-04 17:58:08] 
+Effect Sizes:
+[2026-01-04 17:58:08]   SCI: d = 0.000 (negligible)
+[2026-01-04 17:58:08]   Diversity: d = -0.125 (negligible)
+[2026-01-04 17:58:08] 
+Verdict: ✅ MECHANISM TRANSFERS
+[2026-01-04 17:58:08] MECHANISM TRANSFERS: Specialization patterns are statistically similar between synthetic rules and real tasks (SCI d=0.00, Diversity d=-0.12). This demonstrates that the competitive selection mechanism works regardless of task type.
+[2026-01-04 17:58:08] 
+Results saved to results/bridge_experiment/bridge_results.json
+[2026-01-05 17:31:12] ============================================================
+[2026-01-05 17:31:12] BRIDGE EXPERIMENT: Synthetic vs Real Task Specialization
+[2026-01-05 17:31:12] ============================================================
+[2026-01-05 17:31:12] 
+[Seed 1/5]
+[2026-01-05 17:31:12]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-05 17:31:12]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-05 17:31:12] 
+[Seed 2/5]
+[2026-01-05 17:31:12]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-05 17:31:12]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-05 17:31:12] 
+[Seed 3/5]
+[2026-01-05 17:31:12]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-05 17:31:12]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-05 17:31:12] 
+[Seed 4/5]
+[2026-01-05 17:31:12]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-05 17:31:12]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-05 17:31:12] 
+[Seed 5/5]
+[2026-01-05 17:31:12]   Synthetic: SCI=1.000, Diversity=87.5%
+[2026-01-05 17:31:12]   Real: SCI=1.000, Diversity=100.0%
+[2026-01-05 17:31:12] 
+============================================================
+[2026-01-05 17:31:12] RESULTS SUMMARY
+[2026-01-05 17:31:12] ============================================================
+[2026-01-05 17:31:12] 
+Synthetic Rules (8 rules):
+[2026-01-05 17:31:12]   Mean SCI: 1.000 ± 0.000
+[2026-01-05 17:31:12]   Mean Diversity: 87.5%
+[2026-01-05 17:31:12] 
+Real Tasks (4 domains):
+[2026-01-05 17:31:12]   Mean SCI: 1.000 ± 0.000
+[2026-01-05 17:31:12]   Mean Diversity: 100.0%
+[2026-01-05 17:31:12] 
+Effect Sizes:
+[2026-01-05 17:31:12]   SCI: d = 0.000 (negligible)
+[2026-01-05 17:31:12]   Diversity: d = -0.125 (negligible)
+[2026-01-05 17:31:12] 
+Verdict: ✅ MECHANISM TRANSFERS
+[2026-01-05 17:31:12] MECHANISM TRANSFERS: Specialization patterns are statistically similar between synthetic rules and real tasks (SCI d=0.00, Diversity d=-0.12). This demonstrates that the competitive selection mechanism works regardless of task type.
+[2026-01-05 17:31:12] 
+Results saved to results/bridge_experiment/bridge_results.json

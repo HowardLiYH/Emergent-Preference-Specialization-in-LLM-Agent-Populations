@@ -1,0 +1,453 @@
+{
+  "position\u2192pattern": {
+    "specialist_rule": "position",
+    "test_rule": "pattern",
+    "original_score": 0.8,
+    "swapped_score": 1.0,
+    "swap_effect": -0.19999999999999996,
+    "passed": true
+  },
+  "position\u2192inverse": {
+    "specialist_rule": "position",
+    "test_rule": "inverse",
+    "original_score": 0.4,
+    "swapped_score": 1.0,
+    "swap_effect": -0.6,
+    "passed": true
+  },
+  "position\u2192vowel_start": {
+    "specialist_rule": "position",
+    "test_rule": "vowel_start",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "position\u2192rhyme": {
+    "specialist_rule": "position",
+    "test_rule": "rhyme",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "position\u2192alphabet": {
+    "specialist_rule": "position",
+    "test_rule": "alphabet",
+    "original_score": 0.2,
+    "swapped_score": 0.4,
+    "swap_effect": -0.2,
+    "passed": true
+  },
+  "position\u2192math_mod": {
+    "specialist_rule": "position",
+    "test_rule": "math_mod",
+    "original_score": 0.2,
+    "swapped_score": 0.4,
+    "swap_effect": -0.2,
+    "passed": true
+  },
+  "position\u2192animate": {
+    "specialist_rule": "position",
+    "test_rule": "animate",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "pattern\u2192position": {
+    "specialist_rule": "pattern",
+    "test_rule": "position",
+    "original_score": 0.32,
+    "swapped_score": 1.0,
+    "swap_effect": -0.6799999999999999,
+    "passed": true
+  },
+  "pattern\u2192inverse": {
+    "specialist_rule": "pattern",
+    "test_rule": "inverse",
+    "original_score": 0.2,
+    "swapped_score": 0.96,
+    "swap_effect": -0.76,
+    "passed": true
+  },
+  "pattern\u2192vowel_start": {
+    "specialist_rule": "pattern",
+    "test_rule": "vowel_start",
+    "original_score": 0.0,
+    "swapped_score": 1.0,
+    "swap_effect": -1.0,
+    "passed": true
+  },
+  "pattern\u2192rhyme": {
+    "specialist_rule": "pattern",
+    "test_rule": "rhyme",
+    "original_score": 0.36,
+    "swapped_score": 1.0,
+    "swap_effect": -0.64,
+    "passed": true
+  },
+  "pattern\u2192alphabet": {
+    "specialist_rule": "pattern",
+    "test_rule": "alphabet",
+    "original_score": 0.32,
+    "swapped_score": 0.4,
+    "swap_effect": -0.08000000000000002,
+    "passed": false
+  },
+  "pattern\u2192math_mod": {
+    "specialist_rule": "pattern",
+    "test_rule": "math_mod",
+    "original_score": 0.0,
+    "swapped_score": 0.4,
+    "swap_effect": -0.4,
+    "passed": true
+  },
+  "pattern\u2192animate": {
+    "specialist_rule": "pattern",
+    "test_rule": "animate",
+    "original_score": 0.16,
+    "swapped_score": 1.0,
+    "swap_effect": -0.84,
+    "passed": true
+  },
+  "inverse\u2192position": {
+    "specialist_rule": "inverse",
+    "test_rule": "position",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "inverse\u2192pattern": {
+    "specialist_rule": "inverse",
+    "test_rule": "pattern",
+    "original_score": 0.96,
+    "swapped_score": 1.0,
+    "swap_effect": -0.040000000000000036,
+    "passed": false
+  },
+  "inverse\u2192vowel_start": {
+    "specialist_rule": "inverse",
+    "test_rule": "vowel_start",
+    "original_score": 0.4,
+    "swapped_score": 1.0,
+    "swap_effect": -0.6,
+    "passed": true
+  },
+  "inverse\u2192rhyme": {
+    "specialist_rule": "inverse",
+    "test_rule": "rhyme",
+    "original_score": 0.5599999999999999,
+    "swapped_score": 1.0,
+    "swap_effect": -0.44000000000000006,
+    "passed": true
+  },
+  "inverse\u2192alphabet": {
+    "specialist_rule": "inverse",
+    "test_rule": "alphabet",
+    "original_score": 0.4,
+    "swapped_score": 0.4,
+    "swap_effect": 0.0,
+    "passed": false
+  },
+  "inverse\u2192math_mod": {
+    "specialist_rule": "inverse",
+    "test_rule": "math_mod",
+    "original_score": 0.96,
+    "swapped_score": 0.4,
+    "swap_effect": 0.5599999999999999,
+    "passed": false
+  },
+  "inverse\u2192animate": {
+    "specialist_rule": "inverse",
+    "test_rule": "animate",
+    "original_score": 0.16,
+    "swapped_score": 1.0,
+    "swap_effect": -0.84,
+    "passed": true
+  },
+  "vowel_start\u2192position": {
+    "specialist_rule": "vowel_start",
+    "test_rule": "position",
+    "original_score": 0.6,
+    "swapped_score": 1.0,
+    "swap_effect": -0.4,
+    "passed": true
+  },
+  "vowel_start\u2192pattern": {
+    "specialist_rule": "vowel_start",
+    "test_rule": "pattern",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "vowel_start\u2192inverse": {
+    "specialist_rule": "vowel_start",
+    "test_rule": "inverse",
+    "original_score": 0.6,
+    "swapped_score": 1.0,
+    "swap_effect": -0.4,
+    "passed": true
+  },
+  "vowel_start\u2192rhyme": {
+    "specialist_rule": "vowel_start",
+    "test_rule": "rhyme",
+    "original_score": 0.16,
+    "swapped_score": 1.0,
+    "swap_effect": -0.84,
+    "passed": true
+  },
+  "vowel_start\u2192alphabet": {
+    "specialist_rule": "vowel_start",
+    "test_rule": "alphabet",
+    "original_score": 0.4,
+    "swapped_score": 0.4,
+    "swap_effect": 0.0,
+    "passed": false
+  },
+  "vowel_start\u2192math_mod": {
+    "specialist_rule": "vowel_start",
+    "test_rule": "math_mod",
+    "original_score": 0.0,
+    "swapped_score": 0.4,
+    "swap_effect": -0.4,
+    "passed": true
+  },
+  "vowel_start\u2192animate": {
+    "specialist_rule": "vowel_start",
+    "test_rule": "animate",
+    "original_score": 0.4,
+    "swapped_score": 1.0,
+    "swap_effect": -0.6,
+    "passed": true
+  },
+  "rhyme\u2192position": {
+    "specialist_rule": "rhyme",
+    "test_rule": "position",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "rhyme\u2192pattern": {
+    "specialist_rule": "rhyme",
+    "test_rule": "pattern",
+    "original_score": 1.0,
+    "swapped_score": 1.0,
+    "swap_effect": 0.0,
+    "passed": false
+  },
+  "rhyme\u2192inverse": {
+    "specialist_rule": "rhyme",
+    "test_rule": "inverse",
+    "original_score": 0.96,
+    "swapped_score": 1.0,
+    "swap_effect": -0.040000000000000036,
+    "passed": false
+  },
+  "rhyme\u2192vowel_start": {
+    "specialist_rule": "rhyme",
+    "test_rule": "vowel_start",
+    "original_score": 0.0,
+    "swapped_score": 1.0,
+    "swap_effect": -1.0,
+    "passed": true
+  },
+  "rhyme\u2192alphabet": {
+    "specialist_rule": "rhyme",
+    "test_rule": "alphabet",
+    "original_score": 0.0,
+    "swapped_score": 0.4,
+    "swap_effect": -0.4,
+    "passed": true
+  },
+  "rhyme\u2192math_mod": {
+    "specialist_rule": "rhyme",
+    "test_rule": "math_mod",
+    "original_score": 0.36,
+    "swapped_score": 0.4,
+    "swap_effect": -0.040000000000000036,
+    "passed": false
+  },
+  "rhyme\u2192animate": {
+    "specialist_rule": "rhyme",
+    "test_rule": "animate",
+    "original_score": 0.0,
+    "swapped_score": 1.0,
+    "swap_effect": -1.0,
+    "passed": true
+  },
+  "alphabet\u2192position": {
+    "specialist_rule": "alphabet",
+    "test_rule": "position",
+    "original_score": 0.0,
+    "swapped_score": 1.0,
+    "swap_effect": -1.0,
+    "passed": true
+  },
+  "alphabet\u2192pattern": {
+    "specialist_rule": "alphabet",
+    "test_rule": "pattern",
+    "original_score": 0.96,
+    "swapped_score": 1.0,
+    "swap_effect": -0.040000000000000036,
+    "passed": false
+  },
+  "alphabet\u2192inverse": {
+    "specialist_rule": "alphabet",
+    "test_rule": "inverse",
+    "original_score": 1.0,
+    "swapped_score": 1.0,
+    "swap_effect": 0.0,
+    "passed": false
+  },
+  "alphabet\u2192vowel_start": {
+    "specialist_rule": "alphabet",
+    "test_rule": "vowel_start",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "alphabet\u2192rhyme": {
+    "specialist_rule": "alphabet",
+    "test_rule": "rhyme",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "alphabet\u2192math_mod": {
+    "specialist_rule": "alphabet",
+    "test_rule": "math_mod",
+    "original_score": 0.4,
+    "swapped_score": 0.4,
+    "swap_effect": 0.0,
+    "passed": false
+  },
+  "alphabet\u2192animate": {
+    "specialist_rule": "alphabet",
+    "test_rule": "animate",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "math_mod\u2192position": {
+    "specialist_rule": "math_mod",
+    "test_rule": "position",
+    "original_score": 0.0,
+    "swapped_score": 1.0,
+    "swap_effect": -1.0,
+    "passed": true
+  },
+  "math_mod\u2192pattern": {
+    "specialist_rule": "math_mod",
+    "test_rule": "pattern",
+    "original_score": 0.8400000000000001,
+    "swapped_score": 1.0,
+    "swap_effect": -0.15999999999999992,
+    "passed": true
+  },
+  "math_mod\u2192inverse": {
+    "specialist_rule": "math_mod",
+    "test_rule": "inverse",
+    "original_score": 1.0,
+    "swapped_score": 1.0,
+    "swap_effect": 0.0,
+    "passed": false
+  },
+  "math_mod\u2192vowel_start": {
+    "specialist_rule": "math_mod",
+    "test_rule": "vowel_start",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "math_mod\u2192rhyme": {
+    "specialist_rule": "math_mod",
+    "test_rule": "rhyme",
+    "original_score": 0.2,
+    "swapped_score": 1.0,
+    "swap_effect": -0.8,
+    "passed": true
+  },
+  "math_mod\u2192alphabet": {
+    "specialist_rule": "math_mod",
+    "test_rule": "alphabet",
+    "original_score": 0.4,
+    "swapped_score": 0.4,
+    "swap_effect": 0.0,
+    "passed": false
+  },
+  "math_mod\u2192animate": {
+    "specialist_rule": "math_mod",
+    "test_rule": "animate",
+    "original_score": 0.0,
+    "swapped_score": 1.0,
+    "swap_effect": -1.0,
+    "passed": true
+  },
+  "animate\u2192position": {
+    "specialist_rule": "animate",
+    "test_rule": "position",
+    "original_score": 0.36,
+    "swapped_score": 1.0,
+    "swap_effect": -0.64,
+    "passed": true
+  },
+  "animate\u2192pattern": {
+    "specialist_rule": "animate",
+    "test_rule": "pattern",
+    "original_score": 0.5599999999999999,
+    "swapped_score": 1.0,
+    "swap_effect": -0.44000000000000006,
+    "passed": true
+  },
+  "animate\u2192inverse": {
+    "specialist_rule": "animate",
+    "test_rule": "inverse",
+    "original_score": 0.5599999999999999,
+    "swapped_score": 1.0,
+    "swap_effect": -0.44000000000000006,
+    "passed": true
+  },
+  "animate\u2192vowel_start": {
+    "specialist_rule": "animate",
+    "test_rule": "vowel_start",
+    "original_score": 0.4,
+    "swapped_score": 1.0,
+    "swap_effect": -0.6,
+    "passed": true
+  },
+  "animate\u2192rhyme": {
+    "specialist_rule": "animate",
+    "test_rule": "rhyme",
+    "original_score": 0.6,
+    "swapped_score": 1.0,
+    "swap_effect": -0.4,
+    "passed": true
+  },
+  "animate\u2192alphabet": {
+    "specialist_rule": "animate",
+    "test_rule": "alphabet",
+    "original_score": 0.2,
+    "swapped_score": 0.4,
+    "swap_effect": -0.2,
+    "passed": true
+  },
+  "animate\u2192math_mod": {
+    "specialist_rule": "animate",
+    "test_rule": "math_mod",
+    "original_score": 0.4,
+    "swapped_score": 0.4,
+    "swap_effect": 0.0,
+    "passed": false
+  },
+  "_model": "gemini-2.0-flash-exp",
+  "_note": "Real API results with new rules (vowel_start, animate)",
+  "_timestamp": "2026-01-03"
+}

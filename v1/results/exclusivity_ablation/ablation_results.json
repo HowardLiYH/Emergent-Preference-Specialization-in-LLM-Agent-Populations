@@ -1,0 +1,104 @@
+{
+  "results": [
+    {
+      "condition_name": "full_system",
+      "use_exclusivity": true,
+      "use_fitness_sharing": true,
+      "mean_sci": 0.8175855371644969,
+      "std_sci": 0.05493196970411087,
+      "coverage": 0.9625,
+      "num_l3_specialists": 8.1,
+      "super_agent_count": 0.0,
+      "agents_with_l3": 8.1,
+      "per_run_sci": [
+        0.8392781085074024,
+        0.8665337508935537,
+        0.7252486918191156,
+        0.778062570317966,
+        0.8873224827140094,
+        0.8513297164602253,
+        0.891338814515905,
+        0.7761546087369914,
+        0.7549836224354962,
+        0.8056030052443055
+      ]
+    },
+    {
+      "condition_name": "no_exclusivity",
+      "use_exclusivity": false,
+      "use_fitness_sharing": true,
+      "mean_sci": 0.8176732249645419,
+      "std_sci": 0.05436860160049806,
+      "coverage": 1.0,
+      "num_l3_specialists": 8.8,
+      "super_agent_count": 0.7,
+      "agents_with_l3": 8.1,
+      "per_run_sci": [
+        0.8191165922936827,
+        0.7962386657699371,
+        0.8620984045047888,
+        0.7011754916534674,
+        0.8635610367381271,
+        0.8418324612127438,
+        0.8149682537188639,
+        0.8646958168207036,
+        0.7417302494081763,
+        0.8713152775249283
+      ]
+    },
+    {
+      "condition_name": "no_fitness_sharing",
+      "use_exclusivity": true,
+      "use_fitness_sharing": false,
+      "mean_sci": 0.8163244189414229,
+      "std_sci": 0.03979465421832316,
+      "coverage": 0.9125,
+      "num_l3_specialists": 8.0,
+      "super_agent_count": 0.0,
+      "agents_with_l3": 8.0,
+      "per_run_sci": [
+        0.8458494461514233,
+        0.7704463087539081,
+        0.8643679646699418,
+        0.8473120783847617,
+        0.761100071139404,
+        0.8566757647223463,
+        0.857616261564058,
+        0.7830200520983576,
+        0.804899851254032,
+        0.7719563906759963
+      ]
+    },
+    {
+      "condition_name": "competition_only",
+      "use_exclusivity": false,
+      "use_fitness_sharing": false,
+      "mean_sci": 0.773226357988884,
+      "std_sci": 0.03839546886354141,
+      "coverage": 1.0,
+      "num_l3_specialists": 9.4,
+      "super_agent_count": 1.2,
+      "agents_with_l3": 8.1,
+      "per_run_sci": [
+        0.7993180222774466,
+        0.7422523847998028,
+        0.7735227968508759,
+        0.7564885433696391,
+        0.7179672412953203,
+        0.7803789270350849,
+        0.7865639134711343,
+        0.8045106316355185,
+        0.849867084226887,
+        0.7213940349271303
+      ]
+    }
+  ],
+  "best_condition": "no_exclusivity",
+  "competition_only_sci": 0.773226357988884,
+  "exclusivity_contribution": 0.043098060952538986,
+  "fitness_sharing_contribution": 0.04444686697565792,
+  "timestamp": "2026-01-05T23:57:57.968831",
+  "n_agents": 12,
+  "n_generations": 100,
+  "n_runs": 10
+}

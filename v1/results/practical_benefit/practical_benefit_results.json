@@ -1,0 +1,1259 @@
+{
+  "experiment": "practical_benefit_5condition",
+  "timestamp": "2026-01-05T02:42:39.118591",
+  "n_tasks": 24,
+  "n_agents": 8,
+  "seed": 42,
+  "model": "gemini-2.5-flash",
+  "results": {
+    "single_generalist": {
+      "condition": "single_generalist",
+      "n_tasks": 24,
+      "correct": 8,
+      "accuracy": 0.3333333333333333,
+      "total_api_calls": 24,
+      "total_time_ms": 60997.44153022766,
+      "avg_time_per_task_ms": 2541.5600637594857,
+      "task_results": [
+        {
+          "task_id": "position_0",
+          "rule": "position",
+          "answer": "The question \"Which option is correct?\" is un",
+          "correct": false,
+          "time_ms": 2823.514223098755
+        },
+        {
+          "task_id": "pattern_1",
+          "rule": "pattern",
+          "answer": "A) A",
+          "correct": true,
+          "time_ms": 1817.3911571502686
+        },
+        {
+          "task_id": "inverse_2",
+          "rule": "inverse",
+          "answer": "B) Yes",
+          "correct": false,
+          "time_ms": 2574.521780014038
+        },
+        {
+          "task_id": "vowel_start_3",
+          "rule": "vowel_start",
+          "answer": "All of the words (Rock, Tree, Dog",
+          "correct": false,
+          "time_ms": 2702.338695526123
+        },
+        {
+          "task_id": "rhyme_4",
+          "rule": "rhyme",
+          "answer": "B) Hat",
+          "correct": true,
+          "time_ms": 2520.9898948669434
+        },
+        {
+          "task_id": "alphabet_5",
+          "rule": "alphabet",
+          "answer": "All the words (Watch, Grape, Orange",
+          "correct": true,
+          "time_ms": 2866.184949874878
+        },
+        {
+          "task_id": "math_mod_6",
+          "rule": "math_mod",
+          "answer": "All of the words are correct in",
+          "correct": true,
+          "time_ms": 2197.5719928741455
+        },
+        {
+          "task_id": "animate_7",
+          "rule": "animate",
+          "answer": "All of the words (Frame, Chair,",
+          "correct": false,
+          "time_ms": 2691.5388107299805
+        },
+        {
+          "task_id": "position_8",
+          "rule": "position",
+          "answer": "There is no objectively \"correct\" option among the",
+          "correct": false,
+          "time_ms": 2688.8158321380615
+        },
+        {
+          "task_id": "pattern_9",
+          "rule": "pattern",
+          "answer": "B) B",
+          "correct": true,
+          "time_ms": 2492.063045501709
+        },
+        {
+          "task_id": "inverse_10",
+          "rule": "inverse",
+          "answer": "A) No",
+          "correct": false,
+          "time_ms": 1552.4098873138428
+        },
+        {
+          "task_id": "vowel_start_11",
+          "rule": "vowel_start",
+          "answer": "All of the words (Rock,",
+          "correct": false,
+          "time_ms": 2466.9580459594727
+        },
+        {
+          "task_id": "rhyme_12",
+          "rule": "rhyme",
+          "answer": "C) Hat",
+          "correct": true,
+          "time_ms": 1999.6039867401123
+        },
+        {
+          "task_id": "alphabet_13",
+          "rule": "alphabet",
+          "answer": "All of the words provided (Eggs, White,",
+          "correct": false,
+          "time_ms": 2774.7280597686768
+        },
+        {
+          "task_id": "math_mod_14",
+          "rule": "math_mod",
+          "answer": "All words are spelled correctly and their lengths are",
+          "correct": false,
+          "time_ms": 2341.4950370788574
+        },
+        {
+          "task_id": "animate_15",
+          "rule": "animate",
+          "answer": "All of the words (Book, Lamp,",
+          "correct": false,
+          "time_ms": 2602.2472381591797
+        },
+        {
+          "task_id": "position_16",
+          "rule": "position",
+          "answer": "There is no objective criterion provided to determine",
+          "correct": false,
+          "time_ms": 3495.332956314087
+        },
+        {
+          "task_id": "pattern_17",
+          "rule": "pattern",
+          "answer": "B",
+          "correct": true,
+          "time_ms": 1574.2599964141846
+        },
+        {
+          "task_id": "inverse_18",
+          "rule": "inverse",
+          "answer": "A) Yes",
+          "correct": false,
+          "time_ms": 2400.399923324585
+        },
+        {
+          "task_id": "vowel_start_19",
+          "rule": "vowel_start",
+          "answer": "All of the words (Chair, Fish, Cat",
+          "correct": false,
+          "time_ms": 2537.271022796631
+        },
+        {
+          "task_id": "rhyme_20",
+          "rule": "rhyme",
+          "answer": "D) Rat",
+          "correct": true,
+          "time_ms": 2958.508014678955
+        },
+        {
+          "task_id": "alphabet_21",
+          "rule": "alphabet",
+          "answer": "All of the words (Whale",
+          "correct": false,
+          "time_ms": 2610.3649139404297
+        },
+        {
+          "task_id": "math_mod_22",
+          "rule": "math_mod",
+          "answer": "All of the words are correctly matched with their",
+          "correct": false,
+          "time_ms": 3521.2790966033936
+        },
+        {
+          "task_id": "animate_23",
+          "rule": "animate",
+          "answer": "All of the words (Table,",
+          "correct": false,
+          "time_ms": 2787.6529693603516
+        }
+      ]
+    },
+    "oracle_routing": {
+      "condition": "oracle_routing",
+      "n_tasks": 24,
+      "correct": 24,
+      "accuracy": 1.0,
+      "total_api_calls": 24,
+      "total_time_ms": 49930.85598945618,
+      "avg_time_per_task_ms": 2080.452332894007,
+      "task_results": [
+        {
+          "task_id": "position_0",
+          "rule": "position",
+          "routed_to": "handcrafted_position",
+          "answer": "B",
+          "correct": true,
+          "time_ms": 1450.9198665618896
+        },
+        {
+          "task_id": "pattern_1",
+          "rule": "pattern",
+          "routed_to": "handcrafted_pattern",
+          "answer": "A",
+          "correct": true,
+          "time_ms": 2607.098340988159
+        },
+        {
+          "task_id": "inverse_2",
+          "rule": "inverse",
+          "routed_to": "handcrafted_inverse",
+          "answer": "A) No",
+          "correct": true,
+          "time_ms": 2129.4121742248535
+        },
+        {
+          "task_id": "vowel_start_3",
+          "rule": "vowel_start",
+          "routed_to": "handcrafted_vowel_start",
+          "answer": "D",
+          "correct": true,
+          "time_ms": 3046.260118484497
+        },
+        {
+          "task_id": "rhyme_4",
+          "rule": "rhyme",
+          "routed_to": "handcrafted_rhyme",
+          "answer": "B) Hat",
+          "correct": true,
+          "time_ms": 1907.0241451263428
+        },
+        {
+          "task_id": "alphabet_5",
+          "rule": "alphabet",
+          "routed_to": "handcrafted_alphabet",
+          "answer": "Orange",
+          "correct": true,
+          "time_ms": 2174.0128993988037
+        },
+        {
+          "task_id": "math_mod_6",
+          "rule": "math_mod",
+          "routed_to": "handcrafted_math_mod",
+          "answer": "A) Eggs",
+          "correct": true,
+          "time_ms": 2233.905792236328
+        },
+        {
+          "task_id": "animate_7",
+          "rule": "animate",
+          "routed_to": "handcrafted_animate",
+          "answer": "D",
+          "correct": true,
+          "time_ms": 1614.0520572662354
+        },
+        {
+          "task_id": "position_8",
+          "rule": "position",
+          "routed_to": "handcrafted_position",
+          "answer": "B",
+          "correct": true,
+          "time_ms": 2779.3500423431396
+        },
+        {
+          "task_id": "pattern_9",
+          "rule": "pattern",
+          "routed_to": "handcrafted_pattern",
+          "answer": "B",
+          "correct": true,
+          "time_ms": 1311.4399909973145
+        },
+        {
+          "task_id": "inverse_10",
+          "rule": "inverse",
+          "routed_to": "handcrafted_inverse",
+          "answer": "B) Yes",
+          "correct": true,
+          "time_ms": 2067.1982765197754
+        },
+        {
+          "task_id": "vowel_start_11",
+          "rule": "vowel_start",
+          "routed_to": "handcrafted_vowel_start",
+          "answer": "C",
+          "correct": true,
+          "time_ms": 3330.30104637146
+        },
+        {
+          "task_id": "rhyme_12",
+          "rule": "rhyme",
+          "routed_to": "handcrafted_rhyme",
+          "answer": "C) Hat",
+          "correct": true,
+          "time_ms": 3493.1178092956543
+        },
+        {
+          "task_id": "alphabet_13",
+          "rule": "alphabet",
+          "routed_to": "handcrafted_alphabet",
+          "answer": "Juice",
+          "correct": true,
+          "time_ms": 2077.702760696411
+        },
+        {
+          "task_id": "math_mod_14",
+          "rule": "math_mod",
+          "routed_to": "handcrafted_math_mod",
+          "answer": "Blue",
+          "correct": true,
+          "time_ms": 1896.510362625122
+        },
+        {
+          "task_id": "animate_15",
+          "rule": "animate",
+          "routed_to": "handcrafted_animate",
+          "answer": "C",
+          "correct": true,
+          "time_ms": 1793.3580875396729
+        },
+        {
+          "task_id": "position_16",
+          "rule": "position",
+          "routed_to": "handcrafted_position",
+          "answer": "B",
+          "correct": true,
+          "time_ms": 1505.0818920135498
+        },
+        {
+          "task_id": "pattern_17",
+          "rule": "pattern",
+          "routed_to": "handcrafted_pattern",
+          "answer": "B",
+          "correct": true,
+          "time_ms": 1879.417896270752
+        },
+        {
+          "task_id": "inverse_18",
+          "rule": "inverse",
+          "routed_to": "handcrafted_inverse",
+          "answer": "B) No",
+          "correct": true,
+          "time_ms": 1717.1950340270996
+        },
+        {
+          "task_id": "vowel_start_19",
+          "rule": "vowel_start",
+          "routed_to": "handcrafted_vowel_start",
+          "answer": "D",
+          "correct": true,
+          "time_ms": 1554.826259613037
+        },
+        {
+          "task_id": "rhyme_20",
+          "rule": "rhyme",
+          "routed_to": "handcrafted_rhyme",
+          "answer": "D) Rat",
+          "correct": true,
+          "time_ms": 1822.5460052490234
+        },
+        {
+          "task_id": "alphabet_21",
+          "rule": "alphabet",
+          "routed_to": "handcrafted_alphabet",
+          "answer": "Purple",
+          "correct": true,
+          "time_ms": 2136.2969875335693
+        },
+        {
+          "task_id": "math_mod_22",
+          "rule": "math_mod",
+          "routed_to": "handcrafted_math_mod",
+          "answer": "B) Eggs",
+          "correct": true,
+          "time_ms": 1786.5710258483887
+        },
+        {
+          "task_id": "animate_23",
+          "rule": "animate",
+          "routed_to": "handcrafted_animate",
+          "answer": "B",
+          "correct": true,
+          "time_ms": 1617.2571182250977
+        }
+      ]
+    },
+    "confidence_routing": {
+      "condition": "confidence_routing",
+      "n_tasks": 24,
+      "correct": 9,
+      "accuracy": 0.375,
+      "total_api_calls": 216,
+      "total_time_ms": 101044.38805580139,
+      "avg_time_per_task_ms": 4210.182835658391,
+      "task_results": [
+        {
+          "task_id": "position_0",
+          "rule": "position",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 0,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 10,
+            "handcrafted_math_mod": 1,
+            "handcrafted_animate": 100
+          },
+          "answer": "B",
+          "correct": true,
+          "time_ms": 4764.675855636597
+        },
+        {
+          "task_id": "pattern_1",
+          "rule": "pattern",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 10,
+            "handcrafted_math_mod": 10,
+            "handcrafted_animate": 1
+          },
+          "answer": "B",
+          "correct": false,
+          "time_ms": 3428.569793701172
+        },
+        {
+          "task_id": "inverse_2",
+          "rule": "inverse",
+          "routed_to": "handcrafted_pattern",
+          "all_confidences": {
+            "handcrafted_position": 1,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 10,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 100
+          },
+          "answer": "B) Yes",
+          "correct": false,
+          "time_ms": 5448.486089706421
+        },
+        {
+          "task_id": "vowel_start_3",
+          "rule": "vowel_start",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 0,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 10,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 10,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 10
+          },
+          "answer": "B",
+          "correct": false,
+          "time_ms": 4043.4961318969727
+        },
+        {
+          "task_id": "rhyme_4",
+          "rule": "rhyme",
+          "routed_to": "handcrafted_pattern",
+          "all_confidences": {
+            "handcrafted_position": 1,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 1,
+            "handcrafted_alphabet": 100,
+            "handcrafted_math_mod": 10,
+            "handcrafted_animate": 50
+          },
+          "answer": "My instructions are to identify and continue alter",
+          "correct": false,
+          "time_ms": 4745.869159698486
+        },
+        {
+          "task_id": "alphabet_5",
+          "rule": "alphabet",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 0,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 1,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 100,
+            "handcrafted_math_mod": 10,
+            "handcrafted_animate": 100
+          },
+          "answer": "B",
+          "correct": false,
+          "time_ms": 3894.4380283355713
+        },
+        {
+          "task_id": "math_mod_6",
+          "rule": "math_mod",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 100,
+            "handcrafted_math_mod": 10,
+            "handcrafted_animate": 1
+          },
+          "answer": "B",
+          "correct": false,
+          "time_ms": 3563.138008117676
+        },
+        {
+          "task_id": "animate_7",
+          "rule": "animate",
+          "routed_to": "handcrafted_inverse",
+          "all_confidences": {
+            "handcrafted_position": 10,
+            "handcrafted_pattern": 0,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 0,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 10,
+            "handcrafted_math_mod": 10,
+            "handcrafted_animate": 100
+          },
+          "answer": "None of the above",
+          "correct": false,
+          "time_ms": 5397.7508544921875
+        },
+        {
+          "task_id": "position_8",
+          "rule": "position",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 0,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 10,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 10,
+            "handcrafted_math_mod": 10,
+            "handcrafted_animate": 10
+          },
+          "answer": "B",
+          "correct": true,
+          "time_ms": 3549.210786819458
+        },
+        {
+          "task_id": "pattern_9",
+          "rule": "pattern",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 10,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 100
+          },
+          "answer": "B",
+          "correct": true,
+          "time_ms": 4013.665199279785
+        },
+        {
+          "task_id": "inverse_10",
+          "rule": "inverse",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 1,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 10,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 100,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 100
+          },
+          "answer": "B",
+          "correct": true,
+          "time_ms": 3437.8302097320557
+        },
+        {
+          "task_id": "vowel_start_11",
+          "rule": "vowel_start",
+          "routed_to": "handcrafted_inverse",
+          "all_confidences": {
+            "handcrafted_position": 10,
+            "handcrafted_pattern": 0,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 10,
+            "handcrafted_alphabet": 100,
+            "handcrafted_math_mod": 1,
+            "handcrafted_animate": 1
+          },
+          "answer": "None of them are correct.",
+          "correct": false,
+          "time_ms": 4920.140743255615
+        },
+        {
+          "task_id": "rhyme_12",
+          "rule": "rhyme",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 1,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 10,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 1,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 50
+          },
+          "answer": "B",
+          "correct": false,
+          "time_ms": 3991.7428493499756
+        },
+        {
+          "task_id": "alphabet_13",
+          "rule": "alphabet",
+          "routed_to": "handcrafted_inverse",
+          "all_confidences": {
+            "handcrafted_position": 10,
+            "handcrafted_pattern": 10,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 1,
+            "handcrafted_math_mod": 10,
+            "handcrafted_animate": 0
+          },
+          "answer": "A) Eggs",
+          "correct": false,
+          "time_ms": 4763.036012649536
+        },
+        {
+          "task_id": "math_mod_14",
+          "rule": "math_mod",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 10,
+            "handcrafted_inverse": 10,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 1,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 0
+          },
+          "answer": "B",
+          "correct": false,
+          "time_ms": 4560.369968414307
+        },
+        {
+          "task_id": "animate_15",
+          "rule": "animate",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 10,
+            "handcrafted_inverse": 1,
+            "handcrafted_vowel_start": 0,
+            "handcrafted_rhyme": 10,
+            "handcrafted_alphabet": 1,
+            "handcrafted_math_mod": 10,
+            "handcrafted_animate": 100
+          },
+          "answer": "B",
+          "correct": false,
+          "time_ms": 3683.5079193115234
+        },
+        {
+          "task_id": "position_16",
+          "rule": "position",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 0,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 100,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 10
+          },
+          "answer": "B",
+          "correct": true,
+          "time_ms": 4252.351999282837
+        },
+        {
+          "task_id": "pattern_17",
+          "rule": "pattern",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 10,
+            "handcrafted_alphabet": 1,
+            "handcrafted_math_mod": 10,
+            "handcrafted_animate": 1
+          },
+          "answer": "B",
+          "correct": true,
+          "time_ms": 3734.973907470703
+        },
+        {
+          "task_id": "inverse_18",
+          "rule": "inverse",
+          "routed_to": "handcrafted_pattern",
+          "all_confidences": {
+            "handcrafted_position": 10,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 10,
+            "handcrafted_alphabet": 100,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 100
+          },
+          "answer": "This question does not fit the pattern recognition",
+          "correct": true,
+          "time_ms": 4710.644245147705
+        },
+        {
+          "task_id": "vowel_start_19",
+          "rule": "vowel_start",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 10,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 10,
+            "handcrafted_rhyme": 100,
+            "handcrafted_alphabet": 10,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 100
+          },
+          "answer": "B",
+          "correct": false,
+          "time_ms": 3489.4378185272217
+        },
+        {
+          "task_id": "rhyme_20",
+          "rule": "rhyme",
+          "routed_to": "handcrafted_pattern",
+          "all_confidences": {
+            "handcrafted_position": 10,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 1,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 1,
+            "handcrafted_alphabet": 1,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 10
+          },
+          "answer": "I am a PATTERN RECOGNITION SPECIALIST",
+          "correct": false,
+          "time_ms": 4993.79301071167
+        },
+        {
+          "task_id": "alphabet_21",
+          "rule": "alphabet",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 10,
+            "handcrafted_inverse": 10,
+            "handcrafted_vowel_start": 1,
+            "handcrafted_rhyme": 10,
+            "handcrafted_alphabet": 100,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 10
+          },
+          "answer": "B",
+          "correct": false,
+          "time_ms": 3832.8938484191895
+        },
+        {
+          "task_id": "math_mod_22",
+          "rule": "math_mod",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 0,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 1,
+            "handcrafted_alphabet": 10,
+            "handcrafted_math_mod": 1,
+            "handcrafted_animate": 10
+          },
+          "answer": "B",
+          "correct": true,
+          "time_ms": 4065.058708190918
+        },
+        {
+          "task_id": "animate_23",
+          "rule": "animate",
+          "routed_to": "handcrafted_position",
+          "all_confidences": {
+            "handcrafted_position": 100,
+            "handcrafted_pattern": 100,
+            "handcrafted_inverse": 100,
+            "handcrafted_vowel_start": 100,
+            "handcrafted_rhyme": 10,
+            "handcrafted_alphabet": 100,
+            "handcrafted_math_mod": 100,
+            "handcrafted_animate": 10
+          },
+          "answer": "B",
+          "correct": true,
+          "time_ms": 3759.3069076538086
+        }
+      ]
+    },
+    "ensemble": {
+      "condition": "ensemble",
+      "n_tasks": 24,
+      "correct": 8,
+      "accuracy": 0.3333333333333333,
+      "total_api_calls": 192,
+      "total_time_ms": 72117.89894104004,
+      "avg_time_per_task_ms": 3004.9124558766684,
+      "task_results": [
+        {
+          "task_id": "position_0",
+          "rule": "position",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "A",
+            "handcrafted_inverse": "A) APPLE",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "CAT",
+            "handcrafted_alphabet": "FISH",
+            "handcrafted_math_mod": "FISH",
+            "handcrafted_animate": "C"
+          },
+          "ensemble_answer": "A",
+          "correct": false,
+          "time_ms": 2745.673894882202
+        },
+        {
+          "task_id": "pattern_1",
+          "rule": "pattern",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "A",
+            "handcrafted_inverse": "B",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "A",
+            "handcrafted_alphabet": "B",
+            "handcrafted_math_mod": "A",
+            "handcrafted_animate": "A"
+          },
+          "ensemble_answer": "A",
+          "correct": true,
+          "time_ms": 2988.1858825683594
+        },
+        {
+          "task_id": "inverse_2",
+          "rule": "inverse",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "B) YES",
+            "handcrafted_inverse": "A)",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "NEITHER \"NO\" NOR \"YE",
+            "handcrafted_alphabet": "NO",
+            "handcrafted_math_mod": "NEITHER \"NO\" (",
+            "handcrafted_animate": "THE PROVIDED OPTIONS"
+          },
+          "ensemble_answer": "B",
+          "correct": false,
+          "time_ms": 2816.89190864563
+        },
+        {
+          "task_id": "vowel_start_3",
+          "rule": "vowel_start",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "THIS QUESTION DOES N",
+            "handcrafted_inverse": "A) ROCK",
+            "handcrafted_vowel_start": "D",
+            "handcrafted_rhyme": "NONE OF THE PROVIDED",
+            "handcrafted_alphabet": "ICE",
+            "handcrafted_math_mod": "ROCK",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": false,
+          "time_ms": 4047.740936279297
+        },
+        {
+          "task_id": "rhyme_4",
+          "rule": "rhyme",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "A",
+            "handcrafted_inverse": "A) SHARK",
+            "handcrafted_vowel_start": "D",
+            "handcrafted_rhyme": "HAT",
+            "handcrafted_alphabet": "HAT",
+            "handcrafted_math_mod": "NONE",
+            "handcrafted_animate": "A"
+          },
+          "ensemble_answer": "A",
+          "correct": false,
+          "time_ms": 3816.6778087615967
+        },
+        {
+          "task_id": "alphabet_5",
+          "rule": "alphabet",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "A) WATCH\nB)",
+            "handcrafted_inverse": "NO",
+            "handcrafted_vowel_start": "C",
+            "handcrafted_rhyme": "NONE OF THE PROVIDED",
+            "handcrafted_alphabet": "ORANGE",
+            "handcrafted_math_mod": "NONE",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": false,
+          "time_ms": 3526.654005050659
+        },
+        {
+          "task_id": "math_mod_6",
+          "rule": "math_mod",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT APPLY THE A",
+            "handcrafted_inverse": "A) EGGS (LENGTH 4)",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "CAT",
+            "handcrafted_alphabet": "EGGS",
+            "handcrafted_math_mod": "EGGS",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": false,
+          "time_ms": 2938.333034515381
+        },
+        {
+          "task_id": "animate_7",
+          "rule": "animate",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT ANSWER THIS",
+            "handcrafted_inverse": "BUTTERFLY",
+            "handcrafted_vowel_start": "I CANNOT FULFILL THI",
+            "handcrafted_rhyme": "NONE OF THE PROVIDED",
+            "handcrafted_alphabet": "FRAME",
+            "handcrafted_math_mod": "NONE",
+            "handcrafted_animate": "D"
+          },
+          "ensemble_answer": "B",
+          "correct": false,
+          "time_ms": 2845.806121826172
+        },
+        {
+          "task_id": "position_8",
+          "rule": "position",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT APPLY THE A",
+            "handcrafted_inverse": "A) HONEY",
+            "handcrafted_vowel_start": "NONE OF THE PROVIDED",
+            "handcrafted_rhyme": "THERE IS NO CORRECT ",
+            "handcrafted_alphabet": "HONEY",
+            "handcrafted_math_mod": "BLUE",
+            "handcrafted_animate": "D"
+          },
+          "ensemble_answer": "B",
+          "correct": true,
+          "time_ms": 2459.1522216796875
+        },
+        {
+          "task_id": "pattern_9",
+          "rule": "pattern",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "B",
+            "handcrafted_inverse": "A",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "B",
+            "handcrafted_alphabet": "B",
+            "handcrafted_math_mod": "A",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": true,
+          "time_ms": 2471.172094345093
+        },
+        {
+          "task_id": "inverse_10",
+          "rule": "inverse",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "A)",
+            "handcrafted_inverse": "B) YES",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "A) NO",
+            "handcrafted_alphabet": "NO",
+            "handcrafted_math_mod": "THE PROVIDED OPTIONS",
+            "handcrafted_animate": "A"
+          },
+          "ensemble_answer": "A",
+          "correct": false,
+          "time_ms": 3166.8291091918945
+        },
+        {
+          "task_id": "vowel_start_11",
+          "rule": "vowel_start",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT ANSWER THIS",
+            "handcrafted_inverse": "A) ROCK",
+            "handcrafted_vowel_start": "C",
+            "handcrafted_rhyme": "NONE OF THE PROVIDED",
+            "handcrafted_alphabet": "ROCK",
+            "handcrafted_math_mod": "ROCK",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": false,
+          "time_ms": 2622.1749782562256
+        },
+        {
+          "task_id": "rhyme_12",
+          "rule": "rhyme",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT APPLY THE A",
+            "handcrafted_inverse": "A) SHARK",
+            "handcrafted_vowel_start": "NONE OF THE PROVIDED",
+            "handcrafted_rhyme": "HAT",
+            "handcrafted_alphabet": "HAT",
+            "handcrafted_math_mod": "BOOK",
+            "handcrafted_animate": "A"
+          },
+          "ensemble_answer": "HAT",
+          "correct": true,
+          "time_ms": 2800.462007522583
+        },
+        {
+          "task_id": "alphabet_13",
+          "rule": "alphabet",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT ANSWER THIS",
+            "handcrafted_inverse": "A) EGGS",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "NONE OF THE PROVIDED",
+            "handcrafted_alphabet": "JUICE",
+            "handcrafted_math_mod": "EGGS",
+            "handcrafted_animate": "A"
+          },
+          "ensemble_answer": "A",
+          "correct": false,
+          "time_ms": 2710.026979446411
+        },
+        {
+          "task_id": "math_mod_14",
+          "rule": "math_mod",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT ANSWER THIS",
+            "handcrafted_inverse": "A) HONEY (LENGTH 5",
+            "handcrafted_vowel_start": "B",
+            "handcrafted_rhyme": "NONE OF THE PROVIDED",
+            "handcrafted_alphabet": "ICE",
+            "handcrafted_math_mod": "BLUE",
+            "handcrafted_animate": "NONE OF THE OPTIONS "
+          },
+          "ensemble_answer": "B",
+          "correct": false,
+          "time_ms": 3271.763801574707
+        },
+        {
+          "task_id": "animate_15",
+          "rule": "animate",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "THIS QUESTION DOES N",
+            "handcrafted_inverse": "A) BOOK\nB) LAMP",
+            "handcrafted_vowel_start": "NONE OF THE PROVIDED",
+            "handcrafted_rhyme": "NONE OF THE ABOVE.",
+            "handcrafted_alphabet": "LAMP",
+            "handcrafted_math_mod": "LAMP",
+            "handcrafted_animate": "C"
+          },
+          "ensemble_answer": "LAMP",
+          "correct": false,
+          "time_ms": 3738.149881362915
+        },
+        {
+          "task_id": "position_16",
+          "rule": "position",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT APPLY THE L",
+            "handcrafted_inverse": "A) SHARK",
+            "handcrafted_vowel_start": "C",
+            "handcrafted_rhyme": "THERE IS NO CORRECT ",
+            "handcrafted_alphabet": "JUICE",
+            "handcrafted_math_mod": "NONE",
+            "handcrafted_animate": "A"
+          },
+          "ensemble_answer": "B",
+          "correct": true,
+          "time_ms": 2952.815055847168
+        },
+        {
+          "task_id": "pattern_17",
+          "rule": "pattern",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "B",
+            "handcrafted_inverse": "A",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "NEITHER 'A' NOR 'B",
+            "handcrafted_alphabet": "B",
+            "handcrafted_math_mod": "B",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": true,
+          "time_ms": 2622.393846511841
+        },
+        {
+          "task_id": "inverse_18",
+          "rule": "inverse",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "A) YES",
+            "handcrafted_inverse": "B) NO",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "NEITHER \"YES\" NOR",
+            "handcrafted_alphabet": "NO",
+            "handcrafted_math_mod": "NEITHER OPTION HAS A",
+            "handcrafted_animate": "A"
+          },
+          "ensemble_answer": "A",
+          "correct": false,
+          "time_ms": 2572.79372215271
+        },
+        {
+          "task_id": "vowel_start_19",
+          "rule": "vowel_start",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "THIS QUESTION DOES N",
+            "handcrafted_inverse": "A) CHAIR",
+            "handcrafted_vowel_start": "D",
+            "handcrafted_rhyme": "CAT",
+            "handcrafted_alphabet": "FISH",
+            "handcrafted_math_mod": "FISH",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": false,
+          "time_ms": 2506.3838958740234
+        },
+        {
+          "task_id": "rhyme_20",
+          "rule": "rhyme",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "THIS QUESTION DOES N",
+            "handcrafted_inverse": "A) FRAME",
+            "handcrafted_vowel_start": "B",
+            "handcrafted_rhyme": "RAT",
+            "handcrafted_alphabet": "RAT",
+            "handcrafted_math_mod": "NONE",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": false,
+          "time_ms": 2937.3481273651123
+        },
+        {
+          "task_id": "alphabet_21",
+          "rule": "alphabet",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT ANSWER THIS",
+            "handcrafted_inverse": "A) WHALE",
+            "handcrafted_vowel_start": "NONE OF THE PROVIDED",
+            "handcrafted_rhyme": "NONE OF THE PROVIDED",
+            "handcrafted_alphabet": "PURPLE",
+            "handcrafted_math_mod": "NONE",
+            "handcrafted_animate": "A"
+          },
+          "ensemble_answer": "NONE OF THE PROVIDED",
+          "correct": false,
+          "time_ms": 3507.2922706604004
+        },
+        {
+          "task_id": "math_mod_22",
+          "rule": "math_mod",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT APPLY MY PA",
+            "handcrafted_inverse": "A) ICE (LENGTH",
+            "handcrafted_vowel_start": "A",
+            "handcrafted_rhyme": "NONE OF THE PROVIDED",
+            "handcrafted_alphabet": "ICE",
+            "handcrafted_math_mod": "EGGS",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": true,
+          "time_ms": 3505.1074028015137
+        },
+        {
+          "task_id": "animate_23",
+          "rule": "animate",
+          "individual_answers": {
+            "handcrafted_position": "B",
+            "handcrafted_pattern": "I CANNOT ANSWER THIS",
+            "handcrafted_inverse": "A) TABLE\nB) EAGLE",
+            "handcrafted_vowel_start": "B",
+            "handcrafted_rhyme": "NONE OF THE PROVIDED",
+            "handcrafted_alphabet": "TABLE",
+            "handcrafted_math_mod": "BOOK",
+            "handcrafted_animate": "B"
+          },
+          "ensemble_answer": "B",
+          "correct": true,
+          "time_ms": 2548.069953918457
+        }
+      ]
+    }
+  },
+  "success": true,
+  "cost_estimate": {
+    "total_tokens": 168121,
+    "estimated_cost": 0.0
+  }
+}

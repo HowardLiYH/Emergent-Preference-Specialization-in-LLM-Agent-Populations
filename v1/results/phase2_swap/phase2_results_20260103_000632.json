@@ -1,0 +1,26 @@
+[
+  {
+    "specialist_a_rule": "length",
+    "specialist_b_rule": "pattern",
+    "a_on_own": 0.8,
+    "a_on_other": 0.8,
+    "b_on_own": 1.0,
+    "b_on_other": 0.0,
+    "a_swapped_on_own": 0.0,
+    "a_swapped_on_other": 1.0,
+    "b_swapped_on_own": 0.8,
+    "b_swapped_on_other": 0.5
+  },
+  {
+    "specialist_a_rule": "length",
+    "specialist_b_rule": "position",
+    "a_on_own": 0.8,
+    "a_on_other": 0.8,
+    "b_on_own": 1.0,
+    "b_on_other": 1.0,
+    "a_swapped_on_own": 0.0,
+    "a_swapped_on_other": 1.0,
+    "b_swapped_on_own": 0.4,
+    "b_swapped_on_other": 0.4
+  }
+]

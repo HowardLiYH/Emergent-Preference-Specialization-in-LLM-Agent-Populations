@@ -1,0 +1,67 @@
+{
+  "model": "gemini-2.5-flash",
+  "results": {
+    "seed_1": {
+      "seed": 1,
+      "pass_rate": 0.7321428571428571,
+      "passed": 41,
+      "total": 56,
+      "model": "gemini-2.5-flash"
+    },
+    "seed_2": {
+      "pass_rate": 0.7142857142857143,
+      "passed": 40,
+      "total": 56,
+      "errors": 0
+    },
+    "seed_3": {
+      "pass_rate": 0.6607142857142857,
+      "passed": 37,
+      "total": 56,
+      "errors": 0
+    },
+    "seed_4": {
+      "pass_rate": 0.6428571428571429,
+      "passed": 36,
+      "total": 56,
+      "errors": 0
+    },
+    "seed_5": {
+      "pass_rate": 0.6964285714285714,
+      "passed": 39,
+      "total": 56,
+      "errors": 0
+    },
+    "seed_6": {
+      "pass_rate": 0.7321428571428571,
+      "passed": 41,
+      "total": 56,
+      "errors": 0
+    },
+    "seed_7": {
+      "pass_rate": 0.75,
+      "passed": 42,
+      "total": 56,
+      "errors": 0
+    },
+    "seed_8": {
+      "pass_rate": 0.7142857142857143,
+      "passed": 40,
+      "total": 56,
+      "errors": 0
+    },
+    "seed_9": {
+      "pass_rate": 0.6964285714285714,
+      "passed": 39,
+      "total": 56,
+      "errors": 0
+    },
+    "seed_10": {
+      "pass_rate": 0.7321428571428571,
+      "passed": 41,
+      "total": 56,
+      "errors": 0
+    }
+  },
+  "timestamp": "2026-01-04T16:01:58.352925"
+}

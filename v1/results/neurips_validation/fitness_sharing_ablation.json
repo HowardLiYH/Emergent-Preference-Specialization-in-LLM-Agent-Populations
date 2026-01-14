@@ -1,0 +1,16 @@
+{
+  "with_fs": {
+    "sci": 0.559375,
+    "l3_rate": 0.625,
+    "diversity": 0.5,
+    "hhi": 0.34375
+  },
+  "without_fs": {
+    "sci": 0.421875,
+    "l3_rate": 0.625,
+    "diversity": 0.5,
+    "hhi": 0.34375
+  },
+  "timestamp": "2026-01-04T09:57:03.780854",
+  "model": "gemini-2.0-flash"
+}

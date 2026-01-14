@@ -1,0 +1,44 @@
+{
+  "summary": {
+    "no_fitness_sharing": {
+      "mean_sci": 0.20454545454545447,
+      "mean_coverage": 0.7
+    },
+    "uniform_tools": {
+      "mean_sci": 0.2163825757575757,
+      "mean_coverage": 0.8
+    }
+  },
+  "details": {
+    "no_fitness_sharing": [
+      {
+        "ablation": "no_fitness_sharing",
+        "final_sci": 0.1735537190082644,
+        "final_coverage": 0.6,
+        "tokens": 12954
+      },
+      {
+        "ablation": "no_fitness_sharing",
+        "final_sci": 0.2355371900826445,
+        "final_coverage": 0.8,
+        "tokens": 13417
+      }
+    ],
+    "uniform_tools": [
+      {
+        "ablation": "uniform_tools",
+        "final_sci": 0.11458333333333334,
+        "final_coverage": 0.8,
+        "tool_accuracy": 0.0,
+        "tokens": 14425
+      },
+      {
+        "ablation": "uniform_tools",
+        "final_sci": 0.31818181818181807,
+        "final_coverage": 0.8,
+        "tool_accuracy": 0.45454545454545453,
+        "tokens": 13329
+      }
+    ]
+  }
+}

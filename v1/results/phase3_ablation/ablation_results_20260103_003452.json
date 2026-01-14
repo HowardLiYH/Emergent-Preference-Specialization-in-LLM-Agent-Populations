@@ -1,0 +1,124 @@
+[
+  {
+    "condition": "BASELINE",
+    "description": "Full experiment with all components",
+    "preference_diversity": 0.6666666666666666,
+    "num_unique_preferences": 8,
+    "avg_preference_strength": 0.35542890534954785,
+    "agent_preferences": {
+      "baseline_0": "length",
+      "baseline_1": "math_mod",
+      "baseline_2": "none",
+      "baseline_3": "pattern",
+      "baseline_4": "rhyme",
+      "baseline_5": "position",
+      "baseline_6": "length",
+      "baseline_7": "semantic",
+      "baseline_8": "math_mod",
+      "baseline_9": "alphabet",
+      "baseline_10": "alphabet",
+      "baseline_11": "inverse"
+    }
+  },
+  {
+    "condition": "NO_FITNESS_SHARING",
+    "description": "Remove diversity pressure",
+    "preference_diversity": 0.5833333333333334,
+    "num_unique_preferences": 7,
+    "avg_preference_strength": 0.35424159351309514,
+    "agent_preferences": {
+      "no_fs_0": "semantic",
+      "no_fs_1": "alphabet",
+      "no_fs_2": "length",
+      "no_fs_3": "length",
+      "no_fs_4": "position",
+      "no_fs_5": "semantic",
+      "no_fs_6": "length",
+      "no_fs_7": "none",
+      "no_fs_8": "rhyme",
+      "no_fs_9": "rhyme",
+      "no_fs_10": "inverse",
+      "no_fs_11": "pattern"
+    }
+  },
+  {
+    "condition": "RANDOM_WINNER",
+    "description": "Random winner (no merit)",
+    "preference_diversity": 0.5833333333333334,
+    "num_unique_preferences": 7,
+    "avg_preference_strength": 0.04662147795316995,
+    "agent_preferences": {
+      "random_0": "rhyme",
+      "random_1": "position",
+      "random_2": "length",
+      "random_3": "position",
+      "random_4": "semantic",
+      "random_5": "math_mod",
+      "random_6": "pattern",
+      "random_7": "rhyme",
+      "random_8": "math_mod",
+      "random_9": "position",
+      "random_10": "inverse",
+      "random_11": "semantic"
+    }
+  },
+  {
+    "condition": "NO_ACCUMULATION",
+    "description": "Reset strategies each gen",
+    "preference_diversity": 0.5,
+    "num_unique_preferences": 6,
+    "avg_preference_strength": 0.051484213743645,
+    "agent_preferences": {
+      "no_acc_0": "semantic",
+      "no_acc_1": "semantic",
+      "no_acc_2": "inverse",
+      "no_acc_3": "pattern",
+      "no_acc_4": "inverse",
+      "no_acc_5": "length",
+      "no_acc_6": "alphabet",
+      "no_acc_7": "length",
+      "no_acc_8": "position",
+      "no_acc_9": "semantic",
+      "no_acc_10": "alphabet",
+      "no_acc_11": "pattern"
+    }
+  },
+  {
+    "condition": "SHUFFLED_TASKS",
+    "description": "Disconnect rule-strategy",
+    "preference_diversity": 0.5,
+    "num_unique_preferences": 6,
+    "avg_preference_strength": 0.025771258473674702,
+    "agent_preferences": {
+      "shuffled_0": "alphabet",
+      "shuffled_1": "math_mod",
+      "shuffled_2": "rhyme",
+      "shuffled_3": "pattern",
+      "shuffled_4": "rhyme",
+      "shuffled_5": "math_mod",
+      "shuffled_6": "math_mod",
+      "shuffled_7": "rhyme",
+      "shuffled_8": "math_mod",
+      "shuffled_9": "length",
+      "shuffled_10": "rhyme",
+      "shuffled_11": "semantic"
+    }
+  },
+  {
+    "condition": "HANDCRAFTED_CEILING",
+    "description": "Perfect specialists (upper bound)",
+    "preference_diversity": 0.0,
+    "num_unique_preferences": 0,
+    "avg_preference_strength": 0.0,
+    "agent_preferences": {
+      "handcrafted_0": "none",
+      "handcrafted_1": "none",
+      "handcrafted_2": "none",
+      "handcrafted_3": "none",
+      "handcrafted_4": "none",
+      "handcrafted_5": "none",
+      "handcrafted_6": "none",
+      "handcrafted_7": "none"
+    }
+  }
+]

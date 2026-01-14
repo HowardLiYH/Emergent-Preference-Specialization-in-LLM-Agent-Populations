@@ -40,13 +40,26 @@
 
 ---
 
-## 📄 Research Paper
+## 🆕 Version 2: Tool-Based Specialization
+
+**NEW in v2:** Tool-based capability levels (L0-L4) with non-uniform regimes and agent memory!
+
+See [`v2/README.md`](v2/README.md) for the complete v2 implementation featuring:
+- **Tool hierarchy**: L0 (base LLM) → L1 (Python) → L2 (Vision) → L3 (RAG) → L4 (Web)
+- **Non-uniform regimes**: Varying frequencies, rewards, and difficulties
+- **Agent memory**: Hierarchical system with anti-leakage guarantees
+- **Theorem 4**: Equilibrium distribution n_r ∝ (f_r × R_r × D_r)^(2/3)
+- **55% token savings** vs bandit baselines
+
+---
+
+## 📄 Research Paper (v1)
 
 **Author:** Yuhao Li
 **Institution:** University of Pennsylvania
 **Email:** li88@sas.upenn.edu
 
-This repository contains the complete implementation, experiments, and theoretical analysis for research on emergent preference specialization in LLM agent populations.
+This repository contains the complete implementation, experiments, and theoretical analysis for research on emergent preference specialization in LLM agent populations (v1: synthetic rules).
 
 ---
 

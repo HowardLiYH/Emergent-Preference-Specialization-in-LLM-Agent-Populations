@@ -1,0 +1,24 @@
+{
+  "n_seeds": 7,
+  "pass_rates": [
+    0.9166666666666666,
+    0.75,
+    0.5,
+    0.4166666666666667,
+    0.5833333333333334,
+    0.5833333333333334,
+    0.5833333333333334
+  ],
+  "seed_sources": {
+    "seeds_1_3": "multi_seed_results.json (gemini-2.0-flash-exp)",
+    "seeds_4_5": "seeds_4_5_real.json (gpt-4o-mini, ran 2026-01-04)",
+    "seeds_6_7": "additional_seeds_6_7.json (gpt-4o-mini, ran 2026-01-04)"
+  },
+  "mean": 0.619047619047619,
+  "std": 0.1656716328980008,
+  "ci_95_lower": 0.46582691374499563,
+  "ci_95_upper": 0.7722683243502423,
+  "ci_width": 0.30644141060524666,
+  "_verified": true,
+  "_audit_date": "2026-01-04T12:28:35.123219"
+}

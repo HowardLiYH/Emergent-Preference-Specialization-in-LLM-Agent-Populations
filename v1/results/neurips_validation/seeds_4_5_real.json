@@ -1,0 +1,192 @@
+[
+  {
+    "seed": 4,
+    "passed": 5,
+    "total": 12,
+    "pass_rate": 0.4166666666666667,
+    "raw_results": [
+      {
+        "spec": "position",
+        "test": "inverse",
+        "correct": 1.0,
+        "wrong": 0.3333333333333333,
+        "passed": true
+      },
+      {
+        "spec": "position",
+        "test": "rhyme",
+        "correct": 1.0,
+        "wrong": 0.0,
+        "passed": true
+      },
+      {
+        "spec": "position",
+        "test": "vowel_start",
+        "correct": 1.0,
+        "wrong": 0.0,
+        "passed": true
+      },
+      {
+        "spec": "inverse",
+        "test": "position",
+        "correct": 0.6666666666666666,
+        "wrong": 0.8000000000000002,
+        "passed": false
+      },
+      {
+        "spec": "inverse",
+        "test": "rhyme",
+        "correct": 0.6666666666666666,
+        "wrong": 0.6666666666666666,
+        "passed": false
+      },
+      {
+        "spec": "inverse",
+        "test": "vowel_start",
+        "correct": 0.6666666666666666,
+        "wrong": 0.6666666666666666,
+        "passed": false
+      },
+      {
+        "spec": "rhyme",
+        "test": "position",
+        "correct": 0.6666666666666666,
+        "wrong": 0.6666666666666666,
+        "passed": false
+      },
+      {
+        "spec": "rhyme",
+        "test": "inverse",
+        "correct": 0.3333333333333333,
+        "wrong": 0.3333333333333333,
+        "passed": false
+      },
+      {
+        "spec": "rhyme",
+        "test": "vowel_start",
+        "correct": 1.0,
+        "wrong": 0.6666666666666666,
+        "passed": true
+      },
+      {
+        "spec": "vowel_start",
+        "test": "position",
+        "correct": 0.3333333333333333,
+        "wrong": 0.3333333333333333,
+        "passed": false
+      },
+      {
+        "spec": "vowel_start",
+        "test": "inverse",
+        "correct": 0.9333333333333332,
+        "wrong": 0.3333333333333333,
+        "passed": true
+      },
+      {
+        "spec": "vowel_start",
+        "test": "rhyme",
+        "correct": 1.0,
+        "wrong": 1.0,
+        "passed": false
+      }
+    ],
+    "_model": "gpt-4o-mini",
+    "_timestamp": "2026-01-04T12:23:29.051944",
+    "_verified": true
+  },
+  {
+    "seed": 5,
+    "passed": 7,
+    "total": 12,
+    "pass_rate": 0.5833333333333334,
+    "raw_results": [
+      {
+        "spec": "position",
+        "test": "inverse",
+        "correct": 0.6,
+        "wrong": 0.0,
+        "passed": true
+      },
+      {
+        "spec": "position",
+        "test": "rhyme",
+        "correct": 1.0,
+        "wrong": 0.0,
+        "passed": true
+      },
+      {
+        "spec": "position",
+        "test": "vowel_start",
+        "correct": 0.6666666666666666,
+        "wrong": 0.6666666666666666,
+        "passed": false
+      },
+      {
+        "spec": "inverse",
+        "test": "position",
+        "correct": 1.0,
+        "wrong": 0.8000000000000002,
+        "passed": true
+      },
+      {
+        "spec": "inverse",
+        "test": "rhyme",
+        "correct": 0.3333333333333333,
+        "wrong": 0.3333333333333333,
+        "passed": false
+      },
+      {
+        "spec": "inverse",
+        "test": "vowel_start",
+        "correct": 1.0,
+        "wrong": 1.0,
+        "passed": false
+      },
+      {
+        "spec": "rhyme",
+        "test": "position",
+        "correct": 1.0,
+        "wrong": 0.6666666666666666,
+        "passed": true
+      },
+      {
+        "spec": "rhyme",
+        "test": "inverse",
+        "correct": 0.8666666666666667,
+        "wrong": 1.0,
+        "passed": false
+      },
+      {
+        "spec": "rhyme",
+        "test": "vowel_start",
+        "correct": 0.6666666666666666,
+        "wrong": 0.6666666666666666,
+        "passed": false
+      },
+      {
+        "spec": "vowel_start",
+        "test": "position",
+        "correct": 1.0,
+        "wrong": 0.6666666666666666,
+        "passed": true
+      },
+      {
+        "spec": "vowel_start",
+        "test": "inverse",
+        "correct": 0.8666666666666667,
+        "wrong": 0.0,
+        "passed": true
+      },
+      {
+        "spec": "vowel_start",
+        "test": "rhyme",
+        "correct": 1.0,
+        "wrong": 0.6666666666666666,
+        "passed": true
+      }
+    ],
+    "_model": "gpt-4o-mini",
+    "_timestamp": "2026-01-04T12:27:48.041661",
+    "_verified": true
+  }
+]

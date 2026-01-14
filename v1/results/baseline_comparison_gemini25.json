@@ -1,0 +1,10 @@
+{
+  "model": "gemini-2.5-flash",
+  "results": {
+    "NO_PROMPT": 0.05,
+    "RANDOM_PROMPT": 0.15,
+    "WRONG_PROMPT": 0.2,
+    "CORRECT_PROMPT": 1.0
+  },
+  "timestamp": "2026-01-04T16:22:01.167449"
+}

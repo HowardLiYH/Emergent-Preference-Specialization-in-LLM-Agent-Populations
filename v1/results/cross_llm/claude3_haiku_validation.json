@@ -1,0 +1,31 @@
+{
+  "model": "claude-3-haiku-20240307",
+  "rules": [
+    "position",
+    "inverse",
+    "rhyme",
+    "vowel_start"
+  ],
+  "results": {
+    "position_position": 1.0,
+    "position_inverse": 0.3333333333333333,
+    "position_rhyme": 0.0,
+    "position_vowel_start": 0.0,
+    "inverse_position": 1.0,
+    "inverse_inverse": 0.6666666666666666,
+    "inverse_rhyme": 0.8000000000000002,
+    "inverse_vowel_start": 0.26666666666666666,
+    "rhyme_position": 0.3333333333333333,
+    "rhyme_inverse": 0.6666666666666666,
+    "rhyme_rhyme": 1.0,
+    "rhyme_vowel_start": 0.6666666666666666,
+    "vowel_start_position": 0.3333333333333333,
+    "vowel_start_inverse": 0.3333333333333333,
+    "vowel_start_rhyme": 0.6666666666666666,
+    "vowel_start_vowel_start": 1.0
+  },
+  "diagonal_mean": 0.9166666666666666,
+  "off_diagonal_mean": 0.44999999999999996,
+  "gap": 0.5090909090909091,
+  "pass": true
+}

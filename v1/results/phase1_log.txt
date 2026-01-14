@@ -1,0 +1,19 @@
+============================================================
+PHASE 1: MAIN PREFERENCE EXPERIMENT
+============================================================
+Agents: 12
+Generations: 20
+Seeds: 1
+Fitness sharing: True
+Real LLM: True
+
+============================================================
+SEED 0
+============================================================
+  Population initialized with Option B+ (random single L1):
+  Seed distribution: {'math_mod': 3, 'position': 1, 'rhyme': 3, 'animate': 2, 'alphabet': 1, 'vowel_start': 1, 'inverse': 1}
+Gemini error: , retrying in 1s...
+  Gen 0: RPI_var=0.0386, PSI=0.00, PD=0.25
+Gemini error: , retrying in 1s...
+Gemini error: , retrying in 1s...
+Gemini error: , retrying in 1s...

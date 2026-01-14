@@ -1,0 +1,137 @@
+[14:31:20] === UNIFIED: gemini-2.5-flash, Seeds 1-10 (restart with better handling) ===
+[14:31:20] Seed 1 cached: 73.2%
+[14:31:20] Running Seed 2...
+  Rule 1/8 done
+  Rule 2/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 3/8 done
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+  Rule 4/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 5/8 done
+  Rule 6/8 done
+Gemini error (ConnectError): , retrying in 1s...
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 7/8 done
+  Rule 8/8 done
+[14:41:09]   Done: 40/56 = 71.4% (589s, 0 errors)
+[14:41:09] Running Seed 3...
+  Rule 1/8 done
+  Rule 2/8 done
+  Rule 3/8 done
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+  Rule 4/8 done
+  Rule 5/8 done
+  Rule 6/8 done
+  Rule 7/8 done
+  Rule 8/8 done
+[14:51:04]   Done: 37/56 = 66.1% (596s, 0 errors)
+[14:51:04] Running Seed 4...
+  Rule 1/8 done
+  Rule 2/8 done
+  Rule 3/8 done
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+  Rule 4/8 done
+  Rule 5/8 done
+  Rule 6/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 7/8 done
+  Rule 8/8 done
+[15:01:05]   Done: 36/56 = 64.3% (601s, 0 errors)
+[15:01:05] Running Seed 5...
+  Rule 1/8 done
+  Rule 2/8 done
+  Rule 3/8 done
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+  Rule 4/8 done
+  Rule 5/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 6/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 7/8 done
+  Rule 8/8 done
+[15:11:11]   Done: 39/56 = 69.6% (606s, 0 errors)
+[15:11:11] Running Seed 6...
+  Rule 1/8 done
+  Rule 2/8 done
+  Rule 3/8 done
+Empty parts in Gemini response (likely content filtering)
+Gemini error (ConnectError): , retrying in 1s...
+Empty parts in Gemini response (likely content filtering)
+  Rule 4/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 5/8 done
+  Rule 6/8 done
+  Rule 7/8 done
+  Rule 8/8 done
+[15:21:06]   Done: 41/56 = 73.2% (595s, 0 errors)
+[15:21:06] Running Seed 7...
+  Rule 1/8 done
+Gemini error (ConnectError): , retrying in 1s...
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 2/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 3/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 4/8 done
+  Rule 5/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 6/8 done
+  Rule 7/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 8/8 done
+[15:31:09]   Done: 42/56 = 75.0% (603s, 0 errors)
+[15:31:09] Running Seed 8...
+  Rule 1/8 done
+  Rule 2/8 done
+  Rule 3/8 done
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+  Rule 4/8 done
+  Rule 5/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 6/8 done
+  Rule 7/8 done
+  Rule 8/8 done
+[15:41:16]   Done: 40/56 = 71.4% (608s, 0 errors)
+[15:41:16] Running Seed 9...
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 1/8 done
+  Rule 2/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 3/8 done
+Gemini error (ConnectError): , retrying in 1s...
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+  Rule 4/8 done
+  Rule 5/8 done
+  Rule 6/8 done
+  Rule 7/8 done
+  Rule 8/8 done
+[15:51:36]   Done: 39/56 = 69.6% (619s, 0 errors)
+[15:51:36] Running Seed 10...
+  Rule 1/8 done
+  Rule 2/8 done
+  Rule 3/8 done
+Empty parts in Gemini response (likely content filtering)
+Empty parts in Gemini response (likely content filtering)
+  Rule 4/8 done
+  Rule 5/8 done
+  Rule 6/8 done
+Gemini error (ConnectError): , retrying in 1s...
+  Rule 7/8 done
+  Rule 8/8 done
+[16:01:58]   Done: 41/56 = 73.2% (622s, 0 errors)
+[16:01:58] === COMPLETE: gemini-2.5-flash, mean = 70.7% ===
+
+FINAL: Mean pass rate = 70.7%

@@ -1,0 +1,17 @@
+{
+  "sci_test": {
+    "competition_mean": 0.5102,
+    "competition_std": 0.06899971014431873,
+    "random_mean": 0.342,
+    "random_std": 0.006531972647421791,
+    "mean_diff": 0.16819999999999996,
+    "ci_95_lower": 0.07285126802438943,
+    "ci_95_upper": 0.26354873197561046,
+    "t_stat": 4.83226940205774,
+    "p_two_tailed": 0.00773543526546787,
+    "p_one_tailed": 0.003867717632733935,
+    "cohens_d": 2.6632066150655076,
+    "effect_size": "large",
+    "significant": true
+  }
+}

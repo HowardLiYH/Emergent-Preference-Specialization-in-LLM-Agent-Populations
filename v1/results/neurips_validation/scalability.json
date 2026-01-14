@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-01-04T09:36:48.451370",
+  "model": "gemini-2.0-flash",
+  "results": [
+    {
+      "n_agents": 8,
+      "sci": 0.508,
+      "l3_rate": 0.88,
+      "diversity": 0.88,
+      "hhi": 0.156
+    },
+    {
+      "n_agents": 12,
+      "sci": 0.571,
+      "l3_rate": 0.42,
+      "diversity": 0.5,
+      "hhi": 0.361
+    },
+    {
+      "n_agents": 16,
+      "sci": 0.523,
+      "l3_rate": 0.19,
+      "diversity": 0.88,
+      "hhi": 0.219
+    }
+  ]
+}

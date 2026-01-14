@@ -1,0 +1,36 @@
+{
+  "Independent": {
+    "0.6": {
+      "mean_tokens": 176.0,
+      "std_tokens": 79.39773296511683,
+      "reached_rate": 1.0
+    },
+    "0.8": {
+      "mean_tokens": 368.0,
+      "std_tokens": 164.24372134118246,
+      "reached_rate": 1.0
+    },
+    "1.0": {
+      "mean_tokens": 4368.0,
+      "std_tokens": 4599.036420816865,
+      "reached_rate": 0.6
+    }
+  },
+  "CSE": {
+    "0.6": {
+      "mean_tokens": 1248.0,
+      "std_tokens": 384.0,
+      "reached_rate": 1.0
+    },
+    "0.8": {
+      "mean_tokens": 2544.0,
+      "std_tokens": 1354.246654047925,
+      "reached_rate": 1.0
+    },
+    "1.0": {
+      "mean_tokens": 14016.0,
+      "std_tokens": 20300.992685088087,
+      "reached_rate": 1.0
+    }
+  }
+}

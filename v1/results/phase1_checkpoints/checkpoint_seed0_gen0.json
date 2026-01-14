@@ -1,0 +1,225 @@
+{
+  "seed": 0,
+  "generation": 0,
+  "metrics": {
+    "generation": 0,
+    "rpi_variance": 0.038616415895061734,
+    "population_psi": 0.0,
+    "preference_diversity": 0.25,
+    "ppc": 0.0,
+    "passes_emergence": false,
+    "passes_stability": false,
+    "passes_diversity": false,
+    "overall_success": false,
+    "agent_preferences": {
+      "s0_agent_0": "none",
+      "s0_agent_1": "pattern",
+      "s0_agent_2": "none",
+      "s0_agent_3": "none",
+      "s0_agent_4": "rhyme",
+      "s0_agent_5": "pattern",
+      "s0_agent_6": "none",
+      "s0_agent_7": "none",
+      "s0_agent_8": "rhyme",
+      "s0_agent_9": "inverse",
+      "s0_agent_10": "none",
+      "s0_agent_11": "inverse"
+    },
+    "agent_strengths": {
+      "s0_agent_0": 0.0,
+      "s0_agent_1": 0.29166666666666663,
+      "s0_agent_2": 0.0,
+      "s0_agent_3": 0.0,
+      "s0_agent_4": 0.4375,
+      "s0_agent_5": 0.29166666666666663,
+      "s0_agent_6": 0.0,
+      "s0_agent_7": 0.0,
+      "s0_agent_8": 0.39583333333333337,
+      "s0_agent_9": 0.4375,
+      "s0_agent_10": 0.0,
+      "s0_agent_11": 0.4375
+    }
+  },
+  "agents": [
+    {
+      "agent_id": "s0_agent_0",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 0,
+        "vowel_start": 0,
+        "rhyme": 0,
+        "alphabet": 0,
+        "math_mod": 1,
+        "animate": 0
+      },
+      "primary_preference": null,
+      "preference_strength": 0.0
+    },
+    {
+      "agent_id": "s0_agent_1",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 0,
+        "vowel_start": 0,
+        "rhyme": 0,
+        "alphabet": 0,
+        "math_mod": 1,
+        "animate": 0
+      },
+      "primary_preference": "pattern",
+      "preference_strength": 0.29166666666666663
+    },
+    {
+      "agent_id": "s0_agent_2",
+      "strategy_levels": {
+        "position": 1,
+        "pattern": 0,
+        "inverse": 0,
+        "vowel_start": 0,
+        "rhyme": 0,
+        "alphabet": 0,
+        "math_mod": 0,
+        "animate": 0
+      },
+      "primary_preference": null,
+      "preference_strength": 0.0
+    },
+    {
+      "agent_id": "s0_agent_3",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 0,
+        "vowel_start": 0,
+        "rhyme": 1,
+        "alphabet": 0,
+        "math_mod": 0,
+        "animate": 0
+      },
+      "primary_preference": null,
+      "preference_strength": 0.0
+    },
+    {
+      "agent_id": "s0_agent_4",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 0,
+        "vowel_start": 0,
+        "rhyme": 1,
+        "alphabet": 0,
+        "math_mod": 0,
+        "animate": 1
+      },
+      "primary_preference": "rhyme",
+      "preference_strength": 0.4375
+    },
+    {
+      "agent_id": "s0_agent_5",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 1,
+        "inverse": 0,
+        "vowel_start": 0,
+        "rhyme": 0,
+        "alphabet": 0,
+        "math_mod": 1,
+        "animate": 0
+      },
+      "primary_preference": "pattern",
+      "preference_strength": 0.29166666666666663
+    },
+    {
+      "agent_id": "s0_agent_6",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 0,
+        "vowel_start": 0,
+        "rhyme": 1,
+        "alphabet": 0,
+        "math_mod": 0,
+        "animate": 0
+      },
+      "primary_preference": null,
+      "preference_strength": 0.0
+    },
+    {
+      "agent_id": "s0_agent_7",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 0,
+        "vowel_start": 0,
+        "rhyme": 0,
+        "alphabet": 0,
+        "math_mod": 0,
+        "animate": 1
+      },
+      "primary_preference": null,
+      "preference_strength": 0.0
+    },
+    {
+      "agent_id": "s0_agent_8",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 0,
+        "vowel_start": 0,
+        "rhyme": 1,
+        "alphabet": 1,
+        "math_mod": 0,
+        "animate": 0
+      },
+      "primary_preference": "rhyme",
+      "preference_strength": 0.39583333333333337
+    },
+    {
+      "agent_id": "s0_agent_9",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 1,
+        "vowel_start": 1,
+        "rhyme": 0,
+        "alphabet": 0,
+        "math_mod": 0,
+        "animate": 0
+      },
+      "primary_preference": "inverse",
+      "preference_strength": 0.4375
+    },
+    {
+      "agent_id": "s0_agent_10",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 1,
+        "vowel_start": 0,
+        "rhyme": 0,
+        "alphabet": 0,
+        "math_mod": 0,
+        "animate": 0
+      },
+      "primary_preference": null,
+      "preference_strength": 0.0
+    },
+    {
+      "agent_id": "s0_agent_11",
+      "strategy_levels": {
+        "position": 0,
+        "pattern": 0,
+        "inverse": 1,
+        "vowel_start": 0,
+        "rhyme": 1,
+        "alphabet": 0,
+        "math_mod": 0,
+        "animate": 0
+      },
+      "primary_preference": "inverse",
+      "preference_strength": 0.4375
+    }
+  ]
+}

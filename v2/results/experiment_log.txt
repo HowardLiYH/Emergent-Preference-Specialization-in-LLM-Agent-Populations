@@ -1,0 +1,135 @@
+2026-01-14 09:19:58,663 - INFO - ============================================================
+2026-01-14 09:19:58,663 - INFO - EMERGENT PROMPT EVOLUTION v2 - FULL EXPERIMENTAL PIPELINE
+2026-01-14 09:19:58,663 - INFO - ============================================================
+2026-01-14 09:19:58,663 - INFO - 
+[1/3] Running main experiments...
+2026-01-14 09:19:58,663 - INFO - === Starting Experiment (seed=0) ===
+2026-01-14 09:19:58,663 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 09:26:57,118 - INFO - Gen 20: SCI=0.125, Coverage=80.0%, Winner=agent_2 (L0)
+2026-01-14 09:34:17,390 - INFO - Gen 40: SCI=0.091, Coverage=80.0%, Winner=agent_1 (L0)
+2026-01-14 09:34:25,647 - WARNING - Agent agent_4 failed: API error 503: {
+  "error": {
+    "code": 503,
+    "message": "The model is overloaded. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+2026-01-14 09:41:47,562 - INFO - Gen 60: SCI=0.080, Coverage=80.0%, Winner=agent_5 (L3)
+2026-01-14 09:41:47,567 - INFO - === Experiment Complete (seed=0) ===
+2026-01-14 09:41:47,567 - INFO -   SCI: 0.080
+2026-01-14 09:41:47,567 - INFO -   Coverage: 80.0%
+2026-01-14 09:41:47,567 - INFO -   Equilibrium Error: 92.9%
+2026-01-14 09:41:47,567 - INFO -   Tool Accuracy: 75.0%
+2026-01-14 09:41:47,567 - INFO -   Tokens: 16437
+2026-01-14 09:41:47,567 - INFO -   Time: 1308.9s
+2026-01-14 09:41:47,567 - INFO - === Starting Experiment (seed=1) ===
+2026-01-14 09:41:47,568 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 09:49:24,787 - INFO - Gen 20: SCI=0.167, Coverage=80.0%, Winner=agent_0 (L0)
+2026-01-14 09:56:46,132 - INFO - Gen 40: SCI=0.070, Coverage=100.0%, Winner=agent_8 (L0)
+2026-01-14 10:04:09,528 - INFO - Gen 60: SCI=0.070, Coverage=100.0%, Winner=agent_10 (L3)
+2026-01-14 10:04:09,534 - INFO - === Experiment Complete (seed=1) ===
+2026-01-14 10:04:09,534 - INFO -   SCI: 0.070
+2026-01-14 10:04:09,534 - INFO -   Coverage: 100.0%
+2026-01-14 10:04:09,534 - INFO -   Equilibrium Error: 92.4%
+2026-01-14 10:04:09,534 - INFO -   Tool Accuracy: 72.7%
+2026-01-14 10:04:09,534 - INFO -   Tokens: 16321
+2026-01-14 10:04:09,534 - INFO -   Time: 1342.0s
+2026-01-14 10:04:09,534 - INFO - === Starting Experiment (seed=2) ===
+2026-01-14 10:04:09,534 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 10:11:54,830 - INFO - Gen 20: SCI=0.105, Coverage=80.0%, Winner=agent_1 (L0)
+2026-01-14 10:19:18,021 - INFO - Gen 40: SCI=0.029, Coverage=100.0%, Winner=agent_9 (L0)
+2026-01-14 10:26:21,654 - INFO - Gen 60: SCI=0.070, Coverage=100.0%, Winner=agent_2 (L3)
+2026-01-14 10:26:21,660 - INFO - === Experiment Complete (seed=2) ===
+2026-01-14 10:26:21,660 - INFO -   SCI: 0.070
+2026-01-14 10:26:21,660 - INFO -   Coverage: 100.0%
+2026-01-14 10:26:21,660 - INFO -   Equilibrium Error: 85.5%
+2026-01-14 10:26:21,661 - INFO -   Tool Accuracy: 36.4%
+2026-01-14 10:26:21,661 - INFO -   Tokens: 16261
+2026-01-14 10:26:21,661 - INFO -   Time: 1332.1s
+2026-01-14 10:26:21,890 - INFO - 
+=== AGGREGATE RESULTS (3 seeds) ===
+2026-01-14 10:26:21,890 - INFO -   Mean SCI: 0.073 ± 0.005
+2026-01-14 10:26:21,890 - INFO -   Mean Coverage: 93.3%
+2026-01-14 10:26:21,890 - INFO -   Mean Equilibrium Error: 90.3%
+2026-01-14 10:26:21,890 - INFO -   Mean Tool Accuracy: 61.4%
+2026-01-14 10:26:21,890 - INFO -   Mean Tokens: 16340
+2026-01-14 10:26:21,890 - INFO -   Unique Patterns: 3/3
+2026-01-14 10:26:21,890 - INFO -   Is Emergent: True
+2026-01-14 10:26:21,890 - INFO - 
+[2/3] Running cost comparison...
+2026-01-14 10:26:21,890 - INFO - 
+=== COST COMPARISON ===
+2026-01-14 10:26:21,890 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 10:26:21,890 - INFO - === Starting Experiment (seed=0) ===
+2026-01-14 10:26:21,890 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 10:33:41,157 - INFO - Gen 20: SCI=0.259, Coverage=60.0%, Winner=None (None)
+2026-01-14 10:40:58,247 - INFO - Gen 40: SCI=0.091, Coverage=80.0%, Winner=agent_8 (L0)
+2026-01-14 10:40:58,250 - INFO - === Experiment Complete (seed=0) ===
+2026-01-14 10:40:58,250 - INFO -   SCI: 0.091
+2026-01-14 10:40:58,251 - INFO -   Coverage: 80.0%
+2026-01-14 10:40:58,251 - INFO -   Equilibrium Error: 97.0%
+2026-01-14 10:40:58,251 - INFO -   Tool Accuracy: 45.5%
+2026-01-14 10:40:58,251 - INFO -   Tokens: 10881
+2026-01-14 10:40:58,251 - INFO -   Time: 876.4s
+2026-01-14 10:40:58,251 - INFO - === Starting Experiment (seed=1) ===
+2026-01-14 10:40:58,251 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 10:48:23,531 - INFO - Gen 20: SCI=0.062, Coverage=100.0%, Winner=agent_0 (L0)
+2026-01-14 10:55:45,086 - INFO - Gen 40: SCI=0.029, Coverage=100.0%, Winner=None (None)
+2026-01-14 10:55:45,088 - INFO - === Experiment Complete (seed=1) ===
+2026-01-14 10:55:45,088 - INFO -   SCI: 0.029
+2026-01-14 10:55:45,088 - INFO -   Coverage: 100.0%
+2026-01-14 10:55:45,088 - INFO -   Equilibrium Error: 40.2%
+2026-01-14 10:55:45,088 - INFO -   Tool Accuracy: 63.6%
+2026-01-14 10:55:45,088 - INFO -   Tokens: 11278
+2026-01-14 10:55:45,088 - INFO -   Time: 886.8s
+2026-01-14 10:55:45,095 - INFO - 
+=== AGGREGATE RESULTS (2 seeds) ===
+2026-01-14 10:55:45,095 - INFO -   Mean SCI: 0.060 ± 0.031
+2026-01-14 10:55:45,095 - INFO -   Mean Coverage: 90.0%
+2026-01-14 10:55:45,095 - INFO -   Mean Equilibrium Error: 68.6%
+2026-01-14 10:55:45,095 - INFO -   Mean Tool Accuracy: 54.5%
+2026-01-14 10:55:45,095 - INFO -   Mean Tokens: 11080
+2026-01-14 10:55:45,095 - INFO -   Unique Patterns: 2/2
+2026-01-14 10:55:45,095 - INFO -   Is Emergent: True
+2026-01-14 10:55:45,095 - INFO - === Running Bandit Baseline (seed=0) ===
+2026-01-14 11:07:28,856 - INFO - Bandit: accuracy=95.8%, tokens=6457
+2026-01-14 11:07:28,856 - INFO - === Running Bandit Baseline (seed=1) ===
+2026-01-14 11:20:01,377 - INFO - Bandit: accuracy=94.6%, tokens=6594
+2026-01-14 11:20:01,377 - INFO - === Running Independent Baseline (seed=0) ===
+2026-01-14 11:31:57,972 - INFO - Independent: accuracy=92.9%, tokens=6146
+2026-01-14 11:31:57,972 - INFO - === Running Independent Baseline (seed=1) ===
+2026-01-14 11:43:54,574 - INFO - Independent: accuracy=91.2%, tokens=5946
+2026-01-14 11:43:54,583 - INFO - 
+=== COST COMPARISON RESULTS ===
+2026-01-14 11:43:54,583 - INFO - Population: 11080 tokens
+2026-01-14 11:43:54,583 - INFO -   SCI=0.060, Coverage=90.0%
+2026-01-14 11:43:54,583 - INFO - Bandit: 6526 tokens, acc=95.2%
+2026-01-14 11:43:54,583 - INFO - Independent: 6046 tokens, acc=92.1%
+2026-01-14 11:43:54,583 - INFO - Savings vs Independent: -83.3%
+2026-01-14 11:43:54,584 - INFO - 
+[3/3] Running ablation studies...
+2026-01-14 11:43:54,584 - INFO - 
+=== RUNNING ABLATIONS ===
+2026-01-14 11:43:54,584 - INFO - === Ablation: No Fitness Sharing (seed=0) ===
+2026-01-14 11:43:54,584 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 12:02:27,404 - INFO - === Ablation: Uniform Tools (seed=0) ===
+2026-01-14 12:02:27,405 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 12:20:41,639 - INFO - === Ablation: No Fitness Sharing (seed=1) ===
+2026-01-14 12:20:41,640 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 12:38:33,064 - INFO - === Ablation: Uniform Tools (seed=1) ===
+2026-01-14 12:38:33,065 - INFO - Initialized Gemini client with model: gemini-2.5-flash
+2026-01-14 12:56:33,030 - INFO - 
+=== ABLATION RESULTS ===
+2026-01-14 12:56:33,030 - INFO -   no_fitness_sharing: SCI=0.205, Coverage=70.0%
+2026-01-14 12:56:33,030 - INFO -   uniform_tools: SCI=0.216, Coverage=80.0%
+2026-01-14 12:56:33,032 - INFO - 
+============================================================
+2026-01-14 12:56:33,032 - INFO - FINAL SUMMARY
+2026-01-14 12:56:33,032 - INFO - ============================================================
+2026-01-14 12:56:33,032 - INFO - Total Time: 216.6 minutes
+2026-01-14 12:56:33,032 - INFO - Mean SCI: 0.073 ± 0.005
+2026-01-14 12:56:33,032 - INFO - Mean Coverage: 93.3%
+2026-01-14 12:56:33,032 - INFO - Mean Tool Accuracy: 61.4%
+2026-01-14 12:56:33,032 - INFO - Is Emergent: True
+2026-01-14 12:56:33,033 - INFO - THESIS VALIDATED: True

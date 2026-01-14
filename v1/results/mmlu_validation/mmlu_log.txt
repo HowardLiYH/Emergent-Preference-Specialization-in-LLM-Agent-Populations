@@ -1,0 +1,58 @@
+[2026-01-04T16:07:06.505502] ============================================================
+[2026-01-04T16:07:06.505586] MMLU Real-World Validation Experiment
+[2026-01-04T16:07:06.505619] Model: gemini-2.5-flash
+[2026-01-04T16:07:06.505648] ============================================================
+[2026-01-04T16:07:06.505698] 
+Testing domain: abstract_algebra
+[2026-01-04T16:07:06.505728]   Mapped to rule: math_mod
+[2026-01-04T16:07:06.505755]   Description: Tests mathematical reasoning and pattern recognition
+[2026-01-04T16:07:46.975872] ============================================================
+[2026-01-04T16:07:46.976061] MMLU Real-World Validation Experiment
+[2026-01-04T16:07:46.976094] Model: gemini-2.5-flash
+[2026-01-04T16:07:46.976125] ============================================================
+[2026-01-04T16:07:46.976176] 
+Testing domain: abstract_algebra
+[2026-01-04T16:07:46.976205]   Mapped to rule: math_mod
+[2026-01-04T16:07:46.976233]   Description: Tests mathematical reasoning and pattern recognition
+[2026-01-04T16:07:55.526816]   Specialist: 66.7%
+[2026-01-04T16:07:55.526897]   Generic: 100.0%
+[2026-01-04T16:07:55.526939]   Improvement: -33.3%
+[2026-01-04T16:07:55.527255] Checkpoint saved: 1 domains complete
+[2026-01-04T16:07:55.527302] 
+Testing domain: us_history
+[2026-01-04T16:07:55.527341]   Mapped to rule: position
+[2026-01-04T16:07:55.527378]   Description: Tests factual recall with structured answer patterns
+[2026-01-04T16:08:04.188153]   Specialist: 33.3%
+[2026-01-04T16:08:04.188404]   Generic: 66.7%
+[2026-01-04T16:08:04.188506]   Improvement: -33.3%
+[2026-01-04T16:08:04.188993] Checkpoint saved: 2 domains complete
+[2026-01-04T16:08:04.189070] 
+Testing domain: high_school_biology
+[2026-01-04T16:08:04.189139]   Mapped to rule: animate
+[2026-01-04T16:08:04.189203]   Description: Tests biological category knowledge
+[2026-01-04T16:08:14.944601]   Specialist: 33.3%
+[2026-01-04T16:08:14.944758]   Generic: 100.0%
+[2026-01-04T16:08:14.945026]   Improvement: -66.7%
+[2026-01-04T16:08:14.945440] Checkpoint saved: 3 domains complete
+[2026-01-04T16:08:14.945500] 
+Testing domain: professional_law
+[2026-01-04T16:08:14.945643]   Mapped to rule: inverse
+[2026-01-04T16:08:14.945736]   Description: Tests logical reasoning and counterargument skills
+[2026-01-04T16:08:23.717669]   Specialist: 33.3%
+[2026-01-04T16:08:23.717908]   Generic: 66.7%
+[2026-01-04T16:08:23.717966]   Improvement: -33.3%
+[2026-01-04T16:08:23.718277] Checkpoint saved: 4 domains complete
+[2026-01-04T16:08:23.718321] 
+============================================================
+[2026-01-04T16:08:23.718357] FINAL RESULTS
+[2026-01-04T16:08:23.718452] ============================================================
+[2026-01-04T16:08:23.718507] abstract_algebra: 66.7% vs 100.0% (-33.3%) ✗ FAIL
+[2026-01-04T16:08:23.718552] us_history: 33.3% vs 66.7% (-33.3%) ✗ FAIL
+[2026-01-04T16:08:23.718589] high_school_biology: 33.3% vs 100.0% (-66.7%) ✗ FAIL
+[2026-01-04T16:08:23.718628] professional_law: 33.3% vs 66.7% (-33.3%) ✗ FAIL
+[2026-01-04T16:08:23.718670] 
+Mean improvement: -41.7%
+[2026-01-04T16:08:23.718718] Passing domains: 0/4
+[2026-01-04T16:08:23.718757] Success: NO (need 3/4 passing)
+[2026-01-04T16:08:23.719048] 
+Results saved to results/mmlu_validation/mmlu_final_results.json

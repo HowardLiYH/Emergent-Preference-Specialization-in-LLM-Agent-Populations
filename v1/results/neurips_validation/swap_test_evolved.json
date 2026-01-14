@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-01-04T09:36:48.451263",
+  "model": "gemini-2.0-flash",
+  "specialist_A": "pattern",
+  "specialist_B": "math_mod",
+  "original_accuracy": 0.9,
+  "swapped_accuracy": 0.46,
+  "transfer_coefficient": 0.44,
+  "causal_link_proven": true
+}

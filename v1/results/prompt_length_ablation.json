@@ -1,0 +1,75 @@
+{
+  "results": [
+    {
+      "rule": "position",
+      "short_prompt_score": 1.0,
+      "enhanced_prompt_score": 1.0,
+      "improvement": 0.0,
+      "short_prompt_len": 23,
+      "enhanced_prompt_len": 866
+    },
+    {
+      "rule": "pattern",
+      "short_prompt_score": 1.0,
+      "enhanced_prompt_score": 1.0,
+      "improvement": 0.0,
+      "short_prompt_len": 25,
+      "enhanced_prompt_len": 886
+    },
+    {
+      "rule": "inverse",
+      "short_prompt_score": 0.9199999999999999,
+      "enhanced_prompt_score": 1.0,
+      "improvement": 0.08000000000000007,
+      "short_prompt_len": 29,
+      "enhanced_prompt_len": 907
+    },
+    {
+      "rule": "vowel_start",
+      "short_prompt_score": 1.0,
+      "enhanced_prompt_score": 1.0,
+      "improvement": 0.0,
+      "short_prompt_len": 30,
+      "enhanced_prompt_len": 1026
+    },
+    {
+      "rule": "rhyme",
+      "short_prompt_score": 1.0,
+      "enhanced_prompt_score": 1.0,
+      "improvement": 0.0,
+      "short_prompt_len": 23,
+      "enhanced_prompt_len": 969
+    },
+    {
+      "rule": "alphabet",
+      "short_prompt_score": 1.0,
+      "enhanced_prompt_score": 1.0,
+      "improvement": 0.0,
+      "short_prompt_len": 29,
+      "enhanced_prompt_len": 1100
+    },
+    {
+      "rule": "math_mod",
+      "short_prompt_score": 1.0,
+      "enhanced_prompt_score": 1.0,
+      "improvement": 0.0,
+      "short_prompt_len": 32,
+      "enhanced_prompt_len": 1030
+    },
+    {
+      "rule": "animate",
+      "short_prompt_score": 1.0,
+      "enhanced_prompt_score": 1.0,
+      "improvement": 0.0,
+      "short_prompt_len": 31,
+      "enhanced_prompt_len": 1149
+    }
+  ],
+  "summary": {
+    "short_mean": 0.99,
+    "enhanced_mean": 1.0,
+    "difference": 0.010000000000000009
+  },
+  "_model": "gemini-2.0-flash-exp",
+  "_note": "Real API with new rules (vowel_start, animate)"
+}

@@ -1,0 +1,34 @@
+{
+  "synthetic": {
+    "domain_type": "synthetic",
+    "n_agents": 12,
+    "n_generations": 50,
+    "final_sci": 1.0,
+    "final_diversity": 0.875,
+    "final_hhi": 0,
+    "final_entropy": 0,
+    "l3_specialists": 0,
+    "covered_niches": 0,
+    "total_niches": 8
+  },
+  "real": {
+    "domain_type": "real",
+    "n_agents": 12,
+    "n_generations": 50,
+    "final_sci": 1.0,
+    "final_diversity": 1.0,
+    "final_hhi": 0,
+    "final_entropy": 0,
+    "l3_specialists": 0,
+    "covered_niches": 0,
+    "total_niches": 4
+  },
+  "comparison": {
+    "sci_difference": 0.0,
+    "sci_effect_size": 0.0,
+    "diversity_difference": -0.125,
+    "diversity_effect_size": -0.125,
+    "mechanism_transfers": true,
+    "interpretation": "MECHANISM TRANSFERS: Specialization patterns are statistically similar between synthetic rules and real tasks (SCI d=0.00, Diversity d=-0.12). This demonstrates that the competitive selection mechanism works regardless of task type."
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "completed_domains": [
+    "abstract_algebra",
+    "us_history",
+    "professional_law",
+    "high_school_biology"
+  ],
+  "results": {
+    "abstract_algebra": {
+      "domain": "abstract_algebra",
+      "rule": "math_mod",
+      "n_questions": 3,
+      "specialist_accuracy": 0.6666666666666666,
+      "generic_accuracy": 1.0,
+      "improvement": -0.3333333333333333,
+      "details": [
+        {
+          "question": "The group Z_4 x Z_2 has how many elements of order...",
+          "specialist_correct": true,
+          "generic_correct": true
+        },
+        {
+          "question": "If G is a group of order 15, then G is...",
+          "specialist_correct": false,
+          "generic_correct": true
+        },
+        {
+          "question": "Find the order of element 2 in Z_6...",
+          "specialist_correct": true,
+          "generic_correct": true
+        }
+      ]
+    },
+    "us_history": {
+      "domain": "us_history",
+      "rule": "position",
+      "n_questions": 3,
+      "specialist_accuracy": 0.3333333333333333,
+      "generic_accuracy": 0.6666666666666666,
+      "improvement": -0.3333333333333333,
+      "details": [
+        {
+          "question": "The Emancipation Proclamation was issued in...",
+          "specialist_correct": false,
+          "generic_correct": false
+        },
+        {
+          "question": "Which amendment abolished slavery?...",
+          "specialist_correct": true,
+          "generic_correct": true
+        },
+        {
+          "question": "The Louisiana Purchase was made during which presi...",
+          "specialist_correct": false,
+          "generic_correct": true
+        }
+      ]
+    },
+    "high_school_biology": {
+      "domain": "high_school_biology",
+      "rule": "animate",
+      "n_questions": 3,
+      "specialist_accuracy": 0.3333333333333333,
+      "generic_accuracy": 1.0,
+      "improvement": -0.6666666666666666,
+      "details": [
+        {
+          "question": "Which organelle is responsible for protein synthes...",
+          "specialist_correct": false,
+          "generic_correct": true
+        },
+        {
+          "question": "DNA replication occurs during which phase?...",
+          "specialist_correct": false,
+          "generic_correct": true
+        },
+        {
+          "question": "Which is NOT a type of RNA?...",
+          "specialist_correct": true,
+          "generic_correct": true
+        }
+      ]
+    },
+    "professional_law": {
+      "domain": "professional_law",
+      "rule": "inverse",
+      "n_questions": 3,
+      "specialist_accuracy": 0.3333333333333333,
+      "generic_accuracy": 0.6666666666666666,
+      "improvement": -0.3333333333333333,
+      "details": [
+        {
+          "question": "The doctrine of res ipsa loquitur applies when...",
+          "specialist_correct": true,
+          "generic_correct": true
+        },
+        {
+          "question": "Mens rea refers to...",
+          "specialist_correct": false,
+          "generic_correct": false
+        },
+        {
+          "question": "In contract law, consideration must be...",
+          "specialist_correct": false,
+          "generic_correct": true
+        }
+      ]
+    }
+  },
+  "_timestamp": "2026-01-04T16:08:23.718026",
+  "_model": "gemini-2.5-flash"
+}

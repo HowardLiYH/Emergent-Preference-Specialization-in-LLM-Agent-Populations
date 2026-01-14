@@ -1,0 +1,31 @@
+{
+  "model": "gpt-4o-mini",
+  "rules": [
+    "position",
+    "inverse",
+    "rhyme",
+    "vowel_start"
+  ],
+  "results": {
+    "position_position": 1.0,
+    "position_inverse": 0.0,
+    "position_rhyme": 0.0,
+    "position_vowel_start": 0.0,
+    "inverse_position": 0.8000000000000002,
+    "inverse_inverse": 0.6,
+    "inverse_rhyme": 0.3333333333333333,
+    "inverse_vowel_start": 0.3333333333333333,
+    "rhyme_position": 0.6666666666666666,
+    "rhyme_inverse": 0.6666666666666666,
+    "rhyme_rhyme": 1.0,
+    "rhyme_vowel_start": 0.3333333333333333,
+    "vowel_start_position": 0.3333333333333333,
+    "vowel_start_inverse": 0.0,
+    "vowel_start_rhyme": 1.0,
+    "vowel_start_vowel_start": 1.0
+  },
+  "diagonal_mean": 0.9,
+  "off_diagonal_mean": 0.37222222222222223,
+  "gap": 0.5864197530864198,
+  "pass": true
+}
