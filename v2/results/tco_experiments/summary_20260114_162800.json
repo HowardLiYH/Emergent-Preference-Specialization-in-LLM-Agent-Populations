@@ -1,0 +1,39 @@
+{
+  "timestamp": "20260114_162800",
+  "experiments": [
+    "subset_comparison",
+    "amortized",
+    "parallel",
+    "llm_stats"
+  ],
+  "subset_comparison": {
+    "subset_cse": {
+      "mean_coverage": 0.19999999999999998,
+      "mean_tokens": 1956.0,
+      "mean_failure_rate": 0.42000000000000004,
+      "n_seeds": 10
+    },
+    "dynamic_cse": {
+      "mean_coverage": 0.19999999999999998,
+      "mean_tokens": 1512.1,
+      "mean_failure_rate": 0.42000000000000004,
+      "n_seeds": 10
+    },
+    "independent": {
+      "mean_coverage": 0.0,
+      "mean_tokens": 651.6,
+      "mean_failure_rate": 0.5,
+      "n_seeds": 10
+    }
+  },
+  "breakeven": {
+    "mean_breakeven": 10,
+    "std_breakeven": 0,
+    "ci_lower": 8,
+    "ci_upper": 13,
+    "n_seeds": 10,
+    "valid_seeds": 10,
+    "confidence": 0.95,
+    "interpretation": "CSE becomes cheaper after 10 queries (95% CI: [8, 13])"
+  }
+}

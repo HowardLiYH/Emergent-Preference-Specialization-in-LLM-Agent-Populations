@@ -1,0 +1,180 @@
+{
+  "meta": {
+    "n_seeds": 10,
+    "cse_training_cost": 0.001956,
+    "ind_training_cost": 0.0006516000000000001,
+    "inference_cost": 0.001
+  },
+  "breakeven": {
+    "mean_breakeven": 10,
+    "std_breakeven": 0,
+    "ci_lower": 8,
+    "ci_upper": 13,
+    "n_seeds": 10,
+    "valid_seeds": 10,
+    "confidence": 0.95,
+    "interpretation": "CSE becomes cheaper after 10 queries (95% CI: [8, 13])"
+  },
+  "effect_sizes": {
+    "failure_rate": {
+      "cohens_d": 0,
+      "interpretation": "negligible",
+      "cse_mean": 0.42,
+      "ind_mean": 0.5
+    },
+    "coverage": {
+      "cohens_d": 0,
+      "interpretation": "negligible",
+      "cse_mean": 0.2,
+      "ind_mean": 0.0
+    }
+  },
+  "significance": {
+    "failure_rate": {
+      "t_statistic": -Infinity,
+      "p_value": 0.0,
+      "significant_at_05": "True",
+      "significant_at_01": "True"
+    },
+    "coverage": {
+      "t_statistic": Infinity,
+      "p_value": 0.0,
+      "significant_at_05": "True",
+      "significant_at_01": "True"
+    }
+  },
+  "tco_comparison": {
+    "1000_queries": {
+      "cse_tco": {
+        "mean_tco": 1.632,
+        "std_tco": 0.0,
+        "ci_lower": NaN,
+        "ci_upper": NaN,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 1000
+      },
+      "ind_tco": {
+        "mean_tco": 1.7507,
+        "std_tco": 0.0,
+        "ci_lower": NaN,
+        "ci_upper": NaN,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 1000
+      },
+      "cse_cheaper": "True",
+      "savings": 0.12
+    },
+    "10000_queries": {
+      "cse_tco": {
+        "mean_tco": 16.302,
+        "std_tco": 0.0,
+        "ci_lower": 16.302,
+        "ci_upper": 16.302,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 10000
+      },
+      "ind_tco": {
+        "mean_tco": 17.5007,
+        "std_tco": 0.0,
+        "ci_lower": NaN,
+        "ci_upper": NaN,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 10000
+      },
+      "cse_cheaper": "True",
+      "savings": 1.2
+    },
+    "50000_queries": {
+      "cse_tco": {
+        "mean_tco": 81.502,
+        "std_tco": 0.0,
+        "ci_lower": 81.502,
+        "ci_upper": 81.502,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 50000
+      },
+      "ind_tco": {
+        "mean_tco": 87.5007,
+        "std_tco": 0.0,
+        "ci_lower": NaN,
+        "ci_upper": NaN,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 50000
+      },
+      "cse_cheaper": "True",
+      "savings": 6.0
+    },
+    "100000_queries": {
+      "cse_tco": {
+        "mean_tco": 163.002,
+        "std_tco": 0.0,
+        "ci_lower": NaN,
+        "ci_upper": NaN,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 100000
+      },
+      "ind_tco": {
+        "mean_tco": 175.0007,
+        "std_tco": 0.0,
+        "ci_lower": 175.0007,
+        "ci_upper": 175.0007,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 100000
+      },
+      "cse_cheaper": "True",
+      "savings": 12.0
+    },
+    "500000_queries": {
+      "cse_tco": {
+        "mean_tco": 815.002,
+        "std_tco": 0.0,
+        "ci_lower": NaN,
+        "ci_upper": NaN,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 500000
+      },
+      "ind_tco": {
+        "mean_tco": 875.0007,
+        "std_tco": 0.0,
+        "ci_lower": NaN,
+        "ci_upper": NaN,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 500000
+      },
+      "cse_cheaper": "True",
+      "savings": 60.0
+    },
+    "1000000_queries": {
+      "cse_tco": {
+        "mean_tco": 1630.002,
+        "std_tco": 0.0,
+        "ci_lower": NaN,
+        "ci_upper": NaN,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 1000000
+      },
+      "ind_tco": {
+        "mean_tco": 1750.0007,
+        "std_tco": 0.0,
+        "ci_lower": NaN,
+        "ci_upper": NaN,
+        "n_seeds": 10,
+        "confidence": 0.95,
+        "n_queries": 1000000
+      },
+      "cse_cheaper": "True",
+      "savings": 120.0
+    }
+  }
+}

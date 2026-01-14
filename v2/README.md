@@ -95,11 +95,48 @@ python -m src.benchmark.runner --full
 
 | Metric | Value |
 |--------|-------|
-| Specialization Index (SCI) | 0.78 ± 0.05 |
-| Regime Coverage | 100% |
-| Equilibrium Match | <10% error |
-| Token Savings vs UCB1 | 55% |
-| Unique Patterns (10 seeds) | 8 |
+| Regime Coverage (CSE) | 20% (vs 0% Independent) |
+| Failure Rate (CSE) | 42% (vs 50% Independent) |
+| Break-even Point | 10 queries (95% CI: [8, 13]) |
+| Training Cost (Subset K=3) | 1,956 tokens |
+| Parallel Training Speedup | 2.32x (8 workers) |
+
+## Commercial Value
+
+### Total Cost of Ownership (TCO) Analysis
+
+CSE achieves **lower deployment costs** despite higher training investment:
+
+```
+Training Phase:
+  CSE (Subset K=3): $0.002
+  Independent:      $0.0007
+  
+Deployment Phase (per query):
+  CSE:         $0.000163 (42% failure × 1.5x retry)
+  Independent: $0.000175 (50% failure × 1.5x retry)
+  
+Break-even: ~10 queries
+After 1M queries: CSE saves ~$12
+```
+
+### Why CSE for Production?
+
+| Benefit | Description |
+|---------|-------------|
+| **Reliability** | 8% lower failure rate than Independent |
+| **Capability** | Handles specialized tasks Independent cannot |
+| **Scalability** | Sublinear training cost with subset competition |
+| **Auditability** | Specialists are inspectable and explainable |
+| **Parallelizable** | 2-3x wall-clock speedup during training |
+
+### Deployment Options
+
+1. **Full CSE**: Keep competition active for continuous improvement
+2. **Cached Specialists**: O(1) lookup after training (recommended)
+3. **Distilled Router**: Lightweight deployment without agent overhead
+
+See `results/TCO_RESULTS_SUMMARY.md` for detailed analysis.
 
 ## Theoretical Contributions
 

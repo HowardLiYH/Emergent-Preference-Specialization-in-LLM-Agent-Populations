@@ -18,7 +18,7 @@ class GSM8KTask:
     question: str
     answer: int  # Final numerical answer
     solution: str  # Step-by-step solution
-    
+
     def extract_answer_from_response(self, response: str) -> int:
         """Extract numerical answer from LLM response."""
         # Look for patterns like "#### 42" or "The answer is 42"
@@ -28,27 +28,27 @@ class GSM8KTask:
             r'=\s*(\d+)\s*$',
             r'(\d+)\s*$',
         ]
-        
+
         for pattern in patterns:
             match = re.search(pattern, response, re.IGNORECASE)
             if match:
                 return int(match.group(1))
-        
+
         return -1  # No answer found
 
 
 class GSM8KBenchmark:
     """
     GSM8K benchmark loader and evaluator.
-    
+
     Maps to code_math regime as it requires calculation.
     """
-    
+
     def __init__(self, n_samples: int = 50):
         self.n_samples = n_samples
         self.tasks: List[GSM8KTask] = []
         self._load_sample_tasks()
-    
+
     def _load_sample_tasks(self):
         """Load sample GSM8K tasks."""
         # Sample tasks (in production, load from dataset)
@@ -94,31 +94,31 @@ class GSM8KBenchmark:
                 solution="28 - 7 = 21"
             ),
         ]
-        
+
         self.tasks = samples[:self.n_samples]
-    
+
     def create_train_test_split(self, test_ratio: float = 0.3, seed: int = 42) -> Tuple[List, List]:
         """Create 70/30 train/test split."""
         rng = random.Random(seed)
         shuffled = self.tasks.copy()
         rng.shuffle(shuffled)
-        
+
         split_idx = int(len(shuffled) * (1 - test_ratio))
         return shuffled[:split_idx], shuffled[split_idx:]
-    
+
     def evaluate(self, agent_fn) -> Dict:
         """Evaluate an agent on GSM8K tasks."""
         correct = 0
         total = 0
-        
+
         for task in self.tasks:
             response = agent_fn(task.question)
             predicted = task.extract_answer_from_response(response)
-            
+
             if predicted == task.answer:
                 correct += 1
             total += 1
-        
+
         return {
             'accuracy': correct / total if total > 0 else 0,
             'correct': correct,

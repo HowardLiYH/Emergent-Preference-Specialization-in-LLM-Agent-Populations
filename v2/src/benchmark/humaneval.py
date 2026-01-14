@@ -20,38 +20,38 @@ class HumanEvalTask:
     canonical_solution: str
     test_cases: str
     entry_point: str  # Function name to call
-    
+
     def extract_code_from_response(self, response: str) -> str:
         """Extract Python code from LLM response."""
         # Look for code blocks
         code_match = re.search(r'```python\n(.*?)\n```', response, re.DOTALL)
         if code_match:
             return code_match.group(1)
-        
+
         code_match = re.search(r'```\n(.*?)\n```', response, re.DOTALL)
         if code_match:
             return code_match.group(1)
-        
+
         # Try to find function definition
         func_match = re.search(r'(def\s+\w+.*?)(?=\ndef|\Z)', response, re.DOTALL)
         if func_match:
             return func_match.group(1)
-        
+
         return response
 
 
 class HumanEvalBenchmark:
     """
     HumanEval benchmark loader and evaluator.
-    
+
     Maps to code_math regime as it requires code generation.
     """
-    
+
     def __init__(self, n_samples: int = 20):
         self.n_samples = n_samples
         self.tasks: List[HumanEvalTask] = []
         self._load_sample_tasks()
-    
+
     def _load_sample_tasks(self):
         """Load sample HumanEval tasks."""
         samples = [
@@ -126,33 +126,33 @@ class HumanEvalBenchmark:
                 entry_point="below_zero"
             ),
         ]
-        
+
         self.tasks = samples[:self.n_samples]
-    
+
     def create_train_test_split(self, test_ratio: float = 0.3, seed: int = 42) -> Tuple[List, List]:
         """Create 70/30 train/test split."""
         rng = random.Random(seed)
         shuffled = self.tasks.copy()
         rng.shuffle(shuffled)
-        
+
         split_idx = int(len(shuffled) * (1 - test_ratio))
         return shuffled[:split_idx], shuffled[split_idx:]
-    
+
     def evaluate(self, agent_fn, sandbox_exec: Callable = None) -> Dict:
         """
         Evaluate an agent on HumanEval tasks.
-        
+
         Args:
             agent_fn: Function that takes prompt and returns code
             sandbox_exec: Optional sandboxed execution function
         """
         correct = 0
         total = 0
-        
+
         for task in self.tasks:
             response = agent_fn(task.prompt)
             code = task.extract_code_from_response(response)
-            
+
             # Check if solution is functionally correct
             # In production, would execute in sandbox
             if sandbox_exec:
@@ -166,9 +166,9 @@ class HumanEvalBenchmark:
                 # Simple check: see if canonical solution patterns are present
                 if task.entry_point in code and 'return' in code:
                     correct += 0.5  # Partial credit for structure
-            
+
             total += 1
-        
+
         return {
             'accuracy': correct / total if total > 0 else 0,
             'correct': correct,

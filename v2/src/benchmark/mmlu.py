@@ -23,14 +23,14 @@ MMLU_TO_REGIME = {
     'conceptual_physics': 'pure_qa',
     'world_history': 'pure_qa',
     'world_religions': 'pure_qa',
-    
+
     # Code/Math
     'college_mathematics': 'code_math',
     'high_school_mathematics': 'code_math',
     'elementary_mathematics': 'code_math',
     'college_computer_science': 'code_math',
     'high_school_computer_science': 'code_math',
-    
+
     # Document QA (reading comprehension)
     'professional_law': 'document_qa',
     'professional_medicine': 'document_qa',
@@ -47,14 +47,14 @@ class MMLUTask:
     answer: int  # Index of correct choice (0-3)
     subject: str
     regime: str
-    
+
     def format_question(self) -> str:
         """Format question with choices."""
         formatted = f"{self.question}\n"
         for i, choice in enumerate(self.choices):
             formatted += f"{chr(65+i)}. {choice}\n"
         return formatted
-    
+
     def get_answer_letter(self) -> str:
         """Get answer as letter (A, B, C, D)."""
         return chr(65 + self.answer)
@@ -63,16 +63,16 @@ class MMLUTask:
 class MMLUBenchmark:
     """
     MMLU benchmark loader and evaluator.
-    
+
     In production, would load from HuggingFace datasets.
     Here we provide sample tasks for testing.
     """
-    
+
     def __init__(self, n_samples_per_subject: int = 10):
         self.n_samples = n_samples_per_subject
         self.tasks: Dict[str, List[MMLUTask]] = {}
         self._load_sample_tasks()
-    
+
     def _load_sample_tasks(self):
         """Load sample MMLU tasks for each subject."""
         # Sample tasks for testing (in production, load from dataset)
@@ -124,13 +124,13 @@ class MMLUBenchmark:
                 ),
             ],
         }
-        
+
         for subject, tasks in sample_tasks.items():
             regime = MMLU_TO_REGIME.get(subject, 'pure_qa')
             for task in tasks:
                 task.regime = regime
             self.tasks[subject] = tasks
-    
+
     def get_tasks_by_regime(self, regime: str) -> List[MMLUTask]:
         """Get all tasks for a given regime."""
         result = []
@@ -139,39 +139,39 @@ class MMLUBenchmark:
                 if task.regime == regime:
                     result.append(task)
         return result
-    
+
     def create_train_test_split(self, test_ratio: float = 0.3, seed: int = 42) -> Tuple[Dict, Dict]:
         """Create 70/30 train/test split."""
         rng = random.Random(seed)
         train_tasks = {}
         test_tasks = {}
-        
+
         for subject, tasks in self.tasks.items():
             shuffled = tasks.copy()
             rng.shuffle(shuffled)
-            
+
             split_idx = int(len(shuffled) * (1 - test_ratio))
             train_tasks[subject] = shuffled[:split_idx]
             test_tasks[subject] = shuffled[split_idx:]
-        
+
         return train_tasks, test_tasks
-    
+
     def evaluate(self, agent_fn, regime: str = None) -> Dict:
         """Evaluate an agent on MMLU tasks."""
         tasks = self.get_tasks_by_regime(regime) if regime else sum(self.tasks.values(), [])
-        
+
         correct = 0
         total = 0
-        
+
         for task in tasks:
             response = agent_fn(task.format_question())
             predicted = response.strip().upper()
-            
+
             # Check if prediction matches answer
             if task.get_answer_letter() in predicted:
                 correct += 1
             total += 1
-        
+
         return {
             'accuracy': correct / total if total > 0 else 0,
             'correct': correct,
