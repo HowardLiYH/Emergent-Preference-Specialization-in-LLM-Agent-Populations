@@ -54,22 +54,22 @@ from experiments.architectures.cse import CompetitiveSpecialistEcosystem
 
 class GeminiClient:
     """Simple Gemini API client."""
-    
+
     def __init__(self, api_key: str = None, model: str = "gemini-2.5-flash"):
         self.api_key = api_key or os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
         self.model = model
         self.total_tokens = 0
         self.total_requests = 0
-        
+
         if not self.api_key:
             raise ValueError("No API key found. Set GOOGLE_API_KEY in .env")
-    
+
     async def generate(self, prompt: str, temperature: float = 0.7) -> Tuple[str, int]:
         """Generate text, return (response, tokens)."""
         import aiohttp
-        
+
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent?key={self.api_key}"
-        
+
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {
@@ -77,22 +77,22 @@ class GeminiClient:
                 "maxOutputTokens": 256,
             }
         }
-        
+
         async with aiohttp.ClientSession() as session:
             async with session.post(url, json=payload) as response:
                 if response.status != 200:
                     return "", 10  # Return empty on error
                 data = await response.json()
-        
+
         try:
             text = data["candidates"][0]["content"]["parts"][0]["text"]
         except (KeyError, IndexError):
             text = ""
-        
+
         tokens = len(prompt.split()) + len(text.split())
         self.total_tokens += tokens
         self.total_requests += 1
-        
+
         return text, tokens
 
 
@@ -176,7 +176,7 @@ def generate_task(regime: str, rng: random.Random) -> Tuple[str, str]:
 
 async def create_evaluator(client: GeminiClient, regimes: Dict[str, Regime]):
     """Create an evaluation function that uses the LLM."""
-    
+
     async def evaluate(agent: BaseAgent, tool: str, question: str, answer: str) -> Tuple[bool, int]:
         """Evaluate agent's response."""
         prompts = {
@@ -187,14 +187,14 @@ async def create_evaluator(client: GeminiClient, regimes: Dict[str, Regime]):
             'L4': f"Use latest data to answer: {question}",
         }
         prompt = prompts.get(tool, prompts['L0'])
-        
+
         try:
             text, tokens = await client.generate(prompt, temperature=0.8)
             correct = answer.lower() in text.lower()
             return correct, tokens
         except Exception as e:
             return False, 10
-    
+
     return evaluate
 
 
@@ -211,33 +211,33 @@ async def run_architecture(
 ) -> Dict:
     """Run a single architecture experiment."""
     rng = random.Random(seed)
-    
+
     # Create architecture
     arch = arch_class(n_agents, REGIMES)
-    
+
     # Create evaluator
     evaluate = await create_evaluator(client, REGIMES)
-    
+
     # Track metrics over time
     coverage_history = []
     sci_history = []
-    
+
     # Run training
     for gen in range(n_generations):
         regime = sample_regime(rng)
         task = generate_task(regime, rng)
-        
+
         result = await asyncio.to_thread(
             lambda: asyncio.run(run_step(arch, task, regime, rng, evaluate))
         )
-        
+
         if (gen + 1) % 20 == 0:
             coverage = arch.compute_coverage()
             sci = arch.compute_sci()
             coverage_history.append(coverage)
             sci_history.append(sci)
             logger.info(f"  {arch.name} Gen {gen+1}: Coverage={coverage:.1%}, SCI={sci:.3f}")
-    
+
     # Get final results
     results = arch.get_results()
     results['name'] = arch.name
@@ -246,22 +246,22 @@ async def run_architecture(
     results['n_generations'] = n_generations
     results['coverage_history'] = coverage_history
     results['sci_history'] = sci_history
-    
+
     return results
 
 
 async def run_step(arch, task, regime, rng, evaluate):
     """Run a single step with async evaluation."""
-    
+
     async def eval_fn(agent, tool, question, answer):
         return await evaluate(agent, tool, question, answer)
-    
+
     # For sync architectures, wrap the evaluation
     def sync_eval(agent, tool, question, answer):
         return asyncio.get_event_loop().run_until_complete(
             eval_fn(agent, tool, question, answer)
         )
-    
+
     return arch.train_step(task, regime, rng, sync_eval)
 
 
@@ -279,7 +279,7 @@ async def run_comparison(
     logger.info("ARCHITECTURE COMPARISON EXPERIMENT")
     logger.info("=" * 60)
     logger.info(f"Agents: {n_agents}, Generations: {n_generations}, Seeds: {n_seeds}")
-    
+
     architectures = [
         IndependentTraining,
         MARLSharedCritic,
@@ -287,38 +287,38 @@ async def run_comparison(
         MarketBasedBidding,
         CompetitiveSpecialistEcosystem,
     ]
-    
+
     all_results = defaultdict(list)
     client = GeminiClient()
-    
+
     for seed in range(n_seeds):
         logger.info(f"\n--- Seed {seed} ---")
-        
+
         for arch_class in architectures:
             logger.info(f"\nRunning {arch_class.__name__}...")
             start = time.time()
-            
+
             result = await run_architecture(
                 arch_class, n_agents, n_generations, seed, client
             )
-            
+
             elapsed = time.time() - start
             result['elapsed'] = elapsed
-            
+
             all_results[result['name']].append(result)
-            
+
             logger.info(f"  Completed in {elapsed:.1f}s")
             logger.info(f"  Final Coverage: {result['coverage']:.1%}")
             logger.info(f"  Final SCI: {result['sci']:.3f}")
             logger.info(f"  Tokens: {result['total_tokens']}")
-    
+
     # Aggregate results
     summary = {}
     for name, results in all_results.items():
         coverages = [r['coverage'] for r in results]
         scis = [r['sci'] for r in results]
         tokens = [r['total_tokens'] for r in results]
-        
+
         summary[name] = {
             'mean_coverage': float(np.mean(coverages)),
             'std_coverage': float(np.std(coverages)),
@@ -328,29 +328,29 @@ async def run_comparison(
             'std_tokens': float(np.std(tokens)),
             'coverage_efficiency': float(np.mean(coverages) / np.mean(tokens) * 1000),
         }
-    
+
     # Save results
     output_dir = Path("v2/results/architecture_comparison")
     output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     with open(output_dir / "summary.json", 'w') as f:
         json.dump(summary, f, indent=2)
-    
+
     with open(output_dir / "all_results.json", 'w') as f:
         json.dump(dict(all_results), f, indent=2, default=str)
-    
+
     # Print summary
     logger.info("\n" + "=" * 60)
     logger.info("SUMMARY")
     logger.info("=" * 60)
-    
+
     for name, stats in summary.items():
         logger.info(f"\n{name}:")
         logger.info(f"  Coverage: {stats['mean_coverage']:.1%} ± {stats['std_coverage']:.1%}")
         logger.info(f"  SCI: {stats['mean_sci']:.3f} ± {stats['std_sci']:.3f}")
         logger.info(f"  Tokens: {stats['mean_tokens']:.0f} ± {stats['std_tokens']:.0f}")
         logger.info(f"  Coverage Efficiency: {stats['coverage_efficiency']:.4f}")
-    
+
     return summary
 
 
@@ -363,66 +363,66 @@ async def run_scaling_experiment(n_seeds: int = 2) -> Dict:
     logger.info("\n" + "=" * 60)
     logger.info("SCALING EXPERIMENT")
     logger.info("=" * 60)
-    
+
     n_values = [4, 8, 16, 32]  # Agent counts to test
     n_generations = 50
-    
+
     architectures = [
         ('Independent', IndependentTraining),
         ('Tournament', TournamentSelection),
         ('Market', MarketBasedBidding),
         ('CSE', CompetitiveSpecialistEcosystem),
     ]
-    
+
     scaling_results = defaultdict(list)
     client = GeminiClient()
-    
+
     for n_agents in n_values:
         logger.info(f"\n--- N = {n_agents} agents ---")
-        
+
         for name, arch_class in architectures:
             tokens_list = []
             coverage_list = []
-            
+
             for seed in range(n_seeds):
                 result = await run_architecture(
                     arch_class, n_agents, n_generations, seed, client
                 )
                 tokens_list.append(result['total_tokens'])
                 coverage_list.append(result['coverage'])
-            
+
             scaling_results[name].append({
                 'n_agents': n_agents,
                 'mean_tokens': np.mean(tokens_list),
                 'mean_coverage': np.mean(coverage_list),
             })
-            
+
             logger.info(f"  {name}: {np.mean(tokens_list):.0f} tokens, {np.mean(coverage_list):.1%} coverage")
-    
+
     # Compute scaling exponents
     exponents = {}
     for name, results in scaling_results.items():
         ns = [r['n_agents'] for r in results]
         tokens = [r['mean_tokens'] for r in results]
-        
+
         # Fit log-log linear regression
         log_n = np.log(ns)
         log_tokens = np.log(tokens)
         alpha, _ = np.polyfit(log_n, log_tokens, 1)
-        
+
         exponents[name] = alpha
         logger.info(f"\n{name}: α = {alpha:.3f}")
-    
+
     # Save
     output_dir = Path("v2/results/scaling")
     output_dir.mkdir(parents=True, exist_ok=True)
-    
+
     with open(output_dir / "scaling_results.json", 'w') as f:
         json.dump({
             'results': dict(scaling_results),
             'exponents': exponents,
         }, f, indent=2, default=str)
-    
+
     return exponents
 
 
@@ -432,14 +432,14 @@ async def run_scaling_experiment(n_seeds: int = 2) -> Dict:
 
 if __name__ == "__main__":
     import argparse
-    
+
     parser = argparse.ArgumentParser()
     parser.add_argument('--mode', choices=['compare', 'scaling', 'full'], default='compare')
     parser.add_argument('--n-agents', type=int, default=12)
     parser.add_argument('--n-generations', type=int, default=60)
     parser.add_argument('--n-seeds', type=int, default=3)
     args = parser.parse_args()
-    
+
     if args.mode == 'compare':
         asyncio.run(run_comparison(args.n_agents, args.n_generations, args.n_seeds))
     elif args.mode == 'scaling':

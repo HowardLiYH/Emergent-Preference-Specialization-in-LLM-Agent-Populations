@@ -1,6 +1,6 @@
 # Emergent Prompt Evolution v2 - Experiment Summary
 
-**Date:** January 14, 2026  
+**Date:** January 14, 2026
 **Model:** Gemini 2.5 Flash
 
 ---
@@ -84,7 +84,7 @@ Using Gemini 2.5 Flash with actual API calls:
 | Independent | 90% ± 10% | 478 ± 2 |
 | CSE | 70% ± 10% | 3,884 ± 158 |
 
-**Total API Requests:** 540  
+**Total API Requests:** 540
 **Total Tokens:** 8,725
 
 ---

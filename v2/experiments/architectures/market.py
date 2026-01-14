@@ -17,29 +17,29 @@ from .base import BaseArchitecture, BaseAgent, Regime
 class MarketBasedBidding(BaseArchitecture):
     """
     Market-Based Bidding: Explicit prices instead of fitness sharing.
-    
+
     - YES competition (auction)
     - YES price mechanism (explicit, not 1/√n)
     - YES sample sharing
-    
+
     Expected: Similar specialization to CSE via price discovery.
     """
-    
+
     def __init__(self, n_agents: int, regimes: Dict[str, Regime],
                  price_up: float = 1.05, price_down: float = 0.95):
         super().__init__(n_agents, regimes)
         self.name = "Market"
-        
+
         # Per-regime prices (start at 1.0)
         self.prices: Dict[str, float] = {r: 1.0 for r in regimes}
-        
+
         # Price adjustment factors
         self.price_up = price_up
         self.price_down = price_down
-        
+
         # Agent balances
         self.balances: Dict[str, float] = {a.id: 10.0 for a in self.agents}
-    
+
     def train_step(self, task: Tuple[str, str], regime: str, rng: random.Random,
                    evaluate_fn) -> Dict:
         """
@@ -51,7 +51,7 @@ class MarketBasedBidding(BaseArchitecture):
         """
         question, answer = task
         current_price = self.prices[regime]
-        
+
         # Collect bids from all agents
         bids = []
         for agent in self.agents:
@@ -61,17 +61,17 @@ class MarketBasedBidding(BaseArchitecture):
             # Add noise for tie-breaking
             bid += rng.random() * 0.01
             bids.append((agent, bid))
-        
+
         # Highest bidder wins the task
         winner, winning_bid = max(bids, key=lambda x: x[1])
-        
+
         # Winner attempts task
         tool = winner.select_tool(regime, rng)
         success, tokens = evaluate_fn(winner, tool, question, answer)
-        
+
         # Update winner
         winner.update(regime, tool, success)
-        
+
         # Price discovery
         if success:
             # More winners → lower price (more supply)
@@ -80,13 +80,13 @@ class MarketBasedBidding(BaseArchitecture):
         else:
             # Fewer winners → higher price (less supply)
             self.prices[regime] *= self.price_up
-        
+
         # Clamp prices
         self.prices[regime] = max(0.1, min(10.0, self.prices[regime]))
-        
+
         self.total_tokens += tokens
         self.generations += 1
-        
+
         return {
             'regime': regime,
             'winner': winner.id,

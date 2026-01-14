@@ -4,6 +4,7 @@ from .marl_shared import MARLSharedCritic
 from .tournament import TournamentSelection
 from .market import MarketBasedBidding
 from .cse import CompetitiveSpecialistEcosystem
+from .hierarchical import HierarchicalCompetition
 
 __all__ = [
     'IndependentTraining',
@@ -11,4 +12,5 @@ __all__ = [
     'TournamentSelection',
     'MarketBasedBidding',
     'CompetitiveSpecialistEcosystem',
+    'HierarchicalCompetition',
 ]

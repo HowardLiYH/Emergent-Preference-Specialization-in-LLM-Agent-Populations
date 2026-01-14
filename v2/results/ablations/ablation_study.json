@@ -1,0 +1,23 @@
+{
+  "Full CSE": {
+    "mean_coverage": 0.8799999999999999,
+    "std_coverage": 0.0979795897113271,
+    "mean_sci": 0.09374999999999997,
+    "std_sci": 0.04166666666666666,
+    "mean_tokens": 14400.0
+  },
+  "No Fitness Sharing": {
+    "mean_coverage": 0.8799999999999999,
+    "std_coverage": 0.0979795897113271,
+    "mean_sci": 0.09374999999999997,
+    "std_sci": 0.04166666666666666,
+    "mean_tokens": 14400.0
+  },
+  "No Competition": {
+    "mean_coverage": 0.8,
+    "std_coverage": 0.1788854381999832,
+    "mean_sci": 0.18259297520661152,
+    "std_sci": 0.048679364540332865,
+    "mean_tokens": 1200.0
+  }
+}
