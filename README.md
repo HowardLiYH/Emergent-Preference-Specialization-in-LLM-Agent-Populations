@@ -32,7 +32,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Research%20Paper-blue" alt="Status"/>
   <img src="https://img.shields.io/badge/Python-3.9+-green" alt="Python"/>
-  <img src="https://img.shields.io/badge/Rules-8-orange" alt="Rules"/>
+  <img src="https://img.shields.io/badge/Rules-8%20Synthetic-orange" alt="Rules"/>
   <img src="https://img.shields.io/badge/Causality-70.7%25-purple" alt="Causality"/>
   <img src="https://img.shields.io/badge/Theorems-3-red" alt="Theorems"/>
   <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License"/>
@@ -40,26 +40,29 @@
 
 ---
 
-## 🆕 Version 2: Tool-Based Specialization
+## 🎯 The Emergent Specialization Series
 
-**NEW in v2:** Tool-based capability levels (L0-L4) with non-uniform regimes and agent memory!
+This is **Paper 2** in the Emergent Specialization research series:
 
-See [`v2/README.md`](v2/README.md) for the complete v2 implementation featuring:
-- **Tool hierarchy**: L0 (base LLM) → L1 (Python) → L2 (Vision) → L3 (RAG) → L4 (Web)
-- **Non-uniform regimes**: Varying frequencies, rewards, and difficulties
-- **Agent memory**: Hierarchical system with anti-leakage guarantees
-- **Theorem 4**: Equilibrium distribution n_r ∝ (f_r × R_r × D_r)^(2/3)
-- **55% token savings** vs bandit baselines
+| Paper | Focus | Domain | Repository |
+|-------|-------|--------|------------|
+| Paper 1 | Learner Populations | Time Series (Rule-based) | [NichePopulation](https://github.com/HowardLiYH/NichePopulation) |
+| **Paper 2** | **Preference Specialization** | **Synthetic Rules (LLM)** | **This repo** |
+| Paper 3 | Tool Specialization | Real Tools (LLM) | [Emergent-Tool-Specialization](https://github.com/HowardLiYH/Emergent-Tool-Specialization) |
 
 ---
 
-## 📄 Research Paper (v1)
+## 📄 Research Paper
 
-**Author:** Yuhao Li
-**Institution:** University of Pennsylvania
+**Title:** Emergent Preference Specialization in LLM Agent Populations Through Competitive Selection
+
+**Author:** Yuhao Li  
+**Institution:** University of Pennsylvania  
 **Email:** li88@sas.upenn.edu
 
-This repository contains the complete implementation, experiments, and theoretical analysis for research on emergent preference specialization in LLM agent populations (v1: synthetic rules).
+This repository contains the complete implementation, experiments, and theoretical analysis for research on **emergent preference specialization** using **8 synthetic rule domains**.
+
+> **Note:** This paper uses **synthetic rules** (not real-world tools) to provide a controlled experimental environment where we can rigorously prove that specialization genuinely *emerges* from competition, rather than being engineered.
 
 ---
 
@@ -146,28 +149,6 @@ We demonstrate that populations of initially identical LLM agents can develop sp
 | Confidence Routing | 41.7% | +5.9% |
 | Ensemble | 42.5% | +6.7% |
 
-### 💰 Cost-Benefit Analysis
-
-| Metric | Value |
-|--------|-------|
-| Training Cost | ~$0.00 (free tier) |
-| Break-Even Point | **5-7 tasks** |
-| Specialist Ceiling | **100%** on matched tasks |
-| Routing Value Unlocked | **+64.2% ± 2.3%** (Oracle, n=5) |
-| ROI | Excellent |
-
-### 🎯 Why 100% Oracle Accuracy Validates Our Thesis
-
-The **100% accuracy** across all trials is **validation**, not a limitation:
-
-| What 100% Proves | Why It Matters |
-|------------------|----------------|
-| Specialists encode **complete** rule knowledge | Evolution produced full experts, not partial heuristics |
-| Prompts **correctly transfer** rules | The mechanism works as designed |
-| Competitive selection produces **deterministically solvable** experts | Complete specialization achieved |
-
-> **Key Insight**: The +64.2% improvement represents the **maximum extractable value** from correct task-specialist matching. Just as a hummingbird on its co-evolved flower gets nectar every time, a perfectly matched specialist achieves ceiling performance.
-
 ### 🧪 Ablation Study: Is Specialization Emergent or Engineered?
 
 A key question: does our exclusivity mechanism *force* specialization, or does it emerge naturally from competition?
@@ -208,7 +189,7 @@ We provide a complete theoretical framework with three proven theorems:
 
 ## 🔗 Connection to Paper 1: NichePopulation Algorithm
 
-This paper **directly extends** the [NichePopulation algorithm](https://github.com/HowardLiYH/Emergent-Specialization-in-Multi-Agent-Systems) from Paper 1 of this research series. Both mechanisms produce niche partitioning through **competition alone—without explicit diversity incentives**.
+This paper **directly extends** the [NichePopulation algorithm](https://github.com/HowardLiYH/NichePopulation) from Paper 1 of this research series. Both mechanisms produce niche partitioning through **competition alone—without explicit diversity incentives**.
 
 ### Conceptual Mapping
 
@@ -240,51 +221,14 @@ Winner-Take-All (this work):
 
 This explains why standard MARL methods (QMIX, MAPPO, IQL) fail to induce specialization: they use shared critics/value functions that drive convergence rather than divergence. Paper 1 shows MARL achieves SI < 0.2 versus our SI = 0.75.
 
-### Key Innovation: From Implicit to Explicit Preferences
-
-| Aspect | Paper 1 | Paper 2 (Innovation) |
-|--------|---------|---------------------|
-| Representation | Beta distributions (implicit) | Text prompts (explicit) |
-| Interpretability | Requires visualization | **Human-readable strategies** |
-| Transferability | Model-specific | Works across LLM providers |
-| Verifiability | Statistical only | Can read what agent "knows" |
-
-**See the [Deep Dive](docs/DEEP_DIVE.md#46-connection-to-paper-1-the-nichepopulation-algorithm) for the complete mathematical correspondence.**
-
-### Core Reasoning: Why Competition Produces Complete Specialists
-
-```
-                    Competition Loop
-                         ↓
-┌─────────────────────────────────────────────────────┐
-│  1. Task sampled from uniform rule distribution     │
-│  2. All agents attempt (confidence-based)           │
-│  3. Winner = highest confidence among CORRECT       │
-│  4. Winner gains strategy level for that rule       │
-│  5. Fitness sharing: 1/√n penalty for crowded niche │
-└─────────────────────────────────────────────────────┘
-                         ↓
-              Result: Niche Differentiation
-
-   Agent A: L3 in VOWEL_START (specialist)
-   Agent B: L3 in MATH_MOD (specialist)
-   Agent C: L3 in RHYME (specialist)
-   ...
-```
-
-**Why specialists reach 100%**: Once an agent accumulates Level 3 strategy, their prompt contains the *complete* rule solution. The LLM follows the explicit instructions perfectly → 100% accuracy on matched tasks.
-
-**Why generalists stay at ~36%**: Without rule knowledge, the LLM must guess among 3-4 options → near-random performance.
-
-**The +64% gap = complete specialization validated.**
-
-See `src/genesis/theory.py` for full proofs.
-
 ---
 
 ## Synthetic Rules
 
-8 rule domains with cognitive science grounding:
+This paper uses **8 synthetic rule domains** with cognitive science grounding. Synthetic rules are essential for:
+1. **Controlled experiments**: No prior LLM knowledge contaminates results
+2. **Verifiable causality**: We can prove prompts *cause* specialization
+3. **Clean ablations**: Isolate competition's effect from other factors
 
 | Category | Rules | Characteristic |
 |----------|-------|----------------|
@@ -302,6 +246,8 @@ See `src/genesis/theory.py` for full proofs.
 | ALPHABET | First letter closest to M | Orthographic Processing |
 | MATH_MOD | Length mod 3 = 1 | Number Cognition |
 | ANIMATE | Living thing (animal) | Category-Specific Processing |
+
+> **For real-world tool specialization**, see [Paper 3: Emergent-Tool-Specialization](https://github.com/HowardLiYH/Emergent-Tool-Specialization).
 
 ---
 
@@ -372,11 +318,11 @@ emergent_prompt_evolution/
 │   ├── preference_agent.py     # Agent with exclusivity
 │   ├── competition_v3.py       # Confidence-based competition
 │   ├── llm_client.py           # Unified LLM wrapper
-│   ├── theory.py               # NEW: 3 theorems + proofs
-│   ├── real_tasks.py           # NEW: Multi-domain tasks
-│   ├── routing.py              # NEW: 4 routing methods
-│   ├── statistics_complete.py  # NEW: Full statistical rigor
-│   ├── hero_visualization.py   # NEW: Publication figures
+│   ├── theory.py               # 3 theorems + proofs
+│   ├── real_tasks.py           # Multi-domain tasks
+│   ├── routing.py              # 4 routing methods
+│   ├── statistics_complete.py  # Full statistical rigor
+│   ├── hero_visualization.py   # Publication figures
 │   ├── analysis.py             # Bootstrap CIs (10k)
 │   └── neurips_metrics.py      # SCI, HHI, Gini
 ├── experiments/
@@ -389,9 +335,9 @@ emergent_prompt_evolution/
 │   ├── exp_n48_investigation.py# Scalability analysis
 │   └── ...                     # Other experiments
 ├── paper/
-│   ├── main.tex                # Full NeurIPS submission (~10 pages + appendix)
-│   ├── deep_dive.tex           # Comprehensive LaTeX deep dive
-│   ├── neurips_2025.sty        # NeurIPS 2025 style file
+│   ├── main.tex                # Full NeurIPS submission
+│   ├── arxiv_submission.zip    # Ready for arXiv
+│   ├── neurips_2025.sty        # NeurIPS style file
 │   └── figures/                # Publication figures
 ├── results/
 │   ├── unified_gemini25/       # 10-seed results
@@ -399,9 +345,9 @@ emergent_prompt_evolution/
 │   ├── fitness_sensitivity/    # Ablation results
 │   └── ...                     # Other results
 ├── docs/
+│   ├── DEEP_DIVE.md            # Comprehensive methodology
 │   ├── PREFERENCE_DEFINITION.md# Formal definition
 │   ├── COGNITIVE_FRAMING.md    # Revised framing
-│   ├── PROJECT_STATUS.md       # Status tracker
 │   └── AUDIT_LOG.md            # Data integrity
 ├── CHANGELOG.md                # Version history
 └── README.md                   # This file
@@ -421,22 +367,6 @@ All results include complete statistical analysis:
 | Holm-Bonferroni correction | ✅ |
 | Power analysis (10 seeds) | ✅ |
 | Welch's t-test | ✅ |
-
----
-
-## Metrics & Literature Grounding
-
-All metrics used in this work are grounded in established literature:
-
-| Metric | Formula | Origin | Citation |
-|--------|---------|--------|----------|
-| **SCI** (Strategy Concentration Index) | `1 - H/H_max` | **1 - Pielou's Evenness** | Pielou (1966); Shannon (1948) |
-| **Gini Coefficient** | Lorenz curve area | Economics/Inequality | Gini (1912) |
-| **Shannon Entropy** | `-Σ p log(p)` | Information Theory | Shannon (1948) |
-| **HHI** (Herfindahl-Hirschman) | `Σ p_i²` | Economics/Concentration | US DOJ standard |
-| **Fitness Sharing** | `f' = f/√n` | Evolutionary Computation | Goldberg & Richardson (1987) |
-
-> **Note on SCI**: The Strategy Concentration Index is mathematically equivalent to **1 - Pielou's Evenness Index** (Pielou, 1966). The formula `1 - H/H_max` is a standard entropy-based concentration measure. Our contribution is the *naming* and *application* to LLM agent specialization, not the formula itself.
 
 ---
 
@@ -461,34 +391,31 @@ The Deep Dive covers:
 
 | Paper | Project | Relationship |
 |-------|---------|--------------|
-| **Paper 1** | [Emergent-Specialization](https://github.com/HowardLiYH/Emergent-Specialization-in-Multi-Agent-Systems) | **Foundation**: Introduces NichePopulation algorithm with Thompson Sampling + competitive exclusion. Validated across 6 real-world domains (crypto, weather, solar, traffic, air quality, commodities). Mean SI = 0.747, Cohen's d > 20. **This paper directly extends its mechanism.** |
+| **Paper 1** | [NichePopulation](https://github.com/HowardLiYH/NichePopulation) | **Foundation**: Introduces NichePopulation algorithm with Thompson Sampling + competitive exclusion. Validated across 6 real-world domains. Mean SI = 0.747, Cohen's d > 20. |
 | **Paper 2** | This Repository | **Extension**: Adapts NichePopulation for LLM prompt evolution. Rules↔Regimes, Strategy Levels↔Beta posteriors. Produces human-readable specialists with 70.7% causality validation. |
-| **Paper 3** | [Emergent-Civilizations](https://github.com/HowardLiYH/Emergent-Civilizations) | **Extension**: Applies emergent specialization to society-level dynamics and governance systems. |
+| **Paper 3** | [Emergent-Tool-Specialization](https://github.com/HowardLiYH/Emergent-Tool-Specialization) | **Extension**: Applies emergent specialization to real LLM tools (Vision, Code, RAG, Web). +83% specialist advantage on tool-gated tasks. |
 
 ### The Research Series
 
 ```
 Paper 1: NichePopulation (Foundation)
    ├── Domain: Real-world time series prediction
-   ├── Agents: Beta-belief models
+   ├── Agents: Rule-based learners with Beta beliefs
    ├── Result: Competition induces specialization (SI=0.75)
    │
    ├──────────────────────────────────────────────────────┐
    │  KEY MECHANISM: Winner-take-all competitive exclusion │
-   │  This transfers to Paper 2:                          │
-   │    Regimes → Rules                                   │
-   │    Beta posteriors → Strategy levels (L0-L3)         │
-   │    Niche bonus λ → Fitness sharing 1/√n             │
    └──────────────────────────────────────────────────────┘
    │
-Paper 2: Prompt Evolution (This Work)
-   ├── Domain: LLM task specialization
+Paper 2: Preference Specialization (This Work)
+   ├── Domain: LLM task specialization (synthetic rules)
    ├── Agents: LLM instances with accumulating prompts
    ├── Result: Prompts cause preference (70.7% causality)
    │
-Paper 3: Civilizations (Extension)
-   ├── Domain: Society-level dynamics
-   └── Status: In development
+Paper 3: Tool Specialization (Extension)
+   ├── Domain: Real LLM tools (Vision, Code, RAG, Web)
+   ├── Agents: LLM instances with real API access
+   └── Result: +83% specialist advantage
 ```
 
 ---
